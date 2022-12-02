@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictagg.FXMLDocumentController">
+   <children>
+      <Label layoutX="105.0" layoutY="34.0" prefHeight="45.0" prefWidth="350.0" text="welcome in Tic Tac Toe">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_single" layoutX="188.0" layoutY="310.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="Single Player" textFill="#0a3257">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_two" layoutX="188.0" layoutY="365.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="Two Player" textFill="#0a3257">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_online_mode" layoutX="188.0" layoutY="419.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="online mode" textFill="#0a3257">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="180.0" layoutY="93.0">
+         <image>
+            <Image url="@../../../../../../picture/igre.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
