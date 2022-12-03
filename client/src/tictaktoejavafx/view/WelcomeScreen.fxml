@@ -31,7 +31,7 @@
       </Button>
       <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="180.0" layoutY="93.0">
          <image>
-            <Image url="@../../../../../../picture/igre.jpg" />
+            <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
    </children>

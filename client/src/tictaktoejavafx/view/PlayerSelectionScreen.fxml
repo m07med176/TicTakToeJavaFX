@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="170.0" fitWidth="183.0" layoutX="571.0" layoutY="74.0">
          <image>
-            <Image url="@../../../../../../picture/igre.jpg" />
+            <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
       <Label layoutX="625.0" layoutY="255.0" text="Tic Tac Toe" />
