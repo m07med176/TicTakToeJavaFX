@@ -1,10 +1,20 @@
 package server.controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import server.view.ServerHomeScreenBase;
 
-public class ServerHomeController extends ServerHomeScreenBase{
 
+public class ServerHomeController extends ServerHomeScreenBase{
+    private Stage stage;
+
+    public ServerHomeController(Stage stage) {
+        this.stage = stage;
+    }
+    
+    
     @Override
     protected void isHome(ActionEvent actionEvent) {
         System.out.println("isHome");
@@ -17,6 +27,9 @@ public class ServerHomeController extends ServerHomeScreenBase{
 
     @Override
     protected void isCharts(ActionEvent actionEvent) {
+//        stage.close();
+        stage.setScene(new Scene(this));
+//        stage.show();
         System.out.println("isCharts");
     }
 
