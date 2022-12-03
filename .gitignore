@@ -1,1 +1,8 @@
-/server/nbproject/private/
+/server/nbproject/
+/client/nbproject/
+
+
+# Prevent type of generated files
+*.rar
+*.zip
+*.class
