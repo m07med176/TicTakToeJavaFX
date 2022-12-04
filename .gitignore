@@ -1,8 +1,18 @@
+# nbproject
 /server/nbproject/
 /client/nbproject/
+
+# build
+/server/build/
+/client/build/
+
+# dist
+/client/dist/
+/server/dist/
 
 
 # Prevent type of generated files
 *.rar
 *.zip
 *.class
+
