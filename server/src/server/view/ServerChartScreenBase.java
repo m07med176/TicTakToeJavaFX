@@ -2,6 +2,7 @@ package server.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -69,6 +70,7 @@ public abstract class ServerChartScreenBase extends AnchorPane {
         label0.setLayoutY(41.0);
         label0.setText("Server Activity");
 
+        
         getChildren().add(label);
         vBox.getChildren().add(home_btn);
         vBox.getChildren().add(players_btn);
