@@ -12,7 +12,7 @@ public class Client extends Application {
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
         PathManager.getPath();
-        Navigator.navigate(Navigator.WELCOME, stage);
+        Navigator.navigate(Navigator.LOGIN, stage);
     }
 
     public static void main(String[] args) {
