@@ -1,10 +1,16 @@
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardController extends GameBoardScreenBase{
+    private Stage stage;
 
+    public GameBoardController(Stage stage) {
+        this.stage = stage;
+    }
+    
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         System.out.println("isGameOne");

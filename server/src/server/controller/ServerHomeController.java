@@ -27,8 +27,7 @@ public class ServerHomeController extends ServerHomeScreenBase{
 
     @Override
     protected void isCharts(ActionEvent actionEvent) {
-        stage.setScene(new Scene(new ServerChartController()));
-        stage.show();
+
         System.out.println("isCharts");
     }
 
