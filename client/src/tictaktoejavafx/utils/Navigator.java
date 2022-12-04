@@ -66,6 +66,8 @@ public class Navigator {
         stage.setScene(new Scene(parent));
         stage.show();
     }
+
+   
     
     
 }
