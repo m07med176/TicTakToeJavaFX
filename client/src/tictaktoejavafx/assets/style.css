@@ -19,7 +19,7 @@
     -fx-background-insets: 0, 1;
     -fx-background-radius: 30px;
     -fx-cursor: text;
-    -fx-padding: 0.333333em 0.583em 0.333333em 0.583em; /* 4 7 4 7 */
+    -fx-padding: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
 }
 .text-input:focused {
@@ -41,4 +41,14 @@
     -fx-font-size: 30px;
     -fx-font-weight: 700;
     -fx-line-height: 38px;
+}
+
+.button{
+    -fx-background: #FFFFFF;
+    -fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
+    -fx-background-radius: 30px;
+    -fx-padding: 10px;
+    -fx-text-fill: #0A3257;
+    -fx-font-size: 15px 15px 0px 0px;
+    -fx-font-weight: 700;
 }
