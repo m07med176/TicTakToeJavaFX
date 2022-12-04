@@ -6,15 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.controller.ServerHomeController;
+import server.utils.AssetsRepository;
+import server.utils.Navigator;
 
 public class Server extends Application {
-    
+    public static String CSS = "";
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = new ServerHomeController(stage);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
+        Navigator.navigate(Navigator.HOME, stage);
     }
     
     public static void main(String[] args) {

@@ -1,17 +1,17 @@
 package tictaktoejavafx;
 
+import tictaktoejavafx.utils.PathManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tictaktoejavafx.controller.WelcomeController;
+import tictaktoejavafx.utils.AssetsRepository;
 import tictaktoejavafx.utils.Navigator;
 
 public class Client extends Application {
-    
+    public static String CSS ="";
     @Override
     public void start(Stage stage) throws Exception {
+        CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
+        PathManager.getPath();
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
