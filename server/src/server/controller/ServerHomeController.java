@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.utils.Navigator;
 import server.view.ServerHomeScreenBase;
 
 
@@ -27,8 +28,7 @@ public class ServerHomeController extends ServerHomeScreenBase{
 
     @Override
     protected void isCharts(ActionEvent actionEvent) {
-
-        System.out.println("isCharts");
+        Navigator.navigate(Navigator.CHART, stage);
     }
 
     @Override

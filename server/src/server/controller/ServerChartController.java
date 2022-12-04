@@ -2,6 +2,7 @@ package server.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import server.utils.Navigator;
 import server.view.ServerChartScreenBase;
 
 public class ServerChartController extends ServerChartScreenBase{
@@ -13,7 +14,7 @@ public class ServerChartController extends ServerChartScreenBase{
 
     @Override
     protected void sHome(ActionEvent actionEvent) {
-        System.out.println("sHome");
+        Navigator.navigate(Navigator.HOME, stage);
     }
 
     @Override

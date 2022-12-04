@@ -1,19 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import tictaktoejavafx.view.ChooseDiffucultyScreenBase;
 
-/**
- *
- * @author Elsawah
- */
 public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
+    private Stage stage;
 
+    public ChooseDiffucultyController(Stage stage) {
+        this.stage = stage;
+    }
+    
+    
     @Override
     protected void isEasyMode(ActionEvent actionEvent) {
         System.out.println("isEasyMode");

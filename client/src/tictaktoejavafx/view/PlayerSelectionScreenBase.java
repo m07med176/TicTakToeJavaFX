@@ -35,7 +35,7 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setFitWidth(183.0);
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         label.setLayoutX(625.0);
         label.setLayoutY(255.0);

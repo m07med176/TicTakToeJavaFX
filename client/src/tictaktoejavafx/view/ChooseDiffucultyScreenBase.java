@@ -35,7 +35,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(200.0);
         imageView.setLayoutY(42.0);
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         label.setLayoutX(263.0);
         label.setLayoutY(252.0);

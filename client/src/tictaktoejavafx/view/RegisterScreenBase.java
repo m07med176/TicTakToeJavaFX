@@ -42,7 +42,7 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(184.0);
         imageView.setLayoutY(25.0);
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         label.setLayoutX(247.0);
         label.setLayoutY(222.0);

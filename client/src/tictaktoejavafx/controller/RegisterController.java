@@ -1,10 +1,16 @@
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import tictaktoejavafx.view.RegisterScreenBase;
 
 public class RegisterController extends RegisterScreenBase{
+    private Stage stage;
 
+    public RegisterController(Stage stage) {
+        this.stage = stage;
+    }
+    
     @Override
     protected void registerUserName(ActionEvent actionEvent) {
         System.out.println("registerUserName");

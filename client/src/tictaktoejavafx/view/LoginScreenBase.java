@@ -38,7 +38,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setFitWidth(168.0);
         imageView.setLayoutX(203.0);
         imageView.setLayoutY(56.0);
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         btn_login.setLayoutX(274.0);
         btn_login.setLayoutY(375.0);
