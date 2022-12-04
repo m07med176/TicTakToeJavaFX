@@ -2,6 +2,7 @@ package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.WelcomeScreenBase;
 
 public class WelcomeController extends WelcomeScreenBase{
@@ -18,6 +19,7 @@ public class WelcomeController extends WelcomeScreenBase{
     @Override
     protected void isTwo(ActionEvent actionEvent) {
         System.out.println("isTwo");
+        Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
     }
 
     @Override

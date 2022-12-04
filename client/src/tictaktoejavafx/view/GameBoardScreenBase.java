@@ -12,7 +12,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Label label;
     protected final Label label0;
     protected final AnchorPane anchorPane;
-    protected final Button btn_game_one;
+    protected final Button btn_Game_one;
     protected final Button btn_Game_four;
     protected final Button btn_Game_seven;
     protected final Button btn_Game_two;
@@ -30,7 +30,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label = new Label();
         label0 = new Label();
         anchorPane = new AnchorPane();
-        btn_game_one = new Button();
+        btn_Game_one = new Button();
         btn_Game_four = new Button();
         btn_Game_seven = new Button();
         btn_Game_two = new Button();
@@ -68,12 +68,12 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         anchorPane.setPrefHeight(412.0);
         anchorPane.setPrefWidth(530.0);
 
-        btn_game_one.setLayoutX(45.0);
-        btn_game_one.setLayoutY(38.0);
-        btn_game_one.setMnemonicParsing(false);
-        btn_game_one.setOnAction(this::isGameOne);
-        btn_game_one.setPrefHeight(99.0);
-        btn_game_one.setPrefWidth(125.0);
+        btn_Game_one.setLayoutX(45.0);
+        btn_Game_one.setLayoutY(38.0);
+        btn_Game_one.setMnemonicParsing(false);
+        btn_Game_one.setOnAction(this::isGameOne);
+        btn_Game_one.setPrefHeight(99.0);
+        btn_Game_one.setPrefWidth(125.0);
 
         btn_Game_four.setLayoutX(42.0);
         btn_Game_four.setLayoutY(164.0);
@@ -147,7 +147,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         getChildren().add(imageView);
         getChildren().add(label);
         getChildren().add(label0);
-        anchorPane.getChildren().add(btn_game_one);
+        anchorPane.getChildren().add(btn_Game_one);
         anchorPane.getChildren().add(btn_Game_four);
         anchorPane.getChildren().add(btn_Game_seven);
         anchorPane.getChildren().add(btn_Game_two);

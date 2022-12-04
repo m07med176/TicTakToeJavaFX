@@ -3,6 +3,7 @@ package tictaktoejavafx.view;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.PlayerName;
 
 public abstract class WinnerAndlosserScreenBase extends AnchorPane {
 
@@ -38,7 +39,7 @@ public abstract class WinnerAndlosserScreenBase extends AnchorPane {
 
         user_win.setLayoutX(423.0);
         user_win.setLayoutY(49.0);
-        user_win.setText("user_name");
+        user_win.setText(PlayerName.getPlayerString());
 
         getChildren().add(label);
         getChildren().add(video_screen);
