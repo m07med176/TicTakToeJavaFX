@@ -12,3 +12,4 @@ set fixed size in all pages
 make size resizable
 validation of input of registeration in seprated function
 send User Model in registration function in dataAccess layer
+
