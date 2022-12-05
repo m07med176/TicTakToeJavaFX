@@ -1,5 +1,5 @@
 .root{
-	-fx-background:#7aa79e;
+	-fx-background-color: linear-gradient(from 100px 0px to 100px 100px, #359785, #B1E0D8);
 }
 
 .logo{
