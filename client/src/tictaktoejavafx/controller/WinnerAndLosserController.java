@@ -9,7 +9,7 @@ import tictaktoejavafx.utils.PathManager;
 import tictaktoejavafx.view.WinnerAndlosserScreenBase;
 
 public class WinnerAndLosserController extends WinnerAndlosserScreenBase{
-    private Stage stage;
+    private final Stage stage;
 
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
