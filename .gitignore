@@ -1,6 +1,6 @@
 # nbproject
-/server/nbproject/
-/client/nbproject/
+/server/nbproject/private
+/client/nbproject/private
 
 # build
 /server/build/
@@ -12,7 +12,5 @@
 
 
 # Prevent type of generated files
-*.rar
-*.zip
 *.class
 

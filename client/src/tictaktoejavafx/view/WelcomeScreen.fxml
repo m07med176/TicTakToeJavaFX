@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictagg.FXMLDocumentController">
    <children>
-      <Label layoutX="105.0" layoutY="34.0" prefHeight="45.0" prefWidth="350.0" text="welcome in Tic Tac Toe">
+      <Label layoutX="105.0" layoutY="34.0" prefHeight="45.0" prefWidth="350.0" styleClass="title" text="welcome in Tic Tac Toe">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

@@ -19,12 +19,12 @@ public class ServerChartController extends ServerChartScreenBase{
 
     @Override
     protected void sPlayers(ActionEvent actionEvent) {
-        System.out.println("sPlayers");
+        Navigator.navigate(Navigator.PLAYERS_LIST, stage);
     }
 
     @Override
     protected void sCharts(ActionEvent actionEvent) {
-        System.out.println("sCharts");
+        Navigator.navigate(Navigator.CHART, stage);
     }
     
 }
