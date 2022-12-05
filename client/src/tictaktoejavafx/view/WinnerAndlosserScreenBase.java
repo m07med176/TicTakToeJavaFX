@@ -48,21 +48,5 @@ public abstract class WinnerAndlosserScreenBase extends AnchorPane {
         getChildren().add(label);
         getChildren().add(user_win);
         getChildren().add(mediaView);
-
-        //---------------------------------
-        
-       /* String VUrl="tictaktoejavafx/assets/winnerVideo.mp4";
-  Media media = new Media(Paths.get(VUrl).toUri().toString());
-
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
-        mediaView.setFitHeight(800);
-        mediaView.setFitWidth(600);
-        mediaView.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
-        }catch(Exception e){
-            e.printStackTrace();*/
-       
-        
-        //---------------------------------
     }
 }
