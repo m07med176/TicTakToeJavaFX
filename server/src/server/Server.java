@@ -15,6 +15,8 @@ public class Server extends Application {
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
         Navigator.navigate(Navigator.HOME, stage);
+        // TODO set fixed size in all pages 
+        // TODO make size resizable
     }
     
     public static void main(String[] args) {
