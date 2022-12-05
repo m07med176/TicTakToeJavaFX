@@ -21,6 +21,7 @@ public class WelcomeController extends WelcomeScreenBase{
     @Override
     protected void isTwo(ActionEvent actionEvent) {
         System.out.println("isTwo");
+        Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
     }
 
     @Override
