@@ -1,2 +1,15 @@
 login Validation in separated function retrurn booleanon
 Pass data in athentication function
+create dialog alert message class
+create dialog confirm message class
+create Loading Message Class
+choise fonts in figma
+add fonts to resources and UI
+extract Icons from figma to resource
+create server models of database
+Create Navigation of pages
+set fixed size in all pages 
+make size resizable
+validation of input of registeration in seprated function
+send User Model in registration function in dataAccess layer
+

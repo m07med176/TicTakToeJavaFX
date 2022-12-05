@@ -2,6 +2,7 @@ package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.RegisterScreenBase;
 
 public class RegisterController extends RegisterScreenBase{
@@ -12,33 +13,17 @@ public class RegisterController extends RegisterScreenBase{
     }
     
     @Override
-    protected void registerUserName(ActionEvent actionEvent) {
-        System.out.println("registerUserName");
-    }
-
-    @Override
-    protected void registerEmail(ActionEvent actionEvent) {
-        System.out.println("registerEmail");
-    }
-
-    @Override
-    protected void registerPassword(ActionEvent actionEvent) {
-        System.out.println("registerPassword");
-    }
-
-    @Override
-    protected void registerRepeatPassword(ActionEvent actionEvent) {
-        System.out.println("registerRepeatPassword");
-    }
-
-    @Override
     protected void register(ActionEvent actionEvent) {
+        // TODO validation of input of registeration in seprated function
+        // TODO send regestration data in User Model
+        // TODO send User Model in registration function in dataAccess layer
+        // Sned Success Message if true then navigate or send Error Message
         System.out.println("register");
     }
 
     @Override
     protected void haveAccount(ActionEvent actionEvent) {
-        System.out.println("haveAccount");
+        Navigator.navigate(Navigator.LOGIN, stage);
     }
     
 }

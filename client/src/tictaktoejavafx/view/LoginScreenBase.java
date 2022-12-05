@@ -55,14 +55,12 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         password.setLayoutX(200.0);
         password.setLayoutY(317.0);
-        password.setOnAction(this::isPassword);
         password.setPrefHeight(39.0);
         password.setPrefWidth(204.0);
         password.setPromptText("password");
 
         user_name.setLayoutX(196.0);
         user_name.setLayoutY(259.0);
-        user_name.setOnAction(this::isUserName);
         user_name.setPrefHeight(39.0);
         user_name.setPrefWidth(204.0);
         user_name.setPromptText("User Name");
@@ -85,10 +83,6 @@ public abstract class LoginScreenBase extends AnchorPane {
     }
 
     protected abstract void isLogin(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isPassword(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isUserName(javafx.event.ActionEvent actionEvent);
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
 

@@ -17,10 +17,10 @@
          </image>
       </ImageView>
       <Label layoutX="247.0" layoutY="222.0" text="Tic Tac Toe" />
-      <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" onAction="#registerUserName" promptText="User Name" />
-      <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" onAction="#registerEmail" promptText="Email" />
-      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" onAction="#registerPassword" promptText="Password" />
-      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0" onAction="#registerRepeatPassword" promptText="Repeat Password" />
+      <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" />
+      <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" />
+      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0"  promptText="Password" />
+      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0"  promptText="Repeat Password" />
       <Button fx:id="btn_register" layoutX="252.0" layoutY="477.0" mnemonicParsing="false" onAction="#register" text="Register" />
       <Hyperlink fx:id="have_accout" layoutX="226.0" layoutY="520.0" onAction="#haveAccount" text="I Have an account" />
    </children>

@@ -17,9 +17,9 @@
          </image>
       </ImageView>
       <Button fx:id="btn_login" layoutX="274.0" layoutY="375.0" mnemonicParsing="false" onAction="#isLogin" text="Login" />
-      <Label layoutX="250.0" layoutY="203.0" styleClass="title" text="Tic Tac Toe" />
-      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0" onAction="#isPassword" prefHeight="39.0" prefWidth="204.0" promptText="password" />
-      <TextField fx:id="user_name" layoutX="196.0" layoutY="259.0" onAction="#isUserName" prefHeight="39.0" prefWidth="204.0" promptText="User Name" />
-      <Hyperlink fx:id="create_account" layoutX="231.0" layoutY="414.0" onAction="#CreateAccount" prefHeight="21.0" prefWidth="168.0" styleClass="link_button" text="Create an Account?" />
+      <Label layoutX="250.0" layoutY="203.0" text="Tic Tac Toe" />
+      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0"  prefHeight="39.0" prefWidth="204.0" promptText="password" />
+      <TextField fx:id="user_name" layoutX="196.0" layoutY="259.0"  prefHeight="39.0" prefWidth="204.0" promptText="User Name" />
+      <Hyperlink fx:id="create_account" layoutX="231.0" layoutY="414.0" onAction="#CreateAccount" prefHeight="21.0" prefWidth="168.0" text="Create an Account?" />
    </children>
 </AnchorPane>
