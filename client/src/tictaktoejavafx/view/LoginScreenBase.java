@@ -39,7 +39,8 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setFitWidth(168.0);
         imageView.setLayoutX(203.0);
         imageView.setLayoutY(56.0);
-        imageView.setImage(new Image(AssetsRepository.LOGO));   
+        imageView.getStyleClass().add("logo");
+        imageView.setImage(new Image(AssetsRepository.LOGO)); 
 
         btn_login.setLayoutX(274.0);
         btn_login.setLayoutY(375.0);
@@ -49,18 +50,17 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         label.setLayoutX(250.0);
         label.setLayoutY(203.0);
+        label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
 
         password.setLayoutX(200.0);
         password.setLayoutY(317.0);
-        password.setOnAction(this::isPassword);
         password.setPrefHeight(39.0);
         password.setPrefWidth(204.0);
         password.setPromptText("password");
 
         user_name.setLayoutX(196.0);
         user_name.setLayoutY(259.0);
-        user_name.setOnAction(this::isUserName);
         user_name.setPrefHeight(39.0);
         user_name.setPrefWidth(204.0);
         user_name.setPromptText("User Name");
@@ -70,6 +70,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         create_account.setOnAction(this::CreateAccount);
         create_account.setPrefHeight(21.0);
         create_account.setPrefWidth(168.0);
+        create_account.getStyleClass().add("link_button");
         create_account.setText("Create an Account?");
 
         getChildren().add(imageView);
@@ -82,10 +83,6 @@ public abstract class LoginScreenBase extends AnchorPane {
     }
 
     protected abstract void isLogin(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isPassword(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isUserName(javafx.event.ActionEvent actionEvent);
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
 

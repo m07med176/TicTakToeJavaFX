@@ -12,17 +12,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.derby.jdbc.ClientDriver;
 import server.controller.ServerHomeController;
-import org.apache.derby.jdbc.ClientDriver;
+import server.utils.AssetsRepository;
+import server.utils.Navigator;
 
 
 public class Server extends Application {
-    
+    public static String CSS = "";
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = new ServerHomeController(stage);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
+        Navigator.navigate(Navigator.HOME, stage);
+        // TODO set fixed size in all pages 
+        // TODO make size resizable
     }
     
     public static void main(String[] args) {

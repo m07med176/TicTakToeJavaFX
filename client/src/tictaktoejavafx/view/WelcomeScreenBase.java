@@ -32,6 +32,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         label.setLayoutY(34.0);
         label.setPrefHeight(45.0);
         label.setPrefWidth(350.0);
+        label.getStyleClass().add("title");
         label.setText("welcome in Tic Tac Toe");
         label.setFont(new Font("System Bold", 30.0));
 

@@ -51,22 +51,18 @@ public abstract class RegisterScreenBase extends AnchorPane {
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
-        user_name_register.setOnAction(this::registerUserName);
         user_name_register.setPromptText("User Name");
 
         email_register.setLayoutX(197.0);
         email_register.setLayoutY(325.0);
-        email_register.setOnAction(this::registerEmail);
         email_register.setPromptText("Email");
 
         password_register.setLayoutX(197.0);
         password_register.setLayoutY(374.0);
-        password_register.setOnAction(this::registerPassword);
         password_register.setPromptText("Password");
 
         repeat_password_register.setLayoutX(197.0);
         repeat_password_register.setLayoutY(425.0);
-        repeat_password_register.setOnAction(this::registerRepeatPassword);
         repeat_password_register.setPromptText("Repeat Password");
 
         btn_register.setLayoutX(252.0);
@@ -90,14 +86,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         getChildren().add(have_accout);
 
     }
-
-    protected abstract void registerUserName(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerEmail(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerPassword(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerRepeatPassword(javafx.event.ActionEvent actionEvent);
 
     protected abstract void register(javafx.event.ActionEvent actionEvent);
 

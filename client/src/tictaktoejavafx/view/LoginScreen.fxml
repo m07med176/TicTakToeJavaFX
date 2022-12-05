@@ -11,15 +11,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="136.0" fitWidth="168.0" layoutX="203.0" layoutY="56.0">
+      <ImageView fitHeight="136.0" fitWidth="168.0" layoutX="203.0" layoutY="56.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
       <Button fx:id="btn_login" layoutX="274.0" layoutY="375.0" mnemonicParsing="false" onAction="#isLogin" text="Login" />
       <Label layoutX="250.0" layoutY="203.0" text="Tic Tac Toe" />
-      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0" onAction="#isPassword" prefHeight="39.0" prefWidth="204.0" promptText="password" />
-      <TextField fx:id="user_name" layoutX="196.0" layoutY="259.0" onAction="#isUserName" prefHeight="39.0" prefWidth="204.0" promptText="User Name" />
+      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0"  prefHeight="39.0" prefWidth="204.0" promptText="password" />
+      <TextField fx:id="user_name" layoutX="196.0" layoutY="259.0"  prefHeight="39.0" prefWidth="204.0" promptText="User Name" />
       <Hyperlink fx:id="create_account" layoutX="231.0" layoutY="414.0" onAction="#CreateAccount" prefHeight="21.0" prefWidth="168.0" text="Create an Account?" />
    </children>
 </AnchorPane>
