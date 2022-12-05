@@ -17,7 +17,7 @@
       <Label layoutX="678.0" layoutY="309.0" text="VS" />
       <AnchorPane layoutX="62.0" layoutY="43.0" prefHeight="412.0" prefWidth="530.0">
          <children>
-            <Button fx:id="btn_Game_one" layoutX="45.0" layoutY="38.0" mnemonicParsing="false" onAction="#isGameOne" prefHeight="99.0" prefWidth="125.0" />
+            <Button fx:id="btn_game_one" layoutX="45.0" layoutY="38.0" mnemonicParsing="false" onAction="#isGameOne" prefHeight="99.0" prefWidth="125.0" />
             <Button fx:id="btn_Game_four" layoutX="42.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameFour" prefHeight="85.0" prefWidth="125.0" />
             <Button fx:id="btn_Game_seven" layoutX="45.0" layoutY="284.0" mnemonicParsing="false" onAction="#isGameSeven" prefHeight="85.0" prefWidth="125.0" />
             <Button fx:id="btn_Game_two" layoutX="192.0" layoutY="42.0" mnemonicParsing="false" onAction="#isGameTwo" prefHeight="92.0" prefWidth="125.0" />

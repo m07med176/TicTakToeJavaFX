@@ -1,25 +1,20 @@
 package tictaktoejavafx.view;
 
-import java.nio.file.Paths;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import tictaktoejavafx.utils.PlayerName;
 
 public abstract class WinnerAndlosserScreenBase extends AnchorPane {
 
     protected final Label label;
+    protected final ImageView video_screen;
     protected final Label user_win;
-    protected final MediaView mediaView;
 
     public WinnerAndlosserScreenBase() {
 
         label = new Label();
+        video_screen = new ImageView();
         user_win = new Label();
-        mediaView = new MediaView();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -34,35 +29,20 @@ public abstract class WinnerAndlosserScreenBase extends AnchorPane {
         label.setPrefWidth(92.0);
         label.setText("Winner is ");
 
-     
+        video_screen.setFitHeight(321.0);
+        video_screen.setFitWidth(569.0);
+        video_screen.setLayoutX(125.0);
+        video_screen.setLayoutY(120.0);
+        video_screen.setPickOnBounds(true);
+        video_screen.setPreserveRatio(true);
 
         user_win.setLayoutX(423.0);
         user_win.setLayoutY(49.0);
-        user_win.setText(PlayerName.getPlayerName());
-
-        mediaView.setFitHeight(400.0);
-        mediaView.setFitWidth(400.0);
-        mediaView.setLayoutX(295.0);
-        mediaView.setLayoutY(143.0);
+        user_win.setText("user_name");
 
         getChildren().add(label);
+        getChildren().add(video_screen);
         getChildren().add(user_win);
-        getChildren().add(mediaView);
 
-        //---------------------------------
-        
-       /* String VUrl="tictaktoejavafx/assets/winnerVideo.mp4";
-  Media media = new Media(Paths.get(VUrl).toUri().toString());
-
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
-        mediaView.setFitHeight(800);
-        mediaView.setFitWidth(600);
-        mediaView.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
-        }catch(Exception e){
-            e.printStackTrace();*/
-       
-        
-        //---------------------------------
     }
 }
