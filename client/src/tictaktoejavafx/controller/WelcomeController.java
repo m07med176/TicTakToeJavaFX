@@ -13,7 +13,9 @@ public class WelcomeController extends WelcomeScreenBase{
     }
     @Override
     protected void isSingle(ActionEvent actionEvent) {
-        System.out.println("isSingle");
+       // System.out.println("isSingle");
+        
+        Navigator.navigate(Navigator.GAMEBOARD, stage);
     }
 
     @Override

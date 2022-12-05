@@ -5,6 +5,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.AssetsRepository;
 
 public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
@@ -35,7 +36,7 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setFitWidth(183.0);
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
-//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(AssetsRepository.LOGO));
 
         label.setLayoutX(625.0);
         label.setLayoutY(255.0);

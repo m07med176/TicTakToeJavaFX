@@ -3,6 +3,7 @@ package tictaktoejavafx.utils;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictaktoejavafx.Client;
 import tictaktoejavafx.controller.ChooseDiffucultyController;
 import tictaktoejavafx.controller.GameBoardController;
 import tictaktoejavafx.controller.LoginController;
@@ -68,9 +69,13 @@ public class Navigator {
                 parent  = new WelcomeController(stage);
                              
           }
-        stage.setScene(new Scene(parent));
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(Client.CSS);
+        stage.setScene(scene);
         stage.show();
     }
+
+   
     
     
 }

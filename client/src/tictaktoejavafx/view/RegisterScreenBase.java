@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.AssetsRepository;
 
 public abstract class RegisterScreenBase extends AnchorPane {
 
@@ -42,7 +43,7 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(184.0);
         imageView.setLayoutY(25.0);
-//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(AssetsRepository.LOGO));       
 
         label.setLayoutX(247.0);
         label.setLayoutY(222.0);
@@ -50,22 +51,18 @@ public abstract class RegisterScreenBase extends AnchorPane {
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
-        user_name_register.setOnAction(this::registerUserName);
         user_name_register.setPromptText("User Name");
 
         email_register.setLayoutX(197.0);
         email_register.setLayoutY(325.0);
-        email_register.setOnAction(this::registerEmail);
         email_register.setPromptText("Email");
 
         password_register.setLayoutX(197.0);
         password_register.setLayoutY(374.0);
-        password_register.setOnAction(this::registerPassword);
         password_register.setPromptText("Password");
 
         repeat_password_register.setLayoutX(197.0);
         repeat_password_register.setLayoutY(425.0);
-        repeat_password_register.setOnAction(this::registerRepeatPassword);
         repeat_password_register.setPromptText("Repeat Password");
 
         btn_register.setLayoutX(252.0);
@@ -89,14 +86,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         getChildren().add(have_accout);
 
     }
-
-    protected abstract void registerUserName(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerEmail(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerPassword(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void registerRepeatPassword(javafx.event.ActionEvent actionEvent);
 
     protected abstract void register(javafx.event.ActionEvent actionEvent);
 
