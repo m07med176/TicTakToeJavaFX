@@ -70,7 +70,6 @@ public class GameBoardController extends GameBoardScreenBase{
 
                 }       }
 
-   
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {

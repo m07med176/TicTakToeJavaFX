@@ -1,4 +1,4 @@
-login Validation in separated function retrurn booleanon
+login Validation in separated function retrurn boolean
 Pass data in athentication function
 create dialog alert message class
 create dialog confirm message class
@@ -6,10 +6,33 @@ create Loading Message Class
 choise fonts in figma
 add fonts to resources and UI
 extract Icons from figma to resource
-create server models of database
 Create Navigation of pages
 set fixed size in all pages 
 make size resizable
 validation of input of registeration in seprated function
-send User Model in registration function in dataAccess layer
+
+design schema of client database
+[discuss] way of sorting client database using file based system
+design and implementing class of file input and output stream
+create singlton class of server database
+create models of client database
+create models of server database
+[discuss and desing] Client CRUD operation in data access layer interface
+[discuss and desing] Server CRUD operation in data access layer interface
+Implement operation of client database
+Implement operation of Server database
+create Authentication class (Login , Register)
+cash login stamp of user client side (temp file)
+
+initialize server socket send and recive test text [v1]
+handle error and check stablility of server socket
+socket login model and receive status [v2]
+socket register model and receive status[v3]
+socket movement model and recive to another user[v3]
+socket invetation message and recive to another user[v4]
+socket chat message and recive to another user[v5]
+search about AI liberary for PC mode [Medium,High] level
+implementation AI [Medium,High] level 
+naming element [id or class] for style css
+
 
