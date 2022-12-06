@@ -13,13 +13,13 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
             
-                PlayerName.setPlayerString("Player One");
+                PlayerName.setPlayerName("Player One");
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 gameEnded=true;
             
             }else if(d.get(i).equals("OOO")){
             
-                PlayerName.setPlayerString("Player Two");
+                PlayerName.setPlayerName("Player Two");
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 gameEnded=true;
             }
@@ -31,7 +31,7 @@ public class LocalMultiPlayer {
     public static void drawChecker(Stage stage){
     
         if(numberOfPresses>=9&&gameEnded==false){
-            PlayerName.setPlayerString("DRAW");
+            PlayerName.setPlayerName("DRAW");
             Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
             
         
