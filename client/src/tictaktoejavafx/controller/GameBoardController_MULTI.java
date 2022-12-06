@@ -22,6 +22,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_one.setText("X");
             turn='O';
+            btn_Game_one.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -30,6 +31,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_one.setText("O");
             turn='X';
+            btn_Game_one.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -45,6 +47,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_four.setText("X");
             turn='O';
+            btn_Game_four.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -53,6 +56,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_four.setText("O");
             turn='X';
+            btn_Game_four.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -67,6 +71,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_seven.setText("X");
             turn='O';
+            btn_Game_seven.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -75,6 +80,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_seven.setText("O");
             turn='X';
+            btn_Game_seven.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -89,6 +95,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_two.setText("X");
             turn='O';
+            btn_Game_two.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -97,6 +104,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_two.setText("O");
             turn='X';
+            btn_Game_two.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -111,6 +119,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_three.setText("X");
             turn='O';
+            btn_Game_three.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -119,6 +128,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_three.setText("O");
             turn='X';
+            btn_Game_three.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -133,6 +143,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_five.setText("X");
             turn='O';
+            btn_Game_five.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -141,6 +152,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_five.setText("O");
             turn='X';
+            btn_Game_five.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -155,6 +167,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_six.setText("X");
             turn='O';
+            btn_Game_six.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -163,6 +176,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_six.setText("O");
             turn='X';
+            btn_Game_six.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -177,6 +191,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_eight.setText("X");
             turn='O';
+            btn_Game_eight.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -185,6 +200,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_eight.setText("O");
             turn='X';
+            btn_Game_eight.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -199,6 +215,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_nine.setText("X");
             turn='O';
+            btn_Game_nine.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
@@ -207,6 +224,7 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         
             btn_Game_nine.setText("O");
             turn='X';
+            btn_Game_nine.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
