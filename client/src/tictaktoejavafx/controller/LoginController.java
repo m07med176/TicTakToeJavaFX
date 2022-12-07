@@ -36,7 +36,8 @@ public class LoginController extends LoginScreenBase {
 
         // 2- validate data
         if (passwordUser.isEmpty()) {
-            //TODO here we must put dialog Alert
+            //TODO here we must put dialog Alert or set error
+            
             password.requestFocus();
             System.out.println("you must enter password");
             retVal = false;

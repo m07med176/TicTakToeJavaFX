@@ -14,19 +14,17 @@ public class WelcomeController extends WelcomeScreenBase{
     @Override
     protected void isSingle(ActionEvent actionEvent) {
        // System.out.println("isSingle");
-        
-        Navigator.navigate(Navigator.GAMEBOARD, stage);
+        Navigator.navigate(Navigator.PLAYER_NAME_ONE, stage);
     }
 
     @Override
     protected void isTwo(ActionEvent actionEvent) {
-        System.out.println("isTwo");
-        Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
+        Navigator.navigate(Navigator.PLAYER_NAME_TWO, stage);
     }
 
     @Override
     protected void isOnlineMode(ActionEvent actionEvent) {
-        System.out.println("isOnlineMode");
+        Navigator.navigate(Navigator.LOGIN, stage);
     }
     
 }
