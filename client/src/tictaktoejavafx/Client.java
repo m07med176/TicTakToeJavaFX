@@ -12,7 +12,7 @@ public class Client extends Application {
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
         PathManager.getPath();
-        Navigator.navigate(Navigator.GAMEBOARD, stage);
+        Navigator.navigate(Navigator.LOGIN, stage);
         // TODO set fixed size in all pages 
         // TODO make size resizable
     }
