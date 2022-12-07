@@ -46,7 +46,6 @@ public abstract class OnePlayerBase extends AnchorPane {
 
         player_name.setLayoutX(263.0);
         player_name.setLayoutY(301.0);
-        player_name.setOnAction(this::isPlayer);
         player_name.setPrefHeight(30.0);
         player_name.setPrefWidth(224.0);
 
@@ -63,8 +62,6 @@ public abstract class OnePlayerBase extends AnchorPane {
         getChildren().add(StartGame);
 
     }
-
-    protected abstract void isPlayer(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
 

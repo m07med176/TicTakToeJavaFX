@@ -13,7 +13,9 @@ import tictaktoejavafx.controller.RegisterController;
 import tictaktoejavafx.controller.WelcomeController;
 import tictaktoejavafx.controller.WinnerAndLosserController;
 import tictaktoejavafx.controller.GameBoardController_MULTI;
+import tictaktoejavafx.controller.OnePlayerController;
 import tictaktoejavafx.controller.SplashController;
+import tictaktoejavafx.controller.TwoPlayerController;
 
 
 public class Navigator {
@@ -27,6 +29,8 @@ public class Navigator {
     public static final int WINNER_NOTIFY = 7;
     public static final int GAMEBOARD_MULTI = 8;
     public static final int SPLACH = 9;
+    public static final int PLAYER_NAME_ONE = 10;
+    public static final int PLAYER_NAME_TWO = 11;
 
    
     
@@ -72,7 +76,15 @@ public class Navigator {
             case SPLACH:
                 parent = new SplashController(stage);
                 break;
+                
+            case PLAYER_NAME_ONE:
+                parent = new OnePlayerController(stage);
+                break;
+            case PLAYER_NAME_TWO:
+                parent = new TwoPlayerController(stage);
+                break;
 
+          
             default:
                 parent = new WelcomeController(stage);
 
