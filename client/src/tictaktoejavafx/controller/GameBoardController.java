@@ -24,113 +24,63 @@ public class GameBoardController extends GameBoardScreenBase{
     
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-         arrlistButtons.remove(btn_Game_one);
-                count++;
-                btn_Game_one.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_one.setText("X");
-                  btn_Game_one.setStyle("-fx-font-weight: bold;");
-                        check();
-                      random();
-                }
+                  playerGame(btn_Game_one);
+
     }
  @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-   arrlistButtons.remove(btn_Game_two);
-                count++;
-                btn_Game_two.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_two.setText("X");
-                 check();
-                      random();
+            playerGame(btn_Game_two);
 
-                }
     }
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-   arrlistButtons.remove(btn_Game_four);
-                count++;
-                btn_Game_four.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_four.setText("X");
-                 check();
-                      random();
-
-                }    }
+             playerGame(btn_Game_four);
+   }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        arrlistButtons.remove(btn_Game_seven);
-                count++;
-                btn_Game_seven.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_seven.setText("X");
-                 check();
-                      random();
-
-                }       }
+                 playerGame(btn_Game_seven);
+ }
 
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-  arrlistButtons.remove(btn_Game_three);
-                count++;
-                btn_Game_three.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_three.setText("X");
-                 check();
-                      random();
-
-                }       }
+            playerGame(btn_Game_three);
+    }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-  arrlistButtons.remove(btn_Game_five);
-                count++;
-                btn_Game_five.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_five.setText("X");
-                 check();
-                      random();
-
-                }       }
+          playerGame(btn_Game_five);
+    }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-  arrlistButtons.remove(btn_Game_six);
-                count++;
-                btn_Game_six.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_six.setText("X");
-                 check();
-                      random();
-
-                }       }
+            playerGame(btn_Game_six);
+  }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-  arrlistButtons.remove(btn_Game_eight);
-                count++;
-                btn_Game_eight.setDisable(true);
-                if(count %2 !=0){
-                   btn_Game_eight.setText("X");
-                 check();
-                      random();
-
-                }       }
+          playerGame(btn_Game_eight);
+ }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        arrlistButtons.remove(btn_Game_nine);
+        playerGame(btn_Game_nine);
+    }
+    //-----------------------------------------
+    void playerGame(Button button){
+           arrlistButtons.remove(button);
                 count++;
-                btn_Game_nine.setDisable(true);
+                button.setDisable(true);
                 if(count %2 !=0){
-                   btn_Game_nine.setText("X");
+                   button.setText("X");
                  check();
                       random();
 
-                }       }
-    //-----------------------------------------
+                }
+    }
+    
+    
     void check(){
  
     //-------------rows----------------------------
