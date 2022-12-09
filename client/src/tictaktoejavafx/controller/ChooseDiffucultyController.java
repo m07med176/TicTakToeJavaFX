@@ -2,6 +2,7 @@ package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.ChooseDiffucultyScreenBase;
 
 public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
@@ -14,22 +15,22 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
     
     @Override
     protected void isEasyMode(ActionEvent actionEvent) {
-        System.out.println("isEasyMode");
+        Navigator.navigate(Navigator.GAMEBOARD, stage);
     }
 
     @Override
     protected void isMiddleMode(ActionEvent actionEvent) {
-        System.out.println("isMiddleMode");
+        Navigator.navigate(Navigator.GAMEBOARD, stage);
     }
 
     @Override
     protected void isHardMode(ActionEvent actionEvent) {
-        System.out.println("isHardMode");
+        Navigator.navigate(Navigator.GAMEBOARD, stage);
     }
 
     @Override
     protected void isStartGame(ActionEvent actionEvent) {
-        System.out.println("isStartGame");
+        Navigator.navigate(Navigator.GAMEBOARD, stage);
     }
     
 }

@@ -1,12 +1,10 @@
-package db;
+package data.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.derby.jdbc.ClientDriver;
-import server.utils.Configs;
+import server.utils.Config;
 
 public class DataBaseConnection {
 
@@ -14,14 +12,9 @@ public class DataBaseConnection {
 
     public static Connection getConnection() throws SQLException {
 
-        if (con == null) {
-
-            
+        if (con == null) {            
                 DriverManager.deregisterDriver(new ClientDriver());
-                con = DriverManager.getConnection(Configs.CONNECTION_STRING, Configs.USER_NAME, Configs.PASSWORD);
-                
-            
-
+                con = DriverManager.getConnection(Config.CONNECTION_STRING, Config.USER_NAME, Config.PASSWORD);
         }
         return con;
     }
