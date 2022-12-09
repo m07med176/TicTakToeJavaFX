@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.derby.jdbc.ClientDriver;
 import server.controller.ServerHomeController;
-import server.utils.AssetsRepository;
+import server.utils.Config;
 import server.utils.Navigator;
 
 
@@ -20,7 +20,7 @@ public class Server extends Application {
     public static String CSS = "";
     @Override
     public void start(Stage stage) throws Exception {
-        CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
+        CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         Navigator.navigate(Navigator.HOME, stage);
         // TODO set fixed size in all pages 
         // TODO make size resizable

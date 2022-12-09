@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package db;
-
+package data.model;
 
 import java.sql.Date;
-
 import java.sql.Time;
 
-
-/**
- *
- * @author CompuMarts
- */
 class Session {
-
+    private int id;
+    private Date Date;
+    private Time start;
+    private  Time end;
+    private int users_id;
+    
     public Session(int id, Date Date, Time start, Time end, int users_id) {
         this.id = id;
         this.Date = Date;
@@ -64,11 +57,5 @@ class Session {
     public void setUsers_id(int users_id) {
         this.users_id = users_id;
     }
-    
-    private int id;
-    private Date Date;
-    private Time start;
-    private  Time end;
-    private int users_id;
-    
+       
 }
