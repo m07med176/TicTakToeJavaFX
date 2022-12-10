@@ -1,5 +1,6 @@
 package tictaktoejavafx.utils;
 
+import java.util.Vector;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,8 +32,25 @@ public class Navigator {
     public static final int SPLACH = 9;
     public static final int PLAYER_NAME_ONE = 10;
     public static final int PLAYER_NAME_TWO = 11;
+    
+    public static Vector<Scene> pages = new Vector();
+    public static int pageIndex = 0;
 
-   
+   public static void next(Stage stage){ 
+        if(pageIndex < pages.size()){
+          pageIndex++;        
+          stage.setScene(pages.get(pageIndex));
+          stage.show();
+        }
+   }
+    
+   public static void back(Stage stage){
+         if(pageIndex > 0){
+               pageIndex--;
+               stage.setScene(pages.get(pageIndex));
+               stage.show();
+         }
+   }
     
     public static void navigate(final int destination,Stage stage){
         Parent parent = null;
@@ -92,6 +110,8 @@ public class Navigator {
         System.out.println(destination);
         Scene scene = new Scene(parent);
         scene.getStylesheets().add(Client.CSS);
+
+        pages.add(scene);
         stage.setScene(scene);
         stage.show();
     }
