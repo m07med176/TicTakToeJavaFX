@@ -1,6 +1,7 @@
 
 package tictaktoejavafx.utils;
 
+import tictaktoejavafx.data.model.PlayerName;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 

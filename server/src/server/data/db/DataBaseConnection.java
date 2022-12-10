@@ -1,4 +1,4 @@
-package data.model;
+package server.data.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +9,9 @@ import server.utils.Config;
 public class DataBaseConnection {
 
     private static Connection con = null;
+    
+    private DataBaseConnection(){
+    }
 
     public static Connection getConnection() throws SQLException {
 
