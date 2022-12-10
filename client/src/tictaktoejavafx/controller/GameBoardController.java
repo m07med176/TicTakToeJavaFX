@@ -3,8 +3,6 @@ package tictaktoejavafx.controller;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
@@ -19,6 +17,8 @@ public class GameBoardController extends GameBoardScreenBase{
 
     public GameBoardController(Stage stage) {
         this.stage = stage;
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
         addbuttonInList();
     }
     

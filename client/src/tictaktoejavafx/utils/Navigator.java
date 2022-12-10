@@ -33,6 +33,9 @@ public class Navigator {
     public static final int PLAYER_NAME_ONE = 10;
     public static final int PLAYER_NAME_TWO = 11;
     
+    public static String playerOne;
+    public static String playerTwo;
+    
     public static Vector<Scene> pages = new Vector();
     public static int pageIndex = 0;
 
@@ -115,6 +118,22 @@ public class Navigator {
         stage.setScene(scene);
         stage.show();
     }
+
+     public static String getPlayerOne() {
+          return playerOne;
+     }
+
+     public static void setPlayerOne(String playerOne) {
+          Navigator.playerOne = playerOne;
+     }
+
+     public static String getPlayerTwo() {
+          return playerTwo;
+     }
+
+     public static void setPlayerTwo(String playerTwo) {
+          Navigator.playerTwo = playerTwo;
+     }
 
    
     
