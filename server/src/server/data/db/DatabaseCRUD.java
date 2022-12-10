@@ -7,7 +7,7 @@ public interface DatabaseCRUD {
      public ArrayList<Player> getOnlinePlayers();
      public int getCountPlayers();
      public String addPlayer(Player user); // register function
-     public boolean updatePlayerStatus(boolean status);
+     public boolean updatePlayerStatus(boolean status,String id);
      public String isPlayer(String userName,String password); // login funciton
      public void clearAll();
 }
