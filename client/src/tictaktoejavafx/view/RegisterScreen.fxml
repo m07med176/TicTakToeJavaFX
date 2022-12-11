@@ -11,17 +11,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="184.0" layoutY="25.0">
+      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="184.0" layoutY="25.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="247.0" layoutY="222.0" text="Tic Tac Toe" />
+      <Label layoutX="247.0" layoutY="222.0" styleClass="title" text="Tic Tac Toe" />
       <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" />
       <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" />
-      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0"  promptText="Password" />
-      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0"  promptText="Repeat Password" />
+      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" promptText="Password" />
+      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0" promptText="Repeat Password" />
       <Button fx:id="btn_register" layoutX="252.0" layoutY="477.0" mnemonicParsing="false" onAction="#register" text="Register" />
-      <Hyperlink fx:id="have_accout" layoutX="226.0" layoutY="520.0" onAction="#haveAccount" text="I Have an account" />
+      <Hyperlink fx:id="have_accout" layoutX="226.0" layoutY="520.0" onAction="#haveAccount" styleClass="link_button" text="I Have an account" />
+      <ImageView>
+         <image>
+            <Image url="@../assets/images/backbutton.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
