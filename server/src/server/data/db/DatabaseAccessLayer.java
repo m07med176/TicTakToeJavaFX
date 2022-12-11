@@ -43,16 +43,22 @@ public abstract class DatabaseAccessLayer implements DatabaseCRUD {
 
     @Override
     public boolean updatePlayerStatus(boolean status, int id) {
+        
+        String queryString = null;
+        boolean result=true;
         try {
-            // TODO update status of Player in database
-            String queryString = null;
+            
             queryString = new String("update into" + tableName + "set status=true where id=" + id);
             rs2 = stmt.executeUpdate(queryString);
+            if (rs == null) {
+                result = false;
+            }
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return result;
 
     }
 
