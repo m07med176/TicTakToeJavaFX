@@ -1,5 +1,4 @@
-package tictaktoejavafx.utils;
-
+package tictaktoejavafx.data.model;
 
 public class PlayerName {
     public static String playerName="";

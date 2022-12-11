@@ -1,8 +1,8 @@
-package data.model;
+package server.data.model;
 
-class Users {
+public class Player {
 
-    public Users(int id, String email, String username, int password, int status) {
+    public Player(int id, String email, String username, int password, int status) {
         this.id = id;
         this.email = email;
         this.username = username;

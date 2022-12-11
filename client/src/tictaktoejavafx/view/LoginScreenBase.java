@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class LoginScreenBase extends AnchorPane {
 
@@ -40,7 +40,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setLayoutX(203.0);
         imageView.setLayoutY(56.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(AssetsRepository.LOGO)); 
+        imageView.setImage(new Image(Config.LOGO)); 
 
         btn_login.setLayoutX(274.0);
         btn_login.setLayoutY(375.0);

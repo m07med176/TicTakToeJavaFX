@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.PlayerName;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 /**

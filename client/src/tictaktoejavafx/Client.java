@@ -7,7 +7,7 @@ import java.net.Socket;
 import tictaktoejavafx.utils.PathManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 
 public class Client extends Application {
@@ -19,7 +19,7 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
-        CSS = this.getClass().getResource(AssetsRepository.CSS).toExternalForm();
+        CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         PathManager.getPath();
         Navigator.navigate(Navigator.SPLACH, stage);
         // TODO set fixed size in all pages 

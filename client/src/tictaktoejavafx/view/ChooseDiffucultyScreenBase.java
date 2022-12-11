@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
 
@@ -36,7 +36,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(200.0);
         imageView.setLayoutY(42.0);
-        imageView.setImage(new Image(AssetsRepository.LOGO));
+        imageView.setImage(new Image(Config.LOGO));
 
         label.setLayoutX(263.0);
         label.setLayoutY(252.0);

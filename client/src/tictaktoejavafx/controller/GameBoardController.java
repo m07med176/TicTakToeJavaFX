@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.PlayerName;
+import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardController extends GameBoardScreenBase{

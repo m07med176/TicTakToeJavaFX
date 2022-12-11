@@ -3,7 +3,7 @@ package tictaktoejavafx.view;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class SplashScreenBase extends AnchorPane {
 
@@ -19,7 +19,7 @@ public abstract class SplashScreenBase extends AnchorPane {
         setMinWidth(USE_PREF_SIZE);
         setPrefHeight(400.0);
         setPrefWidth(600.0);
-        imageView.setImage(new Image(AssetsRepository.LOGO));
+        imageView.setImage(new Image(Config.LOGO));
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(200.0);

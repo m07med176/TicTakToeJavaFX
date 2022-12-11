@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
 
@@ -73,7 +73,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(180.0);
         imageView.setLayoutY(93.0);
-        imageView.setImage(new Image(AssetsRepository.LOGO));
+        imageView.setImage(new Image(Config.LOGO));
 
         getChildren().add(label);
         getChildren().add(btn_single);
