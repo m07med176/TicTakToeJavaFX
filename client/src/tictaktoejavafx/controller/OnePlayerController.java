@@ -26,6 +26,7 @@ public class OnePlayerController extends OnePlayerBase{
               Navigator.setPlayerOne(name);
               Navigator.setPlayerTwo("PC");
               Navigator.navigate(Navigator.GAMEBOARD, stage);
+
           }
           
      }

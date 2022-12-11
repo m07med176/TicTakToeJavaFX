@@ -2,12 +2,15 @@ package server.data.model;
 
 public class Player {
 
-    public Player(int id, String email, String username, int password, int status) {
+    public Player(int id, String email, String username, int password, boolean status) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
         this.status = status;
+    }
+
+    public Player() {
     }
 
     public int getId() {
@@ -42,18 +45,20 @@ public class Player {
         this.password = password;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+
+   
     private int id;
     private String email;
     private String username;
     private int password;
-    private int status;
+    private boolean status;
     
     
 }
