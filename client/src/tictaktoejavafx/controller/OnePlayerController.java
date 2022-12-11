@@ -23,7 +23,9 @@ public class OnePlayerController extends OnePlayerBase{
                player_name.requestFocus();
           }
           else{
-              Navigator.navigate(Navigator.GAMEBOARD, stage);
+              Navigator.setPlayerOne(name);
+              Navigator.setPlayerTwo("PC");
+             Navigator.navigate(Navigator.CHOOSEDIFF, stage);
           }
           
      }

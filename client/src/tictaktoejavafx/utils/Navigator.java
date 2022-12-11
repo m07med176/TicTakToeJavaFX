@@ -1,11 +1,14 @@
 package tictaktoejavafx.utils;
 
+import java.util.Vector;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictaktoejavafx.Client;
 import tictaktoejavafx.controller.ChooseDiffucultyController;
 import tictaktoejavafx.controller.GameBoardController;
+import tictaktoejavafx.controller.GameBoardControllerHard;
+import tictaktoejavafx.controller.GameBoardControllerMiddle;
 import tictaktoejavafx.controller.LoginController;
 import tictaktoejavafx.controller.PlayerListController;
 import tictaktoejavafx.controller.PlayerSelectionController;
@@ -31,8 +34,33 @@ public class Navigator {
     public static final int SPLACH = 9;
     public static final int PLAYER_NAME_ONE = 10;
     public static final int PLAYER_NAME_TWO = 11;
+    public static final int GAMEBOARDMIDDLE = 12;
+    public static final int GAMEBOARDHARD =13;
 
-   
+    
+    public static String playerOne;
+    public static String playerTwo;
+    
+    public static Vector<Scene> pages = new Vector();
+    public static int pageIndex = 0;
+
+   public static void next(Stage stage){ 
+        if(pageIndex < pages.size()){
+          pageIndex++;        
+          stage.setScene(pages.get(pageIndex));
+          stage.show();
+        }
+   }
+    
+   public static void back(Stage stage){
+         if(pageIndex > 0){
+               pageIndex--;
+               stage.setScene(pages.get(pageIndex));
+               stage.show();
+         }
+   }
+
+
     
     public static void navigate(final int destination,Stage stage){
         Parent parent = null;
@@ -46,7 +74,8 @@ public class Navigator {
                 break;
 
             case GAMEBOARD:
-                parent = new GameBoardController(stage);
+               parent = new GameBoardController(stage);
+
                 break;
 
             case LOGIN:
@@ -83,7 +112,12 @@ public class Navigator {
             case PLAYER_NAME_TWO:
                 parent = new TwoPlayerController(stage);
                 break;
-
+            case GAMEBOARDMIDDLE:
+                parent = new GameBoardControllerMiddle(stage);
+                break;
+            case GAMEBOARDHARD:
+                parent = new GameBoardControllerHard(stage);
+                break;
           
             default:
                 parent = new WelcomeController(stage);
@@ -92,9 +126,27 @@ public class Navigator {
         System.out.println(destination);
         Scene scene = new Scene(parent);
         scene.getStylesheets().add(Client.CSS);
+
+        pages.add(scene);
         stage.setScene(scene);
         stage.show();
     }
+
+     public static String getPlayerOne() {
+          return playerOne;
+     }
+
+     public static void setPlayerOne(String playerOne) {
+          Navigator.playerOne = playerOne;
+     }
+
+     public static String getPlayerTwo() {
+          return playerTwo;
+     }
+
+     public static void setPlayerTwo(String playerTwo) {
+          Navigator.playerTwo = playerTwo;
+     }
 
    
     

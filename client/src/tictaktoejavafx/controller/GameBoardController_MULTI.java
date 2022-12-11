@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.LocalMultiPlayer;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardController_MULTI extends GameBoardScreenBase{
@@ -14,6 +15,8 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
 
     public GameBoardController_MULTI(Stage stage) {
         this.stage = stage;
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
     }
     
     @Override

@@ -3,8 +3,6 @@ package tictaktoejavafx.controller;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
@@ -19,6 +17,8 @@ public class GameBoardController extends GameBoardScreenBase{
 
     public GameBoardController(Stage stage) {
         this.stage = stage;
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
         addbuttonInList();
     }
     
@@ -84,19 +84,43 @@ public class GameBoardController extends GameBoardScreenBase{
     void check(){
  
     //-------------rows----------------------------
+     /*     [X][X][X]
+            [ ][ ][ ]
+            [ ][ ][ ]  */
     arrlist.add(btn_Game_one.getText()+btn_Game_two.getText()+btn_Game_three.getText());
+     /*     [ ][ ][ ]
+            [X][X][X]
+            [ ][ ][ ]  */
     arrlist.add(btn_Game_four.getText()+btn_Game_five.getText()+btn_Game_six.getText());
-    arrlist.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
+    
+       /*   [ ][ ][ ]
+            [ ][ ][ ]
+            [X][X][X]*/
+       arrlist.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
     
     //-------------Colums----------------------------
-
+        /*  [X][ ][ ]
+            [X][ ][ ]
+            [X][ ][ ]*/
     arrlist.add(btn_Game_one.getText()+btn_Game_four.getText()+btn_Game_seven.getText());
+    /*      [ ][X][ ]
+            [ ][X][ ]
+            [ ][X][ ]*/
     arrlist.add(btn_Game_two.getText()+btn_Game_five.getText()+btn_Game_eight.getText());
+     /*     [ ][ ][X]
+            [ ][ ][X]
+            [ ][ ][X]*/
     arrlist.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
  
  
     //-------------cross----------------------------
+     /*     [X][ ][ ]
+            [ ][X][ ]
+            [ ][ ][X]*/
     arrlist.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
+     /*     [ ][ ][X]
+            [ ][X][ ]
+            [X][ ][ ]*/
     arrlist.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
         
     for(int i=0; i<arrlist.size();i++){
