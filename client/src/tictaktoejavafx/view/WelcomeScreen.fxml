@@ -29,7 +29,7 @@
             <Font size="22.0" />
          </font>
       </Button>
-      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="180.0" layoutY="93.0">
+      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="180.0" layoutY="93.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
