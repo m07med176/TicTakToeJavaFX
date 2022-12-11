@@ -21,12 +21,14 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
 
     @Override
     protected void isMiddleMode(ActionEvent actionEvent) {
+       Navigator.navigate(Navigator.GAMEBOARDMIDDLE, stage);
       
     }
 
     @Override
     protected void isHardMode(ActionEvent actionEvent) {
        
+        Navigator.navigate(Navigator.GAMEBOARDHARD, stage);
     }
 
     @Override
