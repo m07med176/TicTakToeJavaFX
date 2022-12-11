@@ -1,5 +1,7 @@
 
-package tictaktoejavafx.controller;
+package tictaktoejavafx.utils;
+
+import tictaktoejavafx.controller.*;
 
 public class TicTacToeAIHard {
 	
