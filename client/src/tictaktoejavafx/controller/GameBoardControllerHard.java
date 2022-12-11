@@ -20,6 +20,8 @@ import tictaktoejavafx.view.GameBoardScreenBase;
  * @author Ahmed
  */
 public class GameBoardControllerHard extends GameBoardScreenBase {
+public static String PLAYER1="Player 1";
+public static String PLAYER2="Player 2";
 
     private Stage stage;
     TicTacToeAIHard toeAIHard = new TicTacToeAIHard();
@@ -133,13 +135,14 @@ public class GameBoardControllerHard extends GameBoardScreenBase {
             ComputerMove(-1, 0);
             if ((GO = toeAIHard.isGameOver()) != 0) {
                 if (GO == 1) {
-               PlayerName.setPlayerName("Player 1");
+               PlayerName.setPlayerName(PLAYER1);
                     System.out.println("Player 1 win");
-                   // playVideo();
+                    playVideo();
 
                 } else if (GO == -1) {
-                    PlayerName.setPlayerName("Player 2");
+                    PlayerName.setPlayerName(PLAYER2);
                     System.out.println("Player 2 win");
+                    playVideo();
 
                 } else {
                     System.out.println(GO);
