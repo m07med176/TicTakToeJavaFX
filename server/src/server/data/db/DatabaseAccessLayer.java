@@ -11,11 +11,12 @@ import server.data.model.Player;
 
 public abstract class DatabaseAccessLayer implements DatabaseCRUD {
 
-    Connection con;
+    static Connection con;
     Statement stmt = con.createStatement();
-    ResultSet rs;
+    static ResultSet rs;
     public static String tableName = "player";
     static Player player;
+    static int rs2;
 
     public DatabaseAccessLayer() throws SQLException {
         con = DataBaseConnection.getConnection();
@@ -39,16 +40,15 @@ public abstract class DatabaseAccessLayer implements DatabaseCRUD {
         // TODO add new row of Player in database
         return "";
     }
+
     @Override
-    public boolean updatePlayerStatus(boolean status,String id) {
+    public boolean updatePlayerStatus(boolean status, int id) {
         try {
             // TODO update status of Player in database
             String queryString = null;
-            queryString=new String("update into" + tableName +"set status=true where id" + id);
-            int rs = stmt.executeUpdate(queryString);
-            
-            status=true;
-            
+            queryString = new String("update into" + tableName + "set status=true where id=" + id);
+            rs2 = stmt.executeUpdate(queryString);
+
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,14 +59,20 @@ public abstract class DatabaseAccessLayer implements DatabaseCRUD {
     @Override
     public String isPlayer(String userName, String password) {
         String queryString = null;
+        String result = "null";
         try {
             queryString = new String("select id from " + tableName + " where userName=" + userName + " and password=" + password);
             rs = stmt.executeQuery(queryString);
+            if (rs == null) {
+                result = "player Not Found";
+            } else {
+                result = "Player Found";
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return queryString;
+        return result;
 
     }
 
@@ -75,23 +81,25 @@ public abstract class DatabaseAccessLayer implements DatabaseCRUD {
         String queryString = null;
         try {
             queryString = new String("delete * from " + tableName);
-            int rs = stmt.executeUpdate(queryString);
-            
+            int rs2 = stmt.executeUpdate(queryString);
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     /*private static Player getplayer() {
+
+    private static Player getplayer() {
         try {
-            player=new Player(rs.getInt("id"),rs.getString("email"),rs.getString("userName"),
-                    rs.getString("password"),rs.getBoolean("status"));
-           
+            player = new Player(rs.getInt("id"),
+                    rs.getString("email"),
+                    rs.getString("userName"),
+                    rs.getInt("password"),
+                    rs.getBoolean("status"));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-         
+
         return player;
     }
-*/
+
 }
