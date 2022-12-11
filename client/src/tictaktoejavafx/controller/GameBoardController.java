@@ -84,19 +84,43 @@ public class GameBoardController extends GameBoardScreenBase{
     void check(){
  
     //-------------rows----------------------------
+     /*     [X][X][X]
+            [ ][ ][ ]
+            [ ][ ][ ]  */
     arrlist.add(btn_Game_one.getText()+btn_Game_two.getText()+btn_Game_three.getText());
+     /*     [ ][ ][ ]
+            [X][X][X]
+            [ ][ ][ ]  */
     arrlist.add(btn_Game_four.getText()+btn_Game_five.getText()+btn_Game_six.getText());
-    arrlist.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
+    
+       /*   [ ][ ][ ]
+            [ ][ ][ ]
+            [X][X][X]*/
+       arrlist.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
     
     //-------------Colums----------------------------
-
+        /*  [X][ ][ ]
+            [X][ ][ ]
+            [X][ ][ ]*/
     arrlist.add(btn_Game_one.getText()+btn_Game_four.getText()+btn_Game_seven.getText());
+    /*      [ ][X][ ]
+            [ ][X][ ]
+            [ ][X][ ]*/
     arrlist.add(btn_Game_two.getText()+btn_Game_five.getText()+btn_Game_eight.getText());
+     /*     [ ][ ][X]
+            [ ][ ][X]
+            [ ][ ][X]*/
     arrlist.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
  
  
     //-------------cross----------------------------
+     /*     [X][ ][ ]
+            [ ][X][ ]
+            [ ][ ][X]*/
     arrlist.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
+     /*     [ ][ ][X]
+            [ ][X][ ]
+            [X][ ][ ]*/
     arrlist.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
         
     for(int i=0; i<arrlist.size();i++){
