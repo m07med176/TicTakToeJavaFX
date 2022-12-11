@@ -11,7 +11,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Label label;
-//    protected final View view;
     protected final AnchorPane anchorPane;
     protected final ListView list_view_user;
     protected final Label user_name;
@@ -20,7 +19,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
         imageView = new ImageView();
         label = new Label();
-//        view = new View();
         anchorPane = new AnchorPane();
         list_view_user = new ListView();
         user_name = new Label();
@@ -42,8 +40,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         label.setLayoutY(255.0);
         label.setText("Tic Tac Toe");
 
-//        view.setLayoutX(265.0);
-//        view.setLayoutY(208.0);
 
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
@@ -61,7 +57,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
         getChildren().add(imageView);
         getChildren().add(label);
-//        getChildren().add(view);
         anchorPane.getChildren().add(list_view_user);
         getChildren().add(anchorPane);
         getChildren().add(user_name);

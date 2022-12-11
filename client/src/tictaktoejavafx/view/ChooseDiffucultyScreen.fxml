@@ -17,6 +17,5 @@
       <Button fx:id="btn_easy_mode" layoutX="225.0" layoutY="300.0" mnemonicParsing="false" onAction="#isEasyMode" prefHeight="31.0" prefWidth="150.0" text="Easy Mode" />
       <Button fx:id="btn_middle_mode" layoutX="231.0" layoutY="355.0" mnemonicParsing="false" onAction="#isMiddleMode" prefHeight="31.0" prefWidth="150.0" text="Middle Mode" />
       <Button fx:id="btn_hard_mode" layoutX="231.0" layoutY="403.0" mnemonicParsing="false" onAction="#isHardMode" prefHeight="31.0" prefWidth="150.0" text="Hard Mode" />
-      <Button fx:id="btn_start_game" layoutX="282.0" layoutY="467.0" mnemonicParsing="false" onAction="#isStartGame" text="Start" />
    </children>
 </AnchorPane>

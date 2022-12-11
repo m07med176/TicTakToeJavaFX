@@ -43,8 +43,8 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(184.0);
         imageView.setLayoutY(25.0);
-        imageView.setImage(new Image(Config.LOGO));       
-
+        imageView.setImage(new Image(Config.LOGO));
+        
         label.setLayoutX(247.0);
         label.setLayoutY(222.0);
         label.setText("Tic Tac Toe");

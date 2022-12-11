@@ -3,8 +3,10 @@ package tictaktoejavafx.view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class TwoPlayerBase extends AnchorPane {
 
@@ -39,7 +41,8 @@ public abstract class TwoPlayerBase extends AnchorPane {
         imageView.setLayoutY(42.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-
+        imageView.setImage(new Image(Config.LOGO));
+     
         label.setLayoutX(294.0);
         label.setLayoutY(221.0);
         label.setText("Tic Tac Toe");

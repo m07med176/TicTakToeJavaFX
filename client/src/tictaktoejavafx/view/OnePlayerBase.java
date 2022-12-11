@@ -3,8 +3,10 @@ package tictaktoejavafx.view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class OnePlayerBase extends AnchorPane {
 
@@ -54,7 +56,9 @@ public abstract class OnePlayerBase extends AnchorPane {
         StartGame.setMnemonicParsing(false);
         StartGame.setOnAction(this::isStartGame);
         StartGame.setText("Start Game");
-
+        
+        imageView.setImage(new Image(Config.LOGO));
+        
         getChildren().add(imageView);
         getChildren().add(label);
         getChildren().add(label0);

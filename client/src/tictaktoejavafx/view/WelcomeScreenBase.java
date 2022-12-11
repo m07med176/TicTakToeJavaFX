@@ -74,7 +74,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setLayoutX(180.0);
         imageView.setLayoutY(93.0);
         imageView.setImage(new Image(Config.LOGO));
-
+        
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);

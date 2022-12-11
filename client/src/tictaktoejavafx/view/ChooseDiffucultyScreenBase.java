@@ -14,7 +14,6 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
     protected final Button btn_easy_mode;
     protected final Button btn_middle_mode;
     protected final Button btn_hard_mode;
-    protected final Button btn_start_game;
 
     public ChooseDiffucultyScreenBase() {
 
@@ -23,7 +22,6 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         btn_easy_mode = new Button();
         btn_middle_mode = new Button();
         btn_hard_mode = new Button();
-        btn_start_game = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -66,18 +64,11 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         btn_hard_mode.setPrefWidth(150.0);
         btn_hard_mode.setText("Hard Mode");
 
-        btn_start_game.setLayoutX(282.0);
-        btn_start_game.setLayoutY(467.0);
-        btn_start_game.setMnemonicParsing(false);
-        btn_start_game.setOnAction(this::isStartGame);
-        btn_start_game.setText("Start");
-
         getChildren().add(imageView);
         getChildren().add(label);
         getChildren().add(btn_easy_mode);
         getChildren().add(btn_middle_mode);
         getChildren().add(btn_hard_mode);
-        getChildren().add(btn_start_game);
 
     }
 
@@ -86,7 +77,5 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
     protected abstract void isMiddleMode(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isHardMode(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
 
 }

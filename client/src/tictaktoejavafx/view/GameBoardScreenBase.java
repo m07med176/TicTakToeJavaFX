@@ -54,8 +54,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setFitWidth(143.0);
         imageView.setLayoutX(624.0);
         imageView.setLayoutY(42.0);
-        imageView.setImage(new Image(Config.LOGO));   
-        
+        imageView.setImage(new Image(Config.LOGO));
+
         label.setLayoutX(657.0);
         label.setLayoutY(212.0);
         label.setText("Tic Tac Toe");

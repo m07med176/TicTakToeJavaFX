@@ -40,7 +40,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setLayoutX(203.0);
         imageView.setLayoutY(56.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO)); 
+        imageView.setImage(new Image(Config.LOGO));
 
         btn_login.setLayoutX(274.0);
         btn_login.setLayoutY(375.0);
@@ -50,7 +50,6 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         label.setLayoutX(250.0);
         label.setLayoutY(203.0);
-        label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
 
         password.setLayoutX(200.0);
@@ -70,7 +69,6 @@ public abstract class LoginScreenBase extends AnchorPane {
         create_account.setOnAction(this::CreateAccount);
         create_account.setPrefHeight(21.0);
         create_account.setPrefWidth(168.0);
-        create_account.getStyleClass().add("link_button");
         create_account.setText("Create an Account?");
 
         getChildren().add(imageView);
