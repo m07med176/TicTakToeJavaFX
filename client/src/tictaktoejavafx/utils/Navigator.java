@@ -37,7 +37,7 @@ public class Navigator {
     public static final int GAMEBOARDMIDDLE = 12;
     public static final int GAMEBOARDHARD =13;
 
-    
+
     public static String playerOne;
     public static String playerTwo;
     
@@ -59,7 +59,6 @@ public class Navigator {
                stage.show();
          }
    }
-
 
     
     public static void navigate(final int destination,Stage stage){

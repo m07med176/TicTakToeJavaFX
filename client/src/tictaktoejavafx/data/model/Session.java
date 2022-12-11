@@ -11,6 +11,7 @@ public class Session {
     private int userId;
     private String playerOne;
     private String playerTwo = "PC";
+    private boolean recorded = false;
     
     public Session(int id, Date Date, Time start, Time end, int userId,String playerOne,String playerTwo) {
         this.id = id;
