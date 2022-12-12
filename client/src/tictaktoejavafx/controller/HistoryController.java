@@ -5,19 +5,10 @@
  */
 package tictaktoejavafx.controller;
 
-import tictaktoejavafx.data.model.PlayerModel;
 import com.google.gson.Gson;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import tictaktoejavafx.data.model.PlayerModel;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -33,8 +24,9 @@ public class HistoryController {
     public static void saveFile(PlayerModel model) {
        
      
-        try (PrintWriter out = new PrintWriter(new FileWriter("store/History.json"),true)) {
-            String jsonString = new Gson().toJson(model);
+        try (PrintWriter out = new PrintWriter(new FileWriter("History.json"),true)) {
+             Gson json = new Gson();
+            String jsonString = json.toJson(model);
             out.write(jsonString);
         } catch (Exception e) {
             e.printStackTrace();
