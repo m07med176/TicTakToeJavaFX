@@ -84,5 +84,10 @@ public class RegisterController extends RegisterScreenBase{
         return retVal;
         
     }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
     
 }

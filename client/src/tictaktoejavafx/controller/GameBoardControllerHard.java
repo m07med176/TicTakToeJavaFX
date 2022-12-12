@@ -1,24 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictaktoejavafx.controller;
 
-import java.util.ArrayList;
-import java.util.Random;
+
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.PlayerName;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.PlayerName;
 import tictaktoejavafx.utils.TicTacToeAIHard;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-/**
- *
- * @author Ahmed
- */
 public class GameBoardControllerHard extends GameBoardScreenBase {
 public static String PLAYER1="Player 1";
 public static String PLAYER2="Player 2";
@@ -160,5 +154,21 @@ public static String PLAYER2="Player 2";
         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
 
     }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },Alert.AlertType.CONFIRMATION);
+          
+     }
 
 }

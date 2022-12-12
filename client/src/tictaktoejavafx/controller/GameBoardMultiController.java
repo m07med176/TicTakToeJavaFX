@@ -2,18 +2,25 @@ package tictaktoejavafx.controller;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
+import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardController_MULTI extends GameBoardScreenBase{
+public class GameBoardMultiController extends GameBoardScreenBase{
     private Stage stage;
     ArrayList<String> diagonals=new ArrayList<>();
     public static char turn='X';
 
-    public GameBoardController_MULTI(Stage stage) {
+    public GameBoardMultiController(Stage stage) {
         this.stage = stage;
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
     }
     
     @Override
@@ -105,5 +112,21 @@ public class GameBoardController_MULTI extends GameBoardScreenBase{
         diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
     
     }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },Alert.AlertType.CONFIRMATION);
+          
+     }
     
 }

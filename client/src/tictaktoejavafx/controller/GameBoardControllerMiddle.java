@@ -3,10 +3,14 @@ package tictaktoejavafx.controller;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.PlayerName;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.PlayerName;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 /**
@@ -130,7 +134,6 @@ public class GameBoardControllerMiddle extends GameBoardScreenBase {
 
     void playVideo() {
         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-
     }
 
     
@@ -139,4 +142,20 @@ public class GameBoardControllerMiddle extends GameBoardScreenBase {
 
   
     //-----------------------------------------
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },Alert.AlertType.CONFIRMATION);
+          
+     }
 }

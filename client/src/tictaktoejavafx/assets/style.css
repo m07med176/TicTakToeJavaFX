@@ -9,7 +9,7 @@
 .link_button{
     
 }
-.text-input {
+.main_input {
     -fx-text-fill: -fx-text-inner-color;
     -fx-highlight-fill: derive(-fx-control-inner-background,-20%);
     -fx-highlight-text-fill: -fx-text-inner-color;
@@ -22,7 +22,7 @@
     -fx-padding: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
 }
-.text-input:focused {
+.main_input:focused {
     -fx-highlight-fill: -fx-accent;
     -fx-highlight-text-fill: white;
     -fx-background-color: 
@@ -42,8 +42,22 @@
     -fx-font-weight: 700;
     -fx-line-height: 38px;
 }
+.sub_title{
+    -fx-text-fill: #0A3257;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+}
+.game_button{
+    -fx-background: #B1E0D8;
+    -fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
+    -fx-background-radius: 30px;
+    -fx-padding: 10px;
+    -fx-text-fill: #0A3257;
+    -fx-font-size: 15px 15px 0px 0px;
+    -fx-font-weight: 700;
+}
 
-.button{
+.main_button{
     -fx-background: #FFFFFF;
     -fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
     -fx-background-radius: 30px;
@@ -51,4 +65,12 @@
     -fx-text-fill: #0A3257;
     -fx-font-size: 15px 15px 0px 0px;
     -fx-font-weight: 700;
+}
+.back_button{
+    -fx-background: #FFFFFF;
+    -fx-padding: 10px;
+    -fx-text-fill: #0A3257;
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 50px;
 }

@@ -1,16 +1,20 @@
 package tictaktoejavafx.controller;
 
+import tictaktoejavafx.data.model.PlayerModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.PlayerName;
+import tictaktoejavafx.data.model.PlayerName;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardController extends GameBoardScreenBase {
@@ -18,11 +22,12 @@ public class GameBoardController extends GameBoardScreenBase {
     int count = 0;
     ArrayList arrlist = new ArrayList();
     ArrayList arrlistButtons = new ArrayList();
-
     private Stage stage;
 
     public GameBoardController(Stage stage) {
         this.stage = stage;
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
         addbuttonInList();
     }
 
@@ -133,23 +138,29 @@ public class GameBoardController extends GameBoardScreenBase {
                 disableButton();
                PlayerName.setPlayerName("Player 1");
 
-                saveData();
+                saveData("Player 1");
                 playVideo();
             } else if (arrlist.get(i).equals("OOO")) {
                 //  result_label.setText("Player 2 is Winner");
                 disableButton();
                 PlayerName.setPlayerName("Player 2");
-                saveData();
+                saveData("Player 2");
                 playVideo();
             }
 
         }
     }
 
-    void saveData() {
+    void saveData(String winnerName) {
+     PlayerModel playerModel=new PlayerModel();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-        HistoryController.saveFile(new PlayerModel(date.toString(), "Player 1", "PC", PlayerName.getPlayerName(), 1, 2));
+        playerModel.setDateGame(date.toString());
+        playerModel.setPlayerXName(Navigator.getPlayerOne());
+        playerModel.setPlayerOName(Navigator.getPlayerTwo());
+        playerModel.setWinner(winnerName);
+        
+        HistoryController.saveFile(playerModel);
     }
 
     void disableButton() {
@@ -214,4 +225,20 @@ public class GameBoardController extends GameBoardScreenBase {
         arrlistButtons.add(btn_Game_nine);
     }
     //-----------------------------------------
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },AlertType.CONFIRMATION);
+          
+     }
 }

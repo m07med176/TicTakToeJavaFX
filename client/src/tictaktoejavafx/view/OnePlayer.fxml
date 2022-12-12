@@ -6,13 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="326.0" layoutY="217.0" text="Tic Tac Toe" />
-      <Label layoutX="159.0" layoutY="306.0" text="Player Name" />
-      <TextField fx:id="player_name" layoutX="263.0" layoutY="301.0" prefHeight="30.0" prefWidth="224.0" />
-      <Button fx:id="StartGame" layoutX="316.0" layoutY="366.0" mnemonicParsing="false" onAction="#isStartGame" text="Start Game" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" styleClass="logo" />
+      <Label layoutX="326.0" layoutY="217.0" styleClass="title" text="Tic Tac Toe" />
+      <TextField fx:id="player_name" layoutX="251.0" layoutY="315.0" prefHeight="30.0" prefWidth="224.0" promptText="Player Name" styleClass="main_input" />
+      <Button fx:id="StartGame" layoutX="316.0" layoutY="366.0" mnemonicParsing="false" onAction="#isStartGame" styleClass="main_button" text="Start Game" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
    </children>
 </AnchorPane>

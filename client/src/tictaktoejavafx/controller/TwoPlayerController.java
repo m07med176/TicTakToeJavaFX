@@ -27,7 +27,8 @@ public class TwoPlayerController extends TwoPlayerBase{
                Player_two.requestFocus();
           }
           else{
-         
+          Navigator.setPlayerOne(playerOne);
+          Navigator.setPlayerTwo(playerTwo);
           Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }

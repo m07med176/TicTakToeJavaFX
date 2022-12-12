@@ -5,6 +5,7 @@
  */
 package tictaktoejavafx.controller;
 
+import tictaktoejavafx.data.model.PlayerModel;
 import com.google.gson.Gson;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -27,53 +28,13 @@ public class HistoryController {
     public HistoryController() {
     }
 
-   // static File historyFile;
 
-   /* public static void createFile() {
-        //File fileResult=historyFile;
-        if (historyFile == null) {
-            historyFile = new File("History.txt");
-           // fileResult=historyFile;
-           
-        }
-    }*/
 
     public static void saveFile(PlayerModel model) {
        
-       // File historyFile = new File("History.txt");
-       
-        
-       
-       /* try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Date date = new Date();
-            String data = formatter.format(date);
-            data = data + "," + model.getPlayerXName() + "," + model.getPlayerOName() + "," + model.getWinner() + ","
-                    + model.getxScore() + "," + model.getoScore() + "\n";
-
-            System.out.println(data);
-          File historyFile = new File("History.txt");
-          if(!historyFile.exists()){
-                        historyFile.createNewFile();
-          }
-            FileOutputStream fileOutputStream = new FileOutputStream(historyFile,true);
-            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
-            byte[] b = data.getBytes();
-            dataOutputStream.write(b);
-            // FileWriter fileWriter=new FileWriter(historyFile);
-            // fileWriter.write(data);
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HistoryController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(HistoryController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        String path = "companies.json";
-      
- 
-        try (PrintWriter out = new PrintWriter(new FileWriter(path),true)) {
-            Gson gson = new Gson();
-            String jsonString = gson.toJson(model);
+     
+        try (PrintWriter out = new PrintWriter(new FileWriter("store/History.json"),true)) {
+            String jsonString = new Gson().toJson(model);
             out.write(jsonString);
         } catch (Exception e) {
             e.printStackTrace();

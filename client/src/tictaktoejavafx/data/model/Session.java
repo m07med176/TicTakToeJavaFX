@@ -1,25 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tictaktoejavafx.model;
+package tictaktoejavafx.data.model;
 
 import java.sql.Date;
 import java.sql.Time;
 
-/**
- *
- * @author hp
- */
 public class Session {
-    public Session(int id, Date Date, Time start, Time end) {
+    private int id;
+    private Date Date;
+    private Time start;
+    private  Time end;
+    private int userId;
+    private String playerOne;
+    private String playerTwo = "PC";
+    private boolean recorded = false;
+    
+    public Session(int id, Date Date, Time start, Time end, int userId,String playerOne,String playerTwo) {
         this.id = id;
         this.Date = Date;
         this.start = start;
         this.end = end;
+        this.userId = userId;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
     }
 
+    
+    
     public int getId() {
         return id;
     }
@@ -52,15 +57,30 @@ public class Session {
         this.end = end;
     }
 
-   
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+     public String getPlayerOne() {
+          return playerOne;
+     }
+
+     public void setPlayerOne(String playerOne) {
+          this.playerOne = playerOne;
+     }
+
+     public String getPlayerTwo() {
+          return playerTwo;
+     }
+
+     public void setPlayerTwo(String playerTwo) {
+          this.playerTwo = playerTwo;
+     }
+       
     
-    private int id;
-    private Date Date;
-    private Time start;
-    private  Time end;
-    private int users_id;
     
 }
-
-    
-

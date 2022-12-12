@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class LoginScreenBase extends AnchorPane {
 
@@ -18,6 +18,7 @@ public abstract class LoginScreenBase extends AnchorPane {
     protected final PasswordField password;
     protected final TextField user_name;
     protected final Hyperlink create_account;
+    protected final Button button;
 
     public LoginScreenBase() {
 
@@ -27,6 +28,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         password = new PasswordField();
         user_name = new TextField();
         create_account = new Hyperlink();
+        button = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -37,18 +39,19 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         imageView.setFitHeight(136.0);
         imageView.setFitWidth(168.0);
-        imageView.setLayoutX(203.0);
-        imageView.setLayoutY(56.0);
+        imageView.setLayoutX(225.0);
+        imageView.setLayoutY(55.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(AssetsRepository.LOGO)); 
+        imageView.setImage(new Image(Config.LOGO));
 
         btn_login.setLayoutX(274.0);
         btn_login.setLayoutY(375.0);
         btn_login.setMnemonicParsing(false);
         btn_login.setOnAction(this::isLogin);
+        btn_login.getStyleClass().add("main_button");
         btn_login.setText("Login");
 
-        label.setLayoutX(250.0);
+        label.setLayoutX(273.0);
         label.setLayoutY(203.0);
         label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
@@ -58,20 +61,28 @@ public abstract class LoginScreenBase extends AnchorPane {
         password.setPrefHeight(39.0);
         password.setPrefWidth(204.0);
         password.setPromptText("password");
+        password.getStyleClass().add("main_input");
 
-        user_name.setLayoutX(196.0);
+        user_name.setLayoutX(200.0);
         user_name.setLayoutY(259.0);
         user_name.setPrefHeight(39.0);
         user_name.setPrefWidth(204.0);
         user_name.setPromptText("User Name");
+        user_name.getStyleClass().add("main_input");
 
-        create_account.setLayoutX(231.0);
-        create_account.setLayoutY(414.0);
+        create_account.setLayoutX(244.0);
+        create_account.setLayoutY(411.0);
         create_account.setOnAction(this::CreateAccount);
-        create_account.setPrefHeight(21.0);
-        create_account.setPrefWidth(168.0);
+        create_account.setPrefHeight(23.0);
+        create_account.setPrefWidth(117.0);
         create_account.getStyleClass().add("link_button");
-        create_account.setText("Create an Account?");
+        create_account.setText("Create an Account");
+
+        button.setLayoutX(26.0);
+        button.setLayoutY(23.0);
+        button.setMnemonicParsing(false);
+        button.getStyleClass().add("back_button");
+        button.setText("<");
 
         getChildren().add(imageView);
         getChildren().add(btn_login);
@@ -79,6 +90,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         getChildren().add(password);
         getChildren().add(user_name);
         getChildren().add(create_account);
+        getChildren().add(button);
 
     }
 

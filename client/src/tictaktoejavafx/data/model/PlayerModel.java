@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictaktoejavafx.controller;
+package tictaktoejavafx.data.model;
 
 /**
  *
@@ -14,16 +14,17 @@ public  class PlayerModel {
     private String playerXName;
     private String playerOName;
     private String winner;
-    private int xScore;
-    private int oScore;
 
-    public PlayerModel(String dateGame, String playerXName, String playerOName, String winner, int xScore, int oScore) {
+
+    public PlayerModel() {
+    }
+
+    public PlayerModel(String dateGame, String playerXName, String playerOName) {
         this.dateGame = dateGame;
         this.playerXName = playerXName;
         this.playerOName = playerOName;
         this.winner = winner;
-        this.xScore = xScore;
-        this.oScore = oScore;
+     
     }
 
     public void setDateGame(String dateGame) {
@@ -42,13 +43,6 @@ public  class PlayerModel {
         this.winner = winner;
     }
 
-    public void setxScore(int xScore) {
-        this.xScore = xScore;
-    }
-
-    public void setoScore(int oScore) {
-        this.oScore = oScore;
-    }
 
     public String getDateGame() {
         return dateGame;
@@ -66,14 +60,4 @@ public  class PlayerModel {
         return winner;
     }
 
-    public int getxScore() {
-        return xScore;
-    }
-
-    public int getoScore() {
-        return oScore;
-    }
-
-
-    
 }

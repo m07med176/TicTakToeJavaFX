@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.AssetsRepository;
+import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
 
@@ -22,6 +22,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Button btn_Game_six;
     protected final Button btn_Game_eight;
     protected final Button btn_Game_nine;
+    protected final Button button;
     protected final Label label_player1;
     protected final Label label_player2;
 
@@ -40,6 +41,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_six = new Button();
         btn_Game_eight = new Button();
         btn_Game_nine = new Button();
+        button = new Button();
         label_player1 = new Label();
         label_player2 = new Label();
 
@@ -47,26 +49,29 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(499.0);
+        setPrefHeight(470.0);
         setPrefWidth(795.0);
 
         imageView.setFitHeight(155.0);
         imageView.setFitWidth(143.0);
         imageView.setLayoutX(624.0);
         imageView.setLayoutY(42.0);
-        imageView.setImage(new Image(AssetsRepository.LOGO));   
-        
+        imageView.getStyleClass().add("logo");
+        imageView.setImage(new Image(Config.LOGO));
+
         label.setLayoutX(657.0);
         label.setLayoutY(212.0);
+        label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
 
+        label0.setId("vs");
         label0.setLayoutX(678.0);
         label0.setLayoutY(309.0);
         label0.setText("VS");
 
-        anchorPane.setLayoutX(62.0);
-        anchorPane.setLayoutY(43.0);
-        anchorPane.setPrefHeight(412.0);
+        anchorPane.setLayoutX(37.0);
+        anchorPane.setLayoutY(44.0);
+        anchorPane.setPrefHeight(398.0);
         anchorPane.setPrefWidth(530.0);
 
         btn_Game_one.setLayoutX(45.0);
@@ -75,6 +80,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_one.setOnAction(this::isGameOne);
         btn_Game_one.setPrefHeight(99.0);
         btn_Game_one.setPrefWidth(125.0);
+        btn_Game_one.getStyleClass().add("game_button");
 
         btn_Game_four.setLayoutX(42.0);
         btn_Game_four.setLayoutY(164.0);
@@ -82,13 +88,15 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_four.setOnAction(this::isGameFour);
         btn_Game_four.setPrefHeight(85.0);
         btn_Game_four.setPrefWidth(125.0);
+        btn_Game_four.getStyleClass().add("game_button");
 
         btn_Game_seven.setLayoutX(45.0);
-        btn_Game_seven.setLayoutY(284.0);
+        btn_Game_seven.setLayoutY(268.0);
         btn_Game_seven.setMnemonicParsing(false);
         btn_Game_seven.setOnAction(this::isGameSeven);
         btn_Game_seven.setPrefHeight(85.0);
         btn_Game_seven.setPrefWidth(125.0);
+        btn_Game_seven.getStyleClass().add("game_button");
 
         btn_Game_two.setLayoutX(192.0);
         btn_Game_two.setLayoutY(42.0);
@@ -96,6 +104,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_two.setOnAction(this::isGameTwo);
         btn_Game_two.setPrefHeight(92.0);
         btn_Game_two.setPrefWidth(125.0);
+        btn_Game_two.getStyleClass().add("game_button");
 
         btn_Game_three.setLayoutX(349.0);
         btn_Game_three.setLayoutY(44.0);
@@ -103,6 +112,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_three.setOnAction(this::isGameThree);
         btn_Game_three.setPrefHeight(92.0);
         btn_Game_three.setPrefWidth(151.0);
+        btn_Game_three.getStyleClass().add("game_button");
 
         btn_Game_five.setLayoutX(192.0);
         btn_Game_five.setLayoutY(164.0);
@@ -110,6 +120,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_five.setOnAction(this::isGameFive);
         btn_Game_five.setPrefHeight(85.0);
         btn_Game_five.setPrefWidth(133.0);
+        btn_Game_five.getStyleClass().add("game_button");
 
         btn_Game_six.setLayoutX(357.0);
         btn_Game_six.setLayoutY(164.0);
@@ -117,25 +128,36 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         btn_Game_six.setOnAction(this::isGameSix);
         btn_Game_six.setPrefHeight(85.0);
         btn_Game_six.setPrefWidth(143.0);
+        btn_Game_six.getStyleClass().add("game_button");
 
         btn_Game_eight.setLayoutX(183.0);
-        btn_Game_eight.setLayoutY(288.0);
+        btn_Game_eight.setLayoutY(272.0);
         btn_Game_eight.setMnemonicParsing(false);
         btn_Game_eight.setOnAction(this::isGameEight);
         btn_Game_eight.setPrefHeight(78.0);
         btn_Game_eight.setPrefWidth(151.0);
+        btn_Game_eight.getStyleClass().add("game_button");
 
         btn_Game_nine.setLayoutX(357.0);
-        btn_Game_nine.setLayoutY(288.0);
+        btn_Game_nine.setLayoutY(272.0);
         btn_Game_nine.setMnemonicParsing(false);
         btn_Game_nine.setOnAction(this::isGameNine);
         btn_Game_nine.setPrefHeight(78.0);
         btn_Game_nine.setPrefWidth(143.0);
+        btn_Game_nine.getStyleClass().add("game_button");
+
+        button.setLayoutX(-25.0);
+        button.setLayoutY(-34.0);
+        button.setMnemonicParsing(false);
+        button.setOnAction(this::onBackClicked);
+        button.getStyleClass().add("back_button");
+        button.setText("<");
 
         label_player1.setLayoutX(660.0);
         label_player1.setLayoutY(260.0);
         label_player1.setPrefHeight(31.0);
         label_player1.setPrefWidth(74.0);
+        label_player1.getStyleClass().add("sub_title");
         label_player1.setText("player1");
         label_player1.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
 
@@ -143,6 +165,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player2.setLayoutY(337.0);
         label_player2.setPrefHeight(31.0);
         label_player2.setPrefWidth(68.0);
+        label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
         getChildren().add(imageView);
@@ -157,6 +180,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         anchorPane.getChildren().add(btn_Game_six);
         anchorPane.getChildren().add(btn_Game_eight);
         anchorPane.getChildren().add(btn_Game_nine);
+        anchorPane.getChildren().add(button);
         getChildren().add(anchorPane);
         getChildren().add(label_player1);
         getChildren().add(label_player2);
@@ -180,5 +204,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected abstract void isGameEight(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isGameNine(javafx.event.ActionEvent actionEvent);
+
+    protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
 
 }
