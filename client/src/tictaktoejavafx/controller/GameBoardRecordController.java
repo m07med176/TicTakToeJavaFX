@@ -2,10 +2,14 @@ package tictaktoejavafx.controller;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardRecordController extends GameBoardScreenBase{
@@ -109,7 +113,18 @@ public class GameBoardRecordController extends GameBoardScreenBase{
 
      @Override
      protected void onBackClicked(ActionEvent actionEvent) {
-          Navigator.navigate(Navigator.WELCOME, stage);
+          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },Alert.AlertType.CONFIRMATION);
+          
      }
    
     

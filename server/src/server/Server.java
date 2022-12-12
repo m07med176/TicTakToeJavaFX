@@ -9,7 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import server.utils.AlertAction;
 import server.utils.Config;
-import server.utils.ConfirmMessage;
+import server.utils.UserMessage;
 import server.utils.Navigator;
 
 
@@ -24,46 +24,32 @@ public class Server extends Application {
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         Navigator.navigate(Navigator.HOME, stage);
-        ConfirmMessage con=new ConfirmMessage();
-        con.display("you should enter ",new AlertAction(){
-            @Override
-            public void sendOk() {
-                System.out.println("ok");    
-            }
-
-            @Override
-            public void sendCancel() {
-                System.out.println("cancel");
-            }
-            
-        });
        
         // TODO set fixed size in all pages 
         // TODO make size resizable
-        
-        
-        try {
-            serverSocket = new ServerSocket(5006);
-            socket = serverSocket.accept(); // listen for connections and transfer incoming client to virtual port
-            dataInputStream = new DataInputStream(socket.getInputStream());
-            printStream = new PrintStream(socket.getOutputStream());
-            String msg = dataInputStream.readLine();
-            System.out.println("The Client Syas : "+msg);
-            printStream.println("Server: I Can here you");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                serverSocket.close();
-                socket.close();
-                dataInputStream.close();
-                printStream.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+         
+//        try {
+//            serverSocket = new ServerSocket(5006);
+//            socket = serverSocket.accept(); // listen for connections and transfer incoming client to virtual port
+//            dataInputStream = new DataInputStream(socket.getInputStream());
+//            printStream = new PrintStream(socket.getOutputStream());
+//            String msg = dataInputStream.readLine();
+//            System.out.println("The Client Syas : "+msg);
+//            printStream.println("Server: I Can here you");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            try {
+//                serverSocket.close();
+//                socket.close();
+//                dataInputStream.close();
+//                printStream.close();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
     
     public static void main(String[] args) {

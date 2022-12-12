@@ -1,4 +1,4 @@
-package server.utils;
+package tictaktoejavafx.utils;
 
 public interface AlertAction {
     public void sendOk();
