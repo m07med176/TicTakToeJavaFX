@@ -1,6 +1,6 @@
 package tictaktoejavafx.data.server;
 
-import tictaktoejavafx.data.model.Player;
+import tictaktoejavafx.data.model.PlayerOnline;
 
 public interface Authentication {
      
@@ -15,7 +15,7 @@ public interface Authentication {
       * @param player
       * @return String userId Or Null
       **/
-     public String register(Player player);
+     public String register(PlayerOnline player);
 
      
      

@@ -1,6 +1,9 @@
 package tictaktoejavafx.controller;
 
+import tictaktoejavafx.data.model.PlayerModel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -14,10 +17,11 @@ import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardController extends GameBoardScreenBase{
-    int count =0;
-    ArrayList arrlist=new ArrayList();
-    ArrayList arrlistButtons=new ArrayList();
+public class GameBoardController extends GameBoardScreenBase {
+
+    int count = 0;
+    ArrayList arrlist = new ArrayList();
+    ArrayList arrlistButtons = new ArrayList();
     private Stage stage;
 
     public GameBoardController(Stage stage) {
@@ -26,181 +30,196 @@ public class GameBoardController extends GameBoardScreenBase{
         label_player2.setText(Navigator.getPlayerTwo());
         addbuttonInList();
     }
-    
+
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-                  playerGame(btn_Game_one);
+        playerGame(btn_Game_one);
 
     }
- @Override
+
+    @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-            playerGame(btn_Game_two);
+        playerGame(btn_Game_two);
 
     }
+
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-             playerGame(btn_Game_four);
-   }
+        playerGame(btn_Game_four);
+    }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-                 playerGame(btn_Game_seven);
- }
-
+        playerGame(btn_Game_seven);
+    }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-            playerGame(btn_Game_three);
+        playerGame(btn_Game_three);
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-          playerGame(btn_Game_five);
+        playerGame(btn_Game_five);
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-            playerGame(btn_Game_six);
-  }
+        playerGame(btn_Game_six);
+    }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-          playerGame(btn_Game_eight);
- }
+        playerGame(btn_Game_eight);
+    }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         playerGame(btn_Game_nine);
     }
-    //-----------------------------------------
-    void playerGame(Button button){
-           arrlistButtons.remove(button);
-                count++;
-                button.setDisable(true);
-                if(count %2 !=0){
-                   button.setText("X");
-                 check();
-                      random();
 
-                }
+    //-----------------------------------------
+    void playerGame(Button button) {
+        arrlistButtons.remove(button);
+        count++;
+        button.setDisable(true);
+        if (count % 2 != 0) {
+            button.setText("X");
+            check();
+            random();
+
+        }
     }
-    
-    
-    void check(){
- 
-    //-------------rows----------------------------
-     /*     [X][X][X]
+
+    void check() {
+
+        //-------------rows----------------------------
+        /*     [X][X][X]
             [ ][ ][ ]
             [ ][ ][ ]  */
-    arrlist.add(btn_Game_one.getText()+btn_Game_two.getText()+btn_Game_three.getText());
-     /*     [ ][ ][ ]
+        arrlist.add(btn_Game_one.getText() + btn_Game_two.getText() + btn_Game_three.getText());
+        /*     [ ][ ][ ]
             [X][X][X]
             [ ][ ][ ]  */
-    arrlist.add(btn_Game_four.getText()+btn_Game_five.getText()+btn_Game_six.getText());
-    
-       /*   [ ][ ][ ]
+        arrlist.add(btn_Game_four.getText() + btn_Game_five.getText() + btn_Game_six.getText());
+
+        /*   [ ][ ][ ]
             [ ][ ][ ]
             [X][X][X]*/
-       arrlist.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
-    
-    //-------------Colums----------------------------
+        arrlist.add(btn_Game_seven.getText() + btn_Game_eight.getText() + btn_Game_nine.getText());
+
+        //-------------Colums----------------------------
         /*  [X][ ][ ]
             [X][ ][ ]
             [X][ ][ ]*/
-    arrlist.add(btn_Game_one.getText()+btn_Game_four.getText()+btn_Game_seven.getText());
-    /*      [ ][X][ ]
+        arrlist.add(btn_Game_one.getText() + btn_Game_four.getText() + btn_Game_seven.getText());
+        /*      [ ][X][ ]
             [ ][X][ ]
             [ ][X][ ]*/
-    arrlist.add(btn_Game_two.getText()+btn_Game_five.getText()+btn_Game_eight.getText());
-     /*     [ ][ ][X]
+        arrlist.add(btn_Game_two.getText() + btn_Game_five.getText() + btn_Game_eight.getText());
+        /*     [ ][ ][X]
             [ ][ ][X]
             [ ][ ][X]*/
-    arrlist.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
- 
- 
-    //-------------cross----------------------------
-     /*     [X][ ][ ]
+        arrlist.add(btn_Game_three.getText() + btn_Game_six.getText() + btn_Game_nine.getText());
+
+        //-------------cross----------------------------
+        /*     [X][ ][ ]
             [ ][X][ ]
             [ ][ ][X]*/
-    arrlist.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
-     /*     [ ][ ][X]
+        arrlist.add(btn_Game_one.getText() + btn_Game_five.getText() + btn_Game_nine.getText());
+        /*     [ ][ ][X]
             [ ][X][ ]
             [X][ ][ ]*/
-    arrlist.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
-        
-    for(int i=0; i<arrlist.size();i++){
-    if(arrlist.get(i).equals("XXX")){
-   // result_label.setText("Player 1 is Winner");
-    disableButton();
-    PlayerName.setPlayerName("Player 1");
-    playVideo();
-    }else if(arrlist.get(i).equals("OOO")){
-      //  result_label.setText("Player 2 is Winner");
-disableButton();
-    PlayerName.setPlayerName("Player 2");
+        arrlist.add(btn_Game_three.getText() + btn_Game_five.getText() + btn_Game_seven.getText());
 
-playVideo();
-    }
-        
-    }
-    }
-                
-   void disableButton(){
-   btn_Game_one.setDisable(true);
-   btn_Game_two.setDisable(true);
-   btn_Game_three.setDisable(true);
-   
-   btn_Game_four.setDisable(true);
-   btn_Game_five.setDisable(true);
-   btn_Game_six.setDisable(true);
-   
-   btn_Game_seven.setDisable(true);
-   btn_Game_eight.setDisable(true);
-   btn_Game_nine.setDisable(true);
-   }
-            
-        void playVideo(){
-            Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
+        for (int i = 0; i < arrlist.size(); i++) {
+            if (arrlist.get(i).equals("XXX")) {
+                // result_label.setText("Player 1 is Winner");
+                disableButton();
+               PlayerName.setPlayerName("Player 1");
 
-          
-    }
-
-    void random(){
-       
-          Random random_method = new Random();
-           
-          try{
-              if(arrlistButtons.size() >0){
-          int index = random_method.nextInt(arrlistButtons.size());
-                    System.out.println(index);
-
-         if(index  < arrlistButtons.size() ){
-            
-      Button button=(Button)arrlistButtons.get(index);
-      if(button != null && !button.isDisable()){
-                count++;
-                button.setDisable(true);
-                arrlistButtons.remove(button);
-                if(count %2 ==0){
-                  button.setText("O");
-                        check();
-                }
-      }
-    
-         }}
-         }catch(IndexOutOfBoundsException e){
-            e.printStackTrace();
+                saveData("Player 1");
+                playVideo();
+            } else if (arrlist.get(i).equals("OOO")) {
+                //  result_label.setText("Player 2 is Winner");
+                disableButton();
+                PlayerName.setPlayerName("Player 2");
+                saveData("Player 2");
+                playVideo();
             }
-        
+
+        }
     }
-    void addbuttonInList(){
+
+    void saveData(String winnerName) {
+     PlayerModel playerModel=new PlayerModel();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        playerModel.setDateGame(date.toString());
+        playerModel.setPlayerXName(Navigator.getPlayerOne());
+        playerModel.setPlayerOName(Navigator.getPlayerTwo());
+        playerModel.setWinner(winnerName);
+        
+        HistoryController.saveFile(playerModel);
+    }
+
+    void disableButton() {
+        btn_Game_one.setDisable(true);
+        btn_Game_two.setDisable(true);
+        btn_Game_three.setDisable(true);
+
+        btn_Game_four.setDisable(true);
+        btn_Game_five.setDisable(true);
+        btn_Game_six.setDisable(true);
+
+        btn_Game_seven.setDisable(true);
+        btn_Game_eight.setDisable(true);
+        btn_Game_nine.setDisable(true);
+    }
+
+    void playVideo() {
+        Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
+
+    }
+
+    void random() {
+
+        Random random_method = new Random();
+
+        try {
+            if (arrlistButtons.size() > 0) {
+                int index = random_method.nextInt(arrlistButtons.size());
+                System.out.println(index);
+
+                if (index < arrlistButtons.size()) {
+
+                    Button button = (Button) arrlistButtons.get(index);
+                    if (button != null && !button.isDisable()) {
+                        count++;
+                        button.setDisable(true);
+                        arrlistButtons.remove(button);
+                        if (count % 2 == 0) {
+                            button.setText("O");
+                            check();
+                        }
+                    }
+
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void addbuttonInList() {
         arrlistButtons.add(btn_Game_one);
         arrlistButtons.add(btn_Game_two);
         arrlistButtons.add(btn_Game_three);
         arrlistButtons.add(btn_Game_four);
         arrlistButtons.add(btn_Game_five);
         arrlistButtons.add(btn_Game_six);
-        
+
         arrlistButtons.add(btn_Game_seven);
         arrlistButtons.add(btn_Game_eight);
         arrlistButtons.add(btn_Game_nine);

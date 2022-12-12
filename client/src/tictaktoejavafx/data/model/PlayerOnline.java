@@ -1,8 +1,8 @@
 package tictaktoejavafx.data.model;
 
-public class Player {
+public class PlayerOnline {
 
-    public Player(int id, String email, String username, int password, int status) {
+    public PlayerOnline(int id, String email, String username, int password, int status) {
         this.id = id;
         this.email = email;
         this.username = username;

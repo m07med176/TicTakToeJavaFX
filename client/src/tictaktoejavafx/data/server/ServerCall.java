@@ -1,7 +1,7 @@
 package tictaktoejavafx.data.server;
 
 import java.util.ArrayList;
-import tictaktoejavafx.data.model.Player;
+import tictaktoejavafx.data.model.PlayerOnline;
 
 public interface ServerCall {
      /**
@@ -15,7 +15,7 @@ public interface ServerCall {
       */
      public String receiveInvetation();
      
-     public ArrayList<Player> getOnlinePlayers();
+     public ArrayList<PlayerOnline> getOnlinePlayers();
      public int getCountPlayers();
      public boolean updatePlayerStatus(boolean status);
      
