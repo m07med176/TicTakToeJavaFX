@@ -23,6 +23,7 @@ public class OnePlayerController extends OnePlayerBase{
                player_name.requestFocus();
           }
           else{
+        
              Navigator.navigate(Navigator.CHOOSEDIFF, stage);
 
             //  Navigator.navigate(Navigator.GAMEBOARD, stage);

@@ -27,6 +27,7 @@ public class TwoPlayerController extends TwoPlayerBase{
                Player_two.requestFocus();
           }
           else{
+         
           Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }
