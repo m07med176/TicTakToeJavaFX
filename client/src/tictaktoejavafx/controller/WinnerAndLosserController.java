@@ -1,11 +1,13 @@
 package tictaktoejavafx.controller;
 
 import java.nio.file.Paths;
+import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.Config;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.WinnerAndlosserScreenBase;
 
 public class WinnerAndLosserController extends WinnerAndlosserScreenBase{
@@ -52,4 +54,20 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase{
         }).start();
         
     }
+
+     @Override
+     protected void onHomeButtonClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
+
+     @Override
+     protected void onPlayAgainClicked(ActionEvent actionEvent) {
+          Navigator.back(stage);
+     }
+
+     @Override
+     protected void onResultsClicked(ActionEvent actionEvent) {
+          System.out.println("On Result Clicked");
+                  
+     }
 }

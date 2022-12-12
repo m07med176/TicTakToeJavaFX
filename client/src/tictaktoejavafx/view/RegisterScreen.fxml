@@ -17,16 +17,12 @@
          </image>
       </ImageView>
       <Label layoutX="247.0" layoutY="222.0" styleClass="title" text="Tic Tac Toe" />
-      <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" />
-      <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" />
-      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" promptText="Password" />
-      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0" promptText="Repeat Password" />
-      <Button fx:id="btn_register" layoutX="252.0" layoutY="477.0" mnemonicParsing="false" onAction="#register" text="Register" />
+      <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" styleClass="main_input" />
+      <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" styleClass="main_input" />
+      <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" promptText="Password" styleClass="main_input" />
+      <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0" promptText="Repeat Password" styleClass="main_input" />
+      <Button fx:id="btn_register" layoutX="252.0" layoutY="477.0" mnemonicParsing="false" onAction="#register" styleClass="main_button" text="Register" />
       <Hyperlink fx:id="have_accout" layoutX="226.0" layoutY="520.0" onAction="#haveAccount" styleClass="link_button" text="I Have an account" />
-      <ImageView>
-         <image>
-            <Image url="@../assets/images/backbutton.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
    </children>
 </AnchorPane>

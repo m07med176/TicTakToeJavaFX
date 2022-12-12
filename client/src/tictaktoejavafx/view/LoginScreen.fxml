@@ -16,15 +16,11 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btn_login" layoutX="274.0" layoutY="375.0" mnemonicParsing="false" onAction="#isLogin" text="Login" />
+      <Button fx:id="btn_login" layoutX="274.0" layoutY="375.0" mnemonicParsing="false" onAction="#isLogin" styleClass="main_button" text="Login" />
       <Label layoutX="273.0" layoutY="203.0" styleClass="title" text="Tic Tac Toe" />
-      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0" prefHeight="39.0" prefWidth="204.0" promptText="password" />
-      <TextField fx:id="user_name" layoutX="200.0" layoutY="259.0" prefHeight="39.0" prefWidth="204.0" promptText="User Name" />
-      <Hyperlink fx:id="create_account" layoutX="236.0" layoutY="412.0" onAction="#CreateAccount" prefHeight="21.0" prefWidth="168.0" styleClass="link_button" text="Create an Account?" />
-      <ImageView layoutX="14.0" layoutY="14.0">
-         <image>
-            <Image url="@../assets/images/backbutton.png" />
-         </image>
-      </ImageView>
+      <PasswordField fx:id="password" layoutX="200.0" layoutY="317.0" prefHeight="39.0" prefWidth="204.0" promptText="password" styleClass="main_input" />
+      <TextField fx:id="user_name" layoutX="200.0" layoutY="259.0" prefHeight="39.0" prefWidth="204.0" promptText="User Name" styleClass="main_input" />
+      <Hyperlink fx:id="create_account" layoutX="244.0" layoutY="411.0" onAction="#CreateAccount" prefHeight="23.0" prefWidth="117.0" styleClass="link_button" text="Create an Account" />
+      <Button layoutX="26.0" layoutY="23.0" mnemonicParsing="false" styleClass="back_button" text="&lt;" />
    </children>
 </AnchorPane>

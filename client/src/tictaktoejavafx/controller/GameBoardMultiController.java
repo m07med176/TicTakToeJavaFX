@@ -108,5 +108,10 @@ public class GameBoardMultiController extends GameBoardScreenBase{
         diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
     
     }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
     
 }

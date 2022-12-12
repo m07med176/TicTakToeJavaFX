@@ -14,17 +14,17 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="btn_single" layoutX="188.0" layoutY="310.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="Single Player" textFill="#0a3257">
+      <Button fx:id="btn_single" layoutX="188.0" layoutY="310.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Single Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_two" layoutX="188.0" layoutY="365.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="Two Player" textFill="#0a3257">
+      <Button fx:id="btn_two" layoutX="188.0" layoutY="365.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Two Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_online_mode" layoutX="188.0" layoutY="419.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: FFFFFF;" text="online mode" textFill="#0a3257">
+      <Button fx:id="btn_online_mode" layoutX="188.0" layoutY="419.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="online mode" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>

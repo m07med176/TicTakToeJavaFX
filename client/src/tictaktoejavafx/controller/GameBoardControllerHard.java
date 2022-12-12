@@ -151,4 +151,9 @@ public static String PLAYER2="Player 2";
 
     }
 
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
+
 }

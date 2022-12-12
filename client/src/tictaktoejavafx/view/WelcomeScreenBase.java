@@ -42,7 +42,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setOnAction(this::isSingle);
         btn_single.setPrefHeight(45.0);
         btn_single.setPrefWidth(214.0);
-        btn_single.setStyle("-fx-background-color: FFFFFF;");
+        btn_single.getStyleClass().add("main_button");
         btn_single.setText("Single Player");
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
@@ -53,7 +53,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two.setOnAction(this::isTwo);
         btn_two.setPrefHeight(45.0);
         btn_two.setPrefWidth(214.0);
-        btn_two.setStyle("-fx-background-color: FFFFFF;");
+        btn_two.getStyleClass().add("main_button");
         btn_two.setText("Two Player");
         btn_two.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_two.setFont(new Font(22.0));
@@ -64,7 +64,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_online_mode.setOnAction(this::isOnlineMode);
         btn_online_mode.setPrefHeight(45.0);
         btn_online_mode.setPrefWidth(214.0);
-        btn_online_mode.setStyle("-fx-background-color: FFFFFF;");
+        btn_online_mode.getStyleClass().add("main_button");
         btn_online_mode.setText("online mode");
         btn_online_mode.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_online_mode.setFont(new Font(22.0));
@@ -73,8 +73,9 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(180.0);
         imageView.setLayoutY(93.0);
+        imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
-        
+
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);

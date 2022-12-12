@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="155.0" fitWidth="143.0" layoutX="624.0" layoutY="42.0" styleClass="logo">
          <image>
@@ -14,26 +14,22 @@
          </image>
       </ImageView>
       <Label layoutX="657.0" layoutY="212.0" styleClass="title" text="Tic Tac Toe" />
-      <Label layoutX="678.0" layoutY="309.0" text="VS" />
-      <AnchorPane layoutX="37.0" layoutY="44.0" prefHeight="412.0" prefWidth="530.0">
+      <Label id="vs" layoutX="678.0" layoutY="309.0" text="VS" />
+      <AnchorPane layoutX="37.0" layoutY="44.0" prefHeight="398.0" prefWidth="530.0">
          <children>
-            <Button fx:id="btn_Game_one" layoutX="45.0" layoutY="38.0" mnemonicParsing="false" onAction="#isGameOne" prefHeight="99.0" prefWidth="125.0" />
-            <Button fx:id="btn_Game_four" layoutX="42.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameFour" prefHeight="85.0" prefWidth="125.0" />
-            <Button fx:id="btn_Game_seven" layoutX="45.0" layoutY="284.0" mnemonicParsing="false" onAction="#isGameSeven" prefHeight="85.0" prefWidth="125.0" />
-            <Button fx:id="btn_Game_two" layoutX="192.0" layoutY="42.0" mnemonicParsing="false" onAction="#isGameTwo" prefHeight="92.0" prefWidth="125.0" />
-            <Button fx:id="btn_Game_three" layoutX="349.0" layoutY="44.0" mnemonicParsing="false" onAction="#isGameThree" prefHeight="92.0" prefWidth="151.0" />
-            <Button fx:id="btn_Game_five" layoutX="192.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameFive" prefHeight="85.0" prefWidth="133.0" />
-            <Button fx:id="btn_Game_six" layoutX="357.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameSix" prefHeight="85.0" prefWidth="143.0" />
-            <Button fx:id="btn_Game_eight" layoutX="183.0" layoutY="288.0" mnemonicParsing="false" onAction="#isGameEight" prefHeight="78.0" prefWidth="151.0" />
-            <Button fx:id="btn_Game_nine" layoutX="357.0" layoutY="288.0" mnemonicParsing="false" onAction="#isGameNine" prefHeight="78.0" prefWidth="143.0" />
+            <Button fx:id="btn_Game_one" layoutX="45.0" layoutY="38.0" mnemonicParsing="false" onAction="#isGameOne" prefHeight="99.0" prefWidth="125.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_four" layoutX="42.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameFour" prefHeight="85.0" prefWidth="125.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_seven" layoutX="45.0" layoutY="268.0" mnemonicParsing="false" onAction="#isGameSeven" prefHeight="85.0" prefWidth="125.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_two" layoutX="192.0" layoutY="42.0" mnemonicParsing="false" onAction="#isGameTwo" prefHeight="92.0" prefWidth="125.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_three" layoutX="349.0" layoutY="44.0" mnemonicParsing="false" onAction="#isGameThree" prefHeight="92.0" prefWidth="151.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_five" layoutX="192.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameFive" prefHeight="85.0" prefWidth="133.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_six" layoutX="357.0" layoutY="164.0" mnemonicParsing="false" onAction="#isGameSix" prefHeight="85.0" prefWidth="143.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_eight" layoutX="183.0" layoutY="272.0" mnemonicParsing="false" onAction="#isGameEight" prefHeight="78.0" prefWidth="151.0" styleClass="game_button" />
+            <Button fx:id="btn_Game_nine" layoutX="357.0" layoutY="272.0" mnemonicParsing="false" onAction="#isGameNine" prefHeight="78.0" prefWidth="143.0" styleClass="game_button" />
+            <Button layoutX="-25.0" layoutY="-34.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
          </children>
       </AnchorPane>
       <Label fx:id="label_player1" layoutX="660.0" layoutY="260.0" prefHeight="31.0" prefWidth="74.0" styleClass="sub_title" text="player1" textAlignment="RIGHT" />
       <Label fx:id="label_player2" layoutX="660.0" layoutY="337.0" prefHeight="31.0" prefWidth="68.0" styleClass="sub_title" text="player2" />
-      <ImageView>
-         <image>
-            <Image url="@../assets/images/backbutton.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

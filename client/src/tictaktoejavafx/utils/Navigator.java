@@ -10,7 +10,6 @@ import tictaktoejavafx.controller.GameBoardController;
 import tictaktoejavafx.controller.GameBoardControllerHard;
 import tictaktoejavafx.controller.GameBoardControllerMiddle;
 import tictaktoejavafx.controller.LoginController;
-import tictaktoejavafx.controller.PlayerListController;
 import tictaktoejavafx.controller.PlayerSelectionController;
 import tictaktoejavafx.controller.RegisterController;
 import tictaktoejavafx.controller.WelcomeController;
@@ -26,7 +25,6 @@ public class Navigator {
     public static final int CHOOSEDIFF = 1;
     public static final int GAMEBOARD = 2;
     public static final int LOGIN = 3;
-    public static final int PLAYER_LIST = 4;
     public static final int PLAYER_SELECTION = 5;
     public static final int REGISTER = 6;
     public static final int WINNER_NOTIFY = 7;
@@ -81,10 +79,6 @@ public class Navigator {
                 parent = new LoginController(stage);
                 break;
 
-            case PLAYER_LIST:
-                parent = new PlayerListController(stage);
-                break;
-
             case PLAYER_SELECTION:
                 parent = new PlayerSelectionController(stage);
                 break;
@@ -126,7 +120,16 @@ public class Navigator {
         Scene scene = new Scene(parent);
         scene.getStylesheets().add(Client.CSS);
 
-        pages.add(scene);
+        if (destination != WELCOME){
+            pages.add(scene);
+            pageIndex++;
+        }
+        else
+        {
+            pages.clear();
+            pageIndex=0;
+        }
+        
         stage.setScene(scene);
         stage.show();
     }

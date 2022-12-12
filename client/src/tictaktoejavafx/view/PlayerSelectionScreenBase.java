@@ -13,7 +13,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
     protected final Label label;
     protected final AnchorPane anchorPane;
     protected final ListView list_view_user;
-    protected final Label user_name;
 
     public PlayerSelectionScreenBase() {
 
@@ -21,7 +20,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         label = new Label();
         anchorPane = new AnchorPane();
         list_view_user = new ListView();
-        user_name = new Label();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -34,32 +32,28 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setFitWidth(183.0);
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
+        imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
 
         label.setLayoutX(625.0);
         label.setLayoutY(255.0);
+        label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
-
 
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
         anchorPane.setPrefHeight(448.0);
         anchorPane.setPrefWidth(514.0);
 
-        list_view_user.setLayoutX(34.0);
-        list_view_user.setLayoutY(40.0);
-        list_view_user.setPrefHeight(373.0);
-        list_view_user.setPrefWidth(431.0);
-
-        user_name.setLayoutX(636.0);
-        user_name.setLayoutY(297.0);
-        user_name.setText("user_name");
+        list_view_user.setLayoutX(11.0);
+        list_view_user.setLayoutY(12.0);
+        list_view_user.setPrefHeight(417.0);
+        list_view_user.setPrefWidth(476.0);
 
         getChildren().add(imageView);
         getChildren().add(label);
         anchorPane.getChildren().add(list_view_user);
         getChildren().add(anchorPane);
-        getChildren().add(user_name);
 
     }
 }

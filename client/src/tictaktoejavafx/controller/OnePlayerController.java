@@ -30,5 +30,10 @@ public class OnePlayerController extends OnePlayerBase{
           }
           
      }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
      
 }

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.LocalMultiPlayer;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardRecordController extends GameBoardScreenBase{
@@ -105,6 +106,11 @@ public class GameBoardRecordController extends GameBoardScreenBase{
         diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
     
     }*/
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
    
     
 }

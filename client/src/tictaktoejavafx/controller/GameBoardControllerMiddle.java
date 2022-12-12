@@ -130,7 +130,6 @@ public class GameBoardControllerMiddle extends GameBoardScreenBase {
 
     void playVideo() {
         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-
     }
 
     
@@ -139,4 +138,9 @@ public class GameBoardControllerMiddle extends GameBoardScreenBase {
 
   
     //-----------------------------------------
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
 }

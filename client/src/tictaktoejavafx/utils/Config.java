@@ -6,13 +6,13 @@ public class Config {
     public static final String LOSSER_VIDEO = "src/tictaktoejavafx/assets/loserVideo.mp4";
     public static final String CSS = "assets/style.css";
     
-    public static final String ENVLOP = "src/tictaktoejavafx/assets/image/envlop.jpg";
-    public static final String BACKBUTTON= "src/tictaktoejavafx/assets/image/backbutton.jpg";
-    public static final String BACKARROW= "src/tictaktoejavafx/assets/image/backarrow.jpg";
-    public static final String EYE= "src/tictaktoejavafx/assets/image/eye.jpg";
-    public static final String KEY= "src/tictaktoejavafx/assets/image/KEY.jpg";
-    public static final String RECORD= "src/tictaktoejavafx/assets/image/record.jpg";
-    public static final String VS= "src/tictaktoejavafx/assets/image/vs.jpg";
-    public static final String IMAGETICTACTOE= "src/tictaktoejavafx/assets/image/imageTacToe.jpg";
+    public static final String ENVLOP = "tictaktoejavafx/assets/images/envlop.png";
+    public static final String BACKBUTTON = "tictaktoejavafx/assets/images/backbutton.png";
+    public static final String BACKARROW = "tictaktoejavafx/assets/images/backarrow.png";
+    public static final String EYE = "tictaktoejavafx/assets/images/eye.png";
+    public static final String KEY = "tictaktoejavafx/assets/images/KEY.png";
+    public static final String RECORD = "tictaktoejavafx/assets/images/record.png";
+    public static final String VS = "tictaktoejavafx/assets/images/vs.png";
+    public static final String IMAGETICTACTOE = "src/tictaktoejavafx/assets/images/imageTacToe.png";
     
 }

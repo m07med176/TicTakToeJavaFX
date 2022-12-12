@@ -201,4 +201,9 @@ playVideo();
         arrlistButtons.add(btn_Game_nine);
     }
     //-----------------------------------------
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
 }
