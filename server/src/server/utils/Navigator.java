@@ -8,6 +8,8 @@ import server.controller.PlayerListController;
 import server.controller.ServerChartController;
 import server.controller.ServerHomeController;
 import server.view.PlayerListScreenBase;
+import server.view.PlayerOnServerBase;
+import server.view.PlayerOnServerController;
 
 
 public class Navigator {
@@ -28,7 +30,9 @@ public class Navigator {
             
               
             case PLAYERS_LIST:
-              parent  = new PlayerListController(stage);
+             // parent  = new PlayerListController(stage);
+                parent  = new PlayerOnServerController(stage);
+
               break;
 
             default:

@@ -3,7 +3,7 @@ package server.data.db;
 import java.util.ArrayList;
 import server.data.model.Player;
 
-public interface DatabaseCRUD {
+public interface DBCreateReadUpdateDelete {
      public ArrayList<Player> getOnlinePlayers();
      public int getCountPlayers();
      public String addPlayer(Player user); // register function
