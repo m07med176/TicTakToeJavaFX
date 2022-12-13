@@ -12,7 +12,7 @@ public class UserMessage extends Alert {
         setAlertType(type);
         setContentText(message);
         showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK || response == ButtonType.APPLY || response == ButtonType.NEXT || response == ButtonType.NEXT) {
+            if (response == ButtonType.OK || response == ButtonType.APPLY || response == ButtonType.NEXT ) {
                action.sendOk();
             }
             if(response == ButtonType.CANCEL || response == ButtonType.CLOSE  || response == ButtonType.NO || response == ButtonType.PREVIOUS || response == ButtonType.FINISH){

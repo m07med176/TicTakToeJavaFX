@@ -6,9 +6,7 @@ import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.LoginScreenBase;
 
 public class LoginController extends LoginScreenBase {
-
     private Stage stage;
-
     public LoginController(Stage stage) {
         this.stage = stage;
     }
@@ -19,25 +17,22 @@ public class LoginController extends LoginScreenBase {
         String userName = this.user_name.getText().trim();
         String passwordUser = this.password.getText().trim();
         
-        
         if(loginValidation(userName,passwordUser)){
-            Navigator.navigate(Navigator.GAMEBOARD, stage);
+            Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
             // TODO Pass data in athentication function
             /*
-                if (authenticated(userName,passwordUser)){
+               if (authenticated(userName,passwordUser)){
                     // If true navigate or send error message
-                }
+               }
             */
         }
     }
 
     private boolean loginValidation(String userName,String passwordUser) {
         boolean retVal = true;
-
         // 2- validate data
         if (passwordUser.isEmpty()) {
-            //TODO here we must put dialog Alert or set error
-            
+            //TODO here we must put dialog Alert or set error     
             password.requestFocus();
             System.out.println("you must enter password");
             retVal = false;
@@ -49,11 +44,9 @@ public class LoginController extends LoginScreenBase {
             System.out.println("you must enter username");
             retVal = false;
         }
-
-        
-
         return retVal;
     }
+    
 //    private boolean validate(){
 //        StringBuilder errorText=new StringBuilder();
 //        if(user_name.getText().isEmpty()){

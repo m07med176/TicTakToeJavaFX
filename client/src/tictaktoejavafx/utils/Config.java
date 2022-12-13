@@ -15,5 +15,6 @@ public class Config {
     public static final String VS = "tictaktoejavafx/assets/images/vs.png";
     public static final String IMAGETICTACTOE = "src/tictaktoejavafx/assets/images/imageTacToe.png";
     public static final String EXIT_MSG = "Do You Want TO Exit This Game?";
+    public static final String INVATE_MSG = "Do You Want TO invate him?";
     
 }

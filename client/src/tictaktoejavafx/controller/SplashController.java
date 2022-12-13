@@ -11,8 +11,7 @@ import tictaktoejavafx.view.SplashScreenBase;
 
 public class SplashController extends SplashScreenBase {
    private Stage stage;
-
-    public SplashController(Stage stage) {
+   public SplashController(Stage stage) {
         this.stage = stage; 
         Platform.runLater(() -> {
             try {
