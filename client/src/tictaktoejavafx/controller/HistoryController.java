@@ -33,7 +33,7 @@ public class HistoryController {
     public static void saveFile(PlayerModel model) {
        
      
-        try (PrintWriter out = new PrintWriter(new FileWriter("store/History.json"),true)) {
+        try (PrintWriter out = new PrintWriter(new FileWriter("History.json"),true)) {
             String jsonString = new Gson().toJson(model);
             out.write(jsonString);
         } catch (Exception e) {
