@@ -1,5 +1,6 @@
 package tictaktoejavafx;
 
+import JsonProject.HistoryJson;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -7,6 +8,7 @@ import java.net.Socket;
 import tictaktoejavafx.utils.PathManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 
@@ -22,6 +24,8 @@ public class Client extends Application {
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         PathManager.getPath();
         Navigator.navigate(Navigator.SPLACH, stage);
+        new HistoryJson(new PlayerModel());
+        
         // TODO set fixed size in all pages 
         // TODO make size resizable
         
