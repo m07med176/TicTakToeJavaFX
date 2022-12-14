@@ -33,12 +33,12 @@ public class HistoryJson {
           
             Gson gson=new Gson();
             Type listType = new TypeToken<ArrayList<String>>() {}.getType();
-            List<String> historyList = gson.fromJson(str, listType); 
+            List<History> historyList = gson.fromJson(str, listType); 
+           
             
              //////////
-             for(String history:historyList){
-                 System.out.println(history);
-                 //System.out.println(history.getId()+"-"+history.getMovement()+"-"+history.getPlayer()+"-"+history.getSessionsId()+"\n");
+             for(History history:historyList){
+                 System.out.println(history.getId()+"-"+history.getMovement()+"-"+history.getPlayer()+"-"+history.getSessionsId()+"\n");
              }
 
 // history =gson.fromJson(str,History.class);
