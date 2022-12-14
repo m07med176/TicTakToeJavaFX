@@ -1,6 +1,14 @@
 package tictaktoejavafx.controller;
 
+import com.google.gson.Gson;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,16 +17,56 @@ import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.RecordClass;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardRecordController extends GameBoardScreenBase{
     private Stage stage;
-    //ArrayList<String> diagonals=new ArrayList<>();
-    //public static char turn='X';
-
+    Gson gson=new Gson();
+    RecordClass rec=new RecordClass();
+    ArrayList<String> rec2;
+    Thread th=null;
     public GameBoardRecordController(Stage stage) {
         this.stage = stage;
+        Read();
+        rec2=rec.getRecord();
+        
+        th=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                
+                try {
+                    String temp="";
+                    int index=0;
+                    for(int i=0;i<rec2.size();i++){
+                        System.out.println("I'm Running");
+                        try {
+                            temp=rec2.get(i);
+                            index=Character.getNumericValue(temp.charAt(0));
+                            //buttonAssin(index,temp.charAt(1));
+                            final int lIndex=Character.getNumericValue(temp.charAt(0));
+                            final char val=temp.charAt(1);
+                            Platform.runLater(()->buttonAssin(lIndex,val));
+                            th.sleep(1500);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    }
+                    th.sleep(2000);
+                    Platform.runLater(() -> {
+                        Navigator.navigate(Navigator.WELCOME, stage);
+                    });
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        th.start();
+        //Platform.runLater(th);
+        
+        
     }
     
     @Override
@@ -76,42 +124,104 @@ public class GameBoardRecordController extends GameBoardScreenBase{
         
         
     }
-    /*public void gameTurns(Button button){
-    
-        if(turn=='X'){
-        
-            button.setText("X");
-            turn='O';
-            button.setDisable(true);
-            diagonalFiller();
-            LocalMultiPlayer.localMulti(diagonals, stage);
-            LocalMultiPlayer.drawChecker(stage);
-                    
-        }else{
-        
-            button.setText("O");
-            turn='X';
-            button.setDisable(true);
-            diagonalFiller();
-            LocalMultiPlayer.localMulti(diagonals, stage);
-            LocalMultiPlayer.drawChecker(stage);
-            
+    public void Read(){
+        try {
+            Reader reader=Files.newBufferedReader(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
+            rec=gson.fromJson(reader, RecordClass.class);
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-    }*/
-    /*public void diagonalFiller(){
-        diagonals.add(btn_Game_one.getText()+btn_Game_two.getText()+btn_Game_three.getText());
-        diagonals.add(btn_Game_four.getText()+btn_Game_five.getText()+btn_Game_six.getText());
-        diagonals.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_one.getText()+btn_Game_four.getText()+btn_Game_seven.getText());
-        diagonals.add(btn_Game_two.getText()+btn_Game_five.getText()+btn_Game_eight.getText());
-        diagonals.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
+    }
+    public void buttonAssin(int index,char val){
+        
+        switch(index){
+            case 1: 
+                    if(val=='X'){
+                        btn_Game_one.setText("X");
+                    }else{
+                    
+                        btn_Game_one.setText("O");
+                    }
+                    
+                    btn_Game_one.setDisable(true);
+                    break;
+            case 2: 
+                       if(val=='X'){
+                        btn_Game_two.setText("X");
+                    }else{
+                    
+                        btn_Game_two.setText("O");
+                    }
+                    btn_Game_two.setDisable(true);
+                    break;
+            case 3: 
+                       if(val=='X'){
+                        btn_Game_three.setText("X");
+                    }else{
+                    
+                        btn_Game_three.setText("O");
+                    }
+                    btn_Game_three.setDisable(true);
+                    break;
+            case 4: 
+                       if(val=='X'){
+                        btn_Game_four.setText("X");
+                    }else{
+                    
+                        btn_Game_four.setText("O");
+                    }
+                    btn_Game_four.setDisable(true);
+                    break;
+            case 5:
+                       if(val=='X'){
+                        btn_Game_five.setText("X");
+                    }else{
+                    
+                        btn_Game_five.setText("O");
+                    }
+                    btn_Game_five.setDisable(true);
+                    break;
+            case 6:
+                       if(val=='X'){
+                        btn_Game_six.setText("X");
+                    }else{
+                    
+                        btn_Game_six.setText("O");
+                    }
+                    btn_Game_six.setDisable(true);
+                    break;
+            case 7:
+                       if(val=='X'){
+                        btn_Game_seven.setText("X");
+                    }else{
+                    
+                        btn_Game_seven.setText("O");
+                    }
+                    btn_Game_seven.setDisable(true);
+                    break;
+            case 8:
+                       if(val=='X'){
+                        btn_Game_eight.setText("X");
+                    }else{
+                    
+                        btn_Game_eight.setText("O");
+                    }
+                    btn_Game_eight.setDisable(true);
+                    break;
+            case 9:
+                       if(val=='X'){
+                        btn_Game_nine.setText("X");
+                    }else{
+                    
+                        btn_Game_nine.setText("O");
+                    }
+                    btn_Game_nine.setDisable(true);
+                    break;
+        }
     
-    }*/
-
-     @Override
+    }
+         @Override
      protected void onBackClicked(ActionEvent actionEvent) {
           new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
                @Override
@@ -129,3 +239,5 @@ public class GameBoardRecordController extends GameBoardScreenBase{
    
     
 }
+
+  

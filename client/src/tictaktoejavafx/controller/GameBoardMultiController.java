@@ -1,6 +1,13 @@
 package tictaktoejavafx.controller;
 
+import com.google.gson.Gson;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,6 +16,7 @@ import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.RecordClass;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
@@ -16,9 +24,12 @@ public class GameBoardMultiController extends GameBoardScreenBase{
     private Stage stage;
     ArrayList<String> diagonals=new ArrayList<>();
     public static char turn='X';
+    Gson gson=new Gson();
+    RecordClass recordClass=new RecordClass();
 
     public GameBoardMultiController(Stage stage) {
         this.stage = stage;
+        
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
     }
@@ -26,55 +37,71 @@ public class GameBoardMultiController extends GameBoardScreenBase{
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
-        
-        
+        recordClass.add("1"+btn_Game_one.getText());
+        pars();
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
          gameTurns(btn_Game_four);
+         recordClass.add("4"+btn_Game_four.getText());
+         pars();
         
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
+        recordClass.add("7"+btn_Game_seven.getText());
+        pars();
         
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         gameTurns(btn_Game_two);
+        recordClass.add("2"+btn_Game_two.getText());
+        pars();
        
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         gameTurns(btn_Game_three);
+        recordClass.add("3"+btn_Game_three.getText());
+        pars();
        
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
           gameTurns(btn_Game_five);
+          recordClass.add("5"+btn_Game_five.getText());
+          pars();
        
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
+        recordClass.add("6"+btn_Game_six.getText());
+        pars();
         
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
+        recordClass.add("8"+btn_Game_eight.getText());
+        pars();
         
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
+        recordClass.add("9"+btn_Game_nine.getText());
+        pars();
         
         
     }
@@ -110,6 +137,20 @@ public class GameBoardMultiController extends GameBoardScreenBase{
         diagonals.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
         diagonals.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
         diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
+    
+    }
+     public void pars(){
+        if(LocalMultiPlayer.getGameEnded()){
+            try {
+                Writer writer=Files.newBufferedWriter(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
+                gson.toJson(recordClass,writer);
+                writer.close();
+                System.out.println("done");
+            } catch (IOException ex) {
+                Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
     
     }
 
