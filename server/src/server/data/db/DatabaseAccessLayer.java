@@ -10,10 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import server.data.model.Player;
 
-public abstract class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
+public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
 
     static Connection con;
-    Statement stmt = con.createStatement();
+    Statement stmt;
     static ResultSet resultSet;
     public static String tableName = "player";
     //static Player player;
@@ -22,6 +22,7 @@ public abstract class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
 
     public DatabaseAccessLayer() throws SQLException {
         con = DataBaseConnection.getConnection();
+        stmt = con.createStatement();
     }
 
     @Override

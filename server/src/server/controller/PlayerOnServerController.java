@@ -3,31 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server.view;
+package server.controller;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import server.data.db.DatabaseAccessLayer;
 import server.data.model.Player;
+import server.data.server.ServerConnection;
+import server.view.PlayerOnServerBase;
 
-/**
- * FXML Controller class
- *
- * @author Ahmed
- */
 public class PlayerOnServerController extends PlayerOnServerBase {
 
     private Stage stage;
@@ -47,15 +38,31 @@ public class PlayerOnServerController extends PlayerOnServerBase {
  Boolean flag=false; 
     @Override
     protected void runServer(ActionEvent actionEvent) {
-        if(flag == false){
-              btnOnOff.setText("ON");
-               flag =true;
-        }else{
-             flag=false;
-             btnOnOff.setText("OFF");
-        }
-      
-        System.out.println("Server Button");
+         
+              Thread thread = null;
+              if(flag){
+                   btnOnOff.setText("OFF");
+                   if(thread != null && thread.isAlive()){
+                        try {
+                             thread.join();
+                        } catch (InterruptedException ex) {
+                             ex.printStackTrace();
+                        }
+                   }
+              }else{
+                   btnOnOff.setText("ON");
+                   thread = ServerConnection.serverInitializer();
+              }
+              flag=!flag;
+              ServerConnection.isServerRunning = flag;
+              
+          try {
+              DatabaseAccessLayer db = new DatabaseAccessLayer();
+              //db.addPlayer(new Player(3, "saad", "mail.com", "sd6fs",false));
+              //System.out.println("Server Button");
+         } catch (SQLException ex) {
+              Logger.getLogger(PlayerOnServerController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
   public  void displayPlayerInTable( ArrayList<Player> model){
 
