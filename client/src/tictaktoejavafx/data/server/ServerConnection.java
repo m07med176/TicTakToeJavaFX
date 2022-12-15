@@ -10,12 +10,14 @@ public class ServerConnection {
      public Socket socket;
 
      public ServerConnection() {
-          try {
+          try 
+          {
                socket = new Socket("127.0.0.1", 5005);
-          } catch (IOException ex) {
-               System.out.println("Server Closed");
-                       
-               
+          } 
+          
+          catch (IOException ex) 
+          {
+               System.out.println("Server Closed: "+ex);   
           }
 
           readThread();
@@ -35,19 +37,16 @@ public class ServerConnection {
           new Thread(new Runnable() {
                @Override
                public void run() {
-
                     while (true) {
                          DataInputStream dataInputStream;
                          try {
                               dataInputStream = new DataInputStream(socket.getInputStream());
                               String str = dataInputStream.readLine();
-
                               if(str!=null && !str.isEmpty()){
                                         System.out.println(str);
-                              }
-                              
+                              }        
                          } catch (IOException e) {
-                              System.out.println("Server cant get");
+                              System.out.println("Server cant get"+e);
                          }
                     }
                }

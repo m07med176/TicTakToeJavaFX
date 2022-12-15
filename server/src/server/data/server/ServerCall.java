@@ -1,6 +1,6 @@
 package server.data.server;
 
-public interface ServerCall extends Authentication{
+public interface ServerCall{
 
    /**
      * @param id of second Player
@@ -11,6 +11,7 @@ public interface ServerCall extends Authentication{
       * 
       * @return String id of Player
       */
+     
      public String receiveInvetation(); 
      
      public String sendPlayers();
