@@ -1,6 +1,5 @@
 package tictaktoejavafx;
 
-import JsonProject.HistoryJson;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
