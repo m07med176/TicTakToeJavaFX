@@ -25,12 +25,7 @@ public class HistoryController {
        
      
         try (PrintWriter out = new PrintWriter(new FileWriter("History.json"),true)) {
-<<<<<<< HEAD
             String jsonString = new Gson().toJson(model);
-=======
-             Gson json = new Gson();
-            String jsonString = json.toJson(model);
->>>>>>> 0c6ea618f1ac9c5d201e6ed4582fd9b7b1e8a7d8
             out.write(jsonString);
         } catch (Exception e) {
             e.printStackTrace();
