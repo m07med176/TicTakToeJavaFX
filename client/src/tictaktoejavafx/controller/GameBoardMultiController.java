@@ -1,17 +1,24 @@
 package tictaktoejavafx.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
@@ -139,20 +146,41 @@ public class GameBoardMultiController extends GameBoardScreenBase{
         diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
     
     }
-     public void pars(){
-        if(LocalMultiPlayer.getGameEnded()){
+     public static void pars(PlayerModel model){
+         //public static void saveFile(PlayerModel model) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/tictaktoejavafx/data/db/Record.json")))) {
+            Gson gson = new Gson();
+            List<PlayerModel> player;
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<PlayerModel>>() {
+            }.getType();
             try {
-                Writer writer=Files.newBufferedWriter(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
-                gson.toJson(recordClass,writer);
-                writer.close();
-                System.out.println("done");
-            } catch (IOException ex) {
-                Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+                player = gson.fromJson(bufferedReader, listType);
+            } catch (Exception ex) {
+                player = new ArrayList();
             }
-        
+            player.add(model);
+            FileWriter fileWriter = new FileWriter(new File("src/tictaktoejavafx/data/db/Record.json"));
+            new Gson().toJson(player, fileWriter);
+            fileWriter.close();
+            bufferedReader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
         }
-    
     }
+//            if(LocalMultiPlayer.getGameEnded()){
+//            try {
+//                Writer writer=Files.newBufferedWriter(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
+//                gson.toJson(recordClass,writer);
+//                writer.close();
+//                System.out.println("done");
+//            } catch (IOException ex) {
+//                Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        
+//        }
+//    
+      }
 
      @Override
      protected void onBackClicked(ActionEvent actionEvent) {
@@ -169,5 +197,10 @@ public class GameBoardMultiController extends GameBoardScreenBase{
           },Alert.AlertType.CONFIRMATION);
           
      }
+
+    @Override
+    protected void isVideo(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
