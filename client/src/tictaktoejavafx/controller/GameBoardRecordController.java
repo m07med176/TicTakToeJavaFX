@@ -1,13 +1,10 @@
 package tictaktoejavafx.controller;
 
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
-import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
@@ -23,27 +20,24 @@ public class GameBoardRecordController extends GameBoardScreenBase{
     
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        //gameTurns(btn_Game_one);
+        // gameTurns(btn_Game_one);
         
         
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-         //gameTurns(btn_Game_four);
-        
+         // gameTurns(btn_Game_four);
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        //gameTurns(btn_Game_seven);
-        
+        // gameTurns(btn_Game_seven); 
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        //gameTurns(btn_Game_two);
-       
+        //gameTurns(btn_Game_two); 
     }
 
     @Override

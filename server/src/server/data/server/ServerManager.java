@@ -3,52 +3,47 @@ package server.data.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.Vector;
 import server.utils.Config;
 
-public class ServerManager extends Thread{
-     public static Vector<SocketSession> sessionHolder = new Vector<SocketSession>(); // I dont know how
-     private ServerSocket serverSocket;                 // Main server socket
-     private Socket socket;                             // Socket
+public class ServerManager extends Thread {
 
-     static ServerManager mainServer;                  // Singltone
+     public NetworkAccessLayer networkOperations;
+     public static Vector<SocketSession> sessionHolder = new Vector<SocketSession>();
+     private final ServerSocket serverSocket;
+     private Socket socket;
+     private static ServerManager mainServer;
 
-     private ServerManager() {
-          System.out.println("Server is ON index:4");
-          try {
-               System.out.println("Server is ON index:5");
-               serverSocket = new ServerSocket(Config.SOCKET_PORT);
-          } catch (IOException ex) {
-               ex.printStackTrace();
-          }
+     private ServerManager() throws IOException, SQLException {
+          serverSocket = new ServerSocket(Config.SOCKET_PORT);
+          networkOperations = new NetworkAccessLayer();
      }
 
-     public static ServerManager getInstance() {
-          System.out.println("Server is ON index:2");
+     public static ServerManager getInstance() throws IOException, SQLException {
           if (mainServer == null) {
-               System.out.println("Server is ON index:3");
-                mainServer = new ServerManager();
+               mainServer = new ServerManager();
           }
           return mainServer;
      }
 
-     void closeSessions() {
+     public void close(){
+          closeSessions();
+          stop();
+     
+     }
+     public void closeSessions() {
           sessionHolder.forEach((session) -> {
-               session.stop(); 
+               session.stop();
           });
      }
 
-     
      @Override
      public void run() {
-          System.out.println("Server is ON index:6");
           while (true) {
                try {
-                    System.out.println("Server is ON index:7");
-                    socket = serverSocket.accept(); // still lestining with freexzing
-                    
-                    System.out.println("Server is ON index:8");
-                    sessionHolder.add(new SocketSession(socket));
+                    socket = serverSocket.accept(); // still lesting
+                    sessionHolder.add(new SocketSession(socket,networkOperations));
                } catch (IOException ex) {
                     ex.printStackTrace();
                }
