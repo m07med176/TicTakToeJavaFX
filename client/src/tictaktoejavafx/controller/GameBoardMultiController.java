@@ -27,127 +27,130 @@ import tictaktoejavafx.utils.RecordClass;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardMultiController extends GameBoardScreenBase{
+public class GameBoardMultiController extends GameBoardScreenBase {
+
     private Stage stage;
-    ArrayList<String> diagonals=new ArrayList<>();
-    public static char turn='X';
-    Gson gson=new Gson();
-    RecordClass recordClass=new RecordClass();
+    ArrayList<String> diagonals = new ArrayList<>();
+    public static char turn = 'X';
+    Gson gson = new Gson();
+    RecordClass recordClass = new RecordClass();
+    PlayerModel model;
 
     public GameBoardMultiController(Stage stage) {
         this.stage = stage;
-        
+
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
     }
-    
+
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
-        recordClass.add("1"+btn_Game_one.getText());
-        pars();
+        recordClass.add("1" + btn_Game_one.getText());
+        pars(model);
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-         gameTurns(btn_Game_four);
-         recordClass.add("4"+btn_Game_four.getText());
-         pars();
-        
+        gameTurns(btn_Game_four);
+        recordClass.add("4" + btn_Game_four.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
-        recordClass.add("7"+btn_Game_seven.getText());
-        pars();
-        
+        recordClass.add("7" + btn_Game_seven.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         gameTurns(btn_Game_two);
-        recordClass.add("2"+btn_Game_two.getText());
-        pars();
-       
+        recordClass.add("2" + btn_Game_two.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         gameTurns(btn_Game_three);
-        recordClass.add("3"+btn_Game_three.getText());
-        pars();
-       
+        recordClass.add("3" + btn_Game_three.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-          gameTurns(btn_Game_five);
-          recordClass.add("5"+btn_Game_five.getText());
-          pars();
-       
+        gameTurns(btn_Game_five);
+        recordClass.add("5" + btn_Game_five.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
-        recordClass.add("6"+btn_Game_six.getText());
-        pars();
-        
+        recordClass.add("6" + btn_Game_six.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
-        recordClass.add("8"+btn_Game_eight.getText());
-        pars();
-        
+        recordClass.add("8" + btn_Game_eight.getText());
+        pars(model);
+
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
-        recordClass.add("9"+btn_Game_nine.getText());
-        pars();
-        
-        
+        recordClass.add("9" + btn_Game_nine.getText());
+        pars(model);
+
     }
-    public void gameTurns(Button button){
-    
-        if(turn=='X'){
-        
+
+    public void gameTurns(Button button) {
+
+        if (turn == 'X') {
+
             button.setText("X");
-            turn='O';
+            turn = 'O';
             button.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
-                    
-        }else{
-        
+
+        } else {
+
             button.setText("O");
-            turn='X';
+            turn = 'X';
             button.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
-            
+
         }
-    
+
     }
-    public void diagonalFiller(){
-        diagonals.add(btn_Game_one.getText()+btn_Game_two.getText()+btn_Game_three.getText());
-        diagonals.add(btn_Game_four.getText()+btn_Game_five.getText()+btn_Game_six.getText());
-        diagonals.add(btn_Game_seven.getText()+btn_Game_eight.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_one.getText()+btn_Game_four.getText()+btn_Game_seven.getText());
-        diagonals.add(btn_Game_two.getText()+btn_Game_five.getText()+btn_Game_eight.getText());
-        diagonals.add(btn_Game_three.getText()+btn_Game_six.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_one.getText()+btn_Game_five.getText()+btn_Game_nine.getText());
-        diagonals.add(btn_Game_three.getText()+btn_Game_five.getText()+btn_Game_seven.getText());
-    
+
+    public void diagonalFiller() {
+        diagonals.add(btn_Game_one.getText() + btn_Game_two.getText() + btn_Game_three.getText());
+        diagonals.add(btn_Game_four.getText() + btn_Game_five.getText() + btn_Game_six.getText());
+        diagonals.add(btn_Game_seven.getText() + btn_Game_eight.getText() + btn_Game_nine.getText());
+        diagonals.add(btn_Game_one.getText() + btn_Game_four.getText() + btn_Game_seven.getText());
+        diagonals.add(btn_Game_two.getText() + btn_Game_five.getText() + btn_Game_eight.getText());
+        diagonals.add(btn_Game_three.getText() + btn_Game_six.getText() + btn_Game_nine.getText());
+        diagonals.add(btn_Game_one.getText() + btn_Game_five.getText() + btn_Game_nine.getText());
+        diagonals.add(btn_Game_three.getText() + btn_Game_five.getText() + btn_Game_seven.getText());
+
     }
-     public static void pars(PlayerModel model){
-         //public static void saveFile(PlayerModel model) {
+
+    public void pars(PlayerModel model) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/tictaktoejavafx/data/db/Record.json")))) {
             Gson gson = new Gson();
             List<PlayerModel> player;
@@ -180,27 +183,27 @@ public class GameBoardMultiController extends GameBoardScreenBase{
 //        
 //        }
 //    
-      }
+    //}
 
-     @Override
-     protected void onBackClicked(ActionEvent actionEvent) {
-          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
-               @Override
-               public void sendOk() {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-               }
+    @Override
+    protected void onBackClicked(ActionEvent actionEvent) {
+        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+            @Override
+            public void sendOk() {
+                Navigator.navigate(Navigator.WELCOME, stage);
+            }
 
-               @Override
-               public void sendCancel() {
-                    // Do Nothing
-               }
-          },Alert.AlertType.CONFIRMATION);
-          
-     }
+            @Override
+            public void sendCancel() {
+                // Do Nothing
+            }
+        }, Alert.AlertType.CONFIRMATION);
+
+    }
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
