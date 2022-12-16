@@ -158,4 +158,9 @@ public class GameBoardControllerMiddle extends GameBoardScreenBase {
           },Alert.AlertType.CONFIRMATION);
           
      }
+
+    @Override
+    protected void isVideo(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

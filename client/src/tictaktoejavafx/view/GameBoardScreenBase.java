@@ -58,7 +58,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setLayoutX(624.0);
         imageView.setLayoutY(42.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        //    imageView.setImage(new Image(getClass().getResource("src/tictaktoejavafx/assets/XOpicture.jpg").toExternalForm()));
 
         label.setLayoutX(657.0);
         label.setLayoutY(212.0);

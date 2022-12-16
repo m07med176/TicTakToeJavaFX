@@ -14,9 +14,8 @@ public abstract class RecordTableBase extends AnchorPane {
     protected final ScrollPane scrollPane;
     protected final TableView table_id;
     protected final TableColumn Date_colum;
-    protected final TableColumn winner_colum;
+    protected final TableColumn Xname_colum;
     protected final TableColumn Oname_colum;
-    protected final TableColumn Winner_colum;
     protected final ImageView imageView;
     protected final Label label;
 
@@ -26,9 +25,8 @@ public abstract class RecordTableBase extends AnchorPane {
         scrollPane = new ScrollPane();
         table_id = new TableView();
         Date_colum = new TableColumn();
-        winner_colum = new TableColumn();
+        Xname_colum = new TableColumn();
         Oname_colum = new TableColumn();
-        Winner_colum = new TableColumn();
         imageView = new ImageView();
         label = new Label();
 
@@ -56,14 +54,11 @@ public abstract class RecordTableBase extends AnchorPane {
         Date_colum.setPrefWidth(128.0);
         Date_colum.setText("Date");
 
-        winner_colum.setPrefWidth(65.0);
-        winner_colum.setText("XName");
+        Xname_colum.setPrefWidth(118.0);
+        Xname_colum.setText("XName");
 
-        Oname_colum.setPrefWidth(85.0);
+        Oname_colum.setPrefWidth(125.0);
         Oname_colum.setText("OName");
-
-        Winner_colum.setPrefWidth(91.0);
-        Winner_colum.setText("Winner");
         scrollPane.setContent(table_id);
 
         imageView.setFitHeight(116.0);
@@ -79,9 +74,8 @@ public abstract class RecordTableBase extends AnchorPane {
 
         getChildren().add(back_btn);
         table_id.getColumns().add(Date_colum);
-        table_id.getColumns().add(winner_colum);
+        table_id.getColumns().add(Xname_colum);
         table_id.getColumns().add(Oname_colum);
-        table_id.getColumns().add(Winner_colum);
         getChildren().add(scrollPane);
         getChildren().add(imageView);
         getChildren().add(label);

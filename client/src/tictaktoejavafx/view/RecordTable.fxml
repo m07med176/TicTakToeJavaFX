@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="back_btn" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBackbtn" text="Back" />
@@ -17,9 +16,8 @@
             <TableView fx:id="table_id" prefHeight="338.0" prefWidth="372.0">
               <columns>
                 <TableColumn fx:id="Date_colum" prefWidth="128.0" text="Date" />
-                <TableColumn fx:id="winner_colum" prefWidth="65.0" text="XName" />
-                  <TableColumn fx:id="Oname_colum" prefWidth="85.0" text="OName" />
-                  <TableColumn fx:id="Winner_colum" prefWidth="91.0" text="Winner" />
+                <TableColumn fx:id="Xname_colum" prefWidth="118.0" text="XName" />
+                  <TableColumn fx:id="Oname_colum" prefWidth="125.0" text="OName" />
               </columns>
             </TableView>
          </content>

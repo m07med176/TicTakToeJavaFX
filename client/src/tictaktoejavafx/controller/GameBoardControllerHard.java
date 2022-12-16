@@ -171,4 +171,9 @@ public static String PLAYER2="Player 2";
           
      }
 
+    @Override
+    protected void isVideo(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
