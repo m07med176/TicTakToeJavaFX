@@ -32,22 +32,21 @@ public class HistoryController extends HistoryScreenBase {
 
     private Stage stage;
     private ArrayList<PlayerModel> playersList;
-    
+
     public HistoryController(Stage stage) {
         this.stage = stage;
-                    playersList = JsonData.getPlayerModleList();
-            
-            //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
-            colum_date.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
-            colum_Xname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
-            colum_Oname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
-            colum_winner.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
-            
-            ObservableList<PlayerModel> observableList=FXCollections.observableArrayList(playersList);
-            table_history_data.setItems(observableList);
+        playersList = JsonData.getPlayerModleList();
+
+        //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
+        colum_date.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
+        colum_Xname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
+        colum_Oname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
+        colum_winner.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
+
+        ObservableList<PlayerModel> observableList = FXCollections.observableArrayList(playersList);
+        table_history_data.setItems(observableList);
     }
 
-  
     @Override
     protected void isBack(ActionEvent actionEvent) {
         new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
@@ -55,6 +54,7 @@ public class HistoryController extends HistoryScreenBase {
             public void sendOk() {
                 Navigator.navigate(Navigator.WELCOME, stage);
             }
+
             @Override
             public void sendCancel() {
                 // Do Nothing
