@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import tictaktoejavafx.utils.Config;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
 
@@ -15,6 +14,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected final Button btn_two;
     protected final Button btn_online_mode;
     protected final ImageView imageView;
+    protected final Button isRecord;
 
     public WelcomeScreenBase() {
 
@@ -23,10 +23,11 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two = new Button();
         btn_online_mode = new Button();
         imageView = new ImageView();
+        isRecord = new Button();
 
         setId("AnchorPane");
-        setPrefHeight(503.0);
-        setPrefWidth(574.0);
+        setPrefHeight(575.0);
+        setPrefWidth(645.0);
 
         label.setLayoutX(105.0);
         label.setLayoutY(34.0);
@@ -74,13 +75,23 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setLayoutX(180.0);
         imageView.setLayoutY(93.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+
+        isRecord.setLayoutX(185.0);
+        isRecord.setLayoutY(518.0);
+        isRecord.setMnemonicParsing(false);
+        isRecord.setOnAction(this::isRecorded);
+        isRecord.setPrefHeight(48.0);
+        isRecord.setPrefWidth(214.0);
+        isRecord.setText("Record Mode");
+        isRecord.setFont(new Font(22.0));
 
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);
         getChildren().add(btn_online_mode);
         getChildren().add(imageView);
+        getChildren().add(isRecord);
 
     }
 
@@ -89,5 +100,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected abstract void isTwo(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isOnlineMode(javafx.event.ActionEvent actionEvent);
+
+    protected abstract void isRecorded(javafx.event.ActionEvent actionEvent);
 
 }

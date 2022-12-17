@@ -17,6 +17,7 @@ import tictaktoejavafx.controller.WinnerAndLosserController;
 import tictaktoejavafx.controller.GameBoardMultiController;
 import tictaktoejavafx.controller.GameBoardRecordController;
 import tictaktoejavafx.controller.OnePlayerController;
+import tictaktoejavafx.controller.RecordController;
 import tictaktoejavafx.controller.SplashController;
 import tictaktoejavafx.controller.TwoPlayerController;
 
@@ -36,6 +37,7 @@ public class Navigator {
     public static final int GAMEBOARDMIDDLE = 12;
     public static final int GAMEBOARDHARD =13;
     public static final int RECORD =14;
+    public static final int TableRecord=15;
 
 
     public static String playerOne;
@@ -116,6 +118,9 @@ public class Navigator {
             case RECORD:
                 parent = new GameBoardRecordController(stage);
                 break;
+            case TableRecord:
+                parent=new RecordController(stage);
+            
           
             default:
                 parent = new WelcomeController(stage);

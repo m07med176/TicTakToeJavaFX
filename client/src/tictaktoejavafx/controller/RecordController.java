@@ -44,7 +44,7 @@ public class RecordController extends RecordTableBase {
         Date_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
         Xname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
         Oname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
-       // winner_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
+       //winner_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
 
         ObservableList<PlayerModel> observableList = FXCollections.observableArrayList(playersList);
         table_id.setItems(observableList);

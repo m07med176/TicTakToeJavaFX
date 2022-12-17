@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictagg.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictagg.FXMLDocumentController">
    <children>
       <Label layoutX="105.0" layoutY="34.0" prefHeight="45.0" prefWidth="350.0" styleClass="title" text="welcome in Tic Tac Toe">
          <font>
@@ -34,5 +34,10 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="isRecord" layoutX="185.0" layoutY="518.0" mnemonicParsing="false" onAction="#isRecorded" prefHeight="48.0" prefWidth="214.0" text="Record Mode">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -280,8 +280,7 @@ public class GameBoardRecordController extends GameBoardScreenBase {
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
-        
-
+        Navigator.navigate(Navigator.RECORD, stage);
 
     }
 

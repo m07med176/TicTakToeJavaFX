@@ -23,6 +23,7 @@ import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
+import static tictaktoejavafx.utils.Navigator.RECORD;
 import tictaktoejavafx.utils.RecordClass;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
@@ -203,7 +204,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Navigator.navigate(Navigator.RECORD, stage);
+
     }
 
 }
