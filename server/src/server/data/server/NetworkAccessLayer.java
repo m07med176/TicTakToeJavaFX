@@ -15,11 +15,13 @@ public class NetworkAccessLayer implements ServerCall {
           if (request.length == 2) {
                // TODO check and Test invetation message 
                String senderID = request[1];
+             if(!currentID.equals(senderID)){
                for (SocketSession session : ServerManager.sessionHolder) {
                     if (session.UID.equals(senderID)) {
                          session.printStream.println(ServerCall.IVETATION_RECEIVE + "," + currentID);
                     }
                }
+             }
           }
      }
 

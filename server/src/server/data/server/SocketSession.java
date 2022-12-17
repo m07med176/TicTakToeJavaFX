@@ -39,7 +39,8 @@ public class SocketSession extends Thread {
                String[] data = response.split(",");
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
-                         UID = networkOperations.login(data, printStream);
+                         //UID = networkOperations.login(data, printStream);
+                        UID=data[1];
                          break;
 
                     case ServerCall.RREGISTER_SEND:
@@ -54,7 +55,7 @@ public class SocketSession extends Thread {
                     case ServerCall.MOVEMENT_SEND:
                          networkOperations.move(data, UID);
                          break;
-
+// send from ahmed to Hussin 
                     case ServerCall.IVETATION_SEND:
                          networkOperations.invetation(data, UID);
                          break;
