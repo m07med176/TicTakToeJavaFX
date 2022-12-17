@@ -14,25 +14,30 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="btn_single" layoutX="188.0" layoutY="310.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Single Player" textFill="#0a3257">
+      <Button fx:id="btn_single" layoutX="188.0" layoutY="269.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Single Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_two" layoutX="188.0" layoutY="365.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Two Player" textFill="#0a3257">
+      <Button fx:id="btn_two" layoutX="188.0" layoutY="328.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Two Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_online_mode" layoutX="188.0" layoutY="419.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="online mode" textFill="#0a3257">
+      <Button fx:id="btn_online_mode" layoutX="188.0" layoutY="388.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Online Mode" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="180.0" layoutY="93.0" styleClass="logo">
+      <ImageView fitHeight="165.0" fitWidth="176.0" layoutX="199.0" layoutY="79.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="btn_History_Mode" layoutX="190.0" layoutY="449.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="History Mode">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

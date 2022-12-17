@@ -2,10 +2,23 @@ package server.data.model;
 
 public class Player {
 
-    public Player(int id, String email, String username, int password, boolean status) {
+    private int id;
+    private String username;
+    private String email;
+    private String password;
+    private boolean status;
+
+    public Player(int id, String username, String email, String password, boolean status) {
         this.id = id;
-        this.email = email;
         this.username = username;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+    }
+
+   public Player(String username, String email, String password, boolean status) {
+        this.username = username;
+        this.email = email;
         this.password = password;
         this.status = status;
     }
@@ -37,11 +50,11 @@ public class Player {
         this.username = username;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -53,12 +66,4 @@ public class Player {
         this.status = status;
     }
 
-   
-    private int id;
-    private String email;
-    private String username;
-    private int password;
-    private boolean status;
-    
-    
 }
