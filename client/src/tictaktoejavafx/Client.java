@@ -26,7 +26,7 @@ public class Client extends Application {
         // TODO set fixed size in all pages 
         // TODO make size resizable
 
-        new ServerConnection();
+        //new ServerConnection();
     }
 
     public static void main(String[] args) {

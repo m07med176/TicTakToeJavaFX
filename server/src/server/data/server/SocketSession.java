@@ -18,8 +18,11 @@ public class SocketSession extends Thread {
     public DataInputStream dataInputStream;
     public PrintStream printStream;
     public Socket socket;
-
+String playerO;
+String ownerSocket;
     public SocketSession(Socket socket) {
+       // userName=name;
+      
         System.out.println("Server is ON index:9");
         this.socket = socket;
         try {
@@ -51,9 +54,13 @@ public class SocketSession extends Thread {
                                    // call funciton of db
                                    break;
                               case IVETATION:
+                System.out.println("Sever Recive this message :"+data[1]+" "+data[2]);
                                    break;
                          }
-                       sendMessageToAll(str);
+                      //   playerO=data[3];
+                        // ownerSocket=data[1];
+                         
+                       sendMessageToAll(str,playerO);
                    }
                }
                 }
@@ -64,11 +71,25 @@ public class SocketSession extends Thread {
         }
     }
     
-    public void sendMessageToAll(String message){
-        for(SocketSession session:ServerManager.sessionHolder){
+    public void sendMessageToAll(String message,String playerO){
+       
+       for(SocketSession session:ServerManager.sessionHolder){
                 System.out.println(message);
                 session.printStream.println(message);
         }
+     /*  for(int i=0;i<ServerManager.sessionHolder.size();i++){
+           SocketSession session=ServerManager.sessionHolder.get(i);
+           
+           if(session.ownerSocket.equals(playerO)){
+               System.out.println(message);
+           session.printStream.println(message);
+           }else{
+              System.out.println("I Can't find The Player");
+            session.printStream.println("I Can't find The Player");
+
+           }*/
+                
+       
     }
     
 }

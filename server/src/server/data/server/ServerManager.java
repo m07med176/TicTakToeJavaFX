@@ -48,7 +48,12 @@ public class ServerManager extends Thread{
                     socket = serverSocket.accept(); // still lestining with freexzing
                     
                     System.out.println("Server is ON index:8");
-                    sessionHolder.add(new SocketSession(socket));
+                   // sessionHolder.add(new SocketSession(socket));
+                SocketSession soc=new SocketSession(socket);
+            //  soc.getId();
+                   System.out.println("id Socket"+soc.getId());
+                   sessionHolder.add(soc);
+
                } catch (IOException ex) {
                     ex.printStackTrace();
                }
