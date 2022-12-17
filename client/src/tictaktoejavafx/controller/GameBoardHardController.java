@@ -75,55 +75,55 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_one, "1");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_one, "1");
 
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_two, "2");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_two, "2");
 
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_three, "3");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_three, "3");
 
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_four, "4");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_four, "4");
 
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_five, "5");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_five, "5");
 
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_six, "6");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_six, "6");
 
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_seven, "7");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_seven, "7");
 
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_eight, "8");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_eight, "8");
 
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        RecordData.saveRecord(isRecorded, btn_Game_nine, "9");
+        RecordData.getInstance().saveRecord(isRecorded, btn_Game_nine, "9");
 
     }
 

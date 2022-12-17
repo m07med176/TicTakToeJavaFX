@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +28,7 @@ import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
+import tictaktoejavafx.utils.Navigator;
 
 /**
  *
@@ -33,20 +36,31 @@ import tictaktoejavafx.utils.LocalMultiPlayer;
  */
 public class RecordData {
 
-    public static RecordModelData recordClass = new RecordModelData();
-    public RecordData() {
+    public static RecordModelData recordClass;
+    public static RecordData singletone;
 
+    private RecordData() {
+        recordClass = new RecordModelData();
+    }
+
+    public static RecordData getInstance() {
+        if (singletone == null) {
+            singletone = new RecordData();
+        }
+
+        return singletone;
     }
 
     public static void saveRecord(boolean isRecorded, Button button, String number) {
-        
+
         Gson gson = new Gson();
         recordClass.add(number + button.getText());
 
         if (isRecorded) {
             System.out.println("recording");
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.REC_FILE)))) {
-                List<RecordModelData> player;
+
+                ArrayList<RecordModelData> player;
                 java.lang.reflect.Type listType = new TypeToken<ArrayList<RecordModelData>>() {
                 }.getType();
                 try {
@@ -82,4 +96,12 @@ public class RecordData {
         return new ArrayList<RecordModelData>();
     }
 
+    public void dataTEst() {
+        RecordModelData recordModelData = new RecordModelData();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        recordModelData.setDateGame(date.toString());
+        recordModelData.setPlayerXName(Navigator.getPlayerOne());
+        recordModelData.setPlayerOName(Navigator.getPlayerTwo());
+    }
 }

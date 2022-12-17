@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.model.PlayerModel;
+import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
@@ -34,19 +35,18 @@ import tictaktoejavafx.view.RecordTableBase;
 public class RecordController extends RecordTableBase {
     
     private Stage stage;
-    private ArrayList<PlayerModel> playersList;
+    private ArrayList<RecordModelData> recordData;
     
     public RecordController(Stage stage) {
         this.stage = stage;
-        playersList = getPlayerModleList();
+        recordData = getPlayerModleList();
 
         //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
         Date_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
         Xname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
         Oname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
-       //winner_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
 
-        ObservableList<PlayerModel> observableList = FXCollections.observableArrayList(playersList);
+        ObservableList<RecordModelData> observableList = FXCollections.observableArrayList(recordData);
         table_id.setItems(observableList);
     }
     @Override
@@ -64,11 +64,11 @@ public class RecordController extends RecordTableBase {
         }, Alert.AlertType.CONFIRMATION); 
 
     }
-     public static ArrayList<PlayerModel> getPlayerModleList() {
-        ArrayList<PlayerModel> data = new ArrayList();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/tictaktoejavafx/data/db/Record.json")))) {
+     public static ArrayList<RecordModelData> getPlayerModleList() {
+        ArrayList<RecordModelData> data = new ArrayList();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.REC_FILE)))) {
             Gson gson = new Gson();
-            java.lang.reflect.Type listType = new TypeToken<ArrayList<PlayerModel>>() {
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<RecordModelData>>() {
             }.getType();
             try {
                 data = gson.fromJson(bufferedReader, listType);

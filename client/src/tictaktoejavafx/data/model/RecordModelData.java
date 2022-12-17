@@ -15,6 +15,7 @@ public class RecordModelData {
     private String dateGame;
     private String playerXName;
     private String playerOName;
+    
     private ArrayList<String> record = new ArrayList<>();
 
     public RecordModelData() {
