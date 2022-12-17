@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.JsonData;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.AlertAction;
@@ -160,7 +161,7 @@ public class GameBoardController extends GameBoardScreenBase {
         playerModel.setPlayerOName(Navigator.getPlayerTwo());
         playerModel.setWinner(winnerName);
         
-        HistoryController.saveFile(playerModel);
+        JsonData.saveFile(playerModel);
     }
 
     void disableButton() {

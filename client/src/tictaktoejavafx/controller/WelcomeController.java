@@ -35,7 +35,11 @@ public class WelcomeController extends WelcomeScreenBase {
     @Override
     protected void isRecorded(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.TableRecord, stage);
-
+    }
+    
+    @Override
+    protected void isHistoryMode(ActionEvent actionEvent) {
+        Navigator.navigate(Navigator.HISTORY, stage);
     }
 
 }

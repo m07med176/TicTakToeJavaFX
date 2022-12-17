@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,7 +22,7 @@ import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.RecordClass;
+import tictaktoejavafx.data.model.RecordModel;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
@@ -27,13 +30,13 @@ public class GameBoardRecordController extends GameBoardScreenBase {
 
     private Stage stage;
     Gson gson = new Gson();
-    RecordClass rec = new RecordClass();
+    RecordModel rec = new RecordModel();
     ArrayList<String> rec2;
     Thread th = null;
 
     public GameBoardRecordController(Stage stage) {
         this.stage = stage;
-//        Read();
+        Reader();
         rec2 = rec.getRecord();
 
         th = new Thread(new Runnable() {
@@ -167,12 +170,15 @@ public class GameBoardRecordController extends GameBoardScreenBase {
         }
     }
 
-//        try {
-//            Reader reader=Files.newBufferedReader(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
-//            rec=gson.fromJson(reader, RecordClass.class);
-//        } catch (IOException ex) {
-//            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    public void Reader() {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
+            rec = gson.fromJson(reader, RecordModel.class);
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void buttonAssin(int index, char val) {
 
         switch (index) {

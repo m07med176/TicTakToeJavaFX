@@ -2,8 +2,7 @@
         "dateGame": "Thu Dec 15 09:26:15 EET 2022",
         "playerXName": "1",
         "playerOName": "PC",
-        "winner": "Player 2",
-        "record":["1X","2O","6X","5O","4X","8O"]
+        "winner": "Player 2"
     }, {
         "dateGame": "Thu Dec 15 09:28:25 EET 2022",
         "playerXName": "2",
