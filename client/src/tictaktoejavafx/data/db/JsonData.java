@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import tictaktoejavafx.data.model.PlayerModel;
 
-
 public class JsonData {
         
 

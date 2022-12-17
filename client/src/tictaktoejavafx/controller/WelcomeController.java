@@ -2,7 +2,9 @@ package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.PromptSocketAccessDialog;
 import tictaktoejavafx.view.WelcomeScreenBase;
 
 public class WelcomeController extends WelcomeScreenBase {
@@ -28,7 +30,20 @@ public class WelcomeController extends WelcomeScreenBase {
 
     @Override
     protected void isOnlineMode(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.LOGIN, stage);
+        // ask port and ip
+        // display
+        PromptSocketAccessDialog.display(new AlertAction() {
+            @Override
+            public void sendOk() {
+                Navigator.navigate(Navigator.LOGIN, stage);
+            }
+
+            @Override
+            public void sendCancel() {
+            }
+        });
+        
+        
     }
 
     @Override
