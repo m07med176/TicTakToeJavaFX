@@ -1,10 +1,10 @@
 package tictaktoejavafx.controller;
 
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
@@ -13,14 +13,15 @@ import tictaktoejavafx.utils.TicTacToeAIHard;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardControllerHard extends GameBoardScreenBase {
-public static String PLAYER1="Player 1";
-public static String PLAYER2="Player 2";
+public class GameBoardHardController extends GameBoardScreenBase {
 
+    public static String PLAYER1 = "Player 1";
+    public static String PLAYER2 = "Player 2";
+    private boolean isRecorded;
     private Stage stage;
     TicTacToeAIHard toeAIHard = new TicTacToeAIHard();
 
-    public GameBoardControllerHard(Stage stage) {
+    public GameBoardHardController(Stage stage) {
         this.stage = stage;
         toeAIHard.NewGame();
     }
@@ -74,47 +75,56 @@ public static String PLAYER2="Player 2";
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        playerGame(btn_Game_one, 1);
+        RecordData.saveRecord(isRecorded, btn_Game_one, "1");
+
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        playerGame(btn_Game_two, 2);
+        RecordData.saveRecord(isRecorded, btn_Game_two, "2");
+
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        playerGame(btn_Game_three, 3);
+        RecordData.saveRecord(isRecorded, btn_Game_three, "3");
+
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        playerGame(btn_Game_four, 4);
+        RecordData.saveRecord(isRecorded, btn_Game_four, "4");
+
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        playerGame(btn_Game_five, 5);
+        RecordData.saveRecord(isRecorded, btn_Game_five, "5");
+
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        playerGame(btn_Game_six, 6);
+        RecordData.saveRecord(isRecorded, btn_Game_six, "6");
+
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        playerGame(btn_Game_seven, 7);
+        RecordData.saveRecord(isRecorded, btn_Game_seven, "7");
+
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        playerGame(btn_Game_eight, 8);
+        RecordData.saveRecord(isRecorded, btn_Game_eight, "8");
+
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        playerGame(btn_Game_nine, 9);
+        RecordData.saveRecord(isRecorded, btn_Game_nine, "9");
+
     }
 
     //-----------------------------------------
@@ -129,7 +139,7 @@ public static String PLAYER2="Player 2";
             ComputerMove(-1, 0);
             if ((GO = toeAIHard.isGameOver()) != 0) {
                 if (GO == 1) {
-               PlayerName.setPlayerName(PLAYER1);
+                    PlayerName.setPlayerName(PLAYER1);
                     System.out.println("Player 1 win");
                     playVideo();
 
@@ -155,25 +165,26 @@ public static String PLAYER2="Player 2";
 
     }
 
-     @Override
-     protected void onBackClicked(ActionEvent actionEvent) {
-          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
-               @Override
-               public void sendOk() {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-               }
+    @Override
+    protected void onBackClicked(ActionEvent actionEvent) {
+        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+            @Override
+            public void sendOk() {
+                Navigator.navigate(Navigator.WELCOME, stage);
+            }
 
-               @Override
-               public void sendCancel() {
-                    // Do Nothing
-               }
-          },Alert.AlertType.CONFIRMATION);
-          
-     }
+            @Override
+            public void sendCancel() {
+                // Do Nothing
+            }
+        }, Alert.AlertType.CONFIRMATION);
+
+    }
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        isRecorded = !isRecorded;
+
     }
 
 }

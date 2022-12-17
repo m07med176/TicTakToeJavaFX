@@ -1,6 +1,7 @@
 package tictaktoejavafx.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,26 +19,26 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.data.model.RecordModel;
 import tictaktoejavafx.utils.UserMessage;
+import tictaktoejavafx.view.GameBoardRecordScreenBase;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardRecordController extends GameBoardScreenBase {
+public class GameBoardRecordController extends GameBoardRecordScreenBase {
 
     private Stage stage;
     Gson gson = new Gson();
-    RecordModel rec = new RecordModel();
     ArrayList<String> rec2;
     Thread th = null;
 
     public GameBoardRecordController(Stage stage) {
         this.stage = stage;
-        Reader();
-        rec2 = rec.getRecord();
+//        Reader();
+//        rec2 = rec.getRecord();
 
         th = new Thread(new Runnable() {
             @Override
@@ -51,7 +52,7 @@ public class GameBoardRecordController extends GameBoardScreenBase {
                         try {
                             temp = rec2.get(i);
                             index = Character.getNumericValue(temp.charAt(0));
-                            //buttonAssin(index,temp.charAt(1));
+                            // buttonAssin(index,temp.charAt(1));
                             final int lIndex = Character.getNumericValue(temp.charAt(0));
                             final char val = temp.charAt(1);
                             Platform.runLater(() -> buttonAssin(lIndex, val));
@@ -78,6 +79,7 @@ public class GameBoardRecordController extends GameBoardScreenBase {
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         //gameTurns(btn_Game_one);
+
 
     }
 
@@ -154,11 +156,13 @@ public class GameBoardRecordController extends GameBoardScreenBase {
             List<PlayerModel> player;
             java.lang.reflect.Type listType = new TypeToken<ArrayList<PlayerModel>>() {
             }.getType();
+            
             try {
                 player = gson.fromJson(bufferedReader, listType);
-            } catch (Exception ex) {
+            } catch (JsonIOException ex) {
                 player = new ArrayList();
             }
+            
             player.add(model);
             FileWriter fileWriter = new FileWriter(new File("src/tictaktoejavafx/data/db/Record.json"));
             new Gson().toJson(player, fileWriter);
@@ -170,17 +174,18 @@ public class GameBoardRecordController extends GameBoardScreenBase {
         }
     }
 
-    public void Reader() {
-        try {
-            Reader reader = Files.newBufferedReader(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
-            rec = gson.fromJson(reader, RecordModel.class);
-        } catch (IOException ex) {
-            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void Reader() {
+//
+//        // Should read 
+//        try {
+//            Reader reader = Files.newBufferedReader(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
+//            rec = gson.fromJson(reader, RecordModel.class);
+//        } catch (IOException ex) {
+//            Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public void buttonAssin(int index, char val) {
-
         switch (index) {
             case 1:
                 if (val == 'X') {
@@ -189,10 +194,10 @@ public class GameBoardRecordController extends GameBoardScreenBase {
 
                     btn_Game_one.setText("O");
                 }
-
                 btn_Game_one.setDisable(true);
                 break;
             case 2:
+
                 if (val == 'X') {
                     btn_Game_two.setText("X");
                 } else {
@@ -281,12 +286,6 @@ public class GameBoardRecordController extends GameBoardScreenBase {
                 // Do Nothing
             }
         }, Alert.AlertType.CONFIRMATION);
-
-    }
-
-    @Override
-    protected void isVideo(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.RECORD, stage);
 
     }
 

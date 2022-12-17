@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.JsonData;
+import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.AlertAction;
@@ -18,14 +18,15 @@ import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
-public class GameBoardController extends GameBoardScreenBase {
+public class GameBoardEasyController extends GameBoardScreenBase {
 
     int count = 0;
     ArrayList arrlist = new ArrayList();
     ArrayList arrlistButtons = new ArrayList();
     private Stage stage;
+    private boolean isRecorded = false;
 
-    public GameBoardController(Stage stage) {
+    public GameBoardEasyController(Stage stage) {
         this.stage = stage;
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
@@ -36,51 +37,71 @@ public class GameBoardController extends GameBoardScreenBase {
     protected void isGameOne(ActionEvent actionEvent) {
         playerGame(btn_Game_one);
 
+        RecordData.saveRecord(isRecorded, btn_Game_one, "1");
+
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         playerGame(btn_Game_two);
+        RecordData.saveRecord(isRecorded, btn_Game_two, "2");
 
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
         playerGame(btn_Game_four);
+
+        RecordData.saveRecord(isRecorded, btn_Game_four, "4");
+
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         playerGame(btn_Game_seven);
+
+        RecordData.saveRecord(isRecorded, btn_Game_seven, "7");
+
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         playerGame(btn_Game_three);
+        RecordData.saveRecord(isRecorded, btn_Game_three, "3");
+
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
         playerGame(btn_Game_five);
+        RecordData.saveRecord(isRecorded, btn_Game_five, "5");
+
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         playerGame(btn_Game_six);
+        RecordData.saveRecord(isRecorded, btn_Game_six, "6");
+
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         playerGame(btn_Game_eight);
+        RecordData.saveRecord(isRecorded, btn_Game_eight, "8");
+
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         playerGame(btn_Game_nine);
+        RecordData.saveRecord(isRecorded, btn_Game_nine, "9");
+
     }
 
     //-----------------------------------------
     void playerGame(Button button) {
+
         arrlistButtons.remove(button);
         count++;
         button.setDisable(true);
@@ -137,7 +158,7 @@ public class GameBoardController extends GameBoardScreenBase {
             if (arrlist.get(i).equals("XXX")) {
                 // result_label.setText("Player 1 is Winner");
                 disableButton();
-               PlayerName.setPlayerName("Player 1");
+                PlayerName.setPlayerName("Player 1");
 
                 saveData("Player 1");
                 playVideo();
@@ -153,14 +174,14 @@ public class GameBoardController extends GameBoardScreenBase {
     }
 
     void saveData(String winnerName) {
-     PlayerModel playerModel=new PlayerModel();
+        PlayerModel playerModel = new PlayerModel();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         playerModel.setDateGame(date.toString());
         playerModel.setPlayerXName(Navigator.getPlayerOne());
         playerModel.setPlayerOName(Navigator.getPlayerTwo());
         playerModel.setWinner(winnerName);
-        
+
         JsonData.saveFile(playerModel);
     }
 
@@ -227,25 +248,25 @@ public class GameBoardController extends GameBoardScreenBase {
     }
     //-----------------------------------------
 
-     @Override
-     protected void onBackClicked(ActionEvent actionEvent) {
-          new UserMessage().display(Config.EXIT_MSG, new AlertAction(){
-               @Override
-               public void sendOk() {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-               }
+    @Override
+    protected void onBackClicked(ActionEvent actionEvent) {
+        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+            @Override
+            public void sendOk() {
+                Navigator.navigate(Navigator.WELCOME, stage);
+            }
 
-               @Override
-               public void sendCancel() {
-                    // Do Nothing
-               }
-          },AlertType.CONFIRMATION);
-          
-     }
+            @Override
+            public void sendCancel() {
+                // Do Nothing
+            }
+        }, AlertType.CONFIRMATION);
+
+    }
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.RECORD, stage);
+        isRecorded = !isRecorded;
 
     }
 }

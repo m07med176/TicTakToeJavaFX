@@ -1,23 +1,17 @@
 package tictaktoejavafx.controller;
 
 import com.google.gson.Gson;
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.data.model.RecordModel;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
@@ -27,8 +21,9 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
     Gson gson = new Gson();
-    RecordModel recordClass = new RecordModel();
+
     PlayerModel model;
+    private boolean isRecorded;
 
     public GameBoardMultiController(Stage stage) {
         this.stage = stage;
@@ -40,71 +35,62 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
-        recordClass.add("1" + btn_Game_one.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_one, "1");
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
         gameTurns(btn_Game_four);
-        recordClass.add("4" + btn_Game_four.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_four, "4");
 
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
-        recordClass.add("7" + btn_Game_seven.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_seven, "7");
 
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         gameTurns(btn_Game_two);
-        recordClass.add("2" + btn_Game_two.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_two, "2");
 
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         gameTurns(btn_Game_three);
-        recordClass.add("3" + btn_Game_three.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_three, "3");
 
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
         gameTurns(btn_Game_five);
-        recordClass.add("5" + btn_Game_five.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_five, "5");
 
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
-        recordClass.add("6" + btn_Game_six.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_six, "6");
 
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
-        recordClass.add("8" + btn_Game_eight.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_eight, "8");
 
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
-        recordClass.add("9" + btn_Game_nine.getText());
-        pars(model);
+        RecordData.saveRecord(isRecorded, btn_Game_nine, "9");
 
     }
 
@@ -144,39 +130,6 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     }
 
-    public void pars(PlayerModel model) {
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/tictaktoejavafx/data/db/Record.json")))) {
-//            Gson gson = new Gson();
-//            List<PlayerModel> player;
-//            java.lang.reflect.Type listType = new TypeToken<ArrayList<PlayerModel>>() {
-//            }.getType();
-//            try {
-//                player = gson.fromJson(bufferedReader, listType);
-//            } catch (Exception ex) {
-//                player = new ArrayList();
-//            }
-//            player.add(model);
-//            FileWriter fileWriter = new FileWriter(new File("src/tictaktoejavafx/data/db/Record.json"));
-//            new Gson().toJson(player, fileWriter);
-//            fileWriter.close();
-//            bufferedReader.close();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//
-//        }
-        if (LocalMultiPlayer.getGameEnded()) {
-            try {
-                Writer writer = Files.newBufferedWriter(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
-                gson.toJson(recordClass, writer);
-                writer.close();
-                System.out.println("done");
-            } catch (IOException ex) {
-                Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
         new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
@@ -195,7 +148,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     @Override
     protected void isVideo(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.RECORD, stage);
+        isRecorded = !isRecorded;
 
     }
 
