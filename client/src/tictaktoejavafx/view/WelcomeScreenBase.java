@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import tictaktoejavafx.utils.Config;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
 
@@ -15,6 +14,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected final Button btn_two;
     protected final Button btn_online_mode;
     protected final ImageView imageView;
+    protected final Button btn_History_Mode;
 
     public WelcomeScreenBase() {
 
@@ -23,6 +23,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two = new Button();
         btn_online_mode = new Button();
         imageView = new ImageView();
+        btn_History_Mode = new Button();
 
         setId("AnchorPane");
         setPrefHeight(503.0);
@@ -37,7 +38,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         label.setFont(new Font("System Bold", 30.0));
 
         btn_single.setLayoutX(188.0);
-        btn_single.setLayoutY(310.0);
+        btn_single.setLayoutY(269.0);
         btn_single.setMnemonicParsing(false);
         btn_single.setOnAction(this::isSingle);
         btn_single.setPrefHeight(45.0);
@@ -48,7 +49,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setFont(new Font(22.0));
 
         btn_two.setLayoutX(188.0);
-        btn_two.setLayoutY(365.0);
+        btn_two.setLayoutY(328.0);
         btn_two.setMnemonicParsing(false);
         btn_two.setOnAction(this::isTwo);
         btn_two.setPrefHeight(45.0);
@@ -59,28 +60,38 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two.setFont(new Font(22.0));
 
         btn_online_mode.setLayoutX(188.0);
-        btn_online_mode.setLayoutY(419.0);
+        btn_online_mode.setLayoutY(388.0);
         btn_online_mode.setMnemonicParsing(false);
         btn_online_mode.setOnAction(this::isOnlineMode);
         btn_online_mode.setPrefHeight(45.0);
         btn_online_mode.setPrefWidth(214.0);
         btn_online_mode.getStyleClass().add("main_button");
-        btn_online_mode.setText("online mode");
+        btn_online_mode.setText("Online Mode");
         btn_online_mode.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_online_mode.setFont(new Font(22.0));
 
-        imageView.setFitHeight(185.0);
-        imageView.setFitWidth(200.0);
-        imageView.setLayoutX(180.0);
-        imageView.setLayoutY(93.0);
+        imageView.setFitHeight(165.0);
+        imageView.setFitWidth(176.0);
+        imageView.setLayoutX(199.0);
+        imageView.setLayoutY(79.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+
+        btn_History_Mode.setLayoutX(190.0);
+        btn_History_Mode.setLayoutY(449.0);
+        btn_History_Mode.setMnemonicParsing(false);
+        btn_History_Mode.setOnAction(this::isHistoryMode);
+        btn_History_Mode.setPrefHeight(45.0);
+        btn_History_Mode.setPrefWidth(214.0);
+        btn_History_Mode.setText("History Mode");
+        btn_History_Mode.setFont(new Font(22.0));
 
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);
         getChildren().add(btn_online_mode);
         getChildren().add(imageView);
+        getChildren().add(btn_History_Mode);
 
     }
 
@@ -89,5 +100,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected abstract void isTwo(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isOnlineMode(javafx.event.ActionEvent actionEvent);
+
+    protected abstract void isHistoryMode(javafx.event.ActionEvent actionEvent);
 
 }
