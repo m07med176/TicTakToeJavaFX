@@ -20,6 +20,7 @@ import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardEasyController extends GameBoardScreenBase {
 
+    
     int count = 0;
     ArrayList arrlist = new ArrayList();
     ArrayList arrlistButtons = new ArrayList();
@@ -27,6 +28,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     private boolean isRecorded = false;
 
     public GameBoardEasyController(Stage stage) {
+        RecordData.newGame = true;
         this.stage = stage;
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
@@ -267,6 +269,9 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
+        if(isRecorded){
+        RecordData.getInstance().saveRecordSession("Single Easy Player");
+        }
 
     }
 }

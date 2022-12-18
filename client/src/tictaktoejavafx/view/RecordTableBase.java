@@ -12,10 +12,11 @@ public abstract class RecordTableBase extends AnchorPane {
 
     protected final Button back_btn;
     protected final ScrollPane scrollPane;
-    protected final TableView table_id;
-    protected final TableColumn Date_colum;
-    protected final TableColumn Xname_colum;
-    protected final TableColumn Oname_colum;
+    protected final TableView table_record_id;
+    protected final TableColumn date_colum;
+    protected final TableColumn x_name_colum;
+    protected final TableColumn o_name_colum;
+    protected final TableColumn type_colum;
     protected final ImageView imageView;
     protected final Label label;
 
@@ -23,10 +24,11 @@ public abstract class RecordTableBase extends AnchorPane {
 
         back_btn = new Button();
         scrollPane = new ScrollPane();
-        table_id = new TableView();
-        Date_colum = new TableColumn();
-        Xname_colum = new TableColumn();
-        Oname_colum = new TableColumn();
+        table_record_id = new TableView();
+        date_colum = new TableColumn();
+        x_name_colum = new TableColumn();
+        o_name_colum = new TableColumn();
+        type_colum = new TableColumn();
         imageView = new ImageView();
         label = new Label();
 
@@ -48,18 +50,21 @@ public abstract class RecordTableBase extends AnchorPane {
         scrollPane.setPrefHeight(346.0);
         scrollPane.setPrefWidth(384.0);
 
-        table_id.setPrefHeight(338.0);
-        table_id.setPrefWidth(372.0);
+        table_record_id.setPrefHeight(338.0);
+        table_record_id.setPrefWidth(372.0);
 
-        Date_colum.setPrefWidth(128.0);
-        Date_colum.setText("Date");
+        date_colum.setPrefWidth(97.0);
+        date_colum.setText("Date");
 
-        Xname_colum.setPrefWidth(118.0);
-        Xname_colum.setText("XName");
+        x_name_colum.setPrefWidth(86.0);
+        x_name_colum.setText("XName");
 
-        Oname_colum.setPrefWidth(125.0);
-        Oname_colum.setText("OName");
-        scrollPane.setContent(table_id);
+        o_name_colum.setPrefWidth(102.0);
+        o_name_colum.setText("OName");
+
+        type_colum.setPrefWidth(85.0);
+        type_colum.setText("Type");
+        scrollPane.setContent(table_record_id);
 
         imageView.setFitHeight(116.0);
         imageView.setFitWidth(147.0);
@@ -73,9 +78,10 @@ public abstract class RecordTableBase extends AnchorPane {
         label.setText("Tic Tac Toe");
 
         getChildren().add(back_btn);
-        table_id.getColumns().add(Date_colum);
-        table_id.getColumns().add(Xname_colum);
-        table_id.getColumns().add(Oname_colum);
+        table_record_id.getColumns().add(date_colum);
+        table_record_id.getColumns().add(x_name_colum);
+        table_record_id.getColumns().add(o_name_colum);
+        table_record_id.getColumns().add(type_colum);
         getChildren().add(scrollPane);
         getChildren().add(imageView);
         getChildren().add(label);

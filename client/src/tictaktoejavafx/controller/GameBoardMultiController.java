@@ -26,6 +26,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     private boolean isRecorded;
 
     public GameBoardMultiController(Stage stage) {
+        RecordData.newGame = true;
         this.stage = stage;
 
         label_player1.setText(Navigator.getPlayerOne());
@@ -149,6 +150,9 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
+        if(isRecorded){
+        RecordData.getInstance().saveRecordSession("Multi Player");
+        }
 
     }
 

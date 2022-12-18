@@ -22,6 +22,7 @@ public class GameBoardHardController extends GameBoardScreenBase {
     TicTacToeAIHard toeAIHard = new TicTacToeAIHard();
 
     public GameBoardHardController(Stage stage) {
+        RecordData.newGame = true;
         this.stage = stage;
         toeAIHard.NewGame();
     }
@@ -184,6 +185,9 @@ public class GameBoardHardController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
+        if(isRecorded){
+        RecordData.getInstance().saveRecordSession("Single Hard Player");
+        }
 
     }
 

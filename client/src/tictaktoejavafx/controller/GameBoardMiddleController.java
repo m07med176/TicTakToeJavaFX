@@ -21,6 +21,7 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     private boolean isRecorded;
 
     public GameBoardMiddleController(Stage stage) {
+        RecordData.newGame = true;
         this.stage = stage;
     }
 
@@ -175,6 +176,9 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
+        if(isRecorded){
+        RecordData.getInstance().saveRecordSession("Single Middle Player");
+        }
 
     }
 }

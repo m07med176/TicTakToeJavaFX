@@ -23,11 +23,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
-import tictaktoejavafx.controller.GameBoardMultiController;
-import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.Config;
-import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 
 /**
@@ -36,39 +33,52 @@ import tictaktoejavafx.utils.Navigator;
  */
 public class RecordData {
 
-    public static RecordModelData recordClass;
     public static RecordData singletone;
+    public static RecordModelData recordModelData;
+    public static boolean newGame = true;
 
     private RecordData() {
-        recordClass = new RecordModelData();
+        recordModelData = new RecordModelData();
     }
 
     public static RecordData getInstance() {
         if (singletone == null) {
             singletone = new RecordData();
         }
-
         return singletone;
     }
 
+    public static void saveRecordSession(String type) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        recordModelData.setDateGame(date.toString());
+        recordModelData.setPlayerXName(Navigator.getPlayerOne());
+        recordModelData.setPlayerOName(Navigator.getPlayerTwo());
+        recordModelData.setType(type);
+
+    }
+
     public static void saveRecord(boolean isRecorded, Button button, String number) {
-
-        Gson gson = new Gson();
-        recordClass.add(number + button.getText());
-
+        recordModelData.add(number + button.getText());
         if (isRecorded) {
-            System.out.println("recording");
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.REC_FILE)))) {
-
-                ArrayList<RecordModelData> player;
+                List<RecordModelData> player = new ArrayList();
                 java.lang.reflect.Type listType = new TypeToken<ArrayList<RecordModelData>>() {
                 }.getType();
+                Gson gson = new Gson();
                 try {
                     player = gson.fromJson(bufferedReader, listType);
                 } catch (JsonIOException ex) {
-                    player = new ArrayList();
+                    ex.printStackTrace();
                 }
-                player.add(recordClass);
+
+                if (newGame) {
+                    player.add(recordModelData); // change 
+                    newGame = false;
+                } else {
+                    player.remove(player.size() - 1);
+                    player.add(recordModelData);
+                }
 
                 FileWriter fileWriter = new FileWriter(new File(Config.REC_FILE));
                 new Gson().toJson(player, fileWriter);
@@ -76,32 +86,40 @@ public class RecordData {
                 bufferedReader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
-
             }
-        }
-        // if (LocalMultiPlayer.getGameEnded()) {
 
 //            try {
-//                Writer writer = Files.newBufferedWriter(Paths.get("src/tictaktoejavafx/data/db/rec.json"));
-//                gson.toJson(recordClass, writer);
+//                Writer writer = Files.newBufferedWriter(Paths.get(Config.REC_FILE));
+//                gson.toJson(recordModelData, writer);
 //                writer.close();
 //                System.out.println("done");
 //            } catch (IOException ex) {
-//                Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(RecordData.class.getName()).log(Level.SEVERE, null, ex);
 //            }
+        }
+
     }
 
-    public static ArrayList<RecordModelData> getData() {
-
-        return new ArrayList<RecordModelData>();
+    
+    
+    public ArrayList<RecordModelData> getData() {
+        System.out.println("Get Data Where my Data");
+        ArrayList<RecordModelData> data = new ArrayList();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.REC_FILE)))) {
+            Gson gson = new Gson();
+            java.lang.reflect.Type listType = new TypeToken<ArrayList<RecordModelData>>() {
+            }.getType();
+            try {
+                data = gson.fromJson(bufferedReader, listType);
+            } catch (JsonIOException ex) {
+                data = new ArrayList();
+            }
+            bufferedReader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return data;
     }
 
-    public void dataTEst() {
-        RecordModelData recordModelData = new RecordModelData();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        recordModelData.setDateGame(date.toString());
-        recordModelData.setPlayerXName(Navigator.getPlayerOne());
-        recordModelData.setPlayerOName(Navigator.getPlayerTwo());
-    }
+
 }

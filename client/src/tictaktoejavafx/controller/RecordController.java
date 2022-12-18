@@ -6,6 +6,7 @@
 package tictaktoejavafx.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.AlertAction;
@@ -35,57 +37,31 @@ import tictaktoejavafx.view.RecordTableBase;
 public class RecordController extends RecordTableBase {
     
     private Stage stage;
-    private ArrayList<RecordModelData> recordData;
+    private ArrayList<RecordModelData> recordDataModelList;
     
     public RecordController(Stage stage) {
+        System.out.println("Record Constroutor");
         this.stage = stage;
-        recordData = getPlayerModleList();
+        recordDataModelList = RecordData.getInstance().getData();
 
         //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
-        Date_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
-        Xname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
-        Oname_colum.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
+        this.date_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("dateGame"));
+        this.x_name_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("playerXName"));
+        this.o_name_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("playerOName"));
+        this.type_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("type"));
 
-        ObservableList<RecordModelData> observableList = FXCollections.observableArrayList(recordData);
-        table_id.setItems(observableList);
+        System.out.println("print byeeeeeeeee");
+        ObservableList<RecordModelData> List = FXCollections.observableArrayList(recordDataModelList);
+        table_record_id.setItems(List);
+        System.out.println("i thik every thing is done");
+        for(RecordModelData recordModelData:recordDataModelList){
+            System.out.println("My Item:"+recordModelData.getPlayerOName());
+        }
     }
     @Override
     protected void isBackbtn(ActionEvent actionEvent) {
-       new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
-            @Override
-            public void sendOk() {
-                Navigator.navigate(Navigator.WELCOME, stage);
-            }
-
-            @Override
-            public void sendCancel() {
-                // Do Nothing
-            }
-        }, Alert.AlertType.CONFIRMATION); 
-
+       Navigator.navigate(Navigator.WELCOME, stage);
     }
-     public static ArrayList<RecordModelData> getPlayerModleList() {
-        ArrayList<RecordModelData> data = new ArrayList();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.REC_FILE)))) {
-            Gson gson = new Gson();
-            java.lang.reflect.Type listType = new TypeToken<ArrayList<RecordModelData>>() {
-            }.getType();
-            try {
-                data = gson.fromJson(bufferedReader, listType);
-            } catch (Exception ex) {
-                data = new ArrayList();
-            }
-            bufferedReader.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return data;
-    }
-
-    
-
-    
-
 }
 
     

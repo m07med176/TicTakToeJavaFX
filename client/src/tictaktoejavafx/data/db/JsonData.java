@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import tictaktoejavafx.data.model.PlayerModel;
+import tictaktoejavafx.utils.Config;
 
 
 public class JsonData {
@@ -34,7 +35,7 @@ public class JsonData {
     }
 
     public static void saveFile(PlayerModel model) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/tictaktoejavafx/data/db/History.json")))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.HIST_FILE)))) {
             Gson gson = new Gson();
             List<PlayerModel> player;
             java.lang.reflect.Type listType = new TypeToken<ArrayList<PlayerModel>>() {
@@ -45,7 +46,7 @@ public class JsonData {
                 player = new ArrayList();
             }
             player.add(model);
-            FileWriter fileWriter = new FileWriter(new File("src/tictaktoejavafx/data/db/History.json"));
+            FileWriter fileWriter = new FileWriter(new File(Config.HIST_FILE));
             new Gson().toJson(player, fileWriter);
             fileWriter.close();
             bufferedReader.close();
