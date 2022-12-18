@@ -18,8 +18,12 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordData;
 import tictaktoejavafx.data.model.PlayerModel;
@@ -40,7 +44,6 @@ public class RecordController extends RecordTableBase {
     private ArrayList<RecordModelData> recordDataModelList;
     
     public RecordController(Stage stage) {
-        System.out.println("Record Constroutor");
         this.stage = stage;
         recordDataModelList = RecordData.getInstance().getData();
 
@@ -50,19 +53,38 @@ public class RecordController extends RecordTableBase {
         this.o_name_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("playerOName"));
         this.type_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("type"));
 
-        System.out.println("print byeeeeeeeee");
         ObservableList<RecordModelData> List = FXCollections.observableArrayList(recordDataModelList);
         table_record_id.setItems(List);
-        System.out.println("i thik every thing is done");
-        for(RecordModelData recordModelData:recordDataModelList){
-            System.out.println("My Item:"+recordModelData.getPlayerOName());
+
+//        table_record_id.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                Object item = table_record_id.getS
+//
+//            }
+//        });
+
+        table_record_id.setRowFactory(tv -> {
+    TableRow<RecordModelData> row = new TableRow<>();
+    row.setOnMouseClicked(event -> {
+        if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+             && event.getClickCount() == 2) {
+
+            RecordModelData clickedRow = row.getItem();
+            System.out.println("Data clicked "+clickedRow.getDateGame());
+
         }
+    });
+    return row ;
+});
+    
     }
     @Override
     protected void isBackbtn(ActionEvent actionEvent) {
        Navigator.navigate(Navigator.WELCOME, stage);
     }
 }
+
 
     
 

@@ -22,7 +22,6 @@ import tictaktoejavafx.controller.RecordController;
 import tictaktoejavafx.controller.SnakeGameController;
 import tictaktoejavafx.controller.SplashController;
 import tictaktoejavafx.controller.TwoPlayerController;
-import tictaktoejavafx.view.TableController;
 
 
 public class Navigator {
@@ -123,16 +122,18 @@ public class Navigator {
             case RECORD:
                 parent = new GameBoardRecordController(stage);
                 break;
+                
             case TABLE_RECORD:
-                System.out.println("Table game");
                 parent=new RecordController(stage);
-
+                break;
+                
             case HISTORY:
                 parent = new HistoryController(stage);
                 break;
             
             case SnakeGame:
                 parent=new SnakeGameController(stage);
+                break;
 
             default:
                 parent = new WelcomeController(stage);
