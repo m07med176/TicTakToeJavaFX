@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.RecordData;
+import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
@@ -19,10 +19,13 @@ public class GameBoardHardController extends GameBoardScreenBase {
     public static String PLAYER2 = "Player 2";
     private boolean isRecorded;
     private Stage stage;
-    TicTacToeAIHard toeAIHard = new TicTacToeAIHard();
+    private TicTacToeAIHard toeAIHard;
+    private RecordDataBasedSystem db;
 
     public GameBoardHardController(Stage stage) {
-        RecordData.newGame = true;
+        db =  RecordDataBasedSystem.getInstance();
+        toeAIHard = new TicTacToeAIHard();
+        RecordDataBasedSystem.newGame = true;
         this.stage = stage;
         toeAIHard.NewGame();
     }
@@ -76,55 +79,54 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_one, "1");
+        db.saveRecord(isRecorded, btn_Game_one, "1");
 
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_two, "2");
+        db.saveRecord(isRecorded, btn_Game_two, "2");
 
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_three, "3");
+        db.saveRecord(isRecorded, btn_Game_three, "3");
 
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_four, "4");
-
+        db.saveRecord(isRecorded, btn_Game_four, "4");
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_five, "5");
+        db.saveRecord(isRecorded, btn_Game_five, "5");
 
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_six, "6");
+        db.saveRecord(isRecorded, btn_Game_six, "6");
 
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_seven, "7");
+        db.saveRecord(isRecorded, btn_Game_seven, "7");
 
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_eight, "8");
+        db.saveRecord(isRecorded, btn_Game_eight, "8");
 
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_nine, "9");
+        db.saveRecord(isRecorded, btn_Game_nine, "9");
 
     }
 
@@ -186,7 +188,7 @@ public class GameBoardHardController extends GameBoardScreenBase {
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
         if(isRecorded){
-        RecordData.getInstance().saveRecordSession("Single Hard Player");
+        db.saveRecordSession("Single Hard Player");
         }
 
     }

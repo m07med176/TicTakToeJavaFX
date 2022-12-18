@@ -18,7 +18,7 @@ import tictaktoejavafx.controller.GameBoardMultiController;
 import tictaktoejavafx.controller.GameBoardRecordController;
 import tictaktoejavafx.controller.HistoryController;
 import tictaktoejavafx.controller.OnePlayerController;
-import tictaktoejavafx.controller.RecordController;
+import tictaktoejavafx.controller.RecordTableController;
 import tictaktoejavafx.controller.SnakeGameController;
 import tictaktoejavafx.controller.SplashController;
 import tictaktoejavafx.controller.TwoPlayerController;
@@ -65,6 +65,34 @@ public class Navigator {
          }
    }
 
+       public static void navigate(final int destination,Stage stage,Object model){
+        Parent parent = null;
+        switch (destination) {
+            case RECORD:
+                parent = new GameBoardRecordController(stage,model);
+                break;
+
+            default:
+                parent = new WelcomeController(stage);
+
+        }
+        System.out.println(destination);
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(Client.CSS);
+
+        if (destination != WELCOME){
+            pages.add(scene);
+            pageIndex++;
+        }
+        else
+        {
+            pages.clear();
+            pageIndex=0;
+        }
+        
+        stage.setScene(scene);
+        stage.show();
+    }
     
     public static void navigate(final int destination,Stage stage){
         Parent parent = null;
@@ -119,12 +147,9 @@ public class Navigator {
                 parent = new GameBoardHardController(stage);
                 break;
 
-            case RECORD:
-                parent = new GameBoardRecordController(stage);
-                break;
-                
+        
             case TABLE_RECORD:
-                parent=new RecordController(stage);
+                parent=new RecordTableController(stage);
                 break;
                 
             case HISTORY:

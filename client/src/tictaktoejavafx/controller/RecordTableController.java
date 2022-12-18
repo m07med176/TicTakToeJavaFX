@@ -25,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.RecordData;
+import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.AlertAction;
@@ -38,14 +38,14 @@ import tictaktoejavafx.view.RecordTableBase;
  *
  * @author hp
  */
-public class RecordController extends RecordTableBase {
+public class RecordTableController extends RecordTableBase {
     
     private Stage stage;
     private ArrayList<RecordModelData> recordDataModelList;
     
-    public RecordController(Stage stage) {
+    public RecordTableController(Stage stage) {
         this.stage = stage;
-        recordDataModelList = RecordData.getInstance().getData();
+        recordDataModelList = RecordDataBasedSystem.getInstance().getData();
 
         //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
         this.date_colum.setCellValueFactory(new PropertyValueFactory<RecordModelData, String>("dateGame"));
@@ -56,14 +56,6 @@ public class RecordController extends RecordTableBase {
         ObservableList<RecordModelData> List = FXCollections.observableArrayList(recordDataModelList);
         table_record_id.setItems(List);
 
-//        table_record_id.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Object item = table_record_id.getS
-//
-//            }
-//        });
-
         table_record_id.setRowFactory(tv -> {
     TableRow<RecordModelData> row = new TableRow<>();
     row.setOnMouseClicked(event -> {
@@ -71,7 +63,7 @@ public class RecordController extends RecordTableBase {
              && event.getClickCount() == 2) {
 
             RecordModelData clickedRow = row.getItem();
-            System.out.println("Data clicked "+clickedRow.getDateGame());
+            Navigator.navigate(Navigator.RECORD, stage,clickedRow);
 
         }
     });

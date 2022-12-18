@@ -1,25 +1,7 @@
 [{
-        "dateGame": "Sun Dec 18 13:47:05 EET 2022",
-        "playerXName": "aay",
-        "playerOName": "PC",
-        "type": "Single Easy Player",
-        "record": ["1X", "5X", "6X", "9X"]
-    }, {
-        "dateGame": "Sun Dec 18 14:31:59 EET 2022",
-        "playerXName": "gmaml",
-        "playerOName": "PC",
-        "type": "Single Easy Player",
-        "record": ["9X", "8X", "5X"]
-    }, {
-        "dateGame": "Sun Dec 18 14:34:52 EET 2022",
-        "playerXName": "tamer",
-        "playerOName": "PC",
-        "type": "Single Easy Player",
-        "record": ["9X", "5X", "4X", "1X"]
-    }, {
-        "dateGame": "Sun Dec 18 14:35:11 EET 2022",
+        "dateGame": "Sun Dec 18 20:47:21 EET 2022",
         "playerXName": "aya",
-        "playerOName": "mohamed",
-        "type": "Multi Player",
-        "record": ["9X", "5X", "4X", "1X", "9X", "5O", "8X", "3O", "6X", "2O", "4X", "1O"]
+        "playerOName": "PC",
+        "type": "Single Easy Player",
+        "record": ["2X", "3O", "5X", "1O", "4X", "6O", "8X", "3X", "2X", "4X", "9X", "7X", "1X", "6X", "3X", "2X"]
     }]

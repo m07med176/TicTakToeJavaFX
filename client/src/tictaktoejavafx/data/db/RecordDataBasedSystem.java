@@ -31,19 +31,19 @@ import tictaktoejavafx.utils.Navigator;
  *
  * @author hp
  */
-public class RecordData {
+public class RecordDataBasedSystem {
 
-    public static RecordData singletone;
+    public static RecordDataBasedSystem singletone;
     public static RecordModelData recordModelData;
     public static boolean newGame = true;
 
-    private RecordData() {
+    private RecordDataBasedSystem() {
         recordModelData = new RecordModelData();
     }
 
-    public static RecordData getInstance() {
+    public static RecordDataBasedSystem getInstance() {
         if (singletone == null) {
-            singletone = new RecordData();
+            singletone = new RecordDataBasedSystem();
         }
         return singletone;
     }
@@ -55,7 +55,6 @@ public class RecordData {
         recordModelData.setPlayerXName(Navigator.getPlayerOne());
         recordModelData.setPlayerOName(Navigator.getPlayerTwo());
         recordModelData.setType(type);
-
     }
 
     public static void saveRecord(boolean isRecorded, Button button, String number) {
@@ -94,7 +93,7 @@ public class RecordData {
 //                writer.close();
 //                System.out.println("done");
 //            } catch (IOException ex) {
-//                Logger.getLogger(RecordData.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(RecordDataBasedSystem.class.getName()).log(Level.SEVERE, null, ex);
 //            }
         }
 

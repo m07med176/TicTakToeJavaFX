@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.RecordData;
+import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.data.model.PlayerName;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
@@ -19,23 +19,25 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     ArrayList arrlist = new ArrayList();
     private Stage stage;
     private boolean isRecorded;
+    private RecordDataBasedSystem db;
 
     public GameBoardMiddleController(Stage stage) {
-        RecordData.newGame = true;
+        db =  RecordDataBasedSystem.getInstance();
+        RecordDataBasedSystem.newGame = true;
         this.stage = stage;
     }
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         playerGame(btn_Game_one);
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_one, "4");
+        db.saveRecord(isRecorded, btn_Game_one, "4");
 
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         playerGame(btn_Game_two);
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_two, "4");
+        db.saveRecord(isRecorded, btn_Game_two, "4");
 
     }
 
@@ -43,7 +45,7 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isGameFour(ActionEvent actionEvent) {
         playerGame(btn_Game_four);
 
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_four, "4");
+        db.saveRecord(isRecorded, btn_Game_four, "4");
 
     }
 
@@ -51,7 +53,7 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isGameSeven(ActionEvent actionEvent) {
         playerGame(btn_Game_seven);
 
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_seven, "7");
+        db.saveRecord(isRecorded, btn_Game_seven, "7");
 
     }
 
@@ -59,14 +61,14 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isGameThree(ActionEvent actionEvent) {
         playerGame(btn_Game_three);
 
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_three, "3");
+        db.saveRecord(isRecorded, btn_Game_three, "3");
 
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
         playerGame(btn_Game_five);
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_five, "5");
+        db.saveRecord(isRecorded, btn_Game_five, "5");
 
     }
 
@@ -74,14 +76,14 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isGameSix(ActionEvent actionEvent) {
         playerGame(btn_Game_six);
 
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_six, "6");
+        db.saveRecord(isRecorded, btn_Game_six, "6");
 
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         playerGame(btn_Game_eight);
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_eight, "8");
+        db.saveRecord(isRecorded, btn_Game_eight, "8");
 
     }
 
@@ -89,7 +91,7 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isGameNine(ActionEvent actionEvent) {
         playerGame(btn_Game_nine);
 
-        RecordData.getInstance().saveRecord(isRecorded, btn_Game_nine, "9");
+        db.saveRecord(isRecorded, btn_Game_nine, "9");
 
     }
 
@@ -177,7 +179,7 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
         if(isRecorded){
-        RecordData.getInstance().saveRecordSession("Single Middle Player");
+        db.saveRecordSession("Single Middle Player");
         }
 
     }
