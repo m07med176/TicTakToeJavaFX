@@ -25,9 +25,10 @@ public class LoginController extends LoginScreenBase {
         if(loginValidation(userName,passwordUser)){
              try {
                 Navigator.setPlayerOne(userName);
-                ServerConnection serverConnectionObj=ServerConnection.createInstance(stage);
-                serverConnectionObj.sendMessage(ServerCall.LOGIN_SEND+","+userName);
-                serverConnectionObj.readThread();
+                ServerConnection.createInstance(stage);
+                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+","+userName,stage);
+                ServerConnection.readThread();
+                //serverConnectionObj.readThread();
             } catch (IOException ex) {
                 System.out.println("Server is Down");
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

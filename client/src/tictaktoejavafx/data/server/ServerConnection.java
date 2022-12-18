@@ -25,14 +25,14 @@ import tictaktoejavafx.utils.UserMessage;
 
 public class ServerConnection {
 
-    private PrintStream printStream;
+    private static PrintStream printStream;
     private String UID;
     private ServerCall serverCall;
 
     public static Socket socket;
     private static ServerConnection serverConnection = null;
-    Thread thread = null;
-    DataInputStream dataInputStream;
+    private static Thread thread = null;
+    private static DataInputStream dataInputStream;
     private static Stage stage;
 
     private ServerConnection() throws IOException {
@@ -53,7 +53,8 @@ public class ServerConnection {
 
     }
 
-    public void sendMessage(String message) {
+    public static void sendMessage(String message,Stage s) {
+        stage=s;
         DataOutputStream printStream = null;
         try {
             System.out.println("we sent "+message);
@@ -64,34 +65,30 @@ public class ServerConnection {
         }
     }
 
-    public synchronized void readThread() {
+    public synchronized static void readThread() {
         System.out.println("byeeeeeeeeeeee");
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        thread = new Thread(() -> {
+            while (true) {
                 
-                while (true) {
-
-                    try {
-                        dataInputStream = new DataInputStream(socket.getInputStream());
-                        String str = dataInputStream.readUTF();
-                        //BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        //String str = bufferedReader.readLine();
-                        System.out.println("we rec "+str);
-                        if (str != null && !str.isEmpty()) {
-                            System.out.println(str);
-                            getMessage(str);
-                        }
-                    } catch (IOException e) {
-                        System.out.println("Server cant get" + e);
+                try {
+                    dataInputStream = new DataInputStream(socket.getInputStream());
+                    String str = dataInputStream.readUTF();
+                    //BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    //String str = bufferedReader.readLine();
+                    System.out.println("we rec "+str);
+                    if (str != null && !str.isEmpty()) {
+                        System.out.println(str);
+                        getMessage(str);
                     }
+                } catch (IOException e) {
+                    System.out.println("Server cant get" + e);
                 }
             }
         });
         thread.start();
     }
 
-    public void getMessage(String msg) {
+    public static void getMessage(String msg) {
         System.out.println("we got "+msg);
         if (msg != null && !msg.isEmpty()) {
             String[] data = msg.split(",");
@@ -136,7 +133,7 @@ public class ServerConnection {
         }*/
     }
 
-    public void closeThread() throws IOException {
+    public static void closeThread() throws IOException {
         dataInputStream.close();
         socket.close();
         thread.stop();
@@ -144,7 +141,7 @@ public class ServerConnection {
 
     }
 
-    void displayAlert(String Playerx) {
+    public static void displayAlert(String Playerx) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
         alert.setTitle("Invitation");
@@ -158,7 +155,7 @@ public class ServerConnection {
             //-------------------------------------
             System.out.println("Player O Accept Your Invetation");
             Navigator.setStartGame(false);
-            sendMessage(ServerCall.CONFIRMATION_SEND +","+ Playerx);
+            sendMessage(ServerCall.CONFIRMATION_SEND +","+ Playerx,stage);
             Navigator.setPlayerOne(Playerx);
             Navigator.setPlayerTwo("Hussin");
             Platform.runLater(() -> {

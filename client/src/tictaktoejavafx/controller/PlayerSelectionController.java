@@ -44,34 +44,24 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
             @Override
             public void handle(MouseEvent event) {
                 //------------------------------------
-                try {
-                    
-                    Navigator.setPlayerTwo("Hussin");
-                    Navigator.setStartGame(true);
-                    
-                    ServerConnection serverConnectionObj = ServerConnection.createInstance(stage);
-                    serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
-                    serverConnectionObj.readThread();
-                    System.out.println("hiiiiiiiiiiiiiii");
-                    
-                } catch (IOException ex) {
-                    System.out.println("Server is Down");
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Navigator.setPlayerTwo("Hussin"); //-------------------------------------
+                /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
+                @Override
+                public void sendOk() {
+                Navigator.navigate(Navigator.GAMEBOARD, stage);
+                System.out.println("sdkljfl");
                 }
-                //-------------------------------------
-
-           /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
-                    @Override
-                    public void sendOk() {
-                        Navigator.navigate(Navigator.GAMEBOARD, stage);
-                        System.out.println("sdkljfl");
-                    }
-
-                    @Override
-                    public void sendCancel() {
-                        // Do Nothing
-                    }
+                @Override
+                public void sendCancel() {
+                // Do Nothing
+                }
                 }, Alert.AlertType.CONFIRMATION);*/
+                Navigator.setStartGame(true);
+                //ServerConnection serverConnectionObj = ServerConnection.createInstance(stage);
+                //serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
+                //serverConnectionObj.readThread();
+                ServerConnection.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin", stage);
+                System.out.println("hiiiiiiiiiiiiiii");
 
             }
         });

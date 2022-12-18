@@ -22,28 +22,22 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     private Stage stage;
     ArrayList<String> diagonals=new ArrayList<>();
     public static char turn='X';
-    ServerConnection connection;
+    //ServerConnection connection;
     ArrayList arrlistButtons=new ArrayList();
     boolean start=true;
     
     public GameBoardControllerOnline(Stage stage) {
-        try {
+        this.stage = stage;
+        addbuttonInList();
+        label_player1.setText(Navigator.getPlayerOne());
+        label_player2.setText(Navigator.getPlayerTwo());
+        //connection=ServerConnection.createInstance(stage);
+        if(!Navigator.isStartGame()){
             
-            this.stage = stage;
-            addbuttonInList();
-            label_player1.setText(Navigator.getPlayerOne());
-            label_player2.setText(Navigator.getPlayerTwo());
-            connection=ServerConnection.createInstance(stage);
+            disableButton(true);
             
-            if(!Navigator.isStartGame()){
-            
-                disableButton(true);
-                
-            }
-            readMove();
-        } catch (IOException ex) {
-            Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
         }
+        readMove();
     }
     
     @Override
@@ -197,13 +191,14 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
              msg=ServerCall.MOVEMENT_SEND+","+Navigator.getPlayerOne()+","+Integer.toString(val)+","+move;
          }
          
-         connection.sendMessage(msg);
+         //connection.sendMessage(msg);
+         ServerConnection.sendMessage(msg, stage);
          disableButton(true);
          readMove();
      
      }
      public void readMove(){
-         connection.readThread();
+         //connection.readThread();
          System.out.println("readinggggggggggggg");
          disableButton(false);
          System.out.println("readinggggggggggggg");
