@@ -14,6 +14,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected final Button btn_two;
     protected final Button btn_online_mode;
     protected final ImageView imageView;
+    protected final Button isRecord;
     protected final Button btn_History_Mode;
 
     public WelcomeScreenBase() {
@@ -23,11 +24,13 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two = new Button();
         btn_online_mode = new Button();
         imageView = new ImageView();
+        isRecord = new Button();
         btn_History_Mode = new Button();
 
+
         setId("AnchorPane");
-        setPrefHeight(503.0);
-        setPrefWidth(574.0);
+        setPrefHeight(575.0);
+        setPrefWidth(645.0);
 
         label.setLayoutX(105.0);
         label.setLayoutY(34.0);
@@ -77,6 +80,15 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.getStyleClass().add("logo");
 //        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
+
+        isRecord.setLayoutX(185.0);
+        isRecord.setLayoutY(518.0);
+        isRecord.setMnemonicParsing(false);
+        isRecord.setOnAction(this::isRecorded);
+        isRecord.setPrefHeight(48.0);
+        isRecord.setPrefWidth(214.0);
+        isRecord.setText("Record Mode");
+        isRecord.setFont(new Font(22.0));
         btn_History_Mode.setLayoutX(190.0);
         btn_History_Mode.setLayoutY(449.0);
         btn_History_Mode.setMnemonicParsing(false);
@@ -91,6 +103,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         getChildren().add(btn_two);
         getChildren().add(btn_online_mode);
         getChildren().add(imageView);
+        getChildren().add(isRecord);
         getChildren().add(btn_History_Mode);
 
     }
@@ -98,9 +111,8 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected abstract void isSingle(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isTwo(javafx.event.ActionEvent actionEvent);
-
     protected abstract void isOnlineMode(javafx.event.ActionEvent actionEvent);
-
+    protected abstract void isRecorded(javafx.event.ActionEvent actionEvent);
     protected abstract void isHistoryMode(javafx.event.ActionEvent actionEvent);
 
 }

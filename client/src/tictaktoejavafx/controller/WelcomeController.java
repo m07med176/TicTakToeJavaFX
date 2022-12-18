@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.WelcomeScreenBase;
+import static tictaktoejavafx.utils.Navigator.TABLE_RECORD;
 
 public class WelcomeController extends WelcomeScreenBase {
 
@@ -31,6 +32,12 @@ public class WelcomeController extends WelcomeScreenBase {
         Navigator.navigate(Navigator.LOGIN, stage);
     }
 
+    @Override
+    protected void isRecorded(ActionEvent actionEvent) {
+        System.out.println("Record Clicked");
+        Navigator.navigate(Navigator.TABLE_RECORD, stage);
+    }
+    
     @Override
     protected void isHistoryMode(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.HISTORY, stage);
