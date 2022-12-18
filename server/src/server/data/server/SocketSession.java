@@ -1,14 +1,16 @@
 package server.data.server;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 
 public class SocketSession extends Thread {
 
      private final DataInputStream dataInputStream;
-     public PrintStream printStream;
+     public DataOutputStream printStream;
      public String UID;
 
      private final NetworkAccessLayer networkOperations;
@@ -16,7 +18,7 @@ public class SocketSession extends Thread {
      public SocketSession(Socket socket, NetworkAccessLayer networkOperations) throws IOException {
           this.networkOperations = networkOperations;
           dataInputStream = new DataInputStream(socket.getInputStream());
-          printStream = new PrintStream(socket.getOutputStream());
+          printStream = new DataOutputStream(socket.getOutputStream());
           start();
      }
 
@@ -25,7 +27,7 @@ public class SocketSession extends Thread {
           while (true) {
                try {
                     System.out.println("Indecx lkajsd");
-                    String response = dataInputStream.readLine();
+                    String response = dataInputStream.readUTF();
                     System.out.println("Index  "+response);
                     requestNavigator(response);
                } catch (IOException ex) {
@@ -60,7 +62,7 @@ public class SocketSession extends Thread {
                          networkOperations.invetation(data, UID);
                          break;
 
-                    case ServerCall.CONFIRMATION_SEND:
+                    case "CONF_SEND":
                          networkOperations.confirm(data, UID);
                          break;
 

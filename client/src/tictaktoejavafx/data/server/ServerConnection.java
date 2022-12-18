@@ -1,10 +1,13 @@
 package tictaktoejavafx.data.server;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -51,25 +54,30 @@ public class ServerConnection {
     }
 
     public void sendMessage(String message) {
-        PrintStream printStream = null;
+        DataOutputStream printStream = null;
         try {
-            printStream = new PrintStream(socket.getOutputStream());
-            printStream.println(message);
+            System.out.println("we sent "+message);
+            printStream = new DataOutputStream(socket.getOutputStream());
+            printStream.writeUTF(message);
         } catch (IOException e) {
             System.out.println("Server cant send");
         }
     }
 
-    public void readThread() {
-
+    public synchronized void readThread() {
+        System.out.println("byeeeeeeeeeeee");
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                
                 while (true) {
 
                     try {
                         dataInputStream = new DataInputStream(socket.getInputStream());
-                        String str = dataInputStream.readLine();
+                        String str = dataInputStream.readUTF();
+                        //BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        //String str = bufferedReader.readLine();
+                        System.out.println("we rec "+str);
                         if (str != null && !str.isEmpty()) {
                             System.out.println(str);
                             getMessage(str);
@@ -84,14 +92,26 @@ public class ServerConnection {
     }
 
     public void getMessage(String msg) {
-
+        System.out.println("we got "+msg);
         if (msg != null && !msg.isEmpty()) {
             String[] data = msg.split(",");
             switch (data[0]) {
                 case ServerCall.IVETATION_RECEIVE:
                     Platform.runLater(() -> {
                         displayAlert(data[1]);
-            });
+                    });
+                    break;
+                case ServerCall.CONFIRMATION_RECEIVE:
+                    
+                    Platform.runLater(() -> {
+                        System.out.println("I recived");
+                        Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
+                    });
+                    break;
+                case ServerCall.MOVEMENT_RECEIVE:
+                    Navigator.setButtonNumber(data[2]);
+                    Navigator.setBoardMove(data[3]);
+                    Navigator.setTurnEnded(true);
                     break;
                 default:
                     break;
@@ -123,23 +143,31 @@ public class ServerConnection {
         serverConnection = null;
 
     }
-    void displayAlert(String Playerx){
-               Alert alert=new Alert(Alert.AlertType.WARNING);
 
-                   alert.setTitle("Invitation");
-                  alert.setHeaderText(Playerx+"Invite you to Play Game");
-                  alert.setContentText("Do you want to Accept Invitation");
-                  
+    void displayAlert(String Playerx) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
 
-            ButtonType acceptButton = new ButtonType("Accept");
-            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-            alert.getButtonTypes().setAll(acceptButton, cancelButton);
-             if(alert.showAndWait().get() == acceptButton){
-                //-------------------------------------
-                 System.out.println("Player O Accept Your Invetation");
+        alert.setTitle("Invitation");
+        alert.setHeaderText(Playerx + "Invite you to Play Game");
+        alert.setContentText("Do you want to Accept Invitation");
 
-            }else{
-                 System.out.println("Player O Cancle");
-            }
+        ButtonType acceptButton = new ButtonType("Accept");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(acceptButton, cancelButton);
+        if (alert.showAndWait().get() == acceptButton) {
+            //-------------------------------------
+            System.out.println("Player O Accept Your Invetation");
+            Navigator.setStartGame(false);
+            sendMessage(ServerCall.CONFIRMATION_SEND +","+ Playerx);
+            Navigator.setPlayerOne(Playerx);
+            Navigator.setPlayerTwo("Hussin");
+            Platform.runLater(() -> {
+                
+                Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
+            });
+
+        } else {
+            System.out.println("Player O Cancle");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package server.data.server;
 
+import java.io.DataOutputStream;
 import java.io.PrintStream;
 
 public interface ServerCall{
@@ -13,8 +14,8 @@ public interface ServerCall{
      public static final String IVETATION_SEND = "IVETATION_SEND";
      public static final String IVETATION_RECEIVE = "IVETATION_RECEIVE";
      
-     public static final String CONFIRMATION_SEND = "CONFIRMATION_SEND";
-     public static final String CONFIRMATION_RECEIVE = "CONFIRMATION_RECEIVE";
+     public static final String CONFIRMATION_SEND = "CONF_SEND";
+     public static final String CONFIRMATION_RECEIVE = "CONF_RECEIVE";
      
      public static final String MOVEMENT_SEND = "MOVEMENT_SEND";
      public static final String MOVEMENT_RECEIVE = "MOVEMENT_RECEIVE";
@@ -28,10 +29,10 @@ public interface ServerCall{
      
      public void confirm(String[] request,String currentID);
 
-     public void onlinePlayers(String[] request,PrintStream response);
+     public void onlinePlayers(String[] request,DataOutputStream response);
      
-     public String login(String[] request,PrintStream response);
+     public String login(String[] request,DataOutputStream response);
      
-     public String register(String[] request,PrintStream response);
+     public String register(String[] request,DataOutputStream response);
      
 };

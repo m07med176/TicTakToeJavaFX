@@ -9,6 +9,7 @@ import tictaktoejavafx.controller.ChooseDiffucultyController;
 import tictaktoejavafx.controller.GameBoardController;
 import tictaktoejavafx.controller.GameBoardControllerHard;
 import tictaktoejavafx.controller.GameBoardControllerMiddle;
+import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.controller.LoginController;
 import tictaktoejavafx.controller.PlayerSelectionController;
 import tictaktoejavafx.controller.RegisterController;
@@ -34,10 +35,47 @@ public class Navigator {
     public static final int PLAYER_NAME_TWO = 11;
     public static final int GAMEBOARDMIDDLE = 12;
     public static final int GAMEBOARDHARD =13;
+    public static final int GAMEBOARDONLINE =14;
 
 
     public static String playerOne;
     public static String playerTwo;
+    public static String buttonNumber;
+    public static String boardMove;
+    public static boolean startGame;
+    public static boolean turnEnded=false;
+
+    public static boolean isTurnEnded() {
+        return turnEnded;
+    }
+
+    public static void setTurnEnded(boolean turnEnded) {
+        Navigator.turnEnded = turnEnded;
+    }
+
+    public static String getButtonNumber() {
+        return buttonNumber;
+    }
+
+    public static void setButtonNumber(String buttonNumber) {
+        Navigator.buttonNumber = buttonNumber;
+    }
+
+    public static String getBoardMove() {
+        return boardMove;
+    }
+
+    public static void setBoardMove(String boardMove) {
+        Navigator.boardMove = boardMove;
+    }
+
+    public static boolean isStartGame() {
+        return startGame;
+    }
+
+    public static void setStartGame(boolean startGame) {
+        Navigator.startGame = startGame;
+    }
     
     public static Vector<Scene> pages = new Vector();
     public static int pageIndex = 0;
@@ -110,6 +148,9 @@ public class Navigator {
                 break;
             case GAMEBOARDHARD:
                 parent = new GameBoardControllerHard(stage);
+                break;
+            case GAMEBOARDONLINE:
+                parent = new GameBoardControllerOnline(stage);
                 break;
           
             default:

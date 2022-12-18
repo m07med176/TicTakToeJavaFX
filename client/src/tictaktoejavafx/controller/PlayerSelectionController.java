@@ -45,11 +45,15 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
             public void handle(MouseEvent event) {
                 //------------------------------------
                 try {
+                    
+                    Navigator.setPlayerTwo("Hussin");
+                    Navigator.setStartGame(true);
+                    
                     ServerConnection serverConnectionObj = ServerConnection.createInstance(stage);
                     serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
-                    Platform.runLater(() -> {
-                        serverConnectionObj.readThread();
-                    });
+                    serverConnectionObj.readThread();
+                    System.out.println("hiiiiiiiiiiiiiii");
+                    
                 } catch (IOException ex) {
                     System.out.println("Server is Down");
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

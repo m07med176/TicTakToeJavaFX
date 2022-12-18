@@ -24,6 +24,7 @@ public class LoginController extends LoginScreenBase {
         
         if(loginValidation(userName,passwordUser)){
              try {
+                Navigator.setPlayerOne(userName);
                 ServerConnection serverConnectionObj=ServerConnection.createInstance(stage);
                 serverConnectionObj.sendMessage(ServerCall.LOGIN_SEND+","+userName);
                 serverConnectionObj.readThread();
