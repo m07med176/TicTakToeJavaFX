@@ -19,31 +19,35 @@ import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase{
-    private Stage stage;
-    ArrayList<String> diagonals=new ArrayList<>();
+    private static Stage stage;
+    public  ArrayList<String> diagonals=new ArrayList<>();
     public static char turn='X';
     //ServerConnection connection;
-    ArrayList arrlistButtons=new ArrayList();
+   public static ArrayList<Button> arrlistButtons=new ArrayList();
+   public static ArrayList<Button> arrlistButtons2=new ArrayList();
     boolean start=true;
+    public static  Button button;
     
     public GameBoardControllerOnline(Stage stage) {
         this.stage = stage;
         addbuttonInList();
+       addAllbuttonInList();
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
         //connection=ServerConnection.createInstance(stage);
         if(!Navigator.isStartGame()){
             
-            disableButton(true);
+            Navigator.setSetX(false);
             
         }
-        readMove();
+        
     }
     
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
         sendMove(1, btn_Game_one.getText());
+        button=btn_Game_one;
         
         
         
@@ -54,7 +58,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     protected void isGameFour(ActionEvent actionEvent) {
          gameTurns(btn_Game_four);
          sendMove(4, btn_Game_four.getText());
-         
+         button=btn_Game_four;
         
     }
 
@@ -62,57 +66,58 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
         sendMove(7, btn_Game_seven.getText());
-        
+        button=btn_Game_seven;
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         gameTurns(btn_Game_two);
        sendMove(2, btn_Game_two.getText());
-       
+       button=btn_Game_two;
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         gameTurns(btn_Game_three);
        sendMove(3, btn_Game_three.getText());
-       
+       button=btn_Game_three;
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
           gameTurns(btn_Game_five);
        sendMove(5, btn_Game_five.getText());
-       
+       button=btn_Game_five;
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
         sendMove(6, btn_Game_six.getText());
-        
+        button=btn_Game_six;
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
         sendMove(8, btn_Game_eight.getText());
-        
+        button=btn_Game_eight;
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
         sendMove(9, btn_Game_nine.getText());
-        
+        button=btn_Game_nine;
         
     }
     public void gameTurns(Button button){
         arrlistButtons.remove(button);
-        if(turn=='X'){
+        if(Navigator.isSetX()){
             
             button.setText("X");
-            turn='O';
+            //turn='O';
+            //Navigator.setSetX(false);
             button.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
@@ -121,7 +126,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
         }else{
         
             button.setText("O");
-            turn='X';
+            //Navigator.setSetX(true);
             button.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
@@ -158,13 +163,26 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
           },Alert.AlertType.CONFIRMATION);
           
      }
-     void disableButton(boolean flag) {
+    public static void enableButton() {
         for(int i=0;i<arrlistButtons.size();i++){
         
-            Button button = (Button) arrlistButtons.get(i);
+           button = (Button) arrlistButtons.get(i);
             if (button != null && !button.isDisable()){
             
-                button.setDisable(flag);
+                button.setDisable(false);
+            
+            }
+        
+        } 
+        
+    }
+     public static void disableButton() {
+        for(int i=0;i<arrlistButtons.size();i++){
+        
+           button = (Button) arrlistButtons.get(i);
+            if (button != null && !button.isDisable()){
+            
+                button.setDisable(true);
             
             }
         
@@ -183,6 +201,18 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
         arrlistButtons.add(btn_Game_eight);
         arrlistButtons.add(btn_Game_nine);
     }
+     void addAllbuttonInList() {
+        arrlistButtons2.add(btn_Game_one);
+        arrlistButtons2.add(btn_Game_two);
+        arrlistButtons2.add(btn_Game_three);
+        arrlistButtons2.add(btn_Game_four);
+        arrlistButtons2.add(btn_Game_five);
+        arrlistButtons2.add(btn_Game_six);
+
+        arrlistButtons2.add(btn_Game_seven);
+        arrlistButtons2.add(btn_Game_eight);
+        arrlistButtons2.add(btn_Game_nine);
+    }
      public void sendMove(int val,String move){
          String msg="";
          if(Navigator.isStartGame()){
@@ -190,23 +220,22 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
          }else{
              msg=ServerCall.MOVEMENT_SEND+","+Navigator.getPlayerOne()+","+Integer.toString(val)+","+move;
          }
+         //disableButton();
          
          //connection.sendMessage(msg);
          ServerConnection.sendMessage(msg, stage);
-         disableButton(true);
-         readMove();
+         
+         
      
      }
-     public void readMove(){
-         //connection.readThread();
-         System.out.println("readinggggggggggggg");
-         disableButton(false);
-         System.out.println("readinggggggggggggg");
-         /*while (!Navigator.isTurnEnded()) {
-             
-             
-         }*/
+     public  void readMove(){
+        
+         
+         
+         
+         
          if(Navigator.getBoardMove()!=null&&Navigator.getButtonNumber()!=null){
+             System.out.println("jjjjjjjjjjjjjjjjjjjjjjjj"); 
          switch(Integer.parseInt(Navigator.getButtonNumber())){
              case 1:
                     btn_Game_one.setText(Navigator.getBoardMove());
@@ -239,8 +268,13 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
          }
 
          }
-             Navigator.setTurnEnded(false);
+             
      }
+
+    public static Stage getStage() {
+        return stage;
+    }
+     
      
     
 }

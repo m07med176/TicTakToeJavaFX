@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -19,7 +20,9 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 
@@ -34,7 +37,8 @@ public class ServerConnection {
     private static Thread thread = null;
     private static DataInputStream dataInputStream;
     private static Stage stage;
-
+    private static int i=0;
+    public static ArrayList<String> diagonals=new ArrayList<>();
     private ServerConnection() throws IOException {
 
         startSocket();
@@ -67,7 +71,8 @@ public class ServerConnection {
 
     public synchronized static void readThread() {
         System.out.println("byeeeeeeeeeeee");
-        thread = new Thread(() -> {
+        if(thread ==null){
+            thread = new Thread(() -> {
             while (true) {
                 
                 try {
@@ -86,8 +91,32 @@ public class ServerConnection {
             }
         });
         thread.start();
+        
+        }else{
+        
+        }
+        
     }
-
+    public static void diagFill(){
+    
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText()+GameBoardControllerOnline.arrlistButtons2.get(1).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(2).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(3).getText()+GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(5).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(6).getText()+GameBoardControllerOnline.arrlistButtons2.get(7).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText()+GameBoardControllerOnline.arrlistButtons2.get(3).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(6).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(1).getText()+GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(7).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(2).getText()+GameBoardControllerOnline.arrlistButtons2.get(5).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText()+GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+        diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(2).getText()+GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                +GameBoardControllerOnline.arrlistButtons2.get(6).getText());
+    
+    }
     public static void getMessage(String msg) {
         System.out.println("we got "+msg);
         if (msg != null && !msg.isEmpty()) {
@@ -106,9 +135,25 @@ public class ServerConnection {
                     });
                     break;
                 case ServerCall.MOVEMENT_RECEIVE:
+                    System.out.println("we got a move");
                     Navigator.setButtonNumber(data[2]);
                     Navigator.setBoardMove(data[3]);
-                    Navigator.setTurnEnded(true);
+                    //Navigator.setTurnEnded(true);
+                    //GameBoardControllerOnline.button.setText(Navigator.boardMove);
+                    //GameBoardControllerOnline.button.setDisable(true);
+                    if(data[3].equals("X")){
+                        Navigator.setSetX(false);
+                    }else{
+                        Navigator.setSetX(true);
+                    }
+                    Platform.runLater(() -> {
+                        
+                        GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2])-1).setText(data[3]);
+                        GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2])-1).setDisable(true);
+                        diagFill();
+                        LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+            });
+                    System.out.println("we set "+Navigator.getBoardMove()+" "+Navigator.getButtonNumber());
                     break;
                 default:
                     break;
@@ -145,7 +190,7 @@ public class ServerConnection {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
         alert.setTitle("Invitation");
-        alert.setHeaderText(Playerx + "Invite you to Play Game");
+        alert.setHeaderText(Playerx + " Invite you to Play Game");
         alert.setContentText("Do you want to Accept Invitation");
 
         ButtonType acceptButton = new ButtonType("Accept");

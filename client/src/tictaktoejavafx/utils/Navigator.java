@@ -43,15 +43,18 @@ public class Navigator {
     public static String buttonNumber;
     public static String boardMove;
     public static boolean startGame;
-    public static boolean turnEnded=false;
+    public static boolean setX=true;
 
-    public static boolean isTurnEnded() {
-        return turnEnded;
+    public static boolean isSetX() {
+        return setX;
     }
 
-    public static void setTurnEnded(boolean turnEnded) {
-        Navigator.turnEnded = turnEnded;
+    public static void setSetX(boolean setX) {
+        Navigator.setX = setX;
     }
+    
+
+    
 
     public static String getButtonNumber() {
         return buttonNumber;

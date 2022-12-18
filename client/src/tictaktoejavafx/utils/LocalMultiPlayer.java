@@ -14,14 +14,14 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
             
-                PlayerName.setPlayerName("Player One");
+                PlayerName.setPlayerName(Navigator.getPlayerOne());
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 
             
             }else if(d.get(i).equals("OOO")){
             
-                PlayerName.setPlayerName("Player Two");
+                PlayerName.setPlayerName(Navigator.getPlayerTwo());
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 
