@@ -1,20 +1,37 @@
 package server.data.server;
 
-public interface ServerCall extends Authentication{
+import java.io.PrintStream;
 
-   /**
-     * @param id of second Player
-     */
-     public void sendInvetation(String id);
+public interface ServerCall{
      
-     /**
-      * 
-      * @return String id of Player
-      */
-     public String receiveInvetation(); 
+     public static final String RREGISTER_SEND = "RREGISTER_SEND";
+     public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
      
-     public String sendPlayers();
+     public static final String LOGIN_RECEIVER = "LOGIN_RECEIVER";
+     public static final String LOGIN_SEND = "LOGIN_SEND";
      
-     public void setMovement(int btnID,char type,int userId);
-     public int getMovement();
+     public static final String IVETATION_SEND = "IVETATION_SEND";
+     public static final String IVETATION_RECEIVE = "IVETATION_RECEIVE";
+     
+     public static final String CONFIRMATION_SEND = "CONFIRMATION_SEND";
+     public static final String CONFIRMATION_RECEIVE = "CONFIRMATION_RECEIVE";
+     
+     public static final String MOVEMENT_SEND = "MOVEMENT_SEND";
+     public static final String MOVEMENT_RECEIVE = "MOVEMENT_RECEIVE";
+     
+     public static final String PLAYER_LIST_SEND = "PLAYER_LIST_SEND";
+     public static final String PLAYER_LIST_RECEIVE = "PLAYER_LIST_RECEIVE";
+     
+     public void invetation(String[] request,String currentID);
+     
+     public void move(String[] request,String currentID);
+     
+     public void confirm(String[] request,String currentID);
+
+     public void onlinePlayers(String[] request,PrintStream response);
+     
+     public String login(String[] request,PrintStream response);
+     
+     public String register(String[] request,PrintStream response);
+     
 };
