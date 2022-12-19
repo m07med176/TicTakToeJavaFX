@@ -1,15 +1,18 @@
 package tictaktoejavafx.controller;
 
-import tictaktoejavafx.data.model.PlayerModel;
+import java.io.IOException;
+import tictaktoejavafx.data.model.HistoryModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.JsonDataBasedSystem;
+import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.data.model.PlayerName;
@@ -101,13 +104,17 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         button.setDisable(true);
         if (count % 2 != 0) {
             button.setText("X");
-            check();
+             try {
+                  check();
+             } catch (IOException ex) {
+                  Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+             }
             random();
 
         }
     }
 
-    void check() {
+    void check() throws IOException {
 
         //-------------rows----------------------------
         /*     [X][X][X]
@@ -152,12 +159,12 @@ public class GameBoardEasyController extends GameBoardScreenBase {
             if (arrlist.get(i).equals("XXX")) {
                 disableButton();
                 PlayerName.setPlayerName("Player 1");
-                JsonDataBasedSystem.saveFile("Player 1");
+                HistoryDataBasedSystem.saveFile("Player 1");
                 playVideo();
             } else if (arrlist.get(i).equals("OOO")) {
                 disableButton();
                 PlayerName.setPlayerName("Player 2");
-                JsonDataBasedSystem.saveFile("Player 2");
+                HistoryDataBasedSystem.saveFile("Player 2");
                 playVideo();
             }
 
@@ -169,11 +176,9 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         btn_Game_one.setDisable(true);
         btn_Game_two.setDisable(true);
         btn_Game_three.setDisable(true);
-
         btn_Game_four.setDisable(true);
         btn_Game_five.setDisable(true);
         btn_Game_six.setDisable(true);
-
         btn_Game_seven.setDisable(true);
         btn_Game_eight.setDisable(true);
         btn_Game_nine.setDisable(true);
@@ -184,9 +189,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     }
 
     void random() {
-
         Random random_method = new Random();
-
         try {
             if (arrlistButtons.size() > 0) {
                 int index = random_method.nextInt(arrlistButtons.size());
@@ -201,10 +204,13 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                         arrlistButtons.remove(button);
                         if (count % 2 == 0) {
                             button.setText("O");
-                            check();
+                             try {
+                                  check();
+                             } catch (IOException ex) {
+                                  Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+                             }
                         }
                     }
-
                 }
             }
         } catch (IndexOutOfBoundsException e) {

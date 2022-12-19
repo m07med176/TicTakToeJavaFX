@@ -5,23 +5,18 @@
  */
 package tictaktoejavafx.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import tictaktoejavafx.data.model.PlayerModel;
-import java.io.FileWriter;
 import java.io.IOException;
+import tictaktoejavafx.data.model.HistoryModel;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.JsonDataBasedSystem;
+import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
@@ -31,20 +26,23 @@ import tictaktoejavafx.view.HistoryScreenBase;
 public class HistoryController extends HistoryScreenBase {
 
     private Stage stage;
-    private ArrayList<PlayerModel> playersList;
+    private ArrayList<HistoryModel> playersList;
 
     public HistoryController(Stage stage) {
         this.stage = stage;
-        playersList = JsonDataBasedSystem.getPlayerModleList();
+         try {
+               playersList = HistoryDataBasedSystem.getPlayerModleList();
+               colum_date.setCellValueFactory(new PropertyValueFactory<HistoryModel, String>("dateGame"));
+               colum_Xname.setCellValueFactory(new PropertyValueFactory<HistoryModel, String>("playerXName"));
+               colum_Oname.setCellValueFactory(new PropertyValueFactory<HistoryModel, String>("playerOName"));
+               colum_winner.setCellValueFactory(new PropertyValueFactory<HistoryModel, String>("winner"));
+               ObservableList<HistoryModel> observableList = FXCollections.observableArrayList(playersList);
+               table_history_data.setItems(observableList);
+         } catch (IOException ex) {
+              Logger.getLogger(HistoryController.class.getName()).log(Level.SEVERE, null, ex);
+         }
 
-        //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
-        colum_date.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
-        colum_Xname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerXName"));
-        colum_Oname.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("playerOName"));
-        colum_winner.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("winner"));
 
-        ObservableList<PlayerModel> observableList = FXCollections.observableArrayList(playersList);
-        table_history_data.setItems(observableList);
     }
 
     @Override

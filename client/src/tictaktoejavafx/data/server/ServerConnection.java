@@ -44,7 +44,7 @@ public class ServerConnection {
      }
 
      private static void startSocket() throws IOException {
-          socket = new Socket("10.178.241.77", 5005);
+          socket = new Socket("127.0.0.1", 5005);
 
      }
 

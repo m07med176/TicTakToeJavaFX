@@ -26,7 +26,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerModel;
+import tictaktoejavafx.data.model.HistoryModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;

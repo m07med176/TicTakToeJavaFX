@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerModel;
+import tictaktoejavafx.data.model.HistoryModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
@@ -22,7 +22,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     public static char turn = 'X';
     Gson gson = new Gson();
 
-    PlayerModel model;
+    HistoryModel model;
     private boolean isRecorded;
     private RecordDataBasedSystem db;
 

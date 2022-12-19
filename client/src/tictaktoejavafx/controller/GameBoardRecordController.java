@@ -21,7 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerModel;
+import tictaktoejavafx.data.model.HistoryModel;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
