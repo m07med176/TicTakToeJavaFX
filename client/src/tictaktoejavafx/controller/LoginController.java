@@ -1,7 +1,12 @@
 package tictaktoejavafx.controller;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.LoginScreenBase;
 
@@ -18,7 +23,18 @@ public class LoginController extends LoginScreenBase {
         String passwordUser = this.password.getText().trim();
         
         if(loginValidation(userName,passwordUser)){
+            
+            try {
+                ServerConnection serverConnectionObj=ServerConnection.createInstance(stage);
+                serverConnectionObj.sendMessage("IVETATION,"+userName+","+passwordUser+",Hussin");
+                serverConnectionObj.readThread();
+            } catch (IOException ex) {
+                System.out.println("Server is Down");
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
             Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
+            
             // TODO Pass data in athentication function
             /*
                if (authenticated(userName,passwordUser)){
