@@ -2,9 +2,11 @@ package tictaktoejavafx.controller;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.AlertAction;
@@ -36,6 +38,23 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
             Navigator.setSetX(false);
             
         }
+        this.stage.setOnCloseRequest((WindowEvent event) -> {
+            try {
+                ServerConnection.closeThread();
+            } catch (IOException ex) {
+                new UserMessage().display(ex.getMessage(), new AlertAction(){
+                    @Override
+                    public void sendOk() {
+                        Navigator.navigate(Navigator.WELCOME, stage);
+                    }
+                    
+                    @Override
+                    public void sendCancel() {
+                        // Do Nothing
+                    }
+                },Alert.AlertType.ERROR);
+            }
+        });
         
     }
     
@@ -43,7 +62,8 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
         sendMove(1, btn_Game_one.getText());
-        button=btn_Game_one;
+        
+        //button=btn_Game_one;
         
         
         
@@ -54,7 +74,8 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     protected void isGameFour(ActionEvent actionEvent) {
          gameTurns(btn_Game_four);
          sendMove(4, btn_Game_four.getText());
-         button=btn_Game_four;
+         
+         //button=btn_Game_four;
         
     }
 
@@ -62,49 +83,56 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
         sendMove(7, btn_Game_seven.getText());
-        button=btn_Game_seven;
+        
+        //button=btn_Game_seven;
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        gameTurns(btn_Game_two);
+       gameTurns(btn_Game_two); 
        sendMove(2, btn_Game_two.getText());
-       button=btn_Game_two;
+       
+       //button=btn_Game_two;
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        gameTurns(btn_Game_three);
+       gameTurns(btn_Game_three); 
        sendMove(3, btn_Game_three.getText());
-       button=btn_Game_three;
+       
+       //button=btn_Game_three;
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-          gameTurns(btn_Game_five);
+       gameTurns(btn_Game_five);   
        sendMove(5, btn_Game_five.getText());
-       button=btn_Game_five;
+       
+       //button=btn_Game_five;
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
         sendMove(6, btn_Game_six.getText());
-        button=btn_Game_six;
+        
+       // button=btn_Game_six;
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
         sendMove(8, btn_Game_eight.getText());
-        button=btn_Game_eight;
+        
+        //button=btn_Game_eight;
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
         sendMove(9, btn_Game_nine.getText());
-        button=btn_Game_nine;
+        
+        //button=btn_Game_nine;
         
     }
     public void gameTurns(Button button){
@@ -198,6 +226,9 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
         arrlistButtons.add(btn_Game_nine);
     }
      void addAllbuttonInList() {
+         if(arrlistButtons2==null){
+         arrlistButtons2=new ArrayList();
+         }
         arrlistButtons2.add(btn_Game_one);
         arrlistButtons2.add(btn_Game_two);
         arrlistButtons2.add(btn_Game_three);
@@ -266,7 +297,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
          }
              
      }
-
+     
     public static Stage getStage() {
         return stage;
     }
