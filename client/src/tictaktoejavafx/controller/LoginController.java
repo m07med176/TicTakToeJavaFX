@@ -5,17 +5,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.server.ServerCall;
-import javafx.application.Platform;
 
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.AlertAction;
-import tictaktoejavafx.utils.Config;
-import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;

@@ -33,35 +33,35 @@ public abstract class WinnerAndlosserScreenBase extends AnchorPane {
         label.setLayoutX(47.0);
         label.setLayoutY(14.0);
         label.setPrefHeight(43.0);
-        label.setPrefWidth(68.0);
+        label.setPrefWidth(158.0);
         label.getStyleClass().add("title");
         label.setText("Winner is ");
 
-        user_win.setLayoutX(53.0);
-        user_win.setLayoutY(71.0);
+        user_win.setLayoutX(239.0);
+        user_win.setLayoutY(27.0);
         user_win.getStyleClass().add("sub_title");
         user_win.setText("user_name");
 
-        mediaView.setFitHeight(400.0);
-        mediaView.setFitWidth(400.0);
-        mediaView.setLayoutX(204.0);
-        mediaView.setLayoutY(27.0);
+        mediaView.setFitHeight(600.0);
+        mediaView.setFitWidth(600.0);
+        mediaView.setLayoutX(130.0);
+        mediaView.setLayoutY(100.0);
 
-        button.setLayoutX(279.0);
+        button.setLayoutX(214.0);
         button.setLayoutY(450.0);
         button.setMnemonicParsing(false);
         button.setOnAction(this::onHomeButtonClicked);
         button.getStyleClass().add("main_button");
         button.setText("Home");
 
-        button0.setLayoutX(365.0);
+        button0.setLayoutX(344.0);
         button0.setLayoutY(450.0);
         button0.setMnemonicParsing(false);
         button0.setOnAction(this::onPlayAgainClicked);
         button0.getStyleClass().add("main_button");
         button0.setText("Playe Again");
 
-        button1.setLayoutX(467.0);
+        button1.setLayoutX(503.0);
         button1.setLayoutY(450.0);
         button1.setMnemonicParsing(false);
         button1.setOnAction(this::onResultsClicked);

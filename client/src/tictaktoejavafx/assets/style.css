@@ -43,19 +43,24 @@
     -fx-line-height: 38px;
 }
 .sub_title{
-    -fx-text-fill: #0A3257;
+    -fx-text-fill: #735120;
     -fx-font-size: 20px;
     -fx-font-weight: 700;
+    
 }
+
 .game_button{
     -fx-background: #B1E0D8;
     -fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
     -fx-background-radius: 30px;
-    -fx-padding: 10px;
+    
     -fx-text-fill: #0A3257;
     -fx-font-size: 15px 15px 0px 0px;
     -fx-font-weight: 700;
 }
+/*
+-fx-padding: 10px;
+*/
 
 .main_button{
     -fx-background: #FFFFFF;

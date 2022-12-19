@@ -5,13 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Label label;
-    protected final Label label0;
     protected final AnchorPane anchorPane;
     protected final Button btn_Game_one;
     protected final Button btn_Game_four;
@@ -26,12 +26,12 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Label label_player1;
     protected final Label label_player2;
     protected final Button video_btn;
+    protected final Rectangle rectangle;
 
     public GameBoardScreenBase() {
 
         imageView = new ImageView();
         label = new Label();
-        label0 = new Label();
         anchorPane = new AnchorPane();
         btn_Game_one = new Button();
         btn_Game_four = new Button();
@@ -46,6 +46,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player1 = new Label();
         label_player2 = new Label();
         video_btn = new Button();
+        rectangle = new Rectangle();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -56,20 +57,16 @@ public abstract class GameBoardScreenBase extends AnchorPane {
 
         imageView.setFitHeight(155.0);
         imageView.setFitWidth(143.0);
-        imageView.setLayoutX(624.0);
-        imageView.setLayoutY(42.0);
+        imageView.setLayoutX(591.0);
+        imageView.setLayoutY(44.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
 
-        label.setLayoutX(657.0);
-        label.setLayoutY(212.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
-
-        label0.setId("vs");
-        label0.setLayoutX(678.0);
-        label0.setLayoutY(309.0);
-        label0.setText("VS");
+        label.setId("vs");
+        label.setLayoutX(678.0);
+        label.setLayoutY(309.0);
+        label.setText("VS");
+        label.getStyleClass().add("sub_title");
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -77,75 +74,75 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         anchorPane.setPrefWidth(530.0);
 
         btn_Game_one.setLayoutX(45.0);
-        btn_Game_one.setLayoutY(38.0);
+        btn_Game_one.setLayoutY(45.0);
         btn_Game_one.setMnemonicParsing(false);
         btn_Game_one.setOnAction(this::isGameOne);
-        btn_Game_one.setPrefHeight(99.0);
+        btn_Game_one.setPrefHeight(92.0);
         btn_Game_one.setPrefWidth(125.0);
         btn_Game_one.getStyleClass().add("game_button");
 
-        btn_Game_four.setLayoutX(42.0);
-        btn_Game_four.setLayoutY(164.0);
+        btn_Game_four.setLayoutX(45.0);
+        btn_Game_four.setLayoutY(153.0);
         btn_Game_four.setMnemonicParsing(false);
         btn_Game_four.setOnAction(this::isGameFour);
-        btn_Game_four.setPrefHeight(85.0);
+        btn_Game_four.setPrefHeight(92.0);
         btn_Game_four.setPrefWidth(125.0);
         btn_Game_four.getStyleClass().add("game_button");
 
         btn_Game_seven.setLayoutX(45.0);
-        btn_Game_seven.setLayoutY(268.0);
+        btn_Game_seven.setLayoutY(259.0);
         btn_Game_seven.setMnemonicParsing(false);
         btn_Game_seven.setOnAction(this::isGameSeven);
-        btn_Game_seven.setPrefHeight(85.0);
+        btn_Game_seven.setPrefHeight(92.0);
         btn_Game_seven.setPrefWidth(125.0);
         btn_Game_seven.getStyleClass().add("game_button");
 
-        btn_Game_two.setLayoutX(192.0);
-        btn_Game_two.setLayoutY(42.0);
+        btn_Game_two.setLayoutX(203.0);
+        btn_Game_two.setLayoutY(45.0);
         btn_Game_two.setMnemonicParsing(false);
         btn_Game_two.setOnAction(this::isGameTwo);
         btn_Game_two.setPrefHeight(92.0);
         btn_Game_two.setPrefWidth(125.0);
         btn_Game_two.getStyleClass().add("game_button");
 
-        btn_Game_three.setLayoutX(349.0);
-        btn_Game_three.setLayoutY(44.0);
+        btn_Game_three.setLayoutX(357.0);
+        btn_Game_three.setLayoutY(45.0);
         btn_Game_three.setMnemonicParsing(false);
         btn_Game_three.setOnAction(this::isGameThree);
         btn_Game_three.setPrefHeight(92.0);
-        btn_Game_three.setPrefWidth(151.0);
+        btn_Game_three.setPrefWidth(125.0);
         btn_Game_three.getStyleClass().add("game_button");
 
-        btn_Game_five.setLayoutX(192.0);
-        btn_Game_five.setLayoutY(164.0);
+        btn_Game_five.setLayoutX(203.0);
+        btn_Game_five.setLayoutY(153.0);
         btn_Game_five.setMnemonicParsing(false);
         btn_Game_five.setOnAction(this::isGameFive);
-        btn_Game_five.setPrefHeight(85.0);
-        btn_Game_five.setPrefWidth(133.0);
+        btn_Game_five.setPrefHeight(92.0);
+        btn_Game_five.setPrefWidth(125.0);
         btn_Game_five.getStyleClass().add("game_button");
 
         btn_Game_six.setLayoutX(357.0);
-        btn_Game_six.setLayoutY(164.0);
+        btn_Game_six.setLayoutY(153.0);
         btn_Game_six.setMnemonicParsing(false);
         btn_Game_six.setOnAction(this::isGameSix);
-        btn_Game_six.setPrefHeight(85.0);
-        btn_Game_six.setPrefWidth(143.0);
+        btn_Game_six.setPrefHeight(92.0);
+        btn_Game_six.setPrefWidth(125.0);
         btn_Game_six.getStyleClass().add("game_button");
 
-        btn_Game_eight.setLayoutX(183.0);
-        btn_Game_eight.setLayoutY(272.0);
+        btn_Game_eight.setLayoutX(203.0);
+        btn_Game_eight.setLayoutY(259.0);
         btn_Game_eight.setMnemonicParsing(false);
         btn_Game_eight.setOnAction(this::isGameEight);
-        btn_Game_eight.setPrefHeight(78.0);
-        btn_Game_eight.setPrefWidth(151.0);
+        btn_Game_eight.setPrefHeight(92.0);
+        btn_Game_eight.setPrefWidth(125.0);
         btn_Game_eight.getStyleClass().add("game_button");
 
         btn_Game_nine.setLayoutX(357.0);
-        btn_Game_nine.setLayoutY(272.0);
+        btn_Game_nine.setLayoutY(259.0);
         btn_Game_nine.setMnemonicParsing(false);
         btn_Game_nine.setOnAction(this::isGameNine);
-        btn_Game_nine.setPrefHeight(78.0);
-        btn_Game_nine.setPrefWidth(143.0);
+        btn_Game_nine.setPrefHeight(92.0);
+        btn_Game_nine.setPrefWidth(125.0);
         btn_Game_nine.getStyleClass().add("game_button");
 
         button.setLayoutX(-25.0);
@@ -170,15 +167,16 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
-        video_btn.setLayoutX(699.0);
-        video_btn.setLayoutY(411.0);
+        video_btn.setLayoutX(662.0);
+        video_btn.setLayoutY(417.0);
         video_btn.setMnemonicParsing(false);
         video_btn.setOnAction(this::isVideo);
         video_btn.setText("Video");
 
+        
+
         getChildren().add(imageView);
         getChildren().add(label);
-        getChildren().add(label0);
         anchorPane.getChildren().add(btn_Game_one);
         anchorPane.getChildren().add(btn_Game_four);
         anchorPane.getChildren().add(btn_Game_seven);
@@ -193,6 +191,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         getChildren().add(label_player1);
         getChildren().add(label_player2);
         getChildren().add(video_btn);
+        getChildren().add(rectangle);
 
     }
 
