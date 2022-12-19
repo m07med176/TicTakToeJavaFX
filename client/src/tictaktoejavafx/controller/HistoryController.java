@@ -21,7 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import tictaktoejavafx.data.db.JsonData;
+import tictaktoejavafx.data.db.JsonDataBasedSystem;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
@@ -35,7 +35,7 @@ public class HistoryController extends HistoryScreenBase {
 
     public HistoryController(Stage stage) {
         this.stage = stage;
-        playersList = JsonData.getPlayerModleList();
+        playersList = JsonDataBasedSystem.getPlayerModleList();
 
         //gameNumberCulme.setCellValueFactory(new PropertyValueFactory<Game,Integer>(i));
         colum_date.setCellValueFactory(new PropertyValueFactory<PlayerModel, String>("dateGame"));
