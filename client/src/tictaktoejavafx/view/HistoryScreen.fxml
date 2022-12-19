@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="back_button" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBack" text="Button" />
+      <Label layoutX="87.0" layoutY="250.0" text="Label" />
+      <ScrollPane layoutX="225.0" layoutY="38.0" prefHeight="359.0" prefWidth="371.0">
+         <content>
+            <TableView fx:id="table_history_data" onSort="#isTableData" prefHeight="354.0" prefWidth="367.0">
+              <columns>
+                <TableColumn fx:id="colum_date" prefWidth="135.0" text="date" />
+                <TableColumn fx:id="colum_Xname" prefWidth="69.0" text=" XName" />
+                  <TableColumn fx:id="colum_Oname" text="OName" />
+                  <TableColumn fx:id="colum_winner" prefWidth="82.0" text="Winner" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

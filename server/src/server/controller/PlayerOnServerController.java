@@ -1,5 +1,6 @@
 package server.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -7,17 +8,21 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import server.data.db.DatabaseAccessLayer;
 import server.data.model.Player;
 import server.data.server.ServerManager;
+import server.utils.AlertAction;
+import server.utils.UserMessage;
 import server.view.PlayerOnServerBase;
 
 public class PlayerOnServerController extends PlayerOnServerBase {
 
     private Stage stage;
-        ArrayList<Player> arrayListPlayer = new ArrayList();
+    private Boolean flag=false;
+    private ArrayList<Player> arrayListPlayer = new ArrayList();
 
     public PlayerOnServerController(Stage stage) {
         this.stage = stage;
@@ -30,20 +35,26 @@ public class PlayerOnServerController extends PlayerOnServerBase {
         }
        
     }
- Boolean flag=false; 
+  
     @Override
     protected void runServer(ActionEvent actionEvent) {
+         try {
               ServerManager server = ServerManager.getInstance();
               flag=!flag;
-              
-              if(flag){
-                   System.out.println("Server is OFF index:1");
-                   btnOnOff.setText("OFF");
-                   server.start();   
-              }else{
+              if(flag){   
                    btnOnOff.setText("ON");
-                   server.stop();
-              }      
+                   server.start();
+              }else{
+                   btnOnOff.setText("OFF");
+                   server.close();
+                    
+              }
+         } catch (IOException ex) {
+              new UserMessage().display("Problm Happend to Socket Server\n"+ex.getMessage(), null, Alert.AlertType.INFORMATION);
+         } catch (SQLException ex) {
+              new UserMessage().display("Problm Happend to Database Server\n"+ex.getMessage(), null, Alert.AlertType.INFORMATION);
+         }
+              
     }
     
   public  void displayPlayerInTable( ArrayList<Player> model){

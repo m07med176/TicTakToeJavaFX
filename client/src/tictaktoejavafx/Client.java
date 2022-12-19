@@ -23,10 +23,10 @@ public class Client extends Application {
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         PathManager.getPath();
         Navigator.navigate(Navigator.SPLACH, stage);
+       // new HistoryJson(new PlayerModel());
+        
         // TODO set fixed size in all pages 
         // TODO make size resizable
-
-        //new ServerConnection();
     }
 
     public static void main(String[] args) {

@@ -41,7 +41,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     @Override
     protected void onPlayAgainClicked(ActionEvent actionEvent) {
-        Navigator.back(stage);
+        Navigator.navigate(Navigator.RECORD, stage);
     }
 
     @Override

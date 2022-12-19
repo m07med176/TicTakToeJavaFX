@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 
-
 public class SocketSession extends Thread {
 
     public static final String RREGISTER ="REGISTER";
@@ -91,5 +90,5 @@ String ownerSocket;
                 
        
     }
-    
+
 }

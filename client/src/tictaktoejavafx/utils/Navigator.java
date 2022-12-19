@@ -6,16 +6,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictaktoejavafx.Client;
 import tictaktoejavafx.controller.ChooseDiffucultyController;
-import tictaktoejavafx.controller.GameBoardController;
-import tictaktoejavafx.controller.GameBoardControllerHard;
-import tictaktoejavafx.controller.GameBoardControllerMiddle;
+import tictaktoejavafx.controller.GameBoardEasyController;
+import tictaktoejavafx.controller.GameBoardHardController;
+import tictaktoejavafx.controller.GameBoardMiddleController;
 import tictaktoejavafx.controller.LoginController;
 import tictaktoejavafx.controller.PlayerSelectionController;
 import tictaktoejavafx.controller.RegisterController;
 import tictaktoejavafx.controller.WelcomeController;
 import tictaktoejavafx.controller.WinnerAndLosserController;
 import tictaktoejavafx.controller.GameBoardMultiController;
+import tictaktoejavafx.controller.GameBoardRecordController;
+import tictaktoejavafx.controller.HistoryController;
 import tictaktoejavafx.controller.OnePlayerController;
+import tictaktoejavafx.controller.RecordTableController;
+import tictaktoejavafx.controller.SnakeGameController;
 import tictaktoejavafx.controller.SplashController;
 import tictaktoejavafx.controller.TwoPlayerController;
 
@@ -34,7 +38,10 @@ public class Navigator {
     public static final int PLAYER_NAME_TWO = 11;
     public static final int GAMEBOARDMIDDLE = 12;
     public static final int GAMEBOARDHARD =13;
-
+    public static final int RECORD =14;
+    public static final int TABLE_RECORD=15;
+    public static final int HISTORY=16;
+    public static final int SnakeGame=17;
 
     public static String playerOne;
     public static String playerTwo;
@@ -58,6 +65,34 @@ public class Navigator {
          }
    }
 
+       public static void navigate(final int destination,Stage stage,Object model){
+        Parent parent = null;
+        switch (destination) {
+            case RECORD:
+                parent = new GameBoardRecordController(stage,model);
+                break;
+
+            default:
+                parent = new WelcomeController(stage);
+
+        }
+        System.out.println(destination);
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(Client.CSS);
+
+        if (destination != WELCOME){
+            pages.add(scene);
+            pageIndex++;
+        }
+        else
+        {
+            pages.clear();
+            pageIndex=0;
+        }
+        
+        stage.setScene(scene);
+        stage.show();
+    }
     
     public static void navigate(final int destination,Stage stage){
         Parent parent = null;
@@ -71,7 +106,7 @@ public class Navigator {
                 break;
 
             case GAMEBOARD:
-               parent = new GameBoardController(stage);
+               parent = new GameBoardEasyController(stage);
 
                 break;
 
@@ -106,12 +141,25 @@ public class Navigator {
                 parent = new TwoPlayerController(stage);
                 break;
             case GAMEBOARDMIDDLE:
-                parent = new GameBoardControllerMiddle(stage);
+                parent = new GameBoardMiddleController(stage);
                 break;
             case GAMEBOARDHARD:
-                parent = new GameBoardControllerHard(stage);
+                parent = new GameBoardHardController(stage);
                 break;
-          
+
+        
+            case TABLE_RECORD:
+                parent=new RecordTableController(stage);
+                break;
+                
+            case HISTORY:
+                parent = new HistoryController(stage);
+                break;
+            
+            case SnakeGame:
+                parent=new SnakeGameController(stage);
+                break;
+
             default:
                 parent = new WelcomeController(stage);
 

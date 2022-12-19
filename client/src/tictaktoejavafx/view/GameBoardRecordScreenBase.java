@@ -7,11 +7,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import tictaktoejavafx.utils.Config;
 
-public abstract class GameBoardScreenBase extends AnchorPane {
+public abstract class GameBoardRecordScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
+    protected final Label date_id;
     protected final Label label;
-    protected final Label label0;
     protected final AnchorPane anchorPane;
     protected final Button btn_Game_one;
     protected final Button btn_Game_four;
@@ -25,13 +25,14 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Button button;
     protected final Label label_player1;
     protected final Label label_player2;
-    protected final Button video_btn;
+    protected final Label label0;
+    protected final Label type_id;
 
-    public GameBoardScreenBase() {
+    public GameBoardRecordScreenBase() {
 
         imageView = new ImageView();
+        date_id = new Label();
         label = new Label();
-        label0 = new Label();
         anchorPane = new AnchorPane();
         btn_Game_one = new Button();
         btn_Game_four = new Button();
@@ -45,7 +46,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button = new Button();
         label_player1 = new Label();
         label_player2 = new Label();
-        video_btn = new Button();
+        label0 = new Label();
+        type_id = new Label();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -60,16 +62,15 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setLayoutY(42.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
+        date_id.setLayoutX(320.0);
+        date_id.setLayoutY(21.0);
+        date_id.getStyleClass().add("title");
+        date_id.setText("Date");
 
-        label.setLayoutX(657.0);
-        label.setLayoutY(212.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
-
-        label0.setId("vs");
-        label0.setLayoutX(678.0);
-        label0.setLayoutY(309.0);
-        label0.setText("VS");
+        label.setId("vs");
+        label.setLayoutX(678.0);
+        label.setLayoutY(330.0);
+        label.setText("VS");
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -155,30 +156,34 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button.getStyleClass().add("back_button");
         button.setText("<");
 
-        label_player1.setLayoutX(660.0);
-        label_player1.setLayoutY(260.0);
+        label_player1.setLayoutX(659.0);
+        label_player1.setLayoutY(299.0);
         label_player1.setPrefHeight(31.0);
         label_player1.setPrefWidth(74.0);
         label_player1.getStyleClass().add("sub_title");
         label_player1.setText("player1");
         label_player1.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
 
-        label_player2.setLayoutX(660.0);
-        label_player2.setLayoutY(337.0);
+        label_player2.setLayoutX(662.0);
+        label_player2.setLayoutY(351.0);
         label_player2.setPrefHeight(31.0);
         label_player2.setPrefWidth(68.0);
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
-        video_btn.setLayoutX(699.0);
-        video_btn.setLayoutY(411.0);
-        video_btn.setMnemonicParsing(false);
-        video_btn.setOnAction(this::isVideo);
-        video_btn.setText("Video");
+        label0.setLayoutX(657.0);
+        label0.setLayoutY(207.0);
+        label0.getStyleClass().add("title");
+        label0.setText("Tic Tac Toe");
+
+        type_id.setLayoutX(671.0);
+        type_id.setLayoutY(243.0);
+        type_id.getStyleClass().add("title");
+        type_id.setText("Type");
 
         getChildren().add(imageView);
+        getChildren().add(date_id);
         getChildren().add(label);
-        getChildren().add(label0);
         anchorPane.getChildren().add(btn_Game_one);
         anchorPane.getChildren().add(btn_Game_four);
         anchorPane.getChildren().add(btn_Game_seven);
@@ -192,7 +197,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         getChildren().add(anchorPane);
         getChildren().add(label_player1);
         getChildren().add(label_player2);
-        getChildren().add(video_btn);
+        getChildren().add(label0);
+        getChildren().add(type_id);
 
     }
 
@@ -215,7 +221,5 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected abstract void isGameNine(javafx.event.ActionEvent actionEvent);
 
     protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isVideo(javafx.event.ActionEvent actionEvent);
 
 }
