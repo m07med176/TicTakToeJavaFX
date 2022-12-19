@@ -201,6 +201,8 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                         arrlistButtons.remove(button);
                         if (count % 2 == 0) {
                             button.setText("O");
+                           button.setStyle("-fx-text-fill: Red;");
+
                             check();
                         }
                     }

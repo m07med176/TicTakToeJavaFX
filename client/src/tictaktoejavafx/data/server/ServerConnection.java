@@ -173,14 +173,29 @@ public class ServerConnection {
 
      }
 
-     public static void closeThread() throws IOException {
-          dataInputStream.close();
-          socket.close();
-          thread.stop();
+   public static void closeThread() throws IOException {
+          if(dataInputStream!=null){
+          
+              dataInputStream.close();
+              dataInputStream=null;
+          }
+          if(socket!=null){
+              if(!socket.isClosed()){
+                  socket.close();
+                  socket=null;
+              }
+              
+          }
+          if(thread!=null){
+              if(thread.isAlive()){
+                  thread.stop();
+              }
+              
+          }
+          
           serverConnection = null;
 
      }
-
      public static void displayAlert(String Playerx) {
           Alert alert = new Alert(Alert.AlertType.WARNING);
 

@@ -39,38 +39,51 @@ public class GameBoardHardController extends GameBoardScreenBase {
         switch (move) {
             case 1:
                 computerMoveActionButton(btn_Game_one, game);
+                btn_Game_one.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 2:
                 computerMoveActionButton(btn_Game_two, game);
+               btn_Game_two.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 3:
                 computerMoveActionButton(btn_Game_three, game);
+                btn_Game_three.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 4:
                 computerMoveActionButton(btn_Game_four, game);
+                btn_Game_four.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 5:
                 computerMoveActionButton(btn_Game_five, game);
+                btn_Game_five.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 6:
                 computerMoveActionButton(btn_Game_six, game);
+                btn_Game_two.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 7:
                 computerMoveActionButton(btn_Game_seven, game);
+                btn_Game_seven.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 8:
                 computerMoveActionButton(btn_Game_eight, game);
+                btn_Game_eight.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 9:
                 computerMoveActionButton(btn_Game_nine, game);
+                btn_Game_nine.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
         }
@@ -140,7 +153,9 @@ playerGame(btn_Game_nine,9);
             System.out.println("YES");
             button.setDisable(true);
             button.setText("X");
+
             ComputerMove(-1, 0);
+
             if ((GO = toeAIHard.isGameOver()) != 0) {
                 if (GO == 1) {
                     PlayerName.setPlayerName(PLAYER1);
@@ -154,7 +169,7 @@ playerGame(btn_Game_nine,9);
 
                 } else {
                     System.out.println(GO);
-                      playVideo();
+                                        playVideo();
 
                 }
             }
