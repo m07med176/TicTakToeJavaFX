@@ -40,11 +40,13 @@ public class PlayerOnServerController extends PlayerOnServerBase {
     protected void runServer(ActionEvent actionEvent) {
          try {
               ServerManager server = ServerManager.getInstance();
-              flag=!flag;
-              if(flag){   
+             
+              if(flag== false){   
                    btnOnOff.setText("ON");
+                   flag=true;
                    server.start();
               }else{
+                  flag=false;
                    btnOnOff.setText("OFF");
                    server.close();
                     

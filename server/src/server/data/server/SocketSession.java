@@ -62,6 +62,44 @@ String ownerSocket;
                        sendMessageToAll(str,playerO);
                    }
                }
+
+          }
+     }
+
+     private /*synchronized*/ void requestNavigator(String response) {
+          if (response != null && !response.isEmpty()) {
+               String[] data = response.split(",");
+               switch (data[0]) {
+                    case ServerCall.LOGIN_SEND:
+                         //UID = networkOperations.login(data, printStream);
+                        UID=data[1];
+                         break;
+
+                    case ServerCall.RREGISTER_SEND:
+                         UID = networkOperations.register(data, printStream);
+                         break;
+
+                    case ServerCall.PLAYER_LIST_SEND:
+                         System.out.println("Indecx palyers send");
+                         networkOperations.onlinePlayers(data, printStream);
+                         break;
+
+                    case ServerCall.MOVEMENT_SEND:
+                         networkOperations.move(data, UID);
+                         break;
+// send from ahmed to Hussin 
+                    case ServerCall.IVETATION_SEND:
+                         networkOperations.invetation(data, UID);
+                         break;
+
+                    case ServerCall.CONFIRMATION_SEND:
+                         networkOperations.confirm(data, UID);
+                         break;
+
+               }
+          }
+     }
+
                 }
             catch (IOException ex) {
                ex.printStackTrace();                    
