@@ -110,6 +110,7 @@ public class Navigator {
                 parent = new LoginController(stage,model);
                 break;
             case REGISTER:
+                System.out.println("Choose Register");
                 parent = new RegisterController(stage,model);
                 break;  
             case RECORD:
@@ -147,7 +148,6 @@ public class Navigator {
 
             case GAMEBOARD:
                 parent = new GameBoardEasyController(stage);
-
                 break;
 
             case PLAYER_SELECTION:

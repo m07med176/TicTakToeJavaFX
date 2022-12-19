@@ -32,7 +32,7 @@ public class WelcomeController extends WelcomeScreenBase {
         PromptSocketAccessDialog.display(new AlertAction() {
             @Override
             public void sendOk() {
-                SocketConfigModel data = new SocketConfigModel("",5);
+                SocketConfigModel data = new SocketConfigModel("127.0.0.1",5005);
                 Navigator.navigate(Navigator.LOGIN, stage,data);
             }
             @Override

@@ -1,9 +1,14 @@
 package tictaktoejavafx.controller;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.model.SocketConfigModel;
 import tictaktoejavafx.data.server.ServerCall;
+import tictaktoejavafx.data.server.ServerConnection;
+import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.RegisterScreenBase;
 
@@ -12,6 +17,7 @@ public class RegisterController extends RegisterScreenBase {
     private SocketConfigModel socketModel;
     public RegisterController(Stage stage,Object object) {
         socketModel = (SocketConfigModel) object;
+        System.out.println("Choose Register Socket Config "+socketModel.getIp()+"  "+socketModel.getIp());
         this.stage = stage;
     }
 
@@ -25,17 +31,27 @@ public class RegisterController extends RegisterScreenBase {
 
         // check Validation
         if (validateRegister(userName, password, email, repeatPassword)) {
-            Navigator.navigate(Navigator.GAMEBOARD, stage);
+           // Navigator.navigate(Navigator.GAMEBOARD, stage);
 
             String registerData = ServerCall.RREGISTER_SEND+ServerCall.DELIMETER + userName + ServerCall.DELIMETER + email + ServerCall.DELIMETER + password;
-            
-            /*
-            if (registration(userName,password,email,repeatPassword))
-            {
-             // TODO send User Model in registration function in dataAccess layer
-             // Sned Success Message if true then navigate or send Error Message
+            System.out.println("Register Data "+registerData);
+            try {
+                ServerConnection.getInstance(stage, socketModel.getIp(), socketModel.getPort(), new ExceptionCallBack() { 
+                    @Override
+                    public void serverException(IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                
+                
+                System.out.println(registerData);
+                ServerConnection.sendMessage(registerData);
+                ServerConnection.readThread();
+                
+            } catch (IOException ex) {
+                    ex.printStackTrace();
             }
-             */
+            
         }
     }
 

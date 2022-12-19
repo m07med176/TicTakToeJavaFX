@@ -3,14 +3,12 @@ package tictaktoejavafx.controller;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.model.SocketConfigModel;
 import tictaktoejavafx.data.server.ServerCall;
-
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
@@ -105,7 +103,7 @@ public class LoginController extends LoginScreenBase {
 
     @Override
     protected void CreateAccount(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.REGISTER, stage);
+        Navigator.navigate(Navigator.REGISTER, stage,socketModel);
     }
 
 }

@@ -13,9 +13,12 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.UserMessage;
 
 public class ServerConnection {
 
@@ -34,6 +37,7 @@ public class ServerConnection {
     private ServerConnection(Stage stage, String ip, int port, ExceptionCallBack exceptionCallBack) throws IOException {
         this.exceptionCallBack = exceptionCallBack;
         this.stage = stage;
+        System.out.println("IP is: "+ip+" and port is: "+port);
         socket = new Socket(ip, port);
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
@@ -151,6 +155,22 @@ public class ServerConnection {
                     });
                     System.out.println("we set " + Navigator.getBoardMove() + " " + Navigator.getButtonNumber());
                     break;
+                    
+                case ServerCall.RREGISTER_RECEIVE:
+                    Platform.runLater(() -> {
+                        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+                            @Override
+                            public void sendOk() {
+                                Navigator.navigate(Navigator.WELCOME, stage);
+                            }
+                            
+                            @Override
+                            public void sendCancel() {
+                                // Do Nothing
+                            }
+                        }, Alert.AlertType.CONFIRMATION);
+            });
+                       
                 default:
                     break;
 
