@@ -1,7 +1,6 @@
 package tictaktoejavafx;
 
 import java.io.DataInputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import tictaktoejavafx.utils.PathManager;
@@ -24,28 +23,6 @@ public class Client extends Application {
         Navigator.navigate(Navigator.SPLACH, stage);
         // TODO set fixed size in all pages 
         // TODO make size resizable
-        
-        
-//        try {
-//            socket = new Socket("127.0.0.1",5006);
-//            dataInputStream = new DataInputStream(socket.getInputStream());
-//            printStream = new PrintStream(socket.getOutputStream());
-//            printStream.println("Client: Can here you");
-//            String msg  = dataInputStream.readLine();
-//            System.out.println(msg);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        finally {
-//
-//            try {
-//                socket.close();
-//                printStream.close();
-//                dataInputStream.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     public static void main(String[] args) {

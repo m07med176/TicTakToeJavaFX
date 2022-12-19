@@ -19,7 +19,19 @@ public class UserMessage extends Alert {
                 action.sendCancel();
             }
         });
-
+    }
+    
+    public void alert(String alertMessage,AlertAction action) {
+        setAlertType(AlertType.ERROR);
+        setContentText("We Are In Trouble "+"\n"+alertMessage);
+        showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK || response == ButtonType.APPLY || response == ButtonType.NEXT || response == ButtonType.NEXT) {
+               action.sendOk();
+            }
+            if(response == ButtonType.CANCEL || response == ButtonType.CLOSE  || response == ButtonType.NO || response == ButtonType.PREVIOUS || response == ButtonType.FINISH){
+                action.sendCancel();
+            }
+        });
     }
     
 }
