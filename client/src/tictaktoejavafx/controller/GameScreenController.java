@@ -8,8 +8,8 @@ package tictaktoejavafx.controller;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.utils.Navigator;
-import static tictaktoejavafx.utils.Navigator.SnakeGame;
 import tictaktoejavafx.view.ChooseGameScreenBase;
+import static tictaktoejavafx.utils.Navigator.SNAKEGAME;
 
 /**
  *
@@ -31,7 +31,7 @@ public class GameScreenController extends ChooseGameScreenBase {
 
     @Override
     protected void isSnake(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.SnakeGame, stage);
+        Navigator.navigate(Navigator.SNAKEGAME, stage);
 
     }
 

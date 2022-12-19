@@ -4,6 +4,8 @@ import java.io.PrintStream;
 
 public interface ServerCall{
      
+     public static final String DELIMETER = ",";
+     
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
      

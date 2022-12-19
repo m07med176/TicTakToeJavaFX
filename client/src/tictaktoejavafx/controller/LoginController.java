@@ -3,13 +3,12 @@ package tictaktoejavafx.controller;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import tictaktoejavafx.data.model.SocketConfigModel;
 import tictaktoejavafx.data.server.ServerCall;
-
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
@@ -18,7 +17,9 @@ import tictaktoejavafx.view.LoginScreenBase;
 
 public class LoginController extends LoginScreenBase {
     private Stage stage;
-    public LoginController(Stage stage) {
+    private final SocketConfigModel socketModel;
+    public LoginController(Stage stage,Object object) {
+        socketModel = (SocketConfigModel) object;
         this.stage = stage;
     }
 
@@ -31,7 +32,7 @@ public class LoginController extends LoginScreenBase {
         if(loginValidation(userName,passwordUser)){
              try {
                 Navigator.setPlayerOne(userName);
-                ServerConnection.createInstance(stage, (IOException ex) -> {
+                ServerConnection.getInstance(stage,socketModel.getIp(),socketModel.getPort(), (IOException ex) -> {
                     new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new AlertAction(){
                         @Override
                         public void sendOk() {
@@ -44,7 +45,7 @@ public class LoginController extends LoginScreenBase {
                         }
                     },Alert.AlertType.ERROR);
                 });
-                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+","+userName,stage);
+                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+ServerCall.DELIMETER+userName);
                 ServerConnection.readThread();
                 this.stage.setOnCloseRequest((WindowEvent event) -> {
                     try {
@@ -99,24 +100,10 @@ public class LoginController extends LoginScreenBase {
         return retVal;
     }
     
-//    private boolean validate(){
-//        StringBuilder errorText=new StringBuilder();
-//        if(user_name.getText().isEmpty()){
-//            errorText.append("User Name is required");
-//            user_name.setBackground();
-//        }
-//        if(password.getText().isEmpty()){
-////            errorText.append("Password is required");
-////            password.setBackground();
-//                RequiredFieldValidator re = new RequiredFieldValidator();
-//        }
-//        return errorText.length()==0;
-//        
-//    }
 
     @Override
     protected void CreateAccount(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.REGISTER, stage);
+        Navigator.navigate(Navigator.REGISTER, stage,socketModel);
     }
 
 }

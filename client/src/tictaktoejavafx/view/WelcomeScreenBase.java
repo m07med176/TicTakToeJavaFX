@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import tictaktoejavafx.utils.Config;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
 
@@ -27,21 +28,20 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         isRecord = new Button();
         btn_History_Mode = new Button();
 
-
         setId("AnchorPane");
         setPrefHeight(575.0);
-        setPrefWidth(645.0);
+        setPrefWidth(466.0);
 
-        label.setLayoutX(105.0);
+        label.setLayoutX(58.0);
         label.setLayoutY(34.0);
         label.setPrefHeight(45.0);
         label.setPrefWidth(350.0);
         label.getStyleClass().add("title");
-        label.setText("welcome in Tic Tac Toe");
+        label.setText("Welcome in Tic Tac Toe");
         label.setFont(new Font("System Bold", 30.0));
 
-        btn_single.setLayoutX(188.0);
-        btn_single.setLayoutY(269.0);
+        btn_single.setLayoutX(126.0);
+        btn_single.setLayoutY(270.0);
         btn_single.setMnemonicParsing(false);
         btn_single.setOnAction(this::isSingle);
         btn_single.setPrefHeight(45.0);
@@ -51,7 +51,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
 
-        btn_two.setLayoutX(188.0);
+        btn_two.setLayoutX(126.0);
         btn_two.setLayoutY(328.0);
         btn_two.setMnemonicParsing(false);
         btn_two.setOnAction(this::isTwo);
@@ -62,7 +62,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_two.setFont(new Font(22.0));
 
-        btn_online_mode.setLayoutX(188.0);
+        btn_online_mode.setLayoutX(126.0);
         btn_online_mode.setLayoutY(388.0);
         btn_online_mode.setMnemonicParsing(false);
         btn_online_mode.setOnAction(this::isOnlineMode);
@@ -73,23 +73,23 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_online_mode.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_online_mode.setFont(new Font(22.0));
 
-        imageView.setFitHeight(165.0);
-        imageView.setFitWidth(176.0);
-        imageView.setLayoutX(199.0);
-        imageView.setLayoutY(79.0);
+        imageView.setFitHeight(150.0);
+        imageView.setFitWidth(150.0);
+        imageView.setLayoutX(145.0);
+        imageView.setLayoutY(100.0);
         imageView.getStyleClass().add("logo");
-//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(Config.LOGO));
 
-
-        isRecord.setLayoutX(185.0);
-        isRecord.setLayoutY(518.0);
+        isRecord.setLayoutX(126.0);
+        isRecord.setLayoutY(513.0);
         isRecord.setMnemonicParsing(false);
         isRecord.setOnAction(this::isRecorded);
         isRecord.setPrefHeight(48.0);
         isRecord.setPrefWidth(214.0);
         isRecord.setText("Record Mode");
-        isRecord.setFont(new Font(22.0));
-        btn_History_Mode.setLayoutX(190.0);
+        isRecord.getStyleClass().add("main_button");
+
+        btn_History_Mode.setLayoutX(126.0);
         btn_History_Mode.setLayoutY(449.0);
         btn_History_Mode.setMnemonicParsing(false);
         btn_History_Mode.setOnAction(this::isHistoryMode);
@@ -97,7 +97,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_History_Mode.setPrefWidth(214.0);
         btn_History_Mode.setText("History Mode");
         btn_History_Mode.setFont(new Font(22.0));
-
+        btn_History_Mode.getStyleClass().add("main_button");
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);
@@ -111,8 +111,11 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected abstract void isSingle(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isTwo(javafx.event.ActionEvent actionEvent);
+
     protected abstract void isOnlineMode(javafx.event.ActionEvent actionEvent);
+
     protected abstract void isRecorded(javafx.event.ActionEvent actionEvent);
+
     protected abstract void isHistoryMode(javafx.event.ActionEvent actionEvent);
 
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -16,7 +15,6 @@ import tictaktoejavafx.data.model.PlayerOnline;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.AlertAction;
-import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.PlayerSelectionScreenBase;
@@ -45,22 +43,15 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
             public void handle(MouseEvent event) {
                 //------------------------------------
                 Navigator.setPlayerTwo("Hussin"); //-------------------------------------
-                /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
-                @Override
-                public void sendOk() {
-                Navigator.navigate(Navigator.GAMEBOARD, stage);
-                System.out.println("sdkljfl");
-                }
-                @Override
-                public void sendCancel() {
-                // Do Nothing
-                }
-                }, Alert.AlertType.CONFIRMATION);*/
                 Navigator.setStartGame(true);
-                //ServerConnection serverConnectionObj = ServerConnection.createInstance(stage);
-                //serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
-                //serverConnectionObj.readThread();
-                ServerConnection.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin", stage);
+                try {
+                    //ServerConnection serverConnectionObj = ServerConnection.getInstance(stage);
+                    //serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
+                    //serverConnectionObj.readThread();
+                    ServerConnection.sendMessage(ServerCall.IVETATION_SEND + ServerCall.DELIMETER  + "Hussin");
+                } catch (IOException ex) {
+                    Logger.getLogger(PlayerSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 System.out.println("hiiiiiiiiiiiiiii");
 
             }
@@ -84,8 +75,20 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
           },Alert.AlertType.ERROR);
                 }
             }
-        });
-    
-            }
+        });  
+    }
 }
+
+
+                /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
+                @Override
+                public void sendOk() {
+                Navigator.navigate(Navigator.GAMEBOARD, stage);
+                System.out.println("sdkljfl");
+                }
+                @Override
+                public void sendCancel() {
+                // Do Nothing
+                }
+                }, Alert.AlertType.CONFIRMATION);*/
                 

@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Vector;
+import javafx.application.Platform;
 import server.utils.Config;
 import server.utils.ExceptionCallBack;
 
@@ -21,6 +22,7 @@ public class ServerManager extends Thread {
           sessionHolder =  new Vector<SocketSession>();
           serverSocket = new ServerSocket(Config.SOCKET_PORT);
           networkOperations = new NetworkAccessLayer();
+       
      }
 
      public static ServerManager getInstance(ExceptionCallBack exceptionCallBack) throws IOException, SQLException {
@@ -32,7 +34,7 @@ public class ServerManager extends Thread {
 
      public void close(){
           closeSessions();
-          stop();
+          this.stop();
      }
      public void closeSessions() {
           sessionHolder.forEach((session) -> {

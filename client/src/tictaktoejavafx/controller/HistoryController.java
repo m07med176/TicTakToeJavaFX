@@ -47,17 +47,7 @@ public class HistoryController extends HistoryScreenBase {
 
     @Override
     protected void isBack(ActionEvent actionEvent) {
-        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
-            @Override
-            public void sendOk() {
-                Navigator.navigate(Navigator.WELCOME, stage);
-            }
-
-            @Override
-            public void sendCancel() {
-                // Do Nothing
-            }
-        }, Alert.AlertType.CONFIRMATION);
+        Navigator.navigate(Navigator.WELCOME, stage);
     }
 
 }

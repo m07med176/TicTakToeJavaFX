@@ -49,29 +49,26 @@ public class GameBoardRecordController extends GameBoardRecordScreenBase {
         type_id.setText(model.getType());
         
         th = new Thread(() -> {
-            try {
-                String temp = "";
-                int index = 0;
-                for (int i = 0; i < recordData.size(); i++) {
-                    try {
-                        temp = recordData.get(i);
-                        index = Character.getNumericValue(temp.charAt(0));
-                        final int lIndex = Character.getNumericValue(temp.charAt(0));
-                        final char val = temp.charAt(1);
-                        Platform.runLater(() -> buttonAssin(lIndex, val));
-                        th.sleep(1500);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
+            String temp = "";
+            int index = 0;
+            for (int i = 0; i < recordData.size(); i++) {
+                try {
+                    System.out.println("arraylist "+recordData.size());
+                    temp = recordData.get(i);
+                    index = Character.getNumericValue(temp.charAt(0));
+                    final int lIndex = Character.getNumericValue(temp.charAt(0));
+                    final char val = temp.charAt(1);
+                    Platform.runLater(() -> buttonAssin(lIndex, val));
+                    th.sleep(1500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                th.sleep(2000);
-                Platform.runLater(() -> {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-                });
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GameBoardRecordController.class.getName()).log(Level.SEVERE, null, ex);
+
             }
+            //th.sleep(2000);
+            Platform.runLater(() -> {
+                Navigator.navigate(Navigator.WELCOME, stage);
+            });
         });
         th.start();
     }

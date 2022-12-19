@@ -7,11 +7,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="47.0" layoutY="14.0" prefHeight="43.0" prefWidth="68.0" styleClass="title" text="Winner is " />
-      <Label fx:id="user_win" layoutX="53.0" layoutY="71.0" styleClass="sub_title" text="user_name" />
-      <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="400.0" layoutX="204.0" layoutY="27.0" />
-      <Button layoutX="279.0" layoutY="450.0" mnemonicParsing="false" onAction="#onHomeButtonClicked" styleClass="main_button" text="Home" />
-      <Button layoutX="365.0" layoutY="450.0" mnemonicParsing="false" onAction="#onPlayAgainClicked" styleClass="main_button" text="Playe Again" />
-      <Button layoutX="467.0" layoutY="450.0" mnemonicParsing="false" onAction="#onResultsClicked" styleClass="main_button" text="Score Results" />
+      <Label layoutX="47.0" layoutY="14.0" prefHeight="43.0" prefWidth="158.0" styleClass="title" text="Winner is " />
+      <Label fx:id="user_win" layoutX="239.0" layoutY="27.0" styleClass="sub_title" text="user_name" />
+      <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="400.0" layoutX="183.0" layoutY="44.0" />
+      <Button layoutX="214.0" layoutY="450.0" mnemonicParsing="false" onAction="#onHomeButtonClicked" styleClass="main_button" text="Home" />
+      <Button layoutX="344.0" layoutY="450.0" mnemonicParsing="false" onAction="#onPlayAgainClicked" styleClass="main_button" text="Playe Again" />
+      <Button layoutX="503.0" layoutY="450.0" mnemonicParsing="false" onAction="#onResultsClicked" styleClass="main_button" text="Score Results" />
    </children>
 </AnchorPane>
