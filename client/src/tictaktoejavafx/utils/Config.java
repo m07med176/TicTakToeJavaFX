@@ -4,6 +4,7 @@ public class Config {
     public static final String LOGO = "tictaktoejavafx/assets/images/XOpicture.jpg";
     public static final String WINNER_VIDEO = "src/tictaktoejavafx/assets/winnerVideo.mp4";
     public static final String LOSSER_VIDEO = "src/tictaktoejavafx/assets/loserVideo.mp4";
+     public static final String DRAW_VIDEO = "src/tictaktoejavafx/assets/drawVideo.mp4";
     public static final String CSS = "assets/style.css";
     
     public static final String ENVLOP = "tictaktoejavafx/assets/images/envlop.png";

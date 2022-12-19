@@ -23,7 +23,7 @@ import tictaktoejavafx.view.WinnerAndlosserScreenBase;
 public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     private final Stage stage;
-
+ MediaPlayer mediaPlayer;
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
         user_win.setText(PlayerName.getPlayerName());
@@ -36,6 +36,9 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
             String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
             mediaVideo(videoPath);
             
+        }else{
+          String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
+            mediaVideo(videoPath);
         }
         this.stage.setOnCloseRequest((WindowEvent event) -> {
             try {
@@ -57,26 +60,30 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
     }
 
     void mediaVideo(String videoPlayPath) {
-        Media media = new Media(videoPlayPath);
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaView.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
-
+         Media media = new Media(videoPlayPath);
+         mediaPlayer = new MediaPlayer(media);
+         mediaView.setMediaPlayer(mediaPlayer);
+         mediaPlayer.play(); 
     }
 
     @Override
     protected void onHomeButtonClicked(ActionEvent actionEvent) {
-        this.stage.close();
+  mediaPlayer.stop();
+ 
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
     @Override
     protected void onPlayAgainClicked(ActionEvent actionEvent) {
+          mediaPlayer.stop();
+
         Navigator.navigate(Navigator.RECORD, stage);
     }
 
     @Override
     protected void onResultsClicked(ActionEvent actionEvent) {
+          mediaPlayer.stop();
+
         System.out.println("On Result Clicked");
 
     }

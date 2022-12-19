@@ -80,54 +80,55 @@ public class GameBoardHardController extends GameBoardScreenBase {
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_one, "1");
-
+playerGame(btn_Game_one,1);
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_two, "2");
-
+playerGame(btn_Game_two,2);
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_three, "3");
-
+playerGame(btn_Game_three,3);
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_four, "4");
+    playerGame(btn_Game_four,4);
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_five, "5");
-
+playerGame(btn_Game_five,5);
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_six, "6");
-
+playerGame(btn_Game_six,6);
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_seven, "7");
-
+playerGame(btn_Game_seven,7);
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_eight, "8");
-
+playerGame(btn_Game_eight,8);
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_nine, "9");
-
+playerGame(btn_Game_nine,9);
     }
 
     //-----------------------------------------
@@ -153,6 +154,8 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                 } else {
                     System.out.println(GO);
+                      playVideo();
+
                 }
             }
         }
