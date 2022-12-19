@@ -22,6 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
@@ -39,14 +40,15 @@ public class ServerConnection {
     private static Stage stage;
     private static int i=0;
     public static ArrayList<String> diagonals=new ArrayList<>();
-    private ServerConnection() throws IOException {
-
+    private static ExceptionCallBack exceptionCallBack;
+    private ServerConnection(ExceptionCallBack exceptionCallBack) throws IOException {
+        this.exceptionCallBack=exceptionCallBack;
         startSocket();
     }
 
-    public static ServerConnection createInstance(Stage s) throws IOException {
+    public static ServerConnection createInstance(Stage s,ExceptionCallBack exceptionCallBack) throws IOException {
         if (serverConnection == null) {
-            serverConnection = new ServerConnection();
+            serverConnection = new ServerConnection(exceptionCallBack);
         }
         stage = s;
         return serverConnection;
@@ -69,11 +71,12 @@ public class ServerConnection {
         }
     }
 
-    public synchronized static void readThread() {
+    public synchronized static void readThread() throws IOException{
         System.out.println("byeeeeeeeeeeee");
         if(thread ==null){
             thread = new Thread(() -> {
             while (true) {
+                
                 
                 try {
                     dataInputStream = new DataInputStream(socket.getInputStream());
@@ -85,9 +88,10 @@ public class ServerConnection {
                         System.out.println(str);
                         getMessage(str);
                     }
-                } catch (IOException e) {
-                    System.out.println("Server cant get" + e);
+                } catch (IOException ex) {
+                    exceptionCallBack.serverException(ex);
                 }
+                
             }
         });
         thread.start();
@@ -98,7 +102,11 @@ public class ServerConnection {
         
     }
     public static void diagFill(){
-    
+        if(diagonals==null){
+            
+            diagonals=new ArrayList<>();
+        
+        }
         diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText()+GameBoardControllerOnline.arrlistButtons2.get(1).getText()
                 +GameBoardControllerOnline.arrlistButtons2.get(2).getText());
         diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(3).getText()+GameBoardControllerOnline.arrlistButtons2.get(4).getText()
@@ -151,7 +159,19 @@ public class ServerConnection {
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2])-1).setText(data[3]);
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2])-1).setDisable(true);
                         diagFill();
-                        LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                        if(!LocalMultiPlayer.getGameEnded()){
+                            LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                            LocalMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
+                            if(LocalMultiPlayer.getGameEnded()){
+                            
+                                GameBoardControllerOnline.arrlistButtons2=null;
+                                LocalMultiPlayer.setGameEnded(false);
+                                diagonals=null;
+                            
+                            }
+                        
+                        }
+                        
             });
                     System.out.println("we set "+Navigator.getBoardMove()+" "+Navigator.getButtonNumber());
                     break;

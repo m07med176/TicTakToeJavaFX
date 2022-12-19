@@ -65,7 +65,26 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
 
             }
         });
+            this.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                try {
+                    ServerConnection.closeThread();
+                } catch (IOException ex) {
+                     new UserMessage().display(ex.getMessage(), new AlertAction(){
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
 
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          },Alert.AlertType.ERROR);
+                }
+            }
+        });
     
             }
 }

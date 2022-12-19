@@ -4,10 +4,17 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
+import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.Config;
+import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;
 
 public class LoginController extends LoginScreenBase {
@@ -25,9 +32,38 @@ public class LoginController extends LoginScreenBase {
         if(loginValidation(userName,passwordUser)){
              try {
                 Navigator.setPlayerOne(userName);
-                ServerConnection.createInstance(stage);
+                ServerConnection.createInstance(stage, (IOException ex) -> {
+                    new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new AlertAction(){
+                        @Override
+                        public void sendOk() {
+                            Navigator.navigate(Navigator.WELCOME, stage);
+                        }
+                        
+                        @Override
+                        public void sendCancel() {
+                            // Do Nothing
+                        }
+                    },Alert.AlertType.ERROR);
+                });
                 ServerConnection.sendMessage(ServerCall.LOGIN_SEND+","+userName,stage);
                 ServerConnection.readThread();
+                this.stage.setOnCloseRequest((WindowEvent event) -> {
+                    try {
+                        ServerConnection.closeThread();
+                    } catch (IOException ex) {
+                        new UserMessage().display(ex.getMessage(), new AlertAction(){
+                            @Override
+                            public void sendOk() {
+                                Navigator.navigate(Navigator.WELCOME, stage);
+                            }
+                            
+                            @Override
+                            public void sendCancel() {
+                                // Do Nothing
+                            }
+                        },Alert.AlertType.ERROR);
+                    }
+                });
                 //serverConnectionObj.readThread();
             } catch (IOException ex) {
                 System.out.println("Server is Down");
