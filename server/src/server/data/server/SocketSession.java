@@ -1,15 +1,44 @@
 package server.data.server;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 
 public class SocketSession extends Thread {
 
-    public static final String RREGISTER ="REGISTER";
-    public static final String IVETATION = "IVETATION";
-    public static final String LOGIN = "LOGIN"; 
+
+     private final DataInputStream dataInputStream;
+     public DataOutputStream printStream;
+     public String UID;
+
+     private final NetworkAccessLayer networkOperations;
+     public static final String RREGISTER ="REGISTER";
+     public static final String IVETATION = "IVETATION";
+     public static final String LOGIN = "LOGIN"; 
+    
+     public SocketSession(Socket socket, NetworkAccessLayer networkOperations) throws IOException {
+     
+          this.networkOperations = networkOperations;
+          dataInputStream = new DataInputStream(socket.getInputStream());
+          printStream = new DataOutputStream(socket.getOutputStream());
+          start();
+     }
+
+     @Override
+     public void run() {
+          while (true) {
+               try {
+                    System.out.println("Indecx lkajsd");
+                    String response = dataInputStream.readUTF();
+                    System.out.println("Index  "+response);
+                    requestNavigator(response);
+               } catch (IOException ex) {
+                    ex.printStackTrace();
+
+   
     /*
     lOGIN,mohamem,,sdlgklsdf;gkdf;sgk
     */
@@ -92,7 +121,7 @@ String ownerSocket;
                          networkOperations.invetation(data, UID);
                          break;
 
-                    case ServerCall.CONFIRMATION_SEND:
+                    case "CONF_SEND":
                          networkOperations.confirm(data, UID);
                          break;
 

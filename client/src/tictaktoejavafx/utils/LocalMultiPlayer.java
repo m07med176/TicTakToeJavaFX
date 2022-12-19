@@ -17,7 +17,8 @@ public class LocalMultiPlayer {
         for(int i=0;i<d.size();i++){
         
             if(d.get(i).equals("XXX")){
-            
+
+                PlayerName.setPlayerName(Navigator.getPlayerOne());
                 PlayerName.setPlayerName("Player One");
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
@@ -25,6 +26,7 @@ public class LocalMultiPlayer {
             
             }else if(d.get(i).equals("OOO")){
             
+                PlayerName.setPlayerName(Navigator.getPlayerTwo());
                 PlayerName.setPlayerName("Player Two");
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
@@ -39,10 +41,16 @@ public class LocalMultiPlayer {
     
         if(numberOfPresses>=9&&gameEnded==false){
             PlayerName.setPlayerName("DRAW");
+            gameEnded=true;
             Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
             
         
         }
+    
+    
+    }
+    public static boolean getGameEnded(){
+        return gameEnded;
     
     }
 }

@@ -16,6 +16,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
+        user_win.setText(PlayerName.getPlayerName());
         String name = PlayerName.getPlayerName();
         if (name.equals("Player 1")) {
             String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();

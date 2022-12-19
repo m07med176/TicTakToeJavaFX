@@ -6,6 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictaktoejavafx.Client;
 import tictaktoejavafx.controller.ChooseDiffucultyController;
+import tictaktoejavafx.controller.GameBoardController;
+import tictaktoejavafx.controller.GameBoardControllerHard;
+import tictaktoejavafx.controller.GameBoardControllerMiddle;
+import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.controller.GameBoardEasyController;
 import tictaktoejavafx.controller.GameBoardHardController;
 import tictaktoejavafx.controller.GameBoardMiddleController;
@@ -38,13 +42,52 @@ public class Navigator {
     public static final int PLAYER_NAME_TWO = 11;
     public static final int GAMEBOARDMIDDLE = 12;
     public static final int GAMEBOARDHARD =13;
-    public static final int RECORD =14;
+    public static final int GAMEBOARDONLINE =14;
+    public static final int RECORD =18;
     public static final int TABLE_RECORD=15;
     public static final int HISTORY=16;
     public static final int SnakeGame=17;
-
     public static String playerOne;
     public static String playerTwo;
+    public static String buttonNumber;
+    public static String boardMove;
+    public static boolean startGame;
+    public static boolean setX=true;
+
+    public static boolean isSetX() {
+        return setX;
+    }
+
+    public static void setSetX(boolean setX) {
+        Navigator.setX = setX;
+    }
+    
+
+    
+
+    public static String getButtonNumber() {
+        return buttonNumber;
+    }
+
+    public static void setButtonNumber(String buttonNumber) {
+        Navigator.buttonNumber = buttonNumber;
+    }
+
+    public static String getBoardMove() {
+        return boardMove;
+    }
+
+    public static void setBoardMove(String boardMove) {
+        Navigator.boardMove = boardMove;
+    }
+
+    public static boolean isStartGame() {
+        return startGame;
+    }
+
+    public static void setStartGame(boolean startGame) {
+        Navigator.startGame = startGame;
+    }
     
     public static Vector<Scene> pages = new Vector();
     public static int pageIndex = 0;
@@ -151,6 +194,9 @@ public class Navigator {
             case TABLE_RECORD:
                 parent=new RecordTableController(stage);
                 break;
+            case GAMEBOARDONLINE:
+                parent = new GameBoardControllerOnline(stage);
+                break;
                 
             case HISTORY:
                 parent = new HistoryController(stage);
@@ -159,7 +205,6 @@ public class Navigator {
             case SnakeGame:
                 parent=new SnakeGameController(stage);
                 break;
-
             default:
                 parent = new WelcomeController(stage);
 
