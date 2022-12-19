@@ -1,4 +1,4 @@
-/*
+
 package tictaktoejavafx.data.server;
 
 import java.io.DataInputStream;
@@ -208,23 +208,8 @@ public class ServerConnection {
         }
 
 }
+}
 
-*/
 
- /*   if (!msg.isEmpty()) {
 
-            switch (msg) {
-                case "ACCEPT":
-                    System.out.println("Your Friend Accepted Invetation");
-                    Navigator.navigate(Navigator.GAMEBOARD, stage);
-                    break;
-                case "CANCLE":
-                    System.out.println("Your Friend Cancled Invetation");
-                    break;
-                default:
-                    System.out.println("Invalide Choice");
-                    break;
 
-            }
-        }
-*/
