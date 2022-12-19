@@ -67,7 +67,7 @@ public class NetworkAccessLayer implements ServerCall {
                   retVal = db.isPlayer(request[1], request[2]);
                   if(retVal!=null)
                       response.writeUTF(ServerCall.LOGIN_RECEIVER+","+ retVal);
-              } catch (IOException ex) {
+                }catch (IOException ex) {
                   Logger.getLogger(NetworkAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
               }
           }
@@ -77,9 +77,10 @@ public class NetworkAccessLayer implements ServerCall {
      @Override
      public String register(String[] request, DataOutputStream response) throws SQLException,IOException {
           String retVal = null;
-          if (request.length == 2) {
+          if (request.length == 4) {
                   response.writeUTF(ServerCall.RREGISTER_RECEIVE+","+"Register for Test purpose");
           }
+          System.out.println(ServerCall.RREGISTER_RECEIVE);
           return retVal;
      }
 
