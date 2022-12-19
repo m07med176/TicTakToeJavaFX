@@ -174,9 +174,25 @@ public class ServerConnection {
      }
 
      public static void closeThread() throws IOException {
-          dataInputStream.close();
-          socket.close();
-          thread.stop();
+          if(dataInputStream!=null){
+          
+              dataInputStream.close();
+              dataInputStream=null;
+          }
+          if(socket!=null){
+              if(!socket.isClosed()){
+                  socket.close();
+                  socket=null;
+              }
+              
+          }
+          if(thread!=null){
+              if(thread.isAlive()){
+                  thread.stop();
+              }
+              
+          }
+          
           serverConnection = null;
 
      }

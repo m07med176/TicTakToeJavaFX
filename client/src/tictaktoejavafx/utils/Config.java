@@ -1,7 +1,7 @@
 package tictaktoejavafx.utils;
 
 public class Config {
-    public static final String LOGO = "tictaktoejavafx/assets/images/XOpicture.jpg";
+    public static final String LOGO = "tictaktoejavafx/assets/images/imageTicTacToe.png";
     public static final String WINNER_VIDEO = "src/tictaktoejavafx/assets/winnerVideo.mp4";
     public static final String LOSSER_VIDEO = "src/tictaktoejavafx/assets/loserVideo.mp4";
     public static final String CSS = "assets/style.css";
@@ -14,6 +14,7 @@ public class Config {
     public static final String RECORD = "tictaktoejavafx/assets/images/record.png";
     public static final String VS = "tictaktoejavafx/assets/images/vs.png";
     public static final String IMAGETICTACTOE = "src/tictaktoejavafx/assets/images/imageTacToe.png";
+    public static final String RECORDIMG="src/tictaktoejavafx/assets/images/record.png";
     public static final String EXIT_MSG = "Do You Want TO Exit This Game?";
     public static final String INVATE_MSG = "Do You Want TO invate him?";
     

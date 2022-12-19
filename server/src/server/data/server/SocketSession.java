@@ -24,6 +24,7 @@ public class SocketSession extends Thread {
           dataInputStream = new DataInputStream(socket.getInputStream());
           printStream = new DataOutputStream(socket.getOutputStream());
           start();
+          
      }
 
      @Override
