@@ -1,7 +1,6 @@
 package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,7 +10,6 @@ import tictaktoejavafx.utils.Config;
 public abstract class OnePlayerBase extends AnchorPane {
 
     protected final ImageView imageView;
-    protected final Label label;
     protected final TextField player_name;
     protected final Button StartGame;
     protected final Button button;
@@ -19,7 +17,6 @@ public abstract class OnePlayerBase extends AnchorPane {
     public OnePlayerBase() {
 
         imageView = new ImageView();
-        label = new Label();
         player_name = new TextField();
         StartGame = new Button();
         button = new Button();
@@ -39,11 +36,6 @@ public abstract class OnePlayerBase extends AnchorPane {
         imageView.setPreserveRatio(true);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
-        
-        label.setLayoutX(326.0);
-        label.setLayoutY(217.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
 
         player_name.setLayoutX(251.0);
         player_name.setLayoutY(315.0);
@@ -67,7 +59,6 @@ public abstract class OnePlayerBase extends AnchorPane {
         button.setText("<");
 
         getChildren().add(imageView);
-        getChildren().add(label);
         getChildren().add(player_name);
         getChildren().add(StartGame);
         getChildren().add(button);
