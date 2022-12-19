@@ -30,6 +30,7 @@
       </AnchorPane>
       <Label fx:id="label_player1" layoutX="660.0" layoutY="260.0" prefHeight="31.0" prefWidth="74.0" styleClass="sub_title" text="player1" textAlignment="RIGHT" />
       <Label fx:id="label_player2" layoutX="660.0" layoutY="337.0" prefHeight="31.0" prefWidth="68.0" styleClass="sub_title" text="player2" />
-      <Button fx:id="video_btn" layoutX="645.0" layoutY="418.0" mnemonicParsing="false" onAction="#isVideo" prefHeight="38.0" prefWidth="81.0" text="Video" />
+      <ImageView fitHeight="47.0" fitWidth="98.0" layoutX="634.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="video_btn" layoutX="641.0" layoutY="423.0" mnemonicParsing="false" onAction="#isVideo" opacity="0.0" prefHeight="38.0" prefWidth="81.0" style="-fx-background-radius: 100;" />
    </children>
 </AnchorPane>

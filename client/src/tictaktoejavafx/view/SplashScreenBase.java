@@ -17,13 +17,13 @@ public abstract class SplashScreenBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(400.0);
-        setPrefWidth(600.0);
+        setPrefHeight(575.0);
+        setPrefWidth(466.0);
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(200.0);
-        imageView.setLayoutX(250.0);
-        imageView.setLayoutY(103.0);
+        imageView.setLayoutX(190.0);
+        imageView.setLayoutY(213.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.getStyleClass().add("logo");

@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
@@ -25,8 +24,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Button button;
     protected final Label label_player1;
     protected final Label label_player2;
+    protected final ImageView imageView0;
     protected final Button video_btn;
-    protected final Rectangle rectangle;
 
     public GameBoardScreenBase() {
 
@@ -45,8 +44,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button = new Button();
         label_player1 = new Label();
         label_player2 = new Label();
+        imageView0 = new ImageView();
         video_btn = new Button();
-        rectangle = new Rectangle();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -66,7 +65,6 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label.setLayoutX(678.0);
         label.setLayoutY(309.0);
         label.setText("VS");
-        label.getStyleClass().add("sub_title");
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -167,13 +165,21 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
-        video_btn.setLayoutX(662.0);
-        video_btn.setLayoutY(417.0);
+        imageView0.setFitHeight(47.0);
+        imageView0.setFitWidth(98.0);
+        imageView0.setLayoutX(634.0);
+        imageView0.setLayoutY(415.0);
+        imageView0.setPickOnBounds(true);
+        imageView0.setPreserveRatio(true);
+        imageView0.setImage(new Image(Config.RECORD));
+        video_btn.setLayoutX(641.0);
+        video_btn.setLayoutY(423.0);
         video_btn.setMnemonicParsing(false);
         video_btn.setOnAction(this::isVideo);
-        video_btn.setText("Video");
-
-        
+        video_btn.setOpacity(0.0);
+        video_btn.setPrefHeight(38.0);
+        video_btn.setPrefWidth(81.0);
+        video_btn.setStyle("-fx-background-radius: 100;");
 
         getChildren().add(imageView);
         getChildren().add(label);
@@ -190,8 +196,8 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         getChildren().add(anchorPane);
         getChildren().add(label_player1);
         getChildren().add(label_player2);
+        getChildren().add(imageView0);
         getChildren().add(video_btn);
-        getChildren().add(rectangle);
 
     }
 

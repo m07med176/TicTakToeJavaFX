@@ -50,29 +50,32 @@ public abstract class HistoryScreenBase extends AnchorPane {
         back_button.setLayoutY(22.0);
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
-        back_button.setText("Button");
+        //back_button.setText("Button");
+        back_button.getStyleClass().add("back_button");
+        back_button.setText("<");
 
         label.setLayoutX(87.0);
         label.setLayoutY(250.0);
         label.setText("Label");
 
-        scrollPane.setLayoutX(225.0);
-        scrollPane.setLayoutY(38.0);
+        scrollPane.setLayoutX(172.0);
+        scrollPane.setLayoutY(35.0);
         scrollPane.setPrefHeight(359.0);
-        scrollPane.setPrefWidth(371.0);
+        scrollPane.setPrefWidth(431.0);
 
+        
         table_history_data.setPrefHeight(354.0);
-        table_history_data.setPrefWidth(367.0);
+        table_history_data.setPrefWidth(429.0);
 
-        colum_date.setPrefWidth(135.0);
+        colum_date.setPrefWidth(163.0);
         colum_date.setText("date");
 
-        colum_Xname.setPrefWidth(69.0);
         colum_Xname.setText(" XName");
 
+        colum_Oname.setPrefWidth(88.0);
         colum_Oname.setText("OName");
 
-        colum_winner.setPrefWidth(82.0);
+        colum_winner.setPrefWidth(96.0);
         colum_winner.setText("Winner");
         scrollPane.setContent(table_history_data);
 
@@ -88,5 +91,6 @@ public abstract class HistoryScreenBase extends AnchorPane {
     }
 
     protected abstract void isBack(javafx.event.ActionEvent actionEvent);
+
 
 }
