@@ -305,7 +305,9 @@ public class ServerConnection {
 
      }
 
-     public static void closeThread() throws IOException {
+
+   public static void closeThread() throws IOException {
+
           if(dataInputStream!=null){
           
               dataInputStream.close();
@@ -328,7 +330,6 @@ public class ServerConnection {
           serverConnection = null;
 
      }
-
      public static void displayAlert(String Playerx) {
           Alert alert = new Alert(Alert.AlertType.WARNING);
 

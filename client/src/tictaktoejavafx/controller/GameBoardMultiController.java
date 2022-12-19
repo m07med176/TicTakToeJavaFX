@@ -111,6 +111,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
         } else {
 
             button.setText("O");
+            button.setStyle("-fx-text-fill: Red;");
+
             turn = 'X';
             button.setDisable(true);
             diagonalFiller();

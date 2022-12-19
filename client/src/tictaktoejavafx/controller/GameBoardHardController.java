@@ -39,38 +39,51 @@ public class GameBoardHardController extends GameBoardScreenBase {
         switch (move) {
             case 1:
                 computerMoveActionButton(btn_Game_one, game);
+                btn_Game_one.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 2:
                 computerMoveActionButton(btn_Game_two, game);
+               btn_Game_two.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 3:
                 computerMoveActionButton(btn_Game_three, game);
+                btn_Game_three.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 4:
                 computerMoveActionButton(btn_Game_four, game);
+                btn_Game_four.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 5:
                 computerMoveActionButton(btn_Game_five, game);
+                btn_Game_five.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 6:
                 computerMoveActionButton(btn_Game_six, game);
+                btn_Game_two.setStyle("-fx-text-fill: Red;");
+
                 toeAIHard.Move(move, player);
                 break;
             case 7:
                 computerMoveActionButton(btn_Game_seven, game);
+                btn_Game_seven.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 8:
                 computerMoveActionButton(btn_Game_eight, game);
+                btn_Game_eight.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
             case 9:
                 computerMoveActionButton(btn_Game_nine, game);
+                btn_Game_nine.setStyle("-fx-text-fill: Red;");
                 toeAIHard.Move(move, player);
                 break;
         }
@@ -80,54 +93,55 @@ public class GameBoardHardController extends GameBoardScreenBase {
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_one, "1");
-
+playerGame(btn_Game_one,1);
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_two, "2");
-
+playerGame(btn_Game_two,2);
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_three, "3");
-
+playerGame(btn_Game_three,3);
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_four, "4");
+    playerGame(btn_Game_four,4);
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_five, "5");
-
+playerGame(btn_Game_five,5);
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_six, "6");
-
+playerGame(btn_Game_six,6);
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_seven, "7");
-
+playerGame(btn_Game_seven,7);
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_eight, "8");
-
+playerGame(btn_Game_eight,8);
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
         db.saveRecord(isRecorded, btn_Game_nine, "9");
-
+playerGame(btn_Game_nine,9);
     }
 
     //-----------------------------------------
@@ -139,7 +153,9 @@ public class GameBoardHardController extends GameBoardScreenBase {
             System.out.println("YES");
             button.setDisable(true);
             button.setText("X");
+
             ComputerMove(-1, 0);
+
             if ((GO = toeAIHard.isGameOver()) != 0) {
                 if (GO == 1) {
                     PlayerName.setPlayerName(PLAYER1);
@@ -153,6 +169,8 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                 } else {
                     System.out.println(GO);
+                                        playVideo();
+
                 }
             }
         }
