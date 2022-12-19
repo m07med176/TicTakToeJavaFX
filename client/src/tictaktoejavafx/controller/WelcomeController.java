@@ -2,11 +2,12 @@ package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.model.RecordModelData;
+import tictaktoejavafx.data.model.SocketConfigModel;
 import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.PromptSocketAccessDialog;
 import tictaktoejavafx.view.WelcomeScreenBase;
-import static tictaktoejavafx.utils.Navigator.TABLE_RECORD;
 
 public class WelcomeController extends WelcomeScreenBase {
 
@@ -18,10 +19,7 @@ public class WelcomeController extends WelcomeScreenBase {
 
     @Override
     protected void isSingle(ActionEvent actionEvent) {
-        // System.out.println("isSingle");
         Navigator.navigate(Navigator.PLAYER_NAME_ONE, stage);
-        //  Navigator.navigate(Navigator.CHOOSEDIFF, stage);
-
     }
 
     @Override
@@ -31,17 +29,14 @@ public class WelcomeController extends WelcomeScreenBase {
 
     @Override
     protected void isOnlineMode(ActionEvent actionEvent) {
-        // ask port and ip
-        // display
         PromptSocketAccessDialog.display(new AlertAction() {
             @Override
             public void sendOk() {
-                Navigator.navigate(Navigator.LOGIN, stage);
+                SocketConfigModel data = new SocketConfigModel("",5);
+                Navigator.navigate(Navigator.LOGIN, stage,data);
             }
-
             @Override
-            public void sendCancel() {
-            }
+            public void sendCancel() {}
         });
         
         
@@ -49,7 +44,6 @@ public class WelcomeController extends WelcomeScreenBase {
 
     @Override
     protected void isRecorded(ActionEvent actionEvent) {
-        System.out.println("Record Clicked");
         Navigator.navigate(Navigator.TABLE_RECORD, stage);
     }
     
