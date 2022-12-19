@@ -1,17 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tictaktoejavafx.controller;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+
 import static sun.audio.AudioPlayer.player;
 import tictaktoejavafx.Client;
-/**
- *
- * @author COMPUMARTS
- */
+
+
 public class RequestCreator {
     
      public static String login(String userName, String password) {
@@ -53,3 +45,5 @@ public class RequestCreator {
     }
     
 }
+
+ */

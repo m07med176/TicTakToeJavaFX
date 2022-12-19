@@ -5,13 +5,9 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.swing.text.View;
 import server.controller.PlayerOnServerController;
-import server.data.db.DatabaseAccessLayer;
-import server.data.model.Player;
 import server.utils.Config;
 
 public class Server extends Application {
@@ -24,10 +20,12 @@ public class Server extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
-        PlayerOnServerController root = new PlayerOnServerController(stage);
+        PlayerOnServerController root = new PlayerOnServerController();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        scene.getStylesheets().add(CSS);
         stage.show();
+        
         
         // TODO set fixed size in all pages 
         // TODO make size resizable

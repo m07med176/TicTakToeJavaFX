@@ -1,10 +1,6 @@
 package tictaktoejavafx.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -274,6 +270,11 @@ public class GameBoardControllerOnline extends GameBoardScreenBase{
     public static Stage getStage() {
         return stage;
     }
+
+     @Override
+     protected void isVideo(ActionEvent actionEvent) {
+
+     }
      
      
     

@@ -13,6 +13,7 @@ public class LocalMultiPlayer {
     
         return gameEnded;
     }
+
     public static void localMulti(ArrayList<String> d,Stage stage){
         for(int i=0;i<d.size();i++){
         
@@ -49,8 +50,5 @@ public class LocalMultiPlayer {
     
     
     }
-    public static boolean getGameEnded(){
-        return gameEnded;
-    
-    }
+   
 }

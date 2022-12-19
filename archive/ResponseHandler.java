@@ -1,25 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tictaktoejavafx;
 
 import ticktacktoejavafx.App;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import com.main.ticktacktoejavafx.Models.Player;
 import java.io.IOException;
-/**
- *
- * @author COMPUMARTS
- */
+
 public class ResponseHandler {
    
     public static OnlineHomeController onlineController;
@@ -211,15 +201,8 @@ public class ResponseHandler {
             receiverName.setText(invitationReciever);
         });
     }
-          
-       
 
-       
-    
-    
-    
-    
     }
     
     
-
+*/

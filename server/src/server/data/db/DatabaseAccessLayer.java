@@ -9,16 +9,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import server.data.model.Player;
+import server.utils.Config;
 
 public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
 
-    static Connection con;
-    Statement stmt;
-    static ResultSet resultSet;
-    public static String tableName = "player";
-    //static Player player;
-    static int resultStatement;
-    PreparedStatement statement;
+    private static Connection con;
+    private Statement stmt;
+    private static ResultSet resultSet;
+    private static int resultStatement;
+    private PreparedStatement statement;
 
     public DatabaseAccessLayer() throws SQLException {
         con = DataBaseConnection.getConnection();
@@ -29,8 +28,7 @@ public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
     public ArrayList<Player> getOnlinePlayers() {
         ArrayList<Player> players = new ArrayList();
         try {
-            // TODO get online users from database
-            statement = con.prepareStatement("select username from player where status=?");
+            statement = con.prepareStatement("SELECT username FROM "+Config.TABLE_NAME+" WHERE status=?");
             statement.setBoolean(1, true);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -46,25 +44,18 @@ public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
     }
 
     @Override
-    public int getCountPlayers() {
+    public int getCountPlayers() throws SQLException{
         int countPlayer = 0;
-        try {
-            // TODO get numbers of users from database
-            statement = con.prepareStatement("select COUNT(*) from player");
-            resultSet = statement.executeQuery();
-            countPlayer = resultSet.getInt(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return countPlayer;
+          statement = con.prepareStatement("SELECT COUNT(*) FROM "+Config.TABLE_NAME);
+          resultSet = statement.executeQuery();
+          countPlayer = resultSet.getInt(1);
+          return countPlayer;
     }
 
     @Override
-    public String addPlayer(Player user) {
+    public String addPlayer(Player user) throws SQLException{
         String state = user.getUsername();
-        try {
-            // TODO add new row of player in database
-            statement = con.prepareStatement("insert into player(id,email,username,password,status) values(?,?,?,?,?)");
+            statement = con.prepareStatement("INSERT INTO " +Config.TABLE_NAME+ " (id,email,username,password,status) VALUES(?,?,?,?,?)");
             statement.setInt(1, user.getId());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getUsername());
@@ -72,70 +63,36 @@ public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
             statement.setBoolean(5, user.isStatus());
             resultStatement = statement.executeUpdate();
             state = state + " data has been added";
-            //return "";
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return state;
     }
 
     @Override
-    public boolean updatePlayerStatus(boolean status, int id) {
-
-        String queryString = null;
+    public boolean updatePlayerStatus(boolean status, int id) throws SQLException{
         boolean result = true;
-        try {
-
-            queryString = new String("update into" + tableName + "set status=" + status + "where id=" + id);
-            resultStatement = stmt.executeUpdate(queryString);
-            if (resultSet == null) {
-                result = false;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+          resultStatement = stmt.executeUpdate("UPDATE INTO" + Config.TABLE_NAME + "SET status=" + status + "WHERE id=" + id);
+          if (resultSet == null) {
+              result = false;
+          }
         return result;
 
     }
 
     @Override
-    public String isPlayer(String userName, String password) {
-        String queryString = null;
-        String result = "null";
-        try {
-            queryString = new String("select id from " + tableName + " where userName=" + userName + " and password=" + password);
-            resultSet = stmt.executeQuery(queryString);
+    public String isPlayer(String userName, String password) throws SQLException{
+        String result;
+            resultSet = stmt.executeQuery("SELECT id FROM " + Config.TABLE_NAME + " WHERE userName=" + userName + " AND password=" + password);
             if (resultSet == null) {
                 result = "player Not Found";
             } else {
                 result = "Player Found";
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return result;
-
     }
-
-    @Override
-    public void clearAll() {
-        String queryString = null;
-        try {
-            queryString = new String("delete * from " + tableName);
-            int rs2 = stmt.executeUpdate(queryString);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
     public static ArrayList<Player> getPlayerData() throws SQLException {
         Connection connection = DataBaseConnection.getConnection();
         ArrayList<Player> arrayListPlayer = new ArrayList();
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM PLAYER", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+Config.TABLE_NAME, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             resultSet = statement.executeQuery();
             connection.commit();
             while(resultSet.next()) {
@@ -143,9 +100,6 @@ public class DatabaseAccessLayer implements DBCreateReadUpdateDelete {
                         ,resultSet.getString(3),resultSet.getString(4),resultSet.getBoolean(5)));
             } 
            
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return arrayListPlayer;
     }
 
