@@ -34,7 +34,7 @@ public class ServerManager extends Thread {
 
      public void close(){
           closeSessions();
-          stop();
+          this.stop();
      }
      public void closeSessions() {
           sessionHolder.forEach((session) -> {
