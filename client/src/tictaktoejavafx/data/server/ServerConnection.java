@@ -31,7 +31,6 @@ public class ServerConnection {
     private static PrintStream printStream;
     private String UID;
     private ServerCall serverCall;
-
     public static Socket socket;
     private static ServerConnection serverConnection = null;
     private static Thread thread = null;
@@ -162,6 +161,7 @@ public class ServerConnection {
         }
 
         /*   if (!msg.isEmpty()) {
+
             switch (msg) {
                 case "ACCEPT":
                     System.out.println("Your Friend Accepted Invetation");
@@ -185,7 +185,6 @@ public class ServerConnection {
         serverConnection = null;
 
     }
-
     public static void displayAlert(String Playerx) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
@@ -211,5 +210,5 @@ public class ServerConnection {
         } else {
             System.out.println("Player O Cancle");
         }
-    }
+
 }

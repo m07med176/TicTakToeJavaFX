@@ -17,4 +17,8 @@ public class Config {
     public static final String EXIT_MSG = "Do You Want TO Exit This Game?";
     public static final String INVATE_MSG = "Do You Want TO invate him?";
     
+    public static final String REC_FILE = "src/tictaktoejavafx/data/db/record.json";
+    public static final String HIST_FILE = "src/tictaktoejavafx/data/db/History.json";
+    public static String DATETIME = "dd/MM/yyyy HH:mm:ss";
+    
 }

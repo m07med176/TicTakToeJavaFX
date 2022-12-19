@@ -9,12 +9,17 @@ import javafx.stage.Stage;
 public class LocalMultiPlayer {
     static int numberOfPresses=0;
     static boolean gameEnded=false;
+     public static boolean getGameEnded(){
+    
+        return gameEnded;
+    }
     public static void localMulti(ArrayList<String> d,Stage stage){
         for(int i=0;i<d.size();i++){
         
             if(d.get(i).equals("XXX")){
-            
+
                 PlayerName.setPlayerName(Navigator.getPlayerOne());
+                PlayerName.setPlayerName("Player One");
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 
@@ -22,6 +27,7 @@ public class LocalMultiPlayer {
             }else if(d.get(i).equals("OOO")){
             
                 PlayerName.setPlayerName(Navigator.getPlayerTwo());
+                PlayerName.setPlayerName("Player Two");
                 gameEnded=true;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 
