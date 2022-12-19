@@ -16,9 +16,7 @@ import tictaktoejavafx.data.model.PlayerModel;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 
-
-public class JsonDataBasedSystem {
-        
+public class JsonDataBasedSystem {        
 
      public static ArrayList<PlayerModel> getPlayerModleList() {
         ArrayList<PlayerModel> data = new ArrayList();
