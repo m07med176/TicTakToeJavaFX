@@ -6,23 +6,26 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Vector;
 import server.utils.Config;
+import server.utils.ExceptionCallBack;
 
 public class ServerManager extends Thread {
-
      public NetworkAccessLayer networkOperations;
-     public static Vector<SocketSession> sessionHolder = new Vector<SocketSession>();
+     public static Vector<SocketSession> sessionHolder;
      private final ServerSocket serverSocket;
      private Socket socket;
      private static ServerManager mainServer;
+     private ExceptionCallBack exceptionCallBack;
 
-     private ServerManager() throws IOException, SQLException {
+     private ServerManager(ExceptionCallBack exceptionCallBack) throws IOException, SQLException {
+          this.exceptionCallBack = exceptionCallBack;
+          sessionHolder =  new Vector<SocketSession>();
           serverSocket = new ServerSocket(Config.SOCKET_PORT);
           networkOperations = new NetworkAccessLayer();
      }
 
-     public static ServerManager getInstance() throws IOException, SQLException {
+     public static ServerManager getInstance(ExceptionCallBack exceptionCallBack) throws IOException, SQLException {
           if (mainServer == null) {
-               mainServer = new ServerManager();
+               mainServer = new ServerManager(exceptionCallBack);
           }
           return mainServer;
      }
@@ -30,7 +33,6 @@ public class ServerManager extends Thread {
      public void close(){
           closeSessions();
           stop();
-     
      }
      public void closeSessions() {
           sessionHolder.forEach((session) -> {
@@ -42,12 +44,11 @@ public class ServerManager extends Thread {
      public void run() {
           while (true) {
                try {
-                    socket = serverSocket.accept(); // still lesting
-                    sessionHolder.add(new SocketSession(socket,networkOperations));
+                    socket = serverSocket.accept();
+                    sessionHolder.add(new SocketSession(socket,networkOperations,exceptionCallBack));
                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    exceptionCallBack.serverException(ex);
                }
           }
      }
-
 }

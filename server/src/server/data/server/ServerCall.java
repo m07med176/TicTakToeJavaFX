@@ -1,9 +1,14 @@
 package server.data.server;
 
 import java.io.DataOutputStream;
-import java.io.PrintStream;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public interface ServerCall{
+     
+     public static final String RREGISTER = "REGISTER";
+     public static final String IVETATION = "IVETATION";
+     public static final String LOGIN = "LOGIN";
      
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
@@ -23,16 +28,16 @@ public interface ServerCall{
      public static final String PLAYER_LIST_SEND = "PLAYER_LIST_SEND";
      public static final String PLAYER_LIST_RECEIVE = "PLAYER_LIST_RECEIVE";
      
-     public void invetation(String[] request,String currentID);
+     public void invetation(String[] request,String currentID) throws SQLException,IOException;
      
-     public void move(String[] request,String currentID);
+     public void move(String[] request,String currentID) throws SQLException,IOException;
      
-     public void confirm(String[] request,String currentID);
+     public void confirm(String[] request,String currentID) throws SQLException,IOException;
 
-     public void onlinePlayers(String[] request,DataOutputStream response);
+     public void onlinePlayers(String[] request,DataOutputStream response) throws SQLException,IOException;
      
-     public String login(String[] request,DataOutputStream response);
+     public String login(String[] request,DataOutputStream response) throws SQLException,IOException;
      
-     public String register(String[] request,DataOutputStream response);
+     public String register(String[] request,DataOutputStream response) throws SQLException,IOException;
      
 };

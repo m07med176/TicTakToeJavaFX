@@ -3,19 +3,23 @@ package server.data.server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.Socket;
+import java.sql.SQLException;
+import server.utils.ExceptionCallBack;
 
 public class SocketSession extends Thread {
 
      private final DataInputStream dataInputStream;
      public DataOutputStream printStream;
      public String UID;
+     String playerO;
+     String ownerSocket;
 
      private final NetworkAccessLayer networkOperations;
-
-     public SocketSession(Socket socket, NetworkAccessLayer networkOperations) throws IOException {
+     private ExceptionCallBack exceptionCallBack;
+     
+     public SocketSession(Socket socket, NetworkAccessLayer networkOperations,ExceptionCallBack exceptionCallBack) throws IOException {
+          this.exceptionCallBack = exceptionCallBack;
           this.networkOperations = networkOperations;
           dataInputStream = new DataInputStream(socket.getInputStream());
           printStream = new DataOutputStream(socket.getOutputStream());
@@ -26,23 +30,24 @@ public class SocketSession extends Thread {
      public void run() {
           while (true) {
                try {
-                    System.out.println("Indecx lkajsd");
                     String response = dataInputStream.readUTF();
-                    System.out.println("Index  "+response);
+                    System.out.println("Index  " + response);
                     requestNavigator(response);
                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    exceptionCallBack.serverException(ex);
+               } catch (SQLException ex) {
+                    exceptionCallBack.databaseException(ex);
                }
           }
      }
 
-     private /*synchronized*/ void requestNavigator(String response) {
+     private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
           if (response != null && !response.isEmpty()) {
                String[] data = response.split(",");
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
                          //UID = networkOperations.login(data, printStream);
-                        UID=data[1];
+                         UID = data[1];
                          break;
 
                     case ServerCall.RREGISTER_SEND:
@@ -57,7 +62,7 @@ public class SocketSession extends Thread {
                     case ServerCall.MOVEMENT_SEND:
                          networkOperations.move(data, UID);
                          break;
-// send from ahmed to Hussin 
+                         
                     case ServerCall.IVETATION_SEND:
                          networkOperations.invetation(data, UID);
                          break;
@@ -65,9 +70,7 @@ public class SocketSession extends Thread {
                     case "CONF_SEND":
                          networkOperations.confirm(data, UID);
                          break;
-
                }
           }
      }
-
 }
