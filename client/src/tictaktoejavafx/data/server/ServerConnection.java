@@ -25,7 +25,6 @@ public class ServerConnection {
     private PrintStream printStream;
     private String UID;
     private ServerCall serverCall;
-
     public static Socket socket;
     private static ServerConnection serverConnection = null;
     Thread thread = null;
@@ -100,6 +99,7 @@ public class ServerConnection {
         }
 
         /*   if (!msg.isEmpty()) {
+
             switch (msg) {
                 case "ACCEPT":
                     System.out.println("Your Friend Accepted Invetation");
@@ -141,5 +141,14 @@ public class ServerConnection {
             }else{
                  System.out.println("Player O Cancle");
             }
+        }
+    }
+
+    public void closeThread() throws IOException {
+        dataInputStream.close();
+        socket.close();
+        thread.stop();
+     serverConnection = null;   
+ 
     }
 }

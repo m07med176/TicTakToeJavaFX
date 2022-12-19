@@ -3,9 +3,12 @@ package tictaktoejavafx.controller;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.server.ServerCall;
+import javafx.application.Platform;
+
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.LoginScreenBase;
@@ -31,7 +34,9 @@ public class LoginController extends LoginScreenBase {
                 System.out.println("Server is Down");
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
+            
             // TODO Pass data in athentication function
             /*
                if (authenticated(userName,passwordUser)){
