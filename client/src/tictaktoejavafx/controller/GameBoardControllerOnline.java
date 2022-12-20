@@ -247,6 +247,11 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
         String msg;
         if (Navigator.isStartGame()) {
             msg = ServerCall.MOVEMENT_SEND + ServerCall.DELIMETER + Navigator.getPlayerTwo() + ServerCall.DELIMETER + Integer.toString(val) + ServerCall.DELIMETER + move;
+            try {
+                ServerConnection.sendMessage(msg);
+            } catch (IOException ex) {
+                Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             msg = ServerCall.MOVEMENT_SEND + ServerCall.DELIMETER + Navigator.getPlayerOne() + ServerCall.DELIMETER + Integer.toString(val) + ServerCall.DELIMETER + move;
 

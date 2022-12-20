@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
+import javafx.application.Platform;
 import server.utils.ExceptionCallBack;
 
 public class SocketSession extends Thread {
@@ -29,13 +30,18 @@ public class SocketSession extends Thread {
 
      @Override
      public void run() {
-          while (true) {
+         boolean flag=true;
+          while (flag) {
                try {
                     String response = dataInputStream.readUTF();
                     System.out.println("Index  " + response);
                     requestNavigator(response);
                } catch (IOException ex) {
-                    exceptionCallBack.serverException(ex);
+                   flag=false;
+                    Platform.runLater(() -> {
+                        exceptionCallBack.serverException(ex);
+                        
+                    });
                } catch (SQLException ex) {
                     exceptionCallBack.databaseException(ex);
                }

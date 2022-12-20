@@ -13,6 +13,7 @@ public abstract class TwoPlayerBase extends AnchorPane {
     protected final TextField player_One;
     protected final TextField Player_two;
     protected final Button StartGame;
+    protected final Button button;
 
     public TwoPlayerBase() {
 
@@ -20,6 +21,7 @@ public abstract class TwoPlayerBase extends AnchorPane {
         player_One = new TextField();
         Player_two = new TextField();
         StartGame = new Button();
+        button = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -30,7 +32,7 @@ public abstract class TwoPlayerBase extends AnchorPane {
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(200.0);
-        imageView.setLayoutX(260.0);
+        imageView.setLayoutX(226.0);
         imageView.setLayoutY(80.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
@@ -58,13 +60,22 @@ public abstract class TwoPlayerBase extends AnchorPane {
         StartGame.getStyleClass().add("main_button");
         StartGame.setText("Start Game");
 
+        button.setLayoutX(25.0);
+        button.setLayoutY(21.0);
+        button.setMnemonicParsing(false);
+        button.getStyleClass().add("back_button");
+        button.setText("<");
+        button.setOnAction(this::isBack);
+
         getChildren().add(imageView);
         getChildren().add(player_One);
         getChildren().add(Player_two);
         getChildren().add(StartGame);
+        getChildren().add(button);
 
     }
 
     protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
+    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
 
 }
