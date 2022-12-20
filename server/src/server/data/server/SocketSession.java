@@ -44,9 +44,7 @@ public class SocketSession extends Thread {
 
      private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
           if (response != null && !response.isEmpty()) {
-              
-              System.out.println(response);// log for test
-              
+              System.out.println(response);
                String[] data = response.split(ServerCall.DELIMETER);
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:

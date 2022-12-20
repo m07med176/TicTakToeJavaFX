@@ -65,18 +65,18 @@ public class DatabaseAccessLayer implements DBOperations {
      }
      
      @Override
-     public String isPlayer(String userName, String password) throws SQLException {
-          String result = null;
+     public ArrayList<Player> isPlayer(String userName, String password) throws SQLException {
+          ArrayList<Player> player = new ArrayList<>();
           statement = con.prepareStatement("SELECT * FROM " + Config.TABLE_NAME + " WHERE userName=? AND password=?");
           statement.setString(1, userName);
           statement.setString(2, password);
           
           resultSet = statement.executeQuery();
           if (resultSet.next()) {
-               result = resultSet.getString(2);
+               player = getOnlinePlayers();
                updatePlayerStatus(true,userName);
           }
-          return result;
+          return player;
      }
 
      @Override
