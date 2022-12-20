@@ -68,12 +68,12 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public String login(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = null;
+          String retVal = request[1];
           if (request.length == 3) {
                ArrayList<Player> playerList = db.isPlayer(request[1], request[2]);
                Gson gson = new Gson();
                retVal = gson.toJson(playerList);
-               if (retVal != null) {
+               if (!playerList.isEmpty()) {
                     response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + retVal);
                } else {
                     response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + "0");
@@ -84,10 +84,12 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public String register(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = null;
+          String retVal = request[1];
           if (request.length == 4) {
-               retVal = db.addPlayer(new Player(request[1], request[2], request[3]));
-               if (retVal != null) {
+               ArrayList<Player> playerList = db.addPlayer(new Player(request[1], request[2], request[3]));
+               Gson gson = new Gson();
+               retVal = gson.toJson(playerList);
+               if (!playerList.isEmpty()) {
                     response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + retVal);
                } else {
                     response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + "0");

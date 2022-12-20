@@ -32,8 +32,7 @@ public class DatabaseAccessLayer implements DBOperations {
      }
 
      @Override
-     public String addPlayer(Player user) throws SQLException {
-          String state = user.getUsername();
+     public ArrayList<Player> addPlayer(Player user) throws SQLException {
           statement = con.prepareStatement("INSERT INTO " + Config.TABLE_NAME + " (id,email,username,password,status) VALUES(?,?,?,?,?)");
           statement.setInt(1, getCurrentId());
           statement.setString(2, user.getEmail());
@@ -41,7 +40,7 @@ public class DatabaseAccessLayer implements DBOperations {
           statement.setString(4, user.getPassword());
           statement.setBoolean(5, true);
           statement.executeUpdate();
-          return state;
+          return getOnlinePlayers();
      }
 
      @Override
