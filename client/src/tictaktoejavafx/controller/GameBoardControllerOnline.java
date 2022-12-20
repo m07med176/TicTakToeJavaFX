@@ -19,7 +19,7 @@ import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
-
+    
     private static Stage stage;
     public ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
@@ -30,6 +30,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     public static Button button;
 
     public GameBoardControllerOnline(Stage stage) {
+        LocalMultiPlayer.setGameEnded(false);
         this.stage = stage;
         addbuttonInList();
         addAllbuttonInList();
