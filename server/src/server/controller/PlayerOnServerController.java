@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import server.data.db.DatabaseAccessLayer;
 import server.data.model.Player;
 import server.data.server.ServerManager;
-import server.utils.AlertAction;
 import server.utils.ExceptionCallBack;
 import server.utils.UserMessage;
 import server.view.PlayerOnServerBase;
@@ -22,12 +21,11 @@ public class PlayerOnServerController extends PlayerOnServerBase {
 
      public PlayerOnServerController() {
           try {
-               arrayListPlayer = DatabaseAccessLayer.getPlayerData();
+               arrayListPlayer = new DatabaseAccessLayer().getAllPlayers();
                displayPlayerInTable(arrayListPlayer);
           } catch (SQLException ex) {
-               new UserMessage().alert(ex.getMessage(), null);
+               UserMessage.showError(ex.getMessage());
           }
-
      }
 
      @Override
@@ -36,12 +34,12 @@ public class PlayerOnServerController extends PlayerOnServerBase {
                ServerManager server = ServerManager.getInstance(new ExceptionCallBack() {
                     @Override
                     public void serverException(IOException ex) {
-                         callAlertMessage(ex.getMessage());
+                         UserMessage.showError(ex.getMessage());
                     }
 
                     @Override
                     public void databaseException(SQLException ex) {
-                         callAlertMessage(ex.getMessage());
+                         UserMessage.showError(ex.getMessage());
                     }
                });
 
@@ -56,20 +54,8 @@ public class PlayerOnServerController extends PlayerOnServerBase {
 
                }
           } catch (IOException | SQLException ex) {
-               callAlertMessage(ex.getMessage());
+               UserMessage.showError(ex.getMessage());
           }
-     }
-
-     public void callAlertMessage(String ex) {
-          new UserMessage().alert(ex, new AlertAction() {
-               @Override
-               public void sendOk() {
-               }
-
-               @Override
-               public void sendCancel() {
-               }
-          });
      }
 
      public void displayPlayerInTable(ArrayList<Player> model) {

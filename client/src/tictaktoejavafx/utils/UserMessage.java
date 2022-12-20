@@ -33,7 +33,7 @@ public class UserMessage extends Alert {
             @Override
             public void sendCancel() {
             }
-        }, AlertType.INFORMATION);
+        }, AlertType.ERROR);
     
     }
     
