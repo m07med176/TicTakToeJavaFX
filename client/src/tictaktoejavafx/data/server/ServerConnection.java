@@ -125,11 +125,7 @@ public class ServerConnection {
                             java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                             }.getType();
                             playerList = gson.fromJson(data[1], listType);
-                            
-                            for(Player player:playerList){
-                                System.out.println("Player ==> "+player.getUsername());
-                            }
-                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
                         }
                     });
                     break;
@@ -154,9 +150,6 @@ public class ServerConnection {
                     System.out.println("we got a move");
                     Navigator.setButtonNumber(data[2]);
                     Navigator.setBoardMove(data[3]);
-                    //Navigator.setTurnEnded(true);
-                    //GameBoardControllerOnline.button.setText(Navigator.boardMove);
-                    //GameBoardControllerOnline.button.setDisable(true);
                     if (data[3].equals("X")) {
                         Navigator.setSetX(false);
                     } else {
@@ -177,22 +170,20 @@ public class ServerConnection {
                             }
                         }
                     });
-                    System.out.println("we set " + Navigator.getBoardMove() + " " + Navigator.getButtonNumber());
                     break;
 
                 case ServerCall.RREGISTER_RECEIVE:
                     Platform.runLater(() -> {
-                        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
-                            @Override
-                            public void sendOk() {
-                                Navigator.navigate(Navigator.WELCOME, stage);
-                            }
-
-                            @Override
-                            public void sendCancel() {
-                                // Do Nothing
-                            }
-                        }, Alert.AlertType.CONFIRMATION);
+                        if (data[1].equals("0")) {
+                            UserMessage.showError("There are an Error During Register");
+                        } else {
+                            ArrayList<Player> playerList = new ArrayList();
+                            Gson gson = new Gson();
+                            java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
+                            }.getType();
+                            playerList = gson.fromJson(data[1], listType);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                        }
                     });
 
                 default:
