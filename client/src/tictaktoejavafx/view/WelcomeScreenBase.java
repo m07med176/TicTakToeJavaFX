@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import tictaktoejavafx.utils.Navigator;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
 
@@ -50,7 +51,30 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setText("Single Player");
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
+        
+            Image img = new Image("file:/C:/Users/Ahmed/Desktop/English img/pc.png");
+      ImageView view = new ImageView(img);
+        view.setFitHeight(40);
+        view.setFitWidth(40);
+      view.setPreserveRatio(true);
+       btn_single.setGraphic(view);
+//------------------------------------
+            Image img2 = new Image("file:/C:/Users/Ahmed/Desktop/English img/multi.png");
+      ImageView view2 = new ImageView(img2);
+        view2.setFitHeight(40);
+        view2.setFitWidth(40);
+      view2.setPreserveRatio(true);
+       btn_two.setGraphic(view2);
+//-------------------------------------
 
+
+            Image img3 = new Image("file:/C:/Users/Ahmed/Desktop/English img/online.png");
+      ImageView view3 = new ImageView(img3);
+        view3.setFitHeight(40);
+        view3.setFitWidth(40);
+      view3.setPreserveRatio(true);
+       btn_online_mode.setGraphic(view3);
+//-------------------------------------
         btn_two.setLayoutX(188.0);
         btn_two.setLayoutY(328.0);
         btn_two.setMnemonicParsing(false);
@@ -61,6 +85,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two.setText("Two Player");
         btn_two.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_two.setFont(new Font(22.0));
+   
 
         btn_online_mode.setLayoutX(188.0);
         btn_online_mode.setLayoutY(388.0);
