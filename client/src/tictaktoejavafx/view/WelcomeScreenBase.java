@@ -53,26 +53,26 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
         
-            Image img = new Image("file:/C:/Users/Ahmed/Desktop/English img/pc.png");
+            Image img = new Image("tictaktoejavafx/assets/images/pc.png");
       ImageView view = new ImageView(img);
-        view.setFitHeight(40);
-        view.setFitWidth(40);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
       view.setPreserveRatio(true);
        btn_single.setGraphic(view);
 //------------------------------------
-            Image img2 = new Image("file:/C:/Users/Ahmed/Desktop/English img/multi.png");
+            Image img2 = new Image("tictaktoejavafx/assets/images/multi.png");
       ImageView view2 = new ImageView(img2);
-        view2.setFitHeight(40);
-        view2.setFitWidth(40);
+        view2.setFitHeight(30);
+        view2.setFitWidth(30);
       view2.setPreserveRatio(true);
        btn_two.setGraphic(view2);
 //-------------------------------------
 
 
-            Image img3 = new Image("file:/C:/Users/Ahmed/Desktop/English img/online.png");
+            Image img3 = new Image("tictaktoejavafx/assets/images/online.png");
       ImageView view3 = new ImageView(img3);
-        view3.setFitHeight(40);
-        view3.setFitWidth(40);
+        view3.setFitHeight(30);
+        view3.setFitWidth(30);
       view3.setPreserveRatio(true);
        btn_online_mode.setGraphic(view3);
 //-------------------------------------
@@ -106,7 +106,10 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setLayoutX(145.0);
         imageView.setLayoutY(100.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+        imageView.setId("imageView");
+        
+    imageView.setImage(new Image(Config.LOGO));
+     
 
         isRecord.setLayoutX(126.0);
         isRecord.setLayoutY(513.0);
