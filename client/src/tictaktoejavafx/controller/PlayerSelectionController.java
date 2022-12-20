@@ -11,7 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tictaktoejavafx.data.model.PlayerOnline;
+import tictaktoejavafx.data.model.Player;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.Navigator;
@@ -23,7 +23,7 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
 
     private Stage stage;
 
-    private ArrayList<PlayerOnline> onlinePlayers = new ArrayList<PlayerOnline>();
+    private ArrayList<Player> onlinePlayers = new ArrayList<Player>();
 
     public PlayerSelectionController(Stage stage) {
         this.stage = stage;

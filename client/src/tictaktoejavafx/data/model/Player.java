@@ -1,8 +1,13 @@
 package tictaktoejavafx.data.model;
 
-public class PlayerOnline {
-
-    public PlayerOnline(int id, String email, String username, int password, int status) {
+public class Player {
+    private int id;
+    private String email;
+    private String username;
+    private int password;
+    private boolean status;
+    
+    public Player(int id, String email, String username, int password, boolean status) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -42,18 +47,16 @@ public class PlayerOnline {
         this.password = password;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
-    private int id;
-    private String email;
-    private String username;
-    private int password;
-    private int status;
+
+  
+
     
     
 }

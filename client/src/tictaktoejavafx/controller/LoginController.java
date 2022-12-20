@@ -45,7 +45,7 @@ public class LoginController extends LoginScreenBase {
                         }
                     },Alert.AlertType.ERROR);
                 });
-                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+ServerCall.DELIMETER+userName);
+                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+ServerCall.DELIMETER+userName+ServerCall.DELIMETER+passwordUser);
                 ServerConnection.readThread();
                 this.stage.setOnCloseRequest((WindowEvent event) -> {
                     try {
@@ -70,14 +70,6 @@ public class LoginController extends LoginScreenBase {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
-            
-            // TODO Pass data in athentication function
-            /*
-               if (authenticated(userName,passwordUser)){
-                    // If true navigate or send error message
-               }
-            */
         }
     }
 
