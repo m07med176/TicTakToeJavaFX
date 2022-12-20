@@ -1,25 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictaktoejavafx.data.model;
 
-/**
- *
- * @author Ahmed
- */
-public  class PlayerModel {
-    private String dateGame;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import tictaktoejavafx.utils.Config;
+
+
+public  class HistoryModel {
+    private String dateGame = new SimpleDateFormat(Config.DATETIME).format(new Date());
     private String playerXName;
     private String playerOName;
     private String winner;
 
 
-    public PlayerModel() {
+    public HistoryModel() {
     }
 
-    public PlayerModel(String dateGame, String playerXName, String playerOName) {
+    public HistoryModel(String dateGame, String playerXName, String playerOName) {
         this.dateGame = dateGame;
         this.playerXName = playerXName;
         this.playerOName = playerOName;

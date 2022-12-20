@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictaktoejavafx.data.db;
 
 import com.google.gson.Gson;
@@ -13,24 +8,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import tictaktoejavafx.data.model.RecordModelData;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 
-/**
- *
- * @author hp
- */
 public class RecordDataBasedSystem {
 
     public static RecordDataBasedSystem singletone;

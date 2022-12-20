@@ -24,6 +24,7 @@ public class SocketSession extends Thread {
           dataInputStream = new DataInputStream(socket.getInputStream());
           printStream = new DataOutputStream(socket.getOutputStream());
           start();
+          
      }
 
      @Override
@@ -43,6 +44,9 @@ public class SocketSession extends Thread {
 
      private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
           if (response != null && !response.isEmpty()) {
+              
+              System.out.println(response);// log for test
+              
                String[] data = response.split(",");
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
@@ -51,7 +55,9 @@ public class SocketSession extends Thread {
                          break;
 
                     case ServerCall.RREGISTER_SEND:
-                         UID = networkOperations.register(data, printStream);
+                         UID = data[1]; 
+                         System.out.println(ServerCall.RREGISTER_SEND);
+                         networkOperations.register(data, printStream);
                          break;
 
                     case ServerCall.PLAYER_LIST_SEND:

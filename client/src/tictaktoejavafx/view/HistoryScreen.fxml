@@ -13,14 +13,14 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="back_button" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBack" text="Button" />
       <Label layoutX="87.0" layoutY="250.0" text="Label" />
-      <ScrollPane layoutX="225.0" layoutY="38.0" prefHeight="359.0" prefWidth="371.0">
+      <ScrollPane layoutX="172.0" layoutY="35.0" prefHeight="359.0" prefWidth="431.0">
          <content>
-            <TableView fx:id="table_history_data" onSort="#isTableData" prefHeight="354.0" prefWidth="367.0">
+            <TableView fx:id="table_history_data" onSort="#isTableData" prefHeight="354.0" prefWidth="429.0">
               <columns>
-                <TableColumn fx:id="colum_date" prefWidth="135.0" text="date" />
-                <TableColumn fx:id="colum_Xname" prefWidth="69.0" text=" XName" />
-                  <TableColumn fx:id="colum_Oname" text="OName" />
-                  <TableColumn fx:id="colum_winner" prefWidth="82.0" text="Winner" />
+                <TableColumn fx:id="colum_date" prefWidth="163.0" text="date" />
+                <TableColumn fx:id="colum_Xname" text=" XName" />
+                  <TableColumn fx:id="colum_Oname" prefWidth="88.0" text="OName" />
+                  <TableColumn fx:id="colum_winner" prefWidth="96.0" text="Winner" />
               </columns>
             </TableView>
          </content>
