@@ -13,7 +13,6 @@ public class TwoPlayerController extends TwoPlayerBase{
      }
      
 
-     @Override
      protected void isStartGame(ActionEvent actionEvent) {
           // TODO Validation 
           
@@ -32,8 +31,17 @@ public class TwoPlayerController extends TwoPlayerBase{
                Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }
-       @Override
     protected void isBack(ActionEvent actionEvent) {
+        Navigator.navigate(Navigator.WELCOME, stage);
+    }
+
+    @Override
+    protected void isSingle(ActionEvent actionEvent) {
+Navigator.navigate(Navigator.GAMEBOARD, stage);    
+    }
+
+    @Override
+    protected void onBackClicked(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }
      

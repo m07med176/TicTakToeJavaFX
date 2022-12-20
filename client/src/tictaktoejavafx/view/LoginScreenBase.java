@@ -2,19 +2,17 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
+import javafx.scene.text.Font;
 
 public abstract class LoginScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Button btn_login;
-    protected final Label label;
     protected final PasswordField password;
     protected final TextField user_name;
     protected final Hyperlink create_account;
@@ -24,7 +22,6 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         imageView = new ImageView();
         btn_login = new Button();
-        label = new Label();
         password = new PasswordField();
         user_name = new TextField();
         create_account = new Hyperlink();
@@ -42,19 +39,17 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setLayoutX(225.0);
         imageView.setLayoutY(55.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
-        btn_login.setLayoutX(274.0);
+        btn_login.setLayoutX(260.0);
         btn_login.setLayoutY(375.0);
         btn_login.setMnemonicParsing(false);
         btn_login.setOnAction(this::isLogin);
+        btn_login.setPrefHeight(25.0);
+        btn_login.setPrefWidth(90.0);
         btn_login.getStyleClass().add("main_button");
         btn_login.setText("Login");
-
-        label.setLayoutX(273.0);
-        label.setLayoutY(203.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
+        btn_login.setFont(new Font("System Bold Italic", 12.0));
 
         password.setLayoutX(200.0);
         password.setLayoutY(317.0);
@@ -83,11 +78,9 @@ public abstract class LoginScreenBase extends AnchorPane {
         button.setMnemonicParsing(false);
         button.getStyleClass().add("back_button");
         button.setText("<");
-        button.setOnAction(this::isBack);
 
         getChildren().add(imageView);
         getChildren().add(btn_login);
-        getChildren().add(label);
         getChildren().add(password);
         getChildren().add(user_name);
         getChildren().add(create_account);
@@ -98,7 +91,5 @@ public abstract class LoginScreenBase extends AnchorPane {
     protected abstract void isLogin(javafx.event.ActionEvent actionEvent);
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
-    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
-
 
 }

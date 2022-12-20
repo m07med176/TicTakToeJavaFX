@@ -35,7 +35,7 @@ public abstract class SnakeScreenBase extends AnchorPane {
         back_btn.setLayoutY(27.0);
         back_btn.setMnemonicParsing(false);
         back_btn.setOnAction(this::isBack);
-        back_btn.setText("back");
+        back_btn.setText("<");
 
         imageView.setFitHeight(95.0);
         imageView.setFitWidth(112.0);
