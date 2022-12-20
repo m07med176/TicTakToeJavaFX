@@ -14,10 +14,10 @@ import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.model.PlayerOnline;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.PlayerSelectionScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class PlayerSelectionController extends PlayerSelectionScreenBase {
 
@@ -62,7 +62,7 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
                 try {
                     ServerConnection.closeThread();
                 } catch (IOException ex) {
-                     new UserMessage().display(ex.getMessage(), new AlertAction(){
+                     new UserMessage().display(ex.getMessage(), new CallBackAction(){
                @Override
                public void sendOk() {
                     Navigator.navigate(Navigator.WELCOME, stage);
@@ -80,7 +80,7 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
 }
 
 
-                /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
+                /*    new UserMessage().display(Config.INVATE_MSG, new CallBackAction() {
                 @Override
                 public void sendOk() {
                 Navigator.navigate(Navigator.GAMEBOARD, stage);

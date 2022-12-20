@@ -7,16 +7,13 @@ import tictaktoejavafx.view.TwoPlayerBase;
 public class TwoPlayerController extends TwoPlayerBase{
 
      private Stage stage;
-
      public TwoPlayerController(Stage stage) {
           this.stage = stage;
      }
      
 
      @Override
-     protected void isStartGame(ActionEvent actionEvent) {
-          // TODO Validation 
-          
+     protected void isStartGame(ActionEvent actionEvent) {          
           String playerOne = player_One.getText().trim();
           String playerTwo = Player_two.getText().trim();
           if(playerOne.isEmpty()){

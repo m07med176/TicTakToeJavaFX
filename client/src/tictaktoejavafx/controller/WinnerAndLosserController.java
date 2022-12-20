@@ -1,33 +1,30 @@
 package tictaktoejavafx.controller;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tictaktoejavafx.data.model.PlayerName;
+import tictaktoejavafx.data.model.PlayerOffline;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.WinnerAndlosserScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     private final Stage stage;
- MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer;
+    
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
-        user_win.setText(PlayerName.getPlayerName());
-        String name = PlayerName.getPlayerName();
+        user_win.setText(PlayerOffline.getPlayerName());
+        String name = PlayerOffline.getPlayerName();
         if (name.equals("Player 1")) {
             String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
             
@@ -44,7 +41,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
             try {
                 ServerConnection.closeThread();
             } catch (IOException ex) {
-                new UserMessage().display(ex.getMessage(), new AlertAction(){
+                new UserMessage().display(ex.getMessage(), new CallBackAction(){
                     @Override
                     public void sendOk() {
                         Navigator.navigate(Navigator.WELCOME, stage);
@@ -83,8 +80,5 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
     @Override
     protected void onResultsClicked(ActionEvent actionEvent) {
           mediaPlayer.stop();
-
-        System.out.println("On Result Clicked");
-
     }
 }

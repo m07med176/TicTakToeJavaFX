@@ -13,12 +13,12 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class ServerConnection {
 
@@ -158,7 +158,7 @@ public class ServerConnection {
                     
                 case ServerCall.RREGISTER_RECEIVE:
                     Platform.runLater(() -> {
-                        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+                        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
                             @Override
                             public void sendOk() {
                                 Navigator.navigate(Navigator.WELCOME, stage);

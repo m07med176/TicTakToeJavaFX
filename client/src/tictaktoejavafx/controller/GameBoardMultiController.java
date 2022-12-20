@@ -1,28 +1,29 @@
 package tictaktoejavafx.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.HistoryModel;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.data.model.HistoryDataModel;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardMultiController extends GameBoardScreenBase {
-
     private Stage stage;
     ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
     Gson gson = new Gson();
 
-    HistoryModel model;
+    HistoryDataModel model;
     private boolean isRecorded;
     private RecordDataBasedSystem db;
 
@@ -37,67 +38,50 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        gameTurns(btn_Game_one);
-        db.saveRecord(isRecorded, btn_Game_one, "1");
+        gameTurns(btn_Game_one,1);
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        gameTurns(btn_Game_four);
-        db.saveRecord(isRecorded, btn_Game_four, "4");
-
+        gameTurns(btn_Game_four,4);
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        gameTurns(btn_Game_seven);
-        db.saveRecord(isRecorded, btn_Game_seven, "7");
-
+        gameTurns(btn_Game_seven,7);
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        gameTurns(btn_Game_two);
-        db.saveRecord(isRecorded, btn_Game_two, "2");
-
+        gameTurns(btn_Game_two,2);
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        gameTurns(btn_Game_three);
-        db.saveRecord(isRecorded, btn_Game_three, "3");
-
+        gameTurns(btn_Game_three,3);
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        gameTurns(btn_Game_five);
-        db.saveRecord(isRecorded, btn_Game_five, "5");
-
+        gameTurns(btn_Game_five,5);
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        gameTurns(btn_Game_six);
-        db.saveRecord(isRecorded, btn_Game_six, "6");
-
+        gameTurns(btn_Game_six,6);
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        gameTurns(btn_Game_eight);
-        db.saveRecord(isRecorded, btn_Game_eight, "8");
-
+        gameTurns(btn_Game_eight,8);
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        gameTurns(btn_Game_nine);
-        db.saveRecord(isRecorded, btn_Game_nine, "9");
-
+        gameTurns(btn_Game_nine,9);
     }
 
-    public void gameTurns(Button button) {
+    public void gameTurns(Button button,int degree) {
 
         if (turn == 'X') {
 
@@ -120,6 +104,14 @@ public class GameBoardMultiController extends GameBoardScreenBase {
             LocalMultiPlayer.drawChecker(stage);
 
         }
+        
+         try {
+              db.saveRecord(isRecorded, button, String.valueOf(degree));
+         } catch (IOException ex) {
+              UserMessage.showError(ex.getMessage());
+         } catch (JsonIOException ex) {
+              UserMessage.showError(ex.getMessage());
+         }
 
     }
 
@@ -137,7 +129,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
-        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
                 Navigator.navigate(Navigator.WELCOME, stage);
