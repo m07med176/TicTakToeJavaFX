@@ -1,7 +1,12 @@
 package tictaktoejavafx.data.server;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,6 +18,8 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
+import tictaktoejavafx.data.model.HistoryDataModel;
+import tictaktoejavafx.data.model.Player;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
@@ -113,11 +120,20 @@ public class ServerConnection {
                         if (data[1].equals("0")) {
                             UserMessage.showError("You Must register plz");
                         } else {
+                            ArrayList<Player> playerList = new ArrayList();
+                            Gson gson = new Gson();
+                            java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
+                            }.getType();
+                            playerList = gson.fromJson(data[1], listType);
+                            
+                            for(Player player:playerList){
+                                System.out.println("Player ==> "+player.getUsername());
+                            }
                             Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
                         }
                     });
                     break;
-                    
+
                 case ServerCall.IVETATION_RECEIVE:
                     Platform.runLater(() -> {
                         try {
