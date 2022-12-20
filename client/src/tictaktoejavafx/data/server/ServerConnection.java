@@ -21,6 +21,7 @@ import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.utils.CallBackAction;
 
 public class ServerConnection {
+
     private static ServerConnection serverConnection;
     private static DataOutputStream dataOutputStream;
     private static DataInputStream dataInputStream;
@@ -36,7 +37,6 @@ public class ServerConnection {
     private ServerConnection(Stage stage, String ip, int port, ExceptionCallBack exceptionCallBack) throws IOException {
         this.exceptionCallBack = exceptionCallBack;
         this.stage = stage;
-        System.out.println("IP is: "+ip+" and port is: "+port);
         socket = new Socket(ip, port);
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
@@ -48,7 +48,7 @@ public class ServerConnection {
         return serverConnection;
     }
 
-    public static void sendMessage(String message) throws  IOException{
+    public static void sendMessage(String message) throws IOException {
         dataOutputStream.writeUTF(message);
     }
 
@@ -108,13 +108,23 @@ public class ServerConnection {
         if (msg != null && !msg.isEmpty()) {
             String[] data = msg.split(ServerCall.DELIMETER);
             switch (data[0]) {
+                case ServerCall.LOGIN_RECEIVER:
+                    Platform.runLater(() -> {
+                        if (data[1].equals("0")) {
+                            UserMessage.showError("You Must register plz");
+                        } else {
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
+                        }
+                    });
+                    break;
+                    
                 case ServerCall.IVETATION_RECEIVE:
                     Platform.runLater(() -> {
-                try {
-                    displayAlert(data[1]);
-                } catch (IOException ex) {
-                    Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                        try {
+                            displayAlert(data[1]);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     });
                     break;
                 case ServerCall.CONFIRMATION_RECEIVE:
@@ -153,7 +163,7 @@ public class ServerConnection {
                     });
                     System.out.println("we set " + Navigator.getBoardMove() + " " + Navigator.getButtonNumber());
                     break;
-                    
+
                 case ServerCall.RREGISTER_RECEIVE:
                     Platform.runLater(() -> {
                         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
@@ -161,14 +171,14 @@ public class ServerConnection {
                             public void sendOk() {
                                 Navigator.navigate(Navigator.WELCOME, stage);
                             }
-                            
+
                             @Override
                             public void sendCancel() {
                                 // Do Nothing
                             }
                         }, Alert.AlertType.CONFIRMATION);
-            });
-                       
+                    });
+
                 default:
                     break;
 
@@ -185,7 +195,7 @@ public class ServerConnection {
 
     }
 
-    public static void displayAlert(String Playerx) throws IOException{
+    public static void displayAlert(String Playerx) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
         alert.setTitle("Invitation");
