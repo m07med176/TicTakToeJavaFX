@@ -24,7 +24,6 @@ public abstract class GameBoardScreenBase extends AnchorPane {
     protected final Button button;
     protected final Label label_player1;
     protected final Label label_player2;
-    protected final ImageView imageView0;
     protected final Button video_btn;
 
     public GameBoardScreenBase() {
@@ -44,7 +43,6 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button = new Button();
         label_player1 = new Label();
         label_player2 = new Label();
-        imageView0 = new ImageView();
         video_btn = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
@@ -59,7 +57,9 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setLayoutX(591.0);
         imageView.setLayoutY(44.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+                imageView.setImage(new Image(Config.LOGO));
+
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         label.setId("vs");
         label.setLayoutX(678.0);
@@ -165,18 +165,10 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
-        imageView0.setFitHeight(47.0);
-        imageView0.setFitWidth(98.0);
-        imageView0.setLayoutX(634.0);
-        imageView0.setLayoutY(415.0);
-        imageView0.setPickOnBounds(true);
-        imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(Config.RECORD));
-        video_btn.setLayoutX(641.0);
-        video_btn.setLayoutY(423.0);
+        video_btn.setLayoutX(652.0);
+        video_btn.setLayoutY(404.0);
         video_btn.setMnemonicParsing(false);
         video_btn.setOnAction(this::isVideo);
-        video_btn.setOpacity(0.0);
         video_btn.setPrefHeight(38.0);
         video_btn.setPrefWidth(81.0);
         video_btn.setStyle("-fx-background-radius: 100;");
@@ -196,7 +188,6 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         getChildren().add(anchorPane);
         getChildren().add(label_player1);
         getChildren().add(label_player2);
-        getChildren().add(imageView0);
         getChildren().add(video_btn);
 
     }

@@ -11,5 +11,6 @@
       <TextField fx:id="player_One" layoutX="229.0" layoutY="273.0" prefHeight="31.0" prefWidth="217.0" promptText="First Player" styleClass="main_input" />
       <TextField fx:id="Player_two" layoutX="229.0" layoutY="346.0" prefHeight="31.0" prefWidth="217.0" promptText="Second Player" styleClass="main_input" />
       <Button fx:id="StartGame" layoutX="288.0" layoutY="401.0" mnemonicParsing="false" onAction="#isStartGame" styleClass="main_button" text="Start Game" />
+      <Button layoutX="25.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

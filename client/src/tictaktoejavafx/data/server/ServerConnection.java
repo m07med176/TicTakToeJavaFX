@@ -180,9 +180,22 @@ public class ServerConnection {
     }
 
     public static void closeThread() throws IOException {
-        dataInputStream.close();
-        socket.close();
-        thread.stop();
+        if(dataInputStream!=null){
+            dataInputStream.close();
+            
+        }
+        if(socket!=null){
+            if(socket.isClosed()){
+                socket.close();
+            }
+            
+        }
+        if(thread!=null){
+            if(thread.isAlive()){
+                thread.stop();
+            }
+        }
+        
         serverConnection = null;
 
     }
