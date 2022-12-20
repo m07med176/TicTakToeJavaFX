@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
 
@@ -56,7 +57,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setLayoutX(591.0);
         imageView.setLayoutY(44.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(Config.LOGO));
 
         label.setId("vs");
         label.setLayoutX(678.0);
