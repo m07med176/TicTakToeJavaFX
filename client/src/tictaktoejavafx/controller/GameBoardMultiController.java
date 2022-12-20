@@ -19,7 +19,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     private Stage stage;
     ArrayList<String> diagonals = new ArrayList<>();
-    public static char turn = 'X';
+    public char turn = 'X';
     Gson gson = new Gson();
 
     HistoryModel model;
@@ -33,6 +33,9 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
+        if(turn=='b'){
+            turn='X';
+        }
     }
 
     @Override
