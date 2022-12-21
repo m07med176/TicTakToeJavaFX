@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import server.data.db.DatabaseAccessLayer;
 import server.data.model.Player;
+import server.data.model.ResponseModel;
 
 public class NetworkAccessLayer implements ServerCall {
 
@@ -18,11 +19,18 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public void invetation(String[] request, String currentID) throws SQLException, IOException {
+          System.out.println("يا حسين");
           if (request.length == 2) {
+               System.out.println("كلم");
                String senderID = request[1];
+               System.out.println("السيرفر");
                if (!currentID.equals(senderID)) {
+                    System.out.println("عشان ");
                     for (SocketSession session : ServerManager.sessionHolder) {
+                         System.out.println("يشتغل ");
                          if (session.UID.equals(senderID)) {
+                              System.out.println("بالله عليك ");
+                              System.out.println("Husiien say:  "+ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
                               session.printStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
                          }
                     }
@@ -68,13 +76,14 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public String login(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = request[1];
+          String retVal = null;
           if (request.length == 3) {
-               ArrayList<Player> playerList = db.isPlayer(request[1], request[2]);
+               ResponseModel responseData = db.isPlayer(request[1], request[2]);
+               retVal = String.valueOf(responseData.getUsername());
                Gson gson = new Gson();
-               retVal = gson.toJson(playerList);
-               if (!playerList.isEmpty()) {
-                    response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + retVal);
+               String onliePlayerData = gson.toJson(responseData.getPlayerList());
+               if (!responseData.getPlayerList().isEmpty()) {
+                    response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + onliePlayerData);
                } else {
                     response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + "0");
                }
@@ -84,13 +93,14 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public String register(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = request[1];
+          String retVal = null;
           if (request.length == 4) {
-               ArrayList<Player> playerList = db.addPlayer(new Player(request[1], request[2], request[3]));
+               ResponseModel responsData = db.addPlayer(new Player(request[1], request[2], request[3]));
                Gson gson = new Gson();
-               retVal = gson.toJson(playerList);
-               if (!playerList.isEmpty()) {
-                    response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + retVal);
+               String onlinePlayerData = gson.toJson(responsData.getPlayerList());
+               retVal = String.valueOf(responsData.getUsername());
+               if (!responsData.getPlayerList().isEmpty()) {
+                    response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + onlinePlayerData);
                } else {
                     response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + "0");
                }

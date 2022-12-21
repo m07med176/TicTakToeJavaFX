@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import server.data.model.Player;
+import server.data.model.ResponseModel;
 import server.utils.Config;
 
 public class DatabaseAccessLayer implements DBOperations {
@@ -32,15 +33,22 @@ public class DatabaseAccessLayer implements DBOperations {
      }
 
      @Override
-     public ArrayList<Player> addPlayer(Player user) throws SQLException {
+     public ResponseModel addPlayer(Player user) throws SQLException {
+          ResponseModel requestModel = new ResponseModel();
           statement = con.prepareStatement("INSERT INTO " + Config.TABLE_NAME + " (id,email,username,password,status) VALUES(?,?,?,?,?)");
-          statement.setInt(1, getCurrentId());
+          int currentId = getCurrentId();
+          statement.setInt(1, currentId);
           statement.setString(2, user.getEmail());
           statement.setString(3, user.getUsername());
           statement.setString(4, user.getPassword());
           statement.setBoolean(5, true);
-          statement.executeUpdate();
-          return getOnlinePlayers();
+          int state = statement.executeUpdate();
+          if(state != 0){
+               requestModel.setId(currentId);
+               requestModel.setUsername(user.getUsername());
+               requestModel.setPlayerList(getOnlinePlayers());
+          }
+          return requestModel;
      }
 
      @Override
@@ -64,18 +72,22 @@ public class DatabaseAccessLayer implements DBOperations {
      }
      
      @Override
-     public ArrayList<Player> isPlayer(String userName, String password) throws SQLException {
-          ArrayList<Player> player = new ArrayList<>();
+     public ResponseModel isPlayer(String userName, String password) throws SQLException {
+          ResponseModel responseModel=new ResponseModel();
+          
           statement = con.prepareStatement("SELECT * FROM " + Config.TABLE_NAME + " WHERE userName=? AND password=?");
           statement.setString(1, userName);
           statement.setString(2, password);
           
           resultSet = statement.executeQuery();
           if (resultSet.next()) {
-               player = getOnlinePlayers();
                updatePlayerStatus(true,userName);
+               
+              responseModel.setId(resultSet.getInt(1));
+              responseModel.setUsername(resultSet.getString(2));
+              responseModel.setPlayerList(getOnlinePlayers());
           }
-          return player;
+          return responseModel;
      }
 
      @Override
