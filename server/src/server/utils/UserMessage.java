@@ -8,7 +8,7 @@ public class UserMessage extends Alert {
         super(AlertType.CONFIRMATION);
     }
 
-    public void display(String message,AlertAction action,AlertType type) {
+    public void display(String message,CallBackAction action,AlertType type) {
         setAlertType(type);
         setContentText(message);
         showAndWait().ifPresent(response -> {
@@ -21,17 +21,17 @@ public class UserMessage extends Alert {
         });
     }
     
-    public void alert(String alertMessage,AlertAction action) {
-        setAlertType(AlertType.ERROR);
-        setContentText("We Are In Trouble "+"\n"+alertMessage);
-        showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK || response == ButtonType.APPLY || response == ButtonType.NEXT || response == ButtonType.NEXT) {
-               action.sendOk();
+    public static void showError(String error){
+         new UserMessage().display(Config.ERROR_MSG+"\n"+error, new CallBackAction() {
+            @Override
+            public void sendOk() {
             }
-            if(response == ButtonType.CANCEL || response == ButtonType.CLOSE  || response == ButtonType.NO || response == ButtonType.PREVIOUS || response == ButtonType.FINISH){
-                action.sendCancel();
+
+            @Override
+            public void sendCancel() {
             }
-        });
+        }, AlertType.ERROR);
+    
     }
     
 }

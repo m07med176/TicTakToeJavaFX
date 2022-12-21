@@ -44,12 +44,6 @@ public abstract class RecordTableBase extends AnchorPane {
         setPrefHeight(588.0);
         setPrefWidth(731.0);
 
-        back_btn.setLayoutX(26.0);
-        back_btn.setLayoutY(22.0);
-        back_btn.setMnemonicParsing(false);
-        back_btn.setOnAction(this::isBackbtn);
-        back_btn.setText("<");
-
 
         scrollPane.setLayoutX(164.0);
         scrollPane.setLayoutY(38.0);

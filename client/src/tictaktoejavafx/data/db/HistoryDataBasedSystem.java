@@ -8,21 +8,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import tictaktoejavafx.data.model.HistoryModel;
+import tictaktoejavafx.data.model.HistoryDataModel;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 
 public class HistoryDataBasedSystem {
 
-     public static ArrayList<HistoryModel> getPlayerModleList() throws IOException {
-          ArrayList<HistoryModel> data = new ArrayList();
+     public static ArrayList<HistoryDataModel> getPlayerModleList() throws IOException,JsonIOException {
+          ArrayList<HistoryDataModel> data = new ArrayList();
           BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.HIST_FILE)));
           Gson gson = new Gson();
-          java.lang.reflect.Type listType = new TypeToken<ArrayList<HistoryModel>>() {
+          java.lang.reflect.Type listType = new TypeToken<ArrayList<HistoryDataModel>>() {
           }.getType();
           data = gson.fromJson(bufferedReader, listType);
           bufferedReader.close();
@@ -30,11 +28,11 @@ public class HistoryDataBasedSystem {
      }
 
      public static void saveFile(String winnerName) throws IOException,JsonIOException {
-          HistoryModel playerModel = getHistorySessionData(winnerName);
+          HistoryDataModel playerModel = getHistorySessionData(winnerName);
           BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Config.HIST_FILE)));
           Gson gson = new Gson();
-          List<HistoryModel> player;
-          java.lang.reflect.Type listType = new TypeToken<ArrayList<HistoryModel>>() {
+          List<HistoryDataModel> player;
+          java.lang.reflect.Type listType = new TypeToken<ArrayList<HistoryDataModel>>() {
           }.getType();
           player = gson.fromJson(bufferedReader, listType);
           player.add(playerModel);
@@ -44,13 +42,8 @@ public class HistoryDataBasedSystem {
           bufferedReader.close();
      }
 
-     private static HistoryModel getHistorySessionData(String winnerName) {
-          HistoryModel playerModel = new HistoryModel();
-          playerModel.setPlayerXName(Navigator.getPlayerOne());
-          playerModel.setPlayerOName(Navigator.getPlayerTwo());
-          playerModel.setWinner(winnerName);
-          return playerModel;
-
+     private static HistoryDataModel getHistorySessionData(String winnerName) {
+          return new HistoryDataModel(Navigator.getPlayerOne(), Navigator.getPlayerTwo(),winnerName);
      }
 
 }

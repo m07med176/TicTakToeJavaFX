@@ -1,18 +1,21 @@
 package tictaktoejavafx.data.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import tictaktoejavafx.utils.Config;
 
-public class RecordModelData {
-    private String dateGame;
+public class RecordDataModel {
+    private String dateGame = new SimpleDateFormat(Config.DATETIME).format(new Date());
     private String playerXName;
     private String playerOName;
     private String type;
    private ArrayList<String> record = new ArrayList<>();
 
-    public RecordModelData() {
+    public RecordDataModel() {
     }
 
-    public RecordModelData(String dateGame, String playerXName, String playerOName, String type) {
+    public RecordDataModel(String dateGame, String playerXName, String playerOName, String type) {
         this.dateGame = dateGame;
         this.playerXName = playerXName;
         this.playerOName = playerOName;

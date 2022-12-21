@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public interface ServerCall{
-     
-     public static final String RREGISTER = "REGISTER";
-     public static final String IVETATION = "IVETATION";
-     public static final String LOGIN = "LOGIN";
+     public static final String DELIMETER = "&";
      
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";

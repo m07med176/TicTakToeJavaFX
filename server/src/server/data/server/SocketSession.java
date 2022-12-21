@@ -50,24 +50,18 @@ public class SocketSession extends Thread {
 
      private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
           if (response != null && !response.isEmpty()) {
-              
-              System.out.println(response);// log for test
-              
-               String[] data = response.split(",");
+              System.out.println(response);
+               String[] data = response.split(ServerCall.DELIMETER);
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
-                         //UID = networkOperations.login(data, printStream);
-                         UID = data[1];
+                         UID  = networkOperations.login(data, printStream);
                          break;
 
                     case ServerCall.RREGISTER_SEND:
-                         UID = data[1]; 
-                         System.out.println(ServerCall.RREGISTER_SEND);
-                         networkOperations.register(data, printStream);
+                         UID = networkOperations.register(data, printStream); 
                          break;
 
                     case ServerCall.PLAYER_LIST_SEND:
-                         System.out.println("Indecx palyers send");
                          networkOperations.onlinePlayers(data, printStream);
                          break;
 
@@ -79,7 +73,7 @@ public class SocketSession extends Thread {
                          networkOperations.invetation(data, UID);
                          break;
 
-                    case "CONF_SEND":
+                    case ServerCall.CONFIRMATION_SEND:
                          networkOperations.confirm(data, UID);
                          break;
                }

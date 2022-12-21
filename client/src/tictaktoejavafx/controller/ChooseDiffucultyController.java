@@ -3,7 +3,7 @@ package tictaktoejavafx.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.utils.CallBackAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
@@ -37,7 +37,7 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
-         new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
                @Override
                public void sendOk() {
                     Navigator.navigate(Navigator.WELCOME, stage);

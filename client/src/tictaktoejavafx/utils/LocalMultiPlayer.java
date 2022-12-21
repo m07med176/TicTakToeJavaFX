@@ -1,7 +1,6 @@
-
 package tictaktoejavafx.utils;
 
-import tictaktoejavafx.data.model.PlayerName;
+import tictaktoejavafx.data.model.PlayerOffline;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
@@ -23,8 +22,8 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
 
-                PlayerName.setPlayerName(Navigator.getPlayerOne());
-                PlayerName.setPlayerName("Player One");
+                PlayerOffline.setPlayerName(Navigator.getPlayerOne());
+                PlayerOffline.setPlayerName("Player One");
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -34,8 +33,8 @@ public class LocalMultiPlayer {
             
             }else if(d.get(i).equals("OOO")){
             
-                PlayerName.setPlayerName(Navigator.getPlayerTwo());
-                PlayerName.setPlayerName("Player Two");
+                PlayerOffline.setPlayerName(Navigator.getPlayerTwo());
+                PlayerOffline.setPlayerName("Player Two");
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -46,27 +45,20 @@ public class LocalMultiPlayer {
         
         }
         numberOfPresses++;
-    
     }
 
     public static void setGameEnded(boolean gameEnded) {
         LocalMultiPlayer.gameEnded = gameEnded;
     }
-    public static void drawChecker(Stage stage){
     
+    public static void drawChecker(Stage stage){
         if(numberOfPresses>=9&&gameEnded==false){
-            PlayerName.setPlayerName("DRAW");
+            PlayerOffline.setPlayerName("DRAW");
             gameEnded=true;
             numberOfPresses=0;
             GameBoardControllerOnline.arrlistButtons2=null;
             ServerConnection.diagonals=null;
             Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-            //GameBoardMultiController.turn='b';
-            
-        
         }
-    
-    
     }
-   
 }

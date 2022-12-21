@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import tictaktoejavafx.utils.Config;
 
 public abstract class RegisterScreenBase extends AnchorPane {
 
@@ -43,12 +44,8 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setLayoutX(200.0);
         imageView.setLayoutY(26.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(Config.LOGO));
 
-
-        label.setLayoutX(253.0);
-        label.setLayoutY(202.0);
-        label.getStyleClass().add("title");
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
