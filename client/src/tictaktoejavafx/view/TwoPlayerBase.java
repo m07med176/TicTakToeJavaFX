@@ -2,6 +2,7 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -90,8 +91,7 @@ StartGame = new Button();
         imageView0.setLayoutX(270.0);
         imageView0.setLayoutY(49.0);
         imageView0.getStyleClass().add("logo");
-       // imageView0.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
-imageView.setImage(new Image(Config.LOGO));
+        imageView.setImage(new Image(Config.LOGO));
         getChildren().add(imageView);
         getChildren().add(player_One);
         getChildren().add(Player_two);

@@ -25,7 +25,7 @@ public class NetworkAccessLayer implements ServerCall {
                     for (SocketSession session : ServerManager.sessionHolder) {
                          if (session.UID.equals(senderID)) {
                               System.out.println("Husiien say:  "+ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
-                              session.printStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                              session.dataOutputStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
                          }
                     }
                }
@@ -38,7 +38,7 @@ public class NetworkAccessLayer implements ServerCall {
                String senderID = request[1];
                for (SocketSession session : ServerManager.sessionHolder) {
                     if (session.UID.equals(senderID)) {
-                         session.printStream.writeUTF(ServerCall.CONFIRMATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                         session.dataOutputStream.writeUTF(ServerCall.CONFIRMATION_RECEIVE + ServerCall.DELIMETER + currentID);
                     }
                }
           }
@@ -50,7 +50,7 @@ public class NetworkAccessLayer implements ServerCall {
                String senderID = request[1];
                for (SocketSession session : ServerManager.sessionHolder) {
                     if (session.UID.equals(senderID)) {
-                         session.printStream.writeUTF(ServerCall.MOVEMENT_RECEIVE + ServerCall.DELIMETER + currentID + ServerCall.DELIMETER + request[2] + ServerCall.DELIMETER + request[3]);
+                         session.dataOutputStream.writeUTF(ServerCall.MOVEMENT_RECEIVE + ServerCall.DELIMETER + currentID + ServerCall.DELIMETER + request[2] + ServerCall.DELIMETER + request[3]);
                     }
                }
           }
@@ -100,6 +100,13 @@ public class NetworkAccessLayer implements ServerCall {
                }
           }
           return retVal;
+     }
+
+     @Override
+     public void updateState(String[] request) throws SQLException, IOException {
+          if(request.length == 2){
+               db.updatePlayerStatus(false, request[1]);
+          }
      }
 
 }

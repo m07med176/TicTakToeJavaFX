@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class RecordTableBase extends AnchorPane {

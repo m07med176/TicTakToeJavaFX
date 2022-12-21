@@ -17,10 +17,8 @@ public abstract class WelcomeScreenBase extends AnchorPane {
     protected final Button btn_two;
     protected final Button btn_online_mode;
     protected final ImageView imageView;
+    protected final Button isRecord;
     protected final Button btn_History_Mode;
-    protected final Button btn_History_Mode1;
-    protected final Button btn_two1;
-    protected final Button btn_two2;
 
     public WelcomeScreenBase() {
 
@@ -29,10 +27,8 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two = new Button();
         btn_online_mode = new Button();
         imageView = new ImageView();
+        isRecord = new Button();
         btn_History_Mode = new Button();
-        btn_History_Mode1 = new Button();
-        btn_two1 = new Button();
-        btn_two2 = new Button();
 
         setId("AnchorPane");
         setPrefHeight(575.0);
@@ -119,71 +115,40 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_online_mode.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_online_mode.setFont(new Font(22.0));
 
-        imageView.setFitHeight(165.0);
-        imageView.setFitWidth(176.0);
+        imageView.setFitHeight(150.0);
+        imageView.setFitWidth(150.0);
         imageView.setLayoutX(145.0);
-        imageView.setLayoutY(79.0);
+        imageView.setLayoutY(100.0);
         imageView.getStyleClass().add("logo");
-
-        //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
- imageView.setImage(new Image(Config.LOGO));
-
         imageView.setId("imageView");
 
         imageView.setImage(new Image(Config.LOGO));
 
+        isRecord.setLayoutX(126.0);
+        isRecord.setLayoutY(513.0);
+        isRecord.setMnemonicParsing(false);
+        isRecord.setOnAction(this::isRecorded);
+        isRecord.setPrefHeight(48.0);
+        isRecord.setPrefWidth(214.0);
+        isRecord.setText("Record Mode");
+        isRecord.getStyleClass().add("main_button");
 
-        btn_History_Mode.setLayoutX(7.0);
-        btn_History_Mode.setLayoutY(144.0);
+        btn_History_Mode.setLayoutX(126.0);
+        btn_History_Mode.setLayoutY(449.0);
         btn_History_Mode.setMnemonicParsing(false);
         btn_History_Mode.setOnAction(this::isHistoryMode);
         btn_History_Mode.setPrefHeight(45.0);
         btn_History_Mode.setPrefWidth(214.0);
         btn_History_Mode.setText("History Mode");
-        btn_History_Mode.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_History_Mode.setFont(new Font(22.0));
-
-        btn_History_Mode1.setLayoutX(14.0);
-        btn_History_Mode1.setLayoutY(202.0);
-        btn_History_Mode1.setMnemonicParsing(false);
-        btn_History_Mode1.setOnAction(this::isHistoryMode);
-        btn_History_Mode1.setPrefHeight(45.0);
-        btn_History_Mode1.setPrefWidth(214.0);
-        btn_History_Mode1.setText("Record Mode");
-        btn_History_Mode1.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
-        btn_History_Mode1.setFont(new Font(22.0));
-
-        btn_two1.setLayoutX(126.0);
-        btn_two1.setLayoutY(446.0);
-        btn_two1.setMnemonicParsing(false);
-        btn_two1.setOnAction(this::isTwo);
-        btn_two1.setPrefHeight(45.0);
-        btn_two1.setPrefWidth(214.0);
-        btn_two1.getStyleClass().add("main_button");
-        btn_two1.setText("History Mode");
-        btn_two1.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
-        btn_two1.setFont(new Font(22.0));
-
-        btn_two2.setLayoutX(126.0);
-        btn_two2.setLayoutY(502.0);
-        btn_two2.setMnemonicParsing(false);
-        btn_two2.setOnAction(this::isTwo);
-        btn_two2.setPrefHeight(45.0);
-        btn_two2.setPrefWidth(214.0);
-        btn_two2.getStyleClass().add("main_button");
-        btn_two2.setText("Record Mode");
-        btn_two2.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
-        btn_two2.setFont(new Font(22.0));
-
+        btn_History_Mode.getStyleClass().add("main_button");
         getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);
         getChildren().add(btn_online_mode);
         getChildren().add(imageView);
+        getChildren().add(isRecord);
         getChildren().add(btn_History_Mode);
-        getChildren().add(btn_History_Mode1);
-        getChildren().add(btn_two1);
-        getChildren().add(btn_two2);
 
     }
 
@@ -193,9 +158,8 @@ public abstract class WelcomeScreenBase extends AnchorPane {
 
     protected abstract void isOnlineMode(javafx.event.ActionEvent actionEvent);
 
+    protected abstract void isRecorded(javafx.event.ActionEvent actionEvent);
+
     protected abstract void isHistoryMode(javafx.event.ActionEvent actionEvent);
-
-
-
 
 }

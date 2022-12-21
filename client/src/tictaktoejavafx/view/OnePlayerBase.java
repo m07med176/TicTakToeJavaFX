@@ -91,20 +91,11 @@ public abstract class OnePlayerBase extends AnchorPane {
         //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
  imageView.setImage(new Image(Config.LOGO));
 
-        imageView0.setFitHeight(136.0);
-        imageView0.setFitWidth(168.0);
-        imageView0.setLayoutX(298.0);
-        imageView0.setLayoutY(59.0);
-        imageView0.getStyleClass().add("logo");
-        imageView0.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
-
         getChildren().add(imageView);
         getChildren().add(player_name);
         getChildren().add(button);
         getChildren().add(btn_single);
-        getChildren().add(imageView);
-
-        getChildren().add(imageView0);
+//        getChildren().add(imageView);
 
     }
 
