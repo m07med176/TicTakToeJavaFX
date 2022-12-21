@@ -29,6 +29,7 @@ public class TwoPlayerController extends TwoPlayerBase {
         }
     }
 
+
     protected void isBack(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.data.model.PlayerOffline;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
@@ -48,20 +48,13 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     }
 
     @Override
-    protected void isGameFour(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_four,"4");
-    }
-
-    @Override
-    protected void isGameSeven(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_seven,"7");
-    }
-
-    @Override
     protected void isGameThree(ActionEvent actionEvent) {
          playerGame(this.btn_Game_three,"3");
     }
-
+ @Override
+    protected void isGameFour(ActionEvent actionEvent) {
+         playerGame(this.btn_Game_four,"4");
+    }
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
          playerGame(this.btn_Game_five,"5");
@@ -69,9 +62,12 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_eight,"6");
+         playerGame(this.btn_Game_six,"6");
     }
-
+ @Override
+    protected void isGameSeven(ActionEvent actionEvent) {
+         playerGame(this.btn_Game_seven,"7");
+    }
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
           playerGame(this.btn_Game_eight,"8");
@@ -83,11 +79,13 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     }
 
     void playerGame(Button button,String degree) {
-        arrlistButtons.remove(button);
-        count++;
         button.setDisable(true);
+        arrlistButtons.remove(button);
+        System.out.println("Button Click is: "+degree);
+        count++;
         if (count % 2 != 0) {
             button.setText("X");
+
              try {
                   check();
              } catch (IOException ex) {
@@ -98,11 +96,12 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         
         try {
               db.saveRecord(isRecorded, button, degree);
-         } catch (IOException ex) {
-              UserMessage.showError(ex.getMessage());
+        
          } catch (JsonIOException ex) {
               UserMessage.showError(ex.getMessage());
-         }
+         } catch (IOException ex) {
+            Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     void check() throws IOException {
@@ -148,14 +147,26 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
         for (int i = 0; i < arrlist.size(); i++) {
             if (arrlist.get(i).equals("XXX")) {
+                System.out.println(arrlist.get(i));
                 disableButton();
-                PlayerOffline.setPlayerName("Player 1");
-                HistoryDataBasedSystem.saveFile("Player 1");
+                WinnerName.setWinnerName(Config.PLAYER_X);
+                HistoryDataBasedSystem.saveFile(Config.PLAYER_X);
+                Navigator.setPlayerWinner(Navigator.getPlayerOne());
+                arrlist.clear();
                 playVideo();
             } else if (arrlist.get(i).equals("OOO")) {
+                System.out.println(arrlist.get(i));
                 disableButton();
-                PlayerOffline.setPlayerName("Player 2");
-                HistoryDataBasedSystem.saveFile("Player 2");
+                 WinnerName.setWinnerName(Config.PLAYER_O);
+                HistoryDataBasedSystem.saveFile(Config.PLAYER_O);
+                Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+
+                arrlist.clear();
+                playVideo();
+            }else if (arrlistButtons.isEmpty()) {
+                System.out.println(Config.DRAW);
+                WinnerName.setWinnerName(Config.DRAW);
+                arrlist.clear();
                 playVideo();
             }
 

@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="226.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" styleClass="logo" />
-<<<<<<< HEAD
+
       <TextField fx:id="player_One" layoutX="230.0" layoutY="300.0" prefHeight="31.0" prefWidth="217.0" promptText="First Player" styleClass="main_input" />
       <TextField fx:id="Player_two" layoutX="230.0" layoutY="345.0" prefHeight="31.0" prefWidth="217.0" promptText="Second Player" styleClass="main_input" />
       <Button fx:id="btn_single" layoutX="263.0" layoutY="397.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="42.0" prefWidth="150.0" styleClass="main_button" text="Start Game" textFill="#0a3257">
@@ -24,7 +24,7 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-=======
+
       <TextField fx:id="player_One" layoutX="229.0" layoutY="287.0" prefHeight="31.0" prefWidth="217.0" promptText="First Player" styleClass="main_input" />
       <TextField fx:id="Player_two" layoutX="229.0" layoutY="346.0" prefHeight="31.0" prefWidth="217.0" promptText="Second Player" styleClass="main_input" />
       <Button fx:id="StartGame" layoutX="265.0" layoutY="402.0" mnemonicParsing="false" onAction="#isStartGame" prefHeight="25.0" prefWidth="123.0" styleClass="main_button" text="Start Game">
@@ -32,6 +32,6 @@
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
       <Button layoutX="25.0" layoutY="21.0" mnemonicParsing="false" text="&lt;" />
->>>>>>> 6de94ab6ee17eae38aa5b93b307577e3c004eb67
+
    </children>
 </AnchorPane>

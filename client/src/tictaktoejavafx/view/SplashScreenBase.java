@@ -20,7 +20,6 @@ public abstract class SplashScreenBase extends AnchorPane {
         setPrefHeight(575.0);
         setPrefWidth(466.0);
 
-
         imageView.setFitHeight(185.0);
         imageView.setFitWidth(200.0);
         imageView.setLayoutX(133.0);

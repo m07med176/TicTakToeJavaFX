@@ -90,6 +90,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
         if (turn == 'X') {
 
             button.setText("X");
+          Navigator.setPlayerWinner(Navigator.getPlayerOne());
             turn = 'O';
             button.setDisable(true);
             diagonalFiller();
@@ -99,8 +100,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
         } else {
 
             button.setText("O");
+            Navigator.setPlayerWinner(Navigator.getPlayerTwo());
             button.setStyle("-fx-text-fill: Red;");
-
             turn = 'X';
             button.setDisable(true);
             diagonalFiller();

@@ -19,17 +19,11 @@ public class NetworkAccessLayer implements ServerCall {
 
      @Override
      public void invetation(String[] request, String currentID) throws SQLException, IOException {
-          System.out.println("يا حسين");
           if (request.length == 2) {
-               System.out.println("كلم");
                String senderID = request[1];
-               System.out.println("السيرفر");
                if (!currentID.equals(senderID)) {
-                    System.out.println("عشان ");
                     for (SocketSession session : ServerManager.sessionHolder) {
-                         System.out.println("يشتغل ");
                          if (session.UID.equals(senderID)) {
-                              System.out.println("بالله عليك ");
                               System.out.println("Husiien say:  "+ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
                               session.printStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
                          }

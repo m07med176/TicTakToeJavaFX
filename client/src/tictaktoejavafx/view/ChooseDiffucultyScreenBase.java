@@ -41,12 +41,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
 
         btn_easy_mode.setLayoutX(147.0);
         btn_easy_mode.setLayoutY(318.0);
-
-//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
-imageView.setImage(new Image(Config.LOGO));
-        btn_easy_mode.setLayoutX(147.0);
-        btn_easy_mode.setLayoutY(344.0);
-
+        
         btn_easy_mode.setMnemonicParsing(false);
         btn_easy_mode.setOnAction(this::isEasyMode);
         btn_easy_mode.setPrefHeight(31.0);
@@ -56,7 +51,6 @@ imageView.setImage(new Image(Config.LOGO));
         btn_easy_mode.setFont(new Font("System Bold Italic", 12.0));
 
         btn_middle_mode.setLayoutX(147.0);
-
         btn_middle_mode.setLayoutY(381.0);
 
         btn_middle_mode.setLayoutY(406.0);
@@ -74,7 +68,6 @@ imageView.setImage(new Image(Config.LOGO));
         btn_hard_mode.setLayoutY(440.0);
 
         btn_hard_mode.setLayoutY(468.0);
-
         btn_hard_mode.setMnemonicParsing(false);
         btn_hard_mode.setOnAction(this::isHardMode);
         btn_hard_mode.setPrefHeight(31.0);
@@ -82,13 +75,14 @@ imageView.setImage(new Image(Config.LOGO));
         btn_hard_mode.getStyleClass().add("main_button");
         btn_hard_mode.setText("Hard Mode");
         btn_hard_mode.setFont(new Font("System Bold Italic", 12.0));
-
+        
         button.setLayoutX(14.0);
         button.setLayoutY(14.0);
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
         button.setText("<");
+
 
         getChildren().add(imageView);
         getChildren().add(btn_easy_mode);

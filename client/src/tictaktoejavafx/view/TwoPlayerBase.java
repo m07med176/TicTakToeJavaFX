@@ -2,11 +2,11 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
+
 
 
 public abstract class TwoPlayerBase extends AnchorPane {
@@ -44,7 +44,6 @@ StartGame = new Button();
 
         player_One.setLayoutX(230.0);
         player_One.setLayoutY(300.0);
-
         player_One.setPrefHeight(31.0);
         player_One.setPrefWidth(217.0);
         player_One.setPromptText("First Player");
@@ -83,6 +82,7 @@ StartGame = new Button();
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
+
         button.setText("<");
 
         imageView0.setFitHeight(183.0);

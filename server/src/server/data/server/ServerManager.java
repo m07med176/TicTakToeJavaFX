@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.Vector;
 import server.utils.Config;
-import server.utils.ExceptionCallBack;
 
 public class ServerManager extends Thread {
      public NetworkAccessLayer networkOperations;
@@ -14,19 +13,19 @@ public class ServerManager extends Thread {
      private final ServerSocket serverSocket;
      private Socket socket;
      private static ServerManager mainServer;
-     private ExceptionCallBack exceptionCallBack;
+     private ServerCallBack serverCallBack;
 
-     private ServerManager(ExceptionCallBack exceptionCallBack) throws IOException, SQLException {
-          this.exceptionCallBack = exceptionCallBack;
+     private ServerManager(ServerCallBack serverCallBack) throws IOException, SQLException {
+          this.serverCallBack = serverCallBack;
           sessionHolder =  new Vector<SocketSession>();
           serverSocket = new ServerSocket(Config.SOCKET_PORT);
           networkOperations = new NetworkAccessLayer();
        
      }
 
-     public static ServerManager getInstance(ExceptionCallBack exceptionCallBack) throws IOException, SQLException {
+     public static ServerManager getInstance(ServerCallBack serverCallBack) throws IOException, SQLException {
           if (mainServer == null) {
-               mainServer = new ServerManager(exceptionCallBack);
+               mainServer = new ServerManager(serverCallBack);
           }
           return mainServer;
      }
@@ -46,9 +45,9 @@ public class ServerManager extends Thread {
           while (true) {
                try {
                     socket = serverSocket.accept();
-                    sessionHolder.add(new SocketSession(socket,networkOperations,exceptionCallBack));
+                    sessionHolder.add(new SocketSession(socket,networkOperations,serverCallBack));
                } catch (IOException ex) {
-                    exceptionCallBack.serverException(ex);
+                    serverCallBack.serverException(ex);
                }
           }
      }

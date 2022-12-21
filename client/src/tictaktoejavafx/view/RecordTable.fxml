@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="200.0" layoutY="38.0" prefHeight="506.0" prefWidth="529.0">
@@ -17,27 +16,18 @@
                 <TableColumn prefWidth="109.0" text="XName" fx:id="x_name_colum" />
                   <TableColumn fx:id="o_name_colum" prefWidth="117.0" text="OName" />
                   <TableColumn fx:id="type_colum" prefWidth="121.0" text="Type" />
-=======
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Button fx:id="back_btn" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBackbtn" text="&lt;" />
-      <ScrollPane layoutX="164.0" layoutY="38.0" prefHeight="507.0" prefWidth="523.0">
-         <content>
-            <TableView fx:id="table_record_id" prefHeight="686.0" prefWidth="582.0">
-              <columns>
+
                 <TableColumn fx:id="date_colum" prefWidth="175.0" text="Date" />
                 <TableColumn prefWidth="94.0" text="XName" fx:id="x_name_colum" />
                   <TableColumn fx:id="o_name_colum" prefWidth="95.0" text="OName" />
                   <TableColumn fx:id="type_colum" prefWidth="102.0" text="Active" />
->>>>>>> 6de94ab6ee17eae38aa5b93b307577e3c004eb67
               </columns>
             </TableView>
          </content>
       </ScrollPane>
-<<<<<<< HEAD
+
       <ImageView fitHeight="116.0" fitWidth="147.0" layoutX="26.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="34.0" layoutY="34.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
-=======
->>>>>>> 6de94ab6ee17eae38aa5b93b307577e3c004eb67
+
    </children>
 </AnchorPane>

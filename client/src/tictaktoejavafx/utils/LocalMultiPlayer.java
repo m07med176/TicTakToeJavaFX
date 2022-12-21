@@ -1,10 +1,10 @@
 package tictaktoejavafx.utils;
 
-import tictaktoejavafx.data.model.PlayerOffline;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.controller.GameBoardMultiController;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.data.server.ServerConnection;
 
 
@@ -22,23 +22,25 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
 
-                PlayerOffline.setPlayerName(Navigator.getPlayerOne());
-                PlayerOffline.setPlayerName("Player One");
+                 WinnerName.setWinnerName(Navigator.getPlayerOne());
+                 WinnerName.setWinnerName(Config.PLAYER_X);
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
+                //Navigator.setWinnerPlayer(Navigator.getPlayerOne());
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 //GameBoardMultiController.turn='b';
             
             }else if(d.get(i).equals("OOO")){
             
-                PlayerOffline.setPlayerName(Navigator.getPlayerTwo());
-                PlayerOffline.setPlayerName("Player Two");
+                 WinnerName.setWinnerName(Navigator.getPlayerTwo());
+                WinnerName.setWinnerName(Config.PLAYER_O);
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
+                //Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 //GameBoardMultiController.turn='b';
             }
@@ -53,11 +55,12 @@ public class LocalMultiPlayer {
     
     public static void drawChecker(Stage stage){
         if(numberOfPresses>=9&&gameEnded==false){
-            PlayerOffline.setPlayerName("DRAW");
+             WinnerName.setWinnerName("DRAW");
             gameEnded=true;
             numberOfPresses=0;
             GameBoardControllerOnline.arrlistButtons2=null;
             ServerConnection.diagonals=null;
+            //Navigator.setWinnerPlayer("NON");
             Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
         }
     }

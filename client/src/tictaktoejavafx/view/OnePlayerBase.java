@@ -23,9 +23,11 @@ public abstract class OnePlayerBase extends AnchorPane {
 
         player_name = new TextField();
         button = new Button();
-StartGame = new Button();
+
+        StartGame = new Button();
         btn_single = new Button();
         imageView = new ImageView();
+
         imageView0 = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
@@ -53,7 +55,6 @@ StartGame = new Button();
         player_name.setPrefWidth(224.0);
         player_name.setPromptText("Player Name");
         player_name.getStyleClass().add("main_input");
-
 
         StartGame.setLayoutX(298.0);
         StartGame.setLayoutY(385.0);

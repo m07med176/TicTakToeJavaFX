@@ -24,7 +24,9 @@ public class Config {
     public static final String ERROR_MSG = "We Are in Trouble Here";
     public static final String INVATE_MSG = "Do You Want TO invate him?";
     
-
+    public static final String PLAYER_X="Player X";
+    public static final String PLAYER_O="Player O";
+    public static final String DRAW="Draw";
     // Configs
     public static String DATETIME = "dd/MM/yyyy HH:mm:ss";
     

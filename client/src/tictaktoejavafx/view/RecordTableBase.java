@@ -4,7 +4,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class RecordTableBase extends AnchorPane {
@@ -15,10 +14,8 @@ public abstract class RecordTableBase extends AnchorPane {
     protected final TableColumn x_name_colum;
     protected final TableColumn o_name_colum;
     protected final TableColumn type_colum;
-
     protected final ImageView imageView;
     protected final Button button;
-
 
     public RecordTableBase() {
 
@@ -28,7 +25,6 @@ public abstract class RecordTableBase extends AnchorPane {
         x_name_colum = new TableColumn();
         o_name_colum = new TableColumn();
         type_colum = new TableColumn();
-
         imageView = new ImageView();
         button = new Button();
 
@@ -37,7 +33,6 @@ public abstract class RecordTableBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-
         setPrefHeight(571.0);
         setPrefWidth(743.0);
 
@@ -102,14 +97,15 @@ public abstract class RecordTableBase extends AnchorPane {
         scrollPane.setContent(table_record_id);
 
 
+
         table_record_id.getColumns().add(date_colum);
         table_record_id.getColumns().add(x_name_colum);
         table_record_id.getColumns().add(o_name_colum);
         table_record_id.getColumns().add(type_colum);
         getChildren().add(scrollPane);
-
         getChildren().add(imageView);
         getChildren().add(button);
+
 
     }
 

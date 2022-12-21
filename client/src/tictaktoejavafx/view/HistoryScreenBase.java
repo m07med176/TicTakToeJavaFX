@@ -35,7 +35,6 @@ public abstract class HistoryScreenBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-
         setPrefHeight(571.0);
         setPrefWidth(747.0);
 
@@ -51,8 +50,6 @@ public abstract class HistoryScreenBase extends AnchorPane {
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
         back_button.setText("<");
-
-
         scrollPane.setLayoutX(188.0);
         scrollPane.setLayoutY(47.0);
         scrollPane.setPrefHeight(432.0);
@@ -71,7 +68,6 @@ public abstract class HistoryScreenBase extends AnchorPane {
         colum_Oname.setText("OName");
 
         colum_winner.setPrefWidth(131.0);
-
         scrollPane.setLayoutX(172.0);
         scrollPane.setLayoutY(35.0);
         scrollPane.setPrefHeight(516.0);
