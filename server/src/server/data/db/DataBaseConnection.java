@@ -14,7 +14,6 @@ public class DataBaseConnection {
     }
 
     public static Connection getConnection() throws SQLException {
-
         if (con == null) {            
                 DriverManager.deregisterDriver(new ClientDriver());
                 con = DriverManager.getConnection(Config.CONNECTION_STRING, Config.USER_NAME, Config.PASSWORD);

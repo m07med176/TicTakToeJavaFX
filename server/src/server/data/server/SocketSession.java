@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 import javafx.application.Platform;
-import server.utils.ExceptionCallBack;
 
 public class SocketSession extends Thread {
 
@@ -17,10 +16,10 @@ public class SocketSession extends Thread {
      String ownerSocket;
 
      private final NetworkAccessLayer networkOperations;
-     private ExceptionCallBack exceptionCallBack;
+     private ServerCallBack serverCallBack;
      
-     public SocketSession(Socket socket, NetworkAccessLayer networkOperations,ExceptionCallBack exceptionCallBack) throws IOException {
-          this.exceptionCallBack = exceptionCallBack;
+     public SocketSession(Socket socket, NetworkAccessLayer networkOperations,ServerCallBack serverCallBack) throws IOException {
+          this.serverCallBack = serverCallBack;
           this.networkOperations = networkOperations;
           dataInputStream = new DataInputStream(socket.getInputStream());
           printStream = new DataOutputStream(socket.getOutputStream());
@@ -39,35 +38,31 @@ public class SocketSession extends Thread {
                } catch (IOException ex) {
                    flag=false;
                     Platform.runLater(() -> {
-                        exceptionCallBack.serverException(ex);
+                        serverCallBack.serverException(ex);
                         
                     });
                } catch (SQLException ex) {
-                    exceptionCallBack.databaseException(ex);
+                    serverCallBack.databaseException(ex);
                }
           }
      }
 
      private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
           if (response != null && !response.isEmpty()) {
-              
-              System.out.println(response);// log for test
-              
-               String[] data = response.split(",");
+              System.out.println(response);
+               String[] data = response.split(ServerCall.DELIMETER);
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
-                         //UID = networkOperations.login(data, printStream);
-                         UID = data[1];
+                         UID  = networkOperations.login(data, printStream);
+                         serverCallBack.requestUpdateDatabase();
                          break;
 
                     case ServerCall.RREGISTER_SEND:
-                         UID = data[1]; 
-                         System.out.println(ServerCall.RREGISTER_SEND);
-                         networkOperations.register(data, printStream);
+                         UID = networkOperations.register(data, printStream); 
+                         serverCallBack.requestUpdateDatabase();
                          break;
 
                     case ServerCall.PLAYER_LIST_SEND:
-                         System.out.println("Indecx palyers send");
                          networkOperations.onlinePlayers(data, printStream);
                          break;
 
@@ -79,7 +74,7 @@ public class SocketSession extends Thread {
                          networkOperations.invetation(data, UID);
                          break;
 
-                    case "CONF_SEND":
+                    case ServerCall.CONFIRMATION_SEND:
                          networkOperations.confirm(data, UID);
                          break;
                }

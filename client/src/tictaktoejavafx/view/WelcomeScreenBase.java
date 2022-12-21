@@ -67,7 +67,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setLayoutX(145.0);
         imageView.setLayoutY(79.0);
         imageView.getStyleClass().add("logo");
-       // imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 imageView.setImage(new Image(Config.LOGO));
         isRecord.setLayoutX(126.0);
         isRecord.setLayoutY(513.0);

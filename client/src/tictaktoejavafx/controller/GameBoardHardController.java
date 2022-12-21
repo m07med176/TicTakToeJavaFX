@@ -1,22 +1,26 @@
 package tictaktoejavafx.controller;
 
+import com.google.gson.JsonIOException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerName;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.TicTacToeAIHard;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardHardController extends GameBoardScreenBase {
 
-     public static String PLAYER1 = "Player 1";
-     public static String PLAYER2 = "Player 2";
+    // public static String PLAYER1 = "Player 1";
+    // public static String PLAYER2 = "Player 2";
      private boolean isRecorded;
      private Stage stage;
      private TicTacToeAIHard toeAIHard;
@@ -25,7 +29,6 @@ public class GameBoardHardController extends GameBoardScreenBase {
      public GameBoardHardController(Stage stage) {
           db = RecordDataBasedSystem.getInstance();
           toeAIHard = new TicTacToeAIHard();
-          RecordDataBasedSystem.newGame = true;
           this.stage = stage;
           toeAIHard.NewGame();
      }
@@ -92,57 +95,49 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
      @Override
      protected void isGameOne(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_one, "1");
           playerGame(btn_Game_one, 1);
      }
 
      @Override
      protected void isGameTwo(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_two, "2");
           playerGame(btn_Game_two, 2);
      }
 
      @Override
      protected void isGameThree(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_three, "3");
           playerGame(btn_Game_three, 3);
      }
 
      @Override
      protected void isGameFour(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_four, "4");
           playerGame(btn_Game_four, 4);
      }
 
      @Override
      protected void isGameFive(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_five, "5");
           playerGame(btn_Game_five, 5);
      }
 
      @Override
      protected void isGameSix(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_six, "6");
           playerGame(btn_Game_six, 6);
 
      }
 
      @Override
      protected void isGameSeven(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_seven, "7");
           playerGame(btn_Game_seven, 7);
 
      }
 
      @Override
      protected void isGameEight(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_eight, "8");
           playerGame(btn_Game_eight, 8);
      }
 
      @Override
      protected void isGameNine(ActionEvent actionEvent) {
-          db.saveRecord(isRecorded, btn_Game_nine, "9");
+          
           playerGame(btn_Game_nine, 9);
      }
 
@@ -160,21 +155,35 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                if ((GO = toeAIHard.isGameOver()) != 0) {
                     if (GO == 1) {
-                         PlayerName.setPlayerName(PLAYER1);
+                        WinnerName.setWinnerName(Config.PLAYER_X);
+                        Navigator.setPlayerWinner(Navigator.getPlayerOne());
+
                          System.out.println("Player 1 win");
                          playVideo();
 
                     } else if (GO == -1) {
-                         PlayerName.setPlayerName(PLAYER2);
+                          WinnerName.setWinnerName(Config.PLAYER_O);
+                        Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+
                          System.out.println("Player 2 win");
                          playVideo();
 
                     } else {
+                          WinnerName.setWinnerName(Config.DRAW);
                          System.out.println(GO);
                          playVideo();
 
                     }
                }
+          }
+          
+          
+          try {
+               db.saveRecord(isRecorded, button, String.valueOf(count));
+          } catch (IOException ex) {
+               UserMessage.showError(ex.getMessage());
+          } catch (JsonIOException ex) {
+               UserMessage.showError(ex.getMessage());
           }
      }
 
@@ -185,12 +194,11 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
      void playVideo() {
           Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-
      }
 
      @Override
      protected void onBackClicked(ActionEvent actionEvent) {
-          new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+          new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
                @Override
                public void sendOk() {
                     Navigator.navigate(Navigator.WELCOME, stage);

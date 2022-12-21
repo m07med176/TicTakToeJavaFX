@@ -1,22 +1,36 @@
 package tictaktoejavafx.view;
 
+
 import javafx.scene.control.ListView;
+
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final AnchorPane anchorPane;
-    protected final ListView list_view_user;
+    protected final TableView table_player_selection;
+    protected final TableColumn columName;
+    protected final TableColumn columEmail;
+    protected final TableColumn columActive;
+    protected final Label label;
 
     public PlayerSelectionScreenBase() {
 
         imageView = new ImageView();
         anchorPane = new AnchorPane();
-        list_view_user = new ListView();
-
+        table_player_selection = new TableView();
+        columName = new TableColumn();
+        columEmail = new TableColumn();
+        columActive = new TableColumn();
+         label=new Label();
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
@@ -29,20 +43,48 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+
+        //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
+
+        label.setLayoutX(625.0);
+        label.setLayoutY(255.0);
+        label.getStyleClass().add("title");
+        label.setText("Tic Tac Toe");
+
 
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
         anchorPane.setPrefHeight(448.0);
         anchorPane.setPrefWidth(514.0);
 
-        list_view_user.setLayoutX(11.0);
-        list_view_user.setLayoutY(12.0);
-        list_view_user.setPrefHeight(417.0);
-        list_view_user.setPrefWidth(476.0);
+        table_player_selection.setLayoutX(1.0);
+        table_player_selection.setLayoutY(-5.0);
+        table_player_selection.setPrefHeight(457.0);
+        table_player_selection.setPrefWidth(514.0);
+
+        columName.setPrefWidth(158.0);
+        columName.setText("Player Name");
+
+        columEmail.setPrefWidth(248.0);
+        columEmail.setText("Email");
+
+        columActive.setMinWidth(1.0);
+        columActive.setPrefWidth(107.0);
+        columActive.setText("Active");
 
         getChildren().add(imageView);
-        anchorPane.getChildren().add(list_view_user);
+
+     //   anchorPane.getChildren().add(list_view_user);
+
+        getChildren().add(label);
+        table_player_selection.getColumns().add(columName);
+        table_player_selection.getColumns().add(columEmail);
+        table_player_selection.getColumns().add(columActive);
+        anchorPane.getChildren().add(table_player_selection);
+
         getChildren().add(anchorPane);
 
     }
