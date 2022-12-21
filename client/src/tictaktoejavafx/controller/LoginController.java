@@ -105,5 +105,9 @@ public class LoginController extends LoginScreenBase {
     protected void CreateAccount(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.REGISTER, stage,socketModel);
     }
+      @Override
+    protected void isBack(ActionEvent actionEvent) {
+        Navigator.navigate(Navigator.WELCOME, stage);
+    }
 
 }

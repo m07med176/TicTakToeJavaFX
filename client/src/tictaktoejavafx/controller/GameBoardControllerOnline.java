@@ -19,7 +19,7 @@ import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
-
+    
     private static Stage stage;
     public ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
@@ -30,6 +30,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     public static Button button;
 
     public GameBoardControllerOnline(Stage stage) {
+        LocalMultiPlayer.setGameEnded(false);
         this.stage = stage;
         addbuttonInList();
         addAllbuttonInList();
@@ -39,6 +40,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
         if (!Navigator.isStartGame()) {
 
             Navigator.setSetX(false);
+            disableButton();
 
         }
         this.stage.setOnCloseRequest((WindowEvent event) -> {
@@ -65,6 +67,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameOne(ActionEvent actionEvent) {
         gameTurns(btn_Game_one);
         sendMove(1, btn_Game_one.getText());
+        disableButton();
 
         //button=btn_Game_one;
     }
@@ -73,6 +76,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameFour(ActionEvent actionEvent) {
         gameTurns(btn_Game_four);
         sendMove(4, btn_Game_four.getText());
+        disableButton();
 
         //button=btn_Game_four;
     }
@@ -81,6 +85,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameSeven(ActionEvent actionEvent) {
         gameTurns(btn_Game_seven);
         sendMove(7, btn_Game_seven.getText());
+        disableButton();
 
         //button=btn_Game_seven;
     }
@@ -89,6 +94,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameTwo(ActionEvent actionEvent) {
         gameTurns(btn_Game_two);
         sendMove(2, btn_Game_two.getText());
+        disableButton();
 
         //button=btn_Game_two;
     }
@@ -97,6 +103,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameThree(ActionEvent actionEvent) {
         gameTurns(btn_Game_three);
         sendMove(3, btn_Game_three.getText());
+        disableButton();
 
         //button=btn_Game_three;
     }
@@ -105,6 +112,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameFive(ActionEvent actionEvent) {
         gameTurns(btn_Game_five);
         sendMove(5, btn_Game_five.getText());
+        disableButton();
 
         //button=btn_Game_five;
     }
@@ -113,6 +121,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameSix(ActionEvent actionEvent) {
         gameTurns(btn_Game_six);
         sendMove(6, btn_Game_six.getText());
+        disableButton();
 
         // button=btn_Game_six;
     }
@@ -121,6 +130,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameEight(ActionEvent actionEvent) {
         gameTurns(btn_Game_eight);
         sendMove(8, btn_Game_eight.getText());
+        disableButton();
 
         //button=btn_Game_eight;
     }
@@ -129,12 +139,13 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     protected void isGameNine(ActionEvent actionEvent) {
         gameTurns(btn_Game_nine);
         sendMove(9, btn_Game_nine.getText());
+        disableButton();
 
         //button=btn_Game_nine;
     }
 
     public void gameTurns(Button button) {
-        arrlistButtons.remove(button);
+        //arrlistButtons.remove(button);
         if (Navigator.isSetX()) {
 
             button.setText("X");
@@ -186,29 +197,16 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
 
     }
 
-    public static void enableButton() {
-        for (int i = 0; i < arrlistButtons.size(); i++) {
-
-            button = (Button) arrlistButtons.get(i);
-            if (button != null && !button.isDisable()) {
-
-                button.setDisable(false);
-
-            }
-
-        }
-
-    }
+    
 
     public static void disableButton() {
         for (int i = 0; i < arrlistButtons.size(); i++) {
 
-            button = (Button) arrlistButtons.get(i);
-            if (button != null && !button.isDisable()) {
-
-                button.setDisable(true);
-
+            if(!arrlistButtons.get(i).isDisabled()){
+                arrlistButtons.get(i).setDisable(true);
+            
             }
+            
 
         }
 
@@ -247,6 +245,11 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
         String msg;
         if (Navigator.isStartGame()) {
             msg = ServerCall.MOVEMENT_SEND + ServerCall.DELIMETER + Navigator.getPlayerTwo() + ServerCall.DELIMETER + Integer.toString(val) + ServerCall.DELIMETER + move;
+            try {
+                ServerConnection.sendMessage(msg);
+            } catch (IOException ex) {
+                Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             msg = ServerCall.MOVEMENT_SEND + ServerCall.DELIMETER + Navigator.getPlayerOne() + ServerCall.DELIMETER + Integer.toString(val) + ServerCall.DELIMETER + move;
 

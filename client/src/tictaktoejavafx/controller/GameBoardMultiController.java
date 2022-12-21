@@ -19,7 +19,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
     private Stage stage;
     ArrayList<String> diagonals = new ArrayList<>();
-    public static char turn = 'X';
+    public char turn = 'X';
     Gson gson = new Gson();
 
     HistoryModel model;
@@ -27,12 +27,16 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     private RecordDataBasedSystem db;
 
     public GameBoardMultiController(Stage stage) {
+        LocalMultiPlayer.setGameEnded(false);
         db = RecordDataBasedSystem.getInstance();
         RecordDataBasedSystem.newGame = true;
         this.stage = stage;
 
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
+        if(turn=='b'){
+            turn='X';
+        }
     }
 
     @Override
