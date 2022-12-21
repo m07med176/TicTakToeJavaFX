@@ -11,19 +11,18 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
     
     private static Stage stage;
     public ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
-    //ServerConnection connection;
     public static ArrayList<Button> arrlistButtons = new ArrayList();
     public static ArrayList<Button> arrlistButtons2 = new ArrayList();
     boolean start = true;
@@ -47,7 +46,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
             try {
                 ServerConnection.closeThread();
             } catch (IOException ex) {
-                new UserMessage().display(ex.getMessage(), new AlertAction() {
+                new UserMessage().display(ex.getMessage(), new CallBackAction() {
                     @Override
                     public void sendOk() {
                         Navigator.navigate(Navigator.WELCOME, stage);
@@ -183,7 +182,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
-        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
                 Navigator.navigate(Navigator.WELCOME, stage);

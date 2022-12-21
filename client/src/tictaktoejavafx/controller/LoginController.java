@@ -10,10 +10,10 @@ import javafx.stage.WindowEvent;
 import tictaktoejavafx.data.model.SocketConfigModel;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class LoginController extends LoginScreenBase {
     private Stage stage;
@@ -33,7 +33,7 @@ public class LoginController extends LoginScreenBase {
              try {
                 Navigator.setPlayerOne(userName);
                 ServerConnection.getInstance(stage,socketModel.getIp(),socketModel.getPort(), (IOException ex) -> {
-                    new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new AlertAction(){
+                    new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new CallBackAction(){
                         @Override
                         public void sendOk() {
                             Navigator.navigate(Navigator.WELCOME, stage);
@@ -45,13 +45,13 @@ public class LoginController extends LoginScreenBase {
                         }
                     },Alert.AlertType.ERROR);
                 });
-                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+ServerCall.DELIMETER+userName);
+                ServerConnection.sendMessage(ServerCall.LOGIN_SEND+ServerCall.DELIMETER+userName+ServerCall.DELIMETER+passwordUser);
                 ServerConnection.readThread();
                 this.stage.setOnCloseRequest((WindowEvent event) -> {
                     try {
                         ServerConnection.closeThread();
                     } catch (IOException ex) {
-                        new UserMessage().display(ex.getMessage(), new AlertAction(){
+                        new UserMessage().display(ex.getMessage(), new CallBackAction(){
                             @Override
                             public void sendOk() {
                                 Navigator.navigate(Navigator.WELCOME, stage);
@@ -70,14 +70,6 @@ public class LoginController extends LoginScreenBase {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
-            
-            // TODO Pass data in athentication function
-            /*
-               if (authenticated(userName,passwordUser)){
-                    // If true navigate or send error message
-               }
-            */
         }
     }
 

@@ -21,26 +21,26 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.HistoryModel;
-import tictaktoejavafx.data.model.RecordModelData;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.data.model.HistoryDataModel;
+import tictaktoejavafx.data.model.RecordDataModel;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardRecordScreenBase;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardRecordController extends GameBoardRecordScreenBase {
 
     private Stage stage;
-    private RecordModelData model;
+    private RecordDataModel model;
     Gson gson = new Gson();
     ArrayList<String> recordData;
     Thread th = null;
 
     public GameBoardRecordController(Stage stage,Object object) {
         this.stage = stage;
-        this.model = (RecordModelData) object;
+        this.model = (RecordDataModel) object;
         recordData = model.getRecord();
         
         label_player1.setText(model.getPlayerOName());
@@ -201,7 +201,7 @@ public class GameBoardRecordController extends GameBoardRecordScreenBase {
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
-        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
                 Navigator.navigate(Navigator.WELCOME, stage);

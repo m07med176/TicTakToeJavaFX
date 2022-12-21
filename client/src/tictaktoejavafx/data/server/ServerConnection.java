@@ -1,7 +1,12 @@
 package tictaktoejavafx.data.server;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,15 +18,16 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.data.model.HistoryDataModel;
+import tictaktoejavafx.data.model.Player;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class ServerConnection {
-
 
     private static ServerConnection serverConnection;
     private static DataOutputStream dataOutputStream;
@@ -38,7 +44,6 @@ public class ServerConnection {
     private ServerConnection(Stage stage, String ip, int port, ExceptionCallBack exceptionCallBack) throws IOException {
         this.exceptionCallBack = exceptionCallBack;
         this.stage = stage;
-        System.out.println("IP is: "+ip+" and port is: "+port);
         socket = new Socket(ip, port);
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
@@ -50,7 +55,7 @@ public class ServerConnection {
         return serverConnection;
     }
 
-    public static void sendMessage(String message) throws  IOException{
+    public static void sendMessage(String message) throws IOException {
         dataOutputStream.writeUTF(message);
     }
 
@@ -108,15 +113,30 @@ public class ServerConnection {
     public static void getMessage(String msg) {
         System.out.println("we got " + msg);
         if (msg != null && !msg.isEmpty()) {
-            String[] data = msg.split(",");
+            String[] data = msg.split(ServerCall.DELIMETER);
             switch (data[0]) {
+                case ServerCall.LOGIN_RECEIVER:
+                    Platform.runLater(() -> {
+                        if (data[1].equals("0")) {
+                            UserMessage.showError("You Must register plz");
+                        } else {
+                            ArrayList<Player> playerList = new ArrayList();
+                            Gson gson = new Gson();
+                            java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
+                            }.getType();
+                            playerList = gson.fromJson(data[1], listType);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                        }
+                    });
+                    break;
+
                 case ServerCall.IVETATION_RECEIVE:
                     Platform.runLater(() -> {
-                try {
-                    displayAlert(data[1]);
-                } catch (IOException ex) {
-                    Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                        try {
+                            displayAlert(data[1]);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     });
                     break;
                 case ServerCall.CONFIRMATION_RECEIVE:
@@ -130,9 +150,6 @@ public class ServerConnection {
                     System.out.println("we got a move");
                     Navigator.setButtonNumber(data[2]);
                     Navigator.setBoardMove(data[3]);
-                    //Navigator.setTurnEnded(true);
-                    //GameBoardControllerOnline.button.setText(Navigator.boardMove);
-                    //GameBoardControllerOnline.button.setDisable(true);
                     if (data[3].equals("X")) {
                         Navigator.setSetX(false);
                     } else {
@@ -154,24 +171,22 @@ public class ServerConnection {
                             }
                         }
                     });
-                    System.out.println("we set " + Navigator.getBoardMove() + " " + Navigator.getButtonNumber());
                     break;
-                    
+
                 case ServerCall.RREGISTER_RECEIVE:
                     Platform.runLater(() -> {
-                        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
-                            @Override
-                            public void sendOk() {
-                                Navigator.navigate(Navigator.WELCOME, stage);
-                            }
-                            
-                            @Override
-                            public void sendCancel() {
-                                // Do Nothing
-                            }
-                        }, Alert.AlertType.CONFIRMATION);
-            });
-                       
+                        if (data[1].equals("0")) {
+                            UserMessage.showError("There are an Error During Register");
+                        } else {
+                            ArrayList<Player> playerList = new ArrayList();
+                            Gson gson = new Gson();
+                            java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
+                            }.getType();
+                            playerList = gson.fromJson(data[1], listType);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                        }
+                    });
+
                 default:
                     break;
 
@@ -201,7 +216,7 @@ public class ServerConnection {
 
     }
 
-    public static void displayAlert(String Playerx) throws IOException{
+    public static void displayAlert(String Playerx) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
         alert.setTitle("Invitation");
@@ -215,7 +230,7 @@ public class ServerConnection {
             //-------------------------------------
             System.out.println("Player O Accept Your Invetation");
             Navigator.setStartGame(false);
-            sendMessage(ServerCall.CONFIRMATION_SEND + "," + Playerx);
+            sendMessage(ServerCall.CONFIRMATION_SEND + ServerCall.DELIMETER + Playerx);
             Navigator.setPlayerOne(Playerx);
             Navigator.setPlayerTwo("Hussin");
             Platform.runLater(() -> {
@@ -226,6 +241,7 @@ public class ServerConnection {
             System.out.println("Player O Cancle");
         }
     }
+/*
     public static void enableAll(){
         for(int i=0;i<GameBoardControllerOnline.arrlistButtons.size();i++){
             if(GameBoardControllerOnline.arrlistButtons.get(i).getText().isEmpty()){
@@ -237,7 +253,7 @@ public class ServerConnection {
     
     }
 
-/*
+
                });
                thread.start();
 
@@ -383,4 +399,5 @@ public class ServerConnection {
 
      }
 */
+
 }

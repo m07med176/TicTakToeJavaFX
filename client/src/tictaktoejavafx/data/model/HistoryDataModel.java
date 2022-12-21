@@ -5,18 +5,17 @@ import java.util.Date;
 import tictaktoejavafx.utils.Config;
 
 
-public  class HistoryModel {
+public  class HistoryDataModel {
     private String dateGame = new SimpleDateFormat(Config.DATETIME).format(new Date());
     private String playerXName;
     private String playerOName;
     private String winner;
 
 
-    public HistoryModel() {
+    public HistoryDataModel() {
     }
 
-    public HistoryModel(String dateGame, String playerXName, String playerOName) {
-        this.dateGame = dateGame;
+    public HistoryDataModel(String playerXName, String playerOName,String winner) {
         this.playerXName = playerXName;
         this.playerOName = playerOName;
         this.winner = winner;

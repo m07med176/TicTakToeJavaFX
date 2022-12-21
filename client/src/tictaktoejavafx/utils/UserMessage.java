@@ -8,7 +8,7 @@ public class UserMessage extends Alert {
         super(AlertType.CONFIRMATION);
     }
 
-    public Alert display(String message,AlertAction action,AlertType type) {
+    public Alert display(String message,CallBackAction action,AlertType type) {
         setAlertType(type);
         setContentText(message);
         showAndWait().ifPresent(response -> {
@@ -20,6 +20,21 @@ public class UserMessage extends Alert {
             }
         });
           return this;
+    }
+    
+    
+    
+    public static void showError(String error){
+         new UserMessage().display(Config.ERROR_MSG+"\n"+error, new CallBackAction() {
+            @Override
+            public void sendOk() {
+            }
+
+            @Override
+            public void sendCancel() {
+            }
+        }, AlertType.ERROR);
+    
     }
     
 }
