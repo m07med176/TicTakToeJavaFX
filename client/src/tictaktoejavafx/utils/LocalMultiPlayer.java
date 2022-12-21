@@ -1,10 +1,10 @@
 package tictaktoejavafx.utils;
 
-import tictaktoejavafx.data.model.PlayerOffline;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.controller.GameBoardMultiController;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.data.server.ServerConnection;
 
 
@@ -22,8 +22,8 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
 
-                PlayerOffline.setPlayerName(Navigator.getPlayerOne());
-                PlayerOffline.setPlayerName(Config.PLAYER_X);
+                 WinnerName.setWinnerName(Navigator.getPlayerOne());
+                 WinnerName.setWinnerName(Config.PLAYER_X);
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -33,8 +33,8 @@ public class LocalMultiPlayer {
             
             }else if(d.get(i).equals("OOO")){
             
-                PlayerOffline.setPlayerName(Navigator.getPlayerTwo());
-                PlayerOffline.setPlayerName(Config.PLAYER_O);
+                 WinnerName.setWinnerName(Navigator.getPlayerTwo());
+                WinnerName.setWinnerName(Config.PLAYER_O);
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -53,7 +53,7 @@ public class LocalMultiPlayer {
     
     public static void drawChecker(Stage stage){
         if(numberOfPresses>=9&&gameEnded==false){
-            PlayerOffline.setPlayerName("DRAW");
+             WinnerName.setWinnerName("DRAW");
             gameEnded=true;
             numberOfPresses=0;
             GameBoardControllerOnline.arrlistButtons2=null;

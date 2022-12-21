@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerOffline;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.TicTacToeAIHard;
@@ -155,17 +155,21 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                if ((GO = toeAIHard.isGameOver()) != 0) {
                     if (GO == 1) {
-                         PlayerOffline.setPlayerName(Config.PLAYER_X);
+                        WinnerName.setWinnerName(Config.PLAYER_X);
+                        Navigator.setPlayerWinner(Navigator.getPlayerOne());
+
                          System.out.println("Player 1 win");
                          playVideo();
 
                     } else if (GO == -1) {
-                         PlayerOffline.setPlayerName(Config.PLAYER_O);
+                          WinnerName.setWinnerName(Config.PLAYER_O);
+                        Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+
                          System.out.println("Player 2 win");
                          playVideo();
 
                     } else {
-                         PlayerOffline.setPlayerName(Config.DRAW);
+                          WinnerName.setWinnerName(Config.DRAW);
                          System.out.println(GO);
                          playVideo();
 

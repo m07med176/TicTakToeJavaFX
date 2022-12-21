@@ -47,11 +47,20 @@ public class Navigator {
     
     public static String playerOne;
     public static String playerTwo;
+     public static String PlayerWinner;
     public static String buttonNumber;
     public static String boardMove;
     
     public static boolean startGame;
     public static boolean setX = true;
+
+    public static String getPlayerWinner() {
+        return PlayerWinner;
+    }
+
+    public static void setPlayerWinner(String PlayerWinner) {
+        Navigator.PlayerWinner = PlayerWinner;
+    }
 
     public static boolean isSetX() {
         return setX;
