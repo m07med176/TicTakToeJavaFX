@@ -32,7 +32,6 @@ public class TwoPlayerController extends TwoPlayerBase{
                Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }
-       @Override
     protected void isBack(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }

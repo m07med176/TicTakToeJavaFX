@@ -2,10 +2,9 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
+import javafx.scene.text.Font;
 
 public abstract class TwoPlayerBase extends AnchorPane {
 
@@ -37,10 +36,9 @@ public abstract class TwoPlayerBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
 
         player_One.setLayoutX(229.0);
-        player_One.setLayoutY(273.0);
+        player_One.setLayoutY(287.0);
         player_One.setPrefHeight(31.0);
         player_One.setPrefWidth(217.0);
         player_One.setPromptText("First Player");
@@ -53,19 +51,20 @@ public abstract class TwoPlayerBase extends AnchorPane {
         Player_two.setPromptText("Second Player");
         Player_two.getStyleClass().add("main_input");
 
-        StartGame.setLayoutX(288.0);
-        StartGame.setLayoutY(401.0);
+        StartGame.setLayoutX(265.0);
+        StartGame.setLayoutY(402.0);
         StartGame.setMnemonicParsing(false);
         StartGame.setOnAction(this::isStartGame);
+        StartGame.setPrefHeight(25.0);
+        StartGame.setPrefWidth(123.0);
         StartGame.getStyleClass().add("main_button");
         StartGame.setText("Start Game");
+        StartGame.setFont(new Font("System Bold Italic", 12.0));
 
         button.setLayoutX(25.0);
         button.setLayoutY(21.0);
         button.setMnemonicParsing(false);
-        button.getStyleClass().add("back_button");
         button.setText("<");
-        button.setOnAction(this::isBack);
 
         getChildren().add(imageView);
         getChildren().add(player_One);
@@ -76,6 +75,5 @@ public abstract class TwoPlayerBase extends AnchorPane {
     }
 
     protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
-    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
 
 }

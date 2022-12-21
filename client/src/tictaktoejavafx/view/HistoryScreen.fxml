@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="back_button" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBack" text="Button" />
-      <Label layoutX="87.0" layoutY="250.0" text="Label" />
-      <ScrollPane layoutX="172.0" layoutY="35.0" prefHeight="359.0" prefWidth="431.0">
+      <Button fx:id="back_button" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBack" text="&lt;" />
+      <ScrollPane layoutX="172.0" layoutY="35.0" prefHeight="516.0" prefWidth="564.0">
          <content>
-            <TableView fx:id="table_history_data" onSort="#isTableData" prefHeight="354.0" prefWidth="429.0">
+            <TableView fx:id="table_history_data" prefHeight="513.0" prefWidth="562.0">
               <columns>
-                <TableColumn fx:id="colum_date" prefWidth="163.0" text="date" />
-                <TableColumn fx:id="colum_Xname" text=" XName" />
-                  <TableColumn fx:id="colum_Oname" prefWidth="88.0" text="OName" />
-                  <TableColumn fx:id="colum_winner" prefWidth="96.0" text="Winner" />
+                <TableColumn fx:id="colum_date" prefWidth="183.0" text="date" />
+                <TableColumn fx:id="colum_Xname" prefWidth="120.0" text=" XName" />
+                  <TableColumn fx:id="colum_Oname" prefWidth="129.0" text="OName" />
+                  <TableColumn fx:id="colum_winner" prefWidth="129.0" text="Winner" />
               </columns>
             </TableView>
          </content>

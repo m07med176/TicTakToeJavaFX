@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
+import javafx.scene.text.Font;
 
 public abstract class RegisterScreenBase extends AnchorPane {
 
@@ -43,15 +43,14 @@ public abstract class RegisterScreenBase extends AnchorPane {
 
         imageView.setFitHeight(185.0);
         imageView.setFitWidth(200.0);
-        imageView.setLayoutX(184.0);
-        imageView.setLayoutY(25.0);
+        imageView.setLayoutX(200.0);
+        imageView.setLayoutY(26.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
+        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
-        label.setLayoutX(247.0);
-        label.setLayoutY(222.0);
+        label.setLayoutX(253.0);
+        label.setLayoutY(202.0);
         label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
@@ -73,12 +72,15 @@ public abstract class RegisterScreenBase extends AnchorPane {
         repeat_password_register.setPromptText("Repeat Password");
         repeat_password_register.getStyleClass().add("main_input");
 
-        btn_register.setLayoutX(252.0);
+        btn_register.setLayoutX(231.0);
         btn_register.setLayoutY(477.0);
         btn_register.setMnemonicParsing(false);
         btn_register.setOnAction(this::register);
+        btn_register.setPrefHeight(25.0);
+        btn_register.setPrefWidth(81.0);
         btn_register.getStyleClass().add("main_button");
         btn_register.setText("Register");
+        btn_register.setFont(new Font("System Bold Italic", 12.0));
 
         have_accout.setLayoutX(226.0);
         have_accout.setLayoutY(520.0);
