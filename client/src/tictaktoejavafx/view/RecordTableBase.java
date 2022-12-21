@@ -1,12 +1,13 @@
 package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class RecordTableBase extends AnchorPane {
 
@@ -18,7 +19,6 @@ public abstract class RecordTableBase extends AnchorPane {
     protected final TableColumn o_name_colum;
     protected final TableColumn type_colum;
     protected final ImageView imageView;
-    protected final Label label;
 
     public RecordTableBase() {
 
@@ -30,7 +30,6 @@ public abstract class RecordTableBase extends AnchorPane {
         o_name_colum = new TableColumn();
         type_colum = new TableColumn();
         imageView = new ImageView();
-        label = new Label();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -70,13 +69,10 @@ public abstract class RecordTableBase extends AnchorPane {
         imageView.setFitHeight(116.0);
         imageView.setFitWidth(147.0);
         imageView.setLayoutX(26.0);
-        imageView.setLayoutY(76.0);
+        imageView.setLayoutY(142.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-
-        label.setLayoutX(63.0);
-        label.setLayoutY(211.0);
-        label.setText("Tic Tac Toe");
+        imageView.setImage(new Image(Config.LOGO));
 
         getChildren().add(back_btn);
         table_record_id.getColumns().add(date_colum);
@@ -85,7 +81,6 @@ public abstract class RecordTableBase extends AnchorPane {
         table_record_id.getColumns().add(type_colum);
         getChildren().add(scrollPane);
         getChildren().add(imageView);
-        getChildren().add(label);
 
     }
 

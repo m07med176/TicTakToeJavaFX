@@ -106,8 +106,10 @@ public class LoginController extends LoginScreenBase {
         Navigator.navigate(Navigator.REGISTER, stage,socketModel);
     }
       @Override
-    protected void isBack(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.WELCOME, stage);
-    }
+    protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
+
+    
 
 }

@@ -94,6 +94,8 @@ public class RegisterController extends RegisterScreenBase {
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
+        Navigator.navigate(Navigator.WELCOME, stage);
+
     }
 
 }

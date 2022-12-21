@@ -2,7 +2,6 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,7 +12,6 @@ import tictaktoejavafx.utils.Config;
 public abstract class RegisterScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
-    protected final Label label;
     protected final TextField user_name_register;
     protected final TextField email_register;
     protected final PasswordField password_register;
@@ -25,7 +23,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
     public RegisterScreenBase() {
 
         imageView = new ImageView();
-        label = new Label();
         user_name_register = new TextField();
         email_register = new TextField();
         password_register = new PasswordField();
@@ -47,11 +44,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setLayoutY(25.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
-
-        label.setLayoutX(247.0);
-        label.setLayoutY(222.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
@@ -94,7 +86,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         button.setText("<");
 
         getChildren().add(imageView);
-        getChildren().add(label);
         getChildren().add(user_name_register);
         getChildren().add(email_register);
         getChildren().add(password_register);

@@ -2,7 +2,6 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,7 +13,6 @@ public abstract class LoginScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Button btn_login;
-    protected final Label label;
     protected final PasswordField password;
     protected final TextField user_name;
     protected final Hyperlink create_account;
@@ -24,7 +22,6 @@ public abstract class LoginScreenBase extends AnchorPane {
 
         imageView = new ImageView();
         btn_login = new Button();
-        label = new Label();
         password = new PasswordField();
         user_name = new TextField();
         create_account = new Hyperlink();
@@ -50,11 +47,6 @@ public abstract class LoginScreenBase extends AnchorPane {
         btn_login.setOnAction(this::isLogin);
         btn_login.getStyleClass().add("main_button");
         btn_login.setText("Login");
-
-        label.setLayoutX(273.0);
-        label.setLayoutY(203.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
 
         password.setLayoutX(200.0);
         password.setLayoutY(317.0);
@@ -82,12 +74,11 @@ public abstract class LoginScreenBase extends AnchorPane {
         button.setLayoutY(23.0);
         button.setMnemonicParsing(false);
         button.getStyleClass().add("back_button");
+        button.setOnAction(this::onBackClicked);
         button.setText("<");
-        button.setOnAction(this::isBack);
 
         getChildren().add(imageView);
         getChildren().add(btn_login);
-        getChildren().add(label);
         getChildren().add(password);
         getChildren().add(user_name);
         getChildren().add(create_account);
@@ -98,7 +89,6 @@ public abstract class LoginScreenBase extends AnchorPane {
     protected abstract void isLogin(javafx.event.ActionEvent actionEvent);
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
-    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
-
+    protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
 
 }
