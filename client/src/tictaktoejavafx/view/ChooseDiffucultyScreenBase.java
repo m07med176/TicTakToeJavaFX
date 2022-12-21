@@ -35,6 +35,13 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
 
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        back_button.setGraphic(view);
+        
         btn_easy_mode.setLayoutX(147.0);
         btn_easy_mode.setLayoutY(344.0);
         btn_easy_mode.setMnemonicParsing(false);
@@ -61,7 +68,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         back_button.setLayoutY(32.0);
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
-        back_button.setText("<");
+        
 
         getChildren().add(imageView);
         getChildren().add(btn_easy_mode);

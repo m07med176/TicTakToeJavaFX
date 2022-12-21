@@ -171,7 +171,7 @@ public class ServerConnection {
                 case ServerCall.RREGISTER_RECEIVE:
                     Platform.runLater(() -> {
                         if (data[1].equals("0")) {
-                            UserMessage.showError("There are an Error During Register");
+                            UserMessage.showError("There are an Error During Register You may Signed");
                         } else {
                             ArrayList<Player> playerList = new ArrayList();
                             Gson gson = new Gson();
