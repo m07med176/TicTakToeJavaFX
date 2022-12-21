@@ -2,11 +2,8 @@ package tictaktoejavafx.data.server;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,21 +15,18 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
-import tictaktoejavafx.data.model.HistoryDataModel;
 import tictaktoejavafx.data.model.Player;
-import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
-import tictaktoejavafx.utils.CallBackAction;
 
 public class ServerConnection {
 
     private static ServerConnection serverConnection;
     private static DataOutputStream dataOutputStream;
     private static DataInputStream dataInputStream;
-    private String UID;
+    public static String UID;
     private ServerCall serverCall;
     public static Socket socket;
     private static Thread thread;
@@ -196,15 +190,17 @@ public class ServerConnection {
     }
 
     public static void closeThread() throws IOException {
+        if(dataOutputStream!=null){
+            dataOutputStream.writeUTF(ServerCall.CLOSE_SEND+ServerCall.DELIMETER+UID);
+            dataOutputStream.close();
+        }
         if(dataInputStream!=null){
             dataInputStream.close();
-            
         }
         if(socket!=null){
             if(socket.isClosed()){
                 socket.close();
             }
-            
         }
         if(thread!=null){
             if(thread.isAlive()){

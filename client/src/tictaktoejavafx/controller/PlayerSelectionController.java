@@ -2,6 +2,8 @@ package tictaktoejavafx.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -76,7 +78,11 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
                }
           });
           stage.setOnCloseRequest((WindowEvent event) -> {
-               System.exit(0);
+              try {
+                  ServerConnection.closeThread();
+              } catch (IOException ex) {
+                  Logger.getLogger(PlayerSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+              }
           });
      }
 }

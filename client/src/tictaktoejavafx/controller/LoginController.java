@@ -32,6 +32,7 @@ public class LoginController extends LoginScreenBase {
         if(loginValidation(userName,passwordUser)){
              try {
                 Navigator.setPlayerOne(userName);
+                ServerConnection.UID=userName;
                 ServerConnection.getInstance(stage,socketModel.getIp(),socketModel.getPort(), (IOException ex) -> {
                     new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new CallBackAction(){
                         @Override
