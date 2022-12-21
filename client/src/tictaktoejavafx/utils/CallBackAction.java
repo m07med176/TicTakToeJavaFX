@@ -1,6 +1,6 @@
 package tictaktoejavafx.utils;
 
-public interface AlertAction {
+public interface CallBackAction {
     public void sendOk();
     public void sendCancel();  
 }

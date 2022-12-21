@@ -1,6 +1,6 @@
 package tictaktoejavafx.data.model;
 
-public class PlayerName {
+public class PlayerOffline {
     public static String playerName="";
 
     public static String getPlayerName() {
@@ -8,9 +8,6 @@ public class PlayerName {
     }
 
     public static void setPlayerName(String playerName) {
-        PlayerName.playerName = playerName;
+        PlayerOffline.playerName = playerName;
     }
-    
-    
-    
 }

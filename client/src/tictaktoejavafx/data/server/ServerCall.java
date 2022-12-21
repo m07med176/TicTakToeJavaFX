@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 public interface ServerCall{
      
-     public static final String DELIMETER = ",";
+     public static final String DELIMETER = "&";
      
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
@@ -17,7 +17,7 @@ public interface ServerCall{
      
      public static final String CONFIRMATION_SEND = "CONF_SEND";
      public static final String CONFIRMATION_RECEIVE = "CONF_RECEIVE";
-     
+     public static final String CLOSE_SEND = "CLOSE_SEND";
      public static final String MOVEMENT_SEND = "MOVEMENT_SEND";
      public static final String MOVEMENT_RECEIVE = "MOVEMENT_RECEIVE";
      
