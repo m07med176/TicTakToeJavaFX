@@ -49,6 +49,7 @@ public class Navigator {
     public static String playerTwo;
     public static String buttonNumber;
     public static String boardMove;
+    
     public static boolean startGame;
     public static boolean setX = true;
 

@@ -111,7 +111,8 @@ public class ServerConnection {
     }
 
     public static void getMessage(String msg) {
-        System.out.println("we got " + msg);
+        System.out.println(msg); // log
+        
         if (msg != null && !msg.isEmpty()) {
             String[] data = msg.split(ServerCall.DELIMETER);
             switch (data[0]) {
@@ -156,7 +157,6 @@ public class ServerConnection {
                         Navigator.setSetX(true);
                     }
                     Platform.runLater(() -> {
-
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
                         enableAll();
