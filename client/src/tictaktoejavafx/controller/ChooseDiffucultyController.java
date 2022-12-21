@@ -31,6 +31,11 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
         Navigator.navigate(Navigator.GAMEBOARDHARD, stage);
     }
 
+    @Override
+    protected void isBack(ActionEvent actionEvent) {
+         Navigator.navigate(Navigator.WELCOME, stage);
+    }
+
 
     
 }

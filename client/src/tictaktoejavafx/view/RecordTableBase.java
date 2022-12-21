@@ -31,26 +31,33 @@ public abstract class RecordTableBase extends AnchorPane {
         type_colum = new TableColumn();
         imageView = new ImageView();
 
-        setMaxHeight(USE_PREF_SIZE);
+            setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(588.0);
-        setPrefWidth(731.0);
+        setPrefHeight(571.0);
+        setPrefWidth(747.0);
 
         back_btn.setLayoutX(26.0);
         back_btn.setLayoutY(22.0);
         back_btn.setMnemonicParsing(false);
         back_btn.setOnAction(this::isBackbtn);
-        back_btn.setText("<");
+               //------------------------------------
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        back_btn.setGraphic(view);
+//-------------------------------------
 
-        scrollPane.setLayoutX(164.0);
-        scrollPane.setLayoutY(38.0);
-        scrollPane.setPrefHeight(507.0);
-        scrollPane.setPrefWidth(523.0);
+          scrollPane.setLayoutX(172.0);
+        scrollPane.setLayoutY(35.0);
+        scrollPane.setPrefHeight(516.0);
+        scrollPane.setPrefWidth(564.0);
 
-        table_record_id.setPrefHeight(686.0);
-        table_record_id.setPrefWidth(582.0);
+        table_record_id.setPrefHeight(513.0);
+        table_record_id.setPrefWidth(562.0);
 
         date_colum.setPrefWidth(175.0);
         date_colum.setText("Date");

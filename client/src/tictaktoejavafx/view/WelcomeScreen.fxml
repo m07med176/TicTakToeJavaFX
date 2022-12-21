@@ -3,41 +3,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictagg.FXMLDocumentController">
+<Pane prefHeight="622.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btn_single" layoutX="126.0" layoutY="270.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Single Player" textFill="#0a3257">
+      <Button fx:id="btn_online_mode" layoutX="142.0" layoutY="371.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Online Mode" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_two" layoutX="126.0" layoutY="328.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Two Player" textFill="#0a3257">
+      <Button fx:id="btn_single" layoutX="142.0" layoutY="231.0" mnemonicParsing="false" onAction="#isSingle" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Single Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btn_online_mode" layoutX="126.0" layoutY="388.0" mnemonicParsing="false" onAction="#isOnlineMode" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Online Mode" textFill="#0a3257">
+      <Button fx:id="btn_History_Mode" layoutX="142.0" layoutY="514.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="History Mode" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <ImageView fx:id="imageView" fitHeight="165.0" fitWidth="176.0" layoutX="145.0" layoutY="79.0" styleClass="logo">
+      <Button fx:id="isRecord" layoutX="142.0" layoutY="443.0" mnemonicParsing="false" onAction="#isRecorded" prefHeight="48.0" prefWidth="214.0" text="Record Mode" textFill="#0a3257">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imageView" fitHeight="165.0" fitWidth="176.0" layoutX="180.0" layoutY="31.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-
-      <Button fx:id="isRecord" layoutX="126.0" layoutY="513.0" mnemonicParsing="false" onAction="#isRecorded" prefHeight="48.0" prefWidth="214.0" text="Record Mode" textFill="#0a3257">
-         <font>
-            <Font size="22.0" />
-         </font></Button>
-
-      <Button fx:id="btn_History_Mode" layoutX="126.0" layoutY="449.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="History Mode" textFill="#0a3257">
+      <Button fx:id="btn_two" layoutX="142.0" layoutY="300.0" mnemonicParsing="false" onAction="#isTwo" prefHeight="45.0" prefWidth="214.0" styleClass="main_button" text="Two Player" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
    </children>
-</AnchorPane>
+</Pane>

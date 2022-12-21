@@ -13,6 +13,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
     protected final Button btn_easy_mode;
     protected final Button btn_middle_mode;
     protected final Button btn_hard_mode;
+    protected final Button back_button;
 
     public ChooseDiffucultyScreenBase() {
 
@@ -20,6 +21,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         btn_easy_mode = new Button();
         btn_middle_mode = new Button();
         btn_hard_mode = new Button();
+        back_button = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -65,10 +67,24 @@ imageView.setImage(new Image(Config.LOGO));
         btn_hard_mode.setText("Hard Mode");
         btn_hard_mode.setFont(new Font("System Bold Italic", 12.0));
 
+        back_button.setLayoutX(24.0);
+        back_button.setLayoutY(32.0);
+        back_button.setMnemonicParsing(false);
+        back_button.setOnAction(this::isBack);
+                //------------------------------------
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        back_button.setGraphic(view);
+//-------------------------------------
+
         getChildren().add(imageView);
         getChildren().add(btn_easy_mode);
         getChildren().add(btn_middle_mode);
         getChildren().add(btn_hard_mode);
+        getChildren().add(back_button);
 
     }
 
@@ -77,5 +93,7 @@ imageView.setImage(new Image(Config.LOGO));
     protected abstract void isMiddleMode(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isHardMode(javafx.event.ActionEvent actionEvent);
+
+    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
 
 }

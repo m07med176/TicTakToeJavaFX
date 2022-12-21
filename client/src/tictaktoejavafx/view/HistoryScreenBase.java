@@ -42,7 +42,14 @@ public abstract class HistoryScreenBase extends AnchorPane {
         back_button.setLayoutY(22.0);
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
-        back_button.setText("<");
+                //------------------------------------
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        back_button.setGraphic(view);
+//-------------------------------------
 
         scrollPane.setLayoutX(172.0);
         scrollPane.setLayoutY(35.0);
