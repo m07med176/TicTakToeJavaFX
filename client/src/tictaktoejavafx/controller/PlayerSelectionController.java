@@ -8,87 +8,79 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tictaktoejavafx.data.model.PlayerOnline;
+import tictaktoejavafx.data.model.Player;
+import tictaktoejavafx.data.model.RecordDataModel;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.utils.AlertAction;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.PlayerSelectionScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class PlayerSelectionController extends PlayerSelectionScreenBase {
 
     private Stage stage;
+    private ArrayList<Player> onlinePlayers;
 
-    private ArrayList<PlayerOnline> onlinePlayers = new ArrayList<PlayerOnline>();
-
-    public PlayerSelectionController(Stage stage) {
+    public PlayerSelectionController(Stage stage, Object object) {
+        onlinePlayers = (ArrayList<Player>) object;
         this.stage = stage;
-      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                System.exit(0);
+        displayPlayerInTable(onlinePlayers);
+
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            System.exit(0);
+        });
+
+        this.stage.setOnCloseRequest((WindowEvent event) -> {
+            try {
+                ServerConnection.closeThread();
+            } catch (IOException ex) {
+                new UserMessage().display(ex.getMessage(), new CallBackAction() {
+                    @Override
+                    public void sendOk() {
+                        Navigator.navigate(Navigator.WELCOME, stage);
+                    }
+
+                    @Override
+                    public void sendCancel() {
+                        // Do Nothing
+                    }
+                }, Alert.AlertType.ERROR);
             }
         });
-        
-        ObservableList<String> names = FXCollections.observableArrayList(
-                "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
-        this.list_view_user.setItems(names);
+    }
 
-        this.list_view_user.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //------------------------------------
-                Navigator.setPlayerTwo("Hussin"); //-------------------------------------
-                Navigator.setStartGame(true);
-                try {
-                    //ServerConnection serverConnectionObj = ServerConnection.getInstance(stage);
-                    //serverConnectionObj.sendMessage(ServerCall.IVETATION_SEND + "," + "Hussin");
-                    //serverConnectionObj.readThread();
-                    ServerConnection.sendMessage(ServerCall.IVETATION_SEND + ServerCall.DELIMETER  + "Hussin");
-                } catch (IOException ex) {
-                    Logger.getLogger(PlayerSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+    public void displayPlayerInTable(ArrayList<Player> model) {
+        columName.setCellValueFactory(new PropertyValueFactory<Player, String>("username"));
+        columEmail.setCellValueFactory(new PropertyValueFactory<Player, String>("email"));
+        columActive.setCellValueFactory(new PropertyValueFactory<Player, Boolean>("status"));
+        ObservableList<Player> observableList = FXCollections.observableArrayList(model);
+        table_player_selection.setItems(observableList);
+
+        table_player_selection.setRowFactory(tv -> {
+            TableRow<Player> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+
+                    Player player = row.getItem();
+                    Navigator.setPlayerTwo(player.getUsername());
+                    Navigator.setStartGame(true);
+                    try {
+                        ServerConnection.sendMessage(ServerCall.IVETATION_SEND + ServerCall.DELIMETER + player.getUsername());
+                    } catch (IOException ex) {
+                        UserMessage.showError(ex.getMessage());
+                    }
+
                 }
-                System.out.println("hiiiiiiiiiiiiiii");
-
-            }
+            });
+            return row;
         });
-            this.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                try {
-                    ServerConnection.closeThread();
-                } catch (IOException ex) {
-                     new UserMessage().display(ex.getMessage(), new AlertAction(){
-               @Override
-               public void sendOk() {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-               }
-
-               @Override
-               public void sendCancel() {
-                    // Do Nothing
-               }
-          },Alert.AlertType.ERROR);
-                }
-            }
-        });  
     }
 }
-
-
-                /*    new UserMessage().display(Config.INVATE_MSG, new AlertAction() {
-                @Override
-                public void sendOk() {
-                Navigator.navigate(Navigator.GAMEBOARD, stage);
-                System.out.println("sdkljfl");
-                }
-                @Override
-                public void sendCancel() {
-                // Do Nothing
-                }
-                }, Alert.AlertType.CONFIRMATION);*/
-                

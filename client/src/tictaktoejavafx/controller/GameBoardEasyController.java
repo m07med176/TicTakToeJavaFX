@@ -1,5 +1,6 @@
 package tictaktoejavafx.controller;
 
+import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,26 +13,25 @@ import javafx.stage.Stage;
 import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.data.model.PlayerName;
-import tictaktoejavafx.utils.AlertAction;
+import tictaktoejavafx.data.model.PlayerOffline;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardEasyController extends GameBoardScreenBase {
-
-    
     int count = 0;
-    ArrayList arrlist = new ArrayList();
-    ArrayList arrlistButtons = new ArrayList();
+    private  ArrayList<String> arrlist;
+    private ArrayList<Button> arrlistButtons;
     private Stage stage;
     private boolean isRecorded = false;
     private RecordDataBasedSystem db;
 
     public GameBoardEasyController(Stage stage) {
-        RecordDataBasedSystem.newGame = true;
         this.stage = stage;
         db =  RecordDataBasedSystem.getInstance();
+        arrlist = new ArrayList();
+        arrlistButtons = new ArrayList();
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
         addbuttonInList();
@@ -39,63 +39,50 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        playerGame(btn_Game_one);
-        db.saveRecord(isRecorded, btn_Game_one, "1");
-
+         playerGame(this.btn_Game_one,"1");
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        playerGame(btn_Game_two);
-        db.saveRecord(isRecorded, btn_Game_two, "2");
+         playerGame(this.btn_Game_two,"2");
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        playerGame(btn_Game_four);
-        db.saveRecord(isRecorded, btn_Game_four, "4");
+         playerGame(this.btn_Game_four,"4");
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        playerGame(btn_Game_seven);
-        db.saveRecord(isRecorded, btn_Game_seven, "7");
+         playerGame(this.btn_Game_seven,"7");
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        playerGame(btn_Game_three);
-        db.saveRecord(isRecorded, btn_Game_three, "3");
+         playerGame(this.btn_Game_three,"3");
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        playerGame(btn_Game_five);
-        db.saveRecord(isRecorded, btn_Game_five, "5");
+         playerGame(this.btn_Game_five,"5");
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        playerGame(btn_Game_six);
-        db.saveRecord(isRecorded, btn_Game_six, "6");
+         playerGame(this.btn_Game_eight,"6");
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        playerGame(btn_Game_eight);
-        db.saveRecord(isRecorded, btn_Game_eight, "8");
+          playerGame(this.btn_Game_eight,"8");
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        playerGame(btn_Game_nine);
-        db.saveRecord(isRecorded, btn_Game_nine, "9");
-
+         playerGame(this.btn_Game_nine,"9");
     }
 
-    //-----------------------------------------
-    void playerGame(Button button) {
-
+    void playerGame(Button button,String degree) {
         arrlistButtons.remove(button);
         count++;
         button.setDisable(true);
@@ -104,11 +91,18 @@ public class GameBoardEasyController extends GameBoardScreenBase {
              try {
                   check();
              } catch (IOException ex) {
-                  Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+                  UserMessage.showError(ex.getMessage());
              }
             random();
-
         }
+        
+        try {
+              db.saveRecord(isRecorded, button, degree);
+         } catch (IOException ex) {
+              UserMessage.showError(ex.getMessage());
+         } catch (JsonIOException ex) {
+              UserMessage.showError(ex.getMessage());
+         }
     }
 
     void check() throws IOException {
@@ -155,13 +149,18 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         for (int i = 0; i < arrlist.size(); i++) {
             if (arrlist.get(i).equals("XXX")) {
                 disableButton();
-                PlayerName.setPlayerName("Player 1");
-                HistoryDataBasedSystem.saveFile("Player 1");
+                PlayerOffline.setPlayerName(Config.PLAYER_X);
+                HistoryDataBasedSystem.saveFile(Config.PLAYER_X);
                 playVideo();
             } else if (arrlist.get(i).equals("OOO")) {
                 disableButton();
-                PlayerName.setPlayerName("Player 2");
-                HistoryDataBasedSystem.saveFile("Player 2");
+                PlayerOffline.setPlayerName(Config.PLAYER_O);
+                HistoryDataBasedSystem.saveFile(Config.PLAYER_O);
+                playVideo();
+            }else if(arrlistButtons.isEmpty()){
+              disableButton();
+                PlayerOffline.setPlayerName(Config.DRAW);
+                HistoryDataBasedSystem.saveFile(Config.DRAW);
                 playVideo();
             }
 
@@ -190,10 +189,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         try {
             if (arrlistButtons.size() > 0) {
                 int index = random_method.nextInt(arrlistButtons.size());
-                System.out.println(index);
-
                 if (index < arrlistButtons.size()) {
-
                     Button button = (Button) arrlistButtons.get(index);
                     if (button != null && !button.isDisable()) {
                         count++;
@@ -204,17 +200,15 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                              try {
                                   check();
                              } catch (IOException ex) {
-                                  Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+                                  UserMessage.showError(ex.getMessage());
                              }
-
                            button.setStyle("-fx-text-fill: Red;");
-
                         }
                     }
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            UserMessage.showError(e.getMessage());
         }
 
     }
@@ -234,7 +228,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     @Override
     protected void onBackClicked(ActionEvent actionEvent) {
-        new UserMessage().display(Config.EXIT_MSG, new AlertAction() {
+        new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
                 Navigator.navigate(Navigator.WELCOME, stage);
