@@ -22,8 +22,11 @@ public class LocalMultiPlayer {
         
             if(d.get(i).equals("XXX")){
 
-                PlayerOffline.setPlayerName(Navigator.getPlayerOne());
+                
                 PlayerOffline.setPlayerName("Player One");
+                if(Navigator.isOnline){
+                    Navigator.setOnlineWinner(Navigator.getPlayerOne());
+                }
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -35,6 +38,9 @@ public class LocalMultiPlayer {
             
                 PlayerOffline.setPlayerName(Navigator.getPlayerTwo());
                 PlayerOffline.setPlayerName("Player Two");
+                if(Navigator.isOnline){
+                    Navigator.setOnlineWinner(Navigator.getPlayerTwo());
+                }
                 gameEnded=true;
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
@@ -54,6 +60,9 @@ public class LocalMultiPlayer {
     public static void drawChecker(Stage stage){
         if(numberOfPresses>=9&&gameEnded==false){
             PlayerOffline.setPlayerName("DRAW");
+            if(Navigator.isOnline){
+                    Navigator.setOnlineWinner("DRAW");
+                }
             gameEnded=true;
             numberOfPresses=0;
             GameBoardControllerOnline.arrlistButtons2=null;

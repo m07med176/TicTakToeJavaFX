@@ -44,15 +44,32 @@ public class Navigator {
     public static final int TABLE_RECORD = 15;
     public static final int HISTORY = 16;
     public static final int SNAKEGAME = 17;
+
+    public static String getOnlineWinner() {
+        return onlineWinner;
+    }
+
+    public static void setOnlineWinner(String onlineWinner) {
+        Navigator.onlineWinner = onlineWinner;
+    }
     
     public static String playerOne;
     public static String playerTwo;
     public static String buttonNumber;
     public static String boardMove;
+    public static String onlineWinner;
     
     public static boolean startGame;
     public static boolean setX = true;
+    public static boolean isOnline=false;
 
+    public static boolean isIsOnline() {
+        return isOnline;
+    }
+
+    public static void setIsOnline(boolean isOnline) {
+        Navigator.isOnline = isOnline;
+    }
     public static boolean isSetX() {
         return setX;
     }

@@ -228,7 +228,7 @@ public class ServerConnection {
             Navigator.setStartGame(false);
             sendMessage(ServerCall.CONFIRMATION_SEND + ServerCall.DELIMETER + Playerx);
             Navigator.setPlayerOne(Playerx);
-            Navigator.setPlayerTwo("Hussin");
+            Navigator.setPlayerTwo(UID);
             Platform.runLater(() -> {
                 Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
             });

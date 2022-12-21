@@ -14,6 +14,7 @@ import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
+import tictaktoejavafx.utils.Utils;
 
 public class LoginController extends LoginScreenBase {
     private Stage stage;
@@ -83,6 +84,12 @@ public class LoginController extends LoginScreenBase {
             System.out.println("you must enter password");
             retVal = false;
         }
+//        if(Utils.isNumeric(passwordUser)){
+//            password.requestFocus();
+//            System.out.println("you must enter password");
+//            retVal = false;
+//        
+//        }
         
         if (userName.isEmpty()) {
             //TODO here dialog Alert meesage

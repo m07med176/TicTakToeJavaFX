@@ -8,6 +8,7 @@ import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.ExceptionCallBack;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.Utils;
 import tictaktoejavafx.view.RegisterScreenBase;
 
 public class RegisterController extends RegisterScreenBase {
@@ -65,7 +66,7 @@ public class RegisterController extends RegisterScreenBase {
             user_name_register.requestFocus();
             return retVal = false;
         }
-        if (password.isEmpty()) {
+        if (password.isEmpty()&&Utils.isNumeric(password)) {
             //TODO here we must put dialog Alert
             password_register.requestFocus();
             return retVal = false;

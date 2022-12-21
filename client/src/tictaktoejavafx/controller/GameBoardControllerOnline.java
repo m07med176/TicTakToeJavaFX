@@ -29,6 +29,8 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     public static Button button;
 
     public GameBoardControllerOnline(Stage stage) {
+        
+        Navigator.setIsOnline(true);
         LocalMultiPlayer.setGameEnded(false);
         this.stage = stage;
         addbuttonInList();
