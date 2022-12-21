@@ -2,8 +2,10 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class ChooseGameScreenBase extends AnchorPane {
 
@@ -36,6 +38,7 @@ public abstract class ChooseGameScreenBase extends AnchorPane {
         label.setLayoutX(161.0);
         label.setLayoutY(60.0);
         label.setText("Welcome plz choose game you want to play?");
+         imageView.setImage(new Image(Config.SNAKE_LOGO));
 
         TicTakToe_btn.setLayoutX(286.0);
         TicTakToe_btn.setLayoutY(314.0);

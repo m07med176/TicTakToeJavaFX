@@ -4,7 +4,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class RecordTableBase extends AnchorPane {
 
@@ -15,6 +18,7 @@ public abstract class RecordTableBase extends AnchorPane {
     protected final TableColumn x_name_colum;
     protected final TableColumn o_name_colum;
     protected final TableColumn type_colum;
+    protected final ImageView imageView;
 
     public RecordTableBase() {
 
@@ -25,6 +29,7 @@ public abstract class RecordTableBase extends AnchorPane {
         x_name_colum = new TableColumn();
         o_name_colum = new TableColumn();
         type_colum = new TableColumn();
+        imageView = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -60,12 +65,20 @@ public abstract class RecordTableBase extends AnchorPane {
         type_colum.setText("Active");
         scrollPane.setContent(table_record_id);
 
+        imageView.setFitHeight(118.0);
+        imageView.setFitWidth(126.0);
+        imageView.setLayoutX(26.0);
+        imageView.setLayoutY(205.0);
+        imageView.getStyleClass().add("logo");
+      //  imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
         getChildren().add(back_btn);
         table_record_id.getColumns().add(date_colum);
         table_record_id.getColumns().add(x_name_colum);
         table_record_id.getColumns().add(o_name_colum);
         table_record_id.getColumns().add(type_colum);
         getChildren().add(scrollPane);
+        getChildren().add(imageView);
 
     }
 

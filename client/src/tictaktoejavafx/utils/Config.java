@@ -7,6 +7,7 @@ public class Config {
      public static final String DRAW_VIDEO = "src/tictaktoejavafx/assets/drawVideo.mp4";
     public static final String CSS = "assets/style.css";
     
+    public static final String SNAKE_LOGO = "tictaktoejavafx/assets/snake.png";
     public static final String ENVLOP = "tictaktoejavafx/assets/images/envlop.png";
     public static final String BACKBUTTON = "tictaktoejavafx/assets/images/backbutton.png";
     public static final String BACKARROW = "tictaktoejavafx/assets/images/backarrow.png";

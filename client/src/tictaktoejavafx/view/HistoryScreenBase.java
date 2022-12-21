@@ -4,12 +4,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class HistoryScreenBase extends AnchorPane {
 
-    protected final ImageView imageView;
     protected final Button back_button;
     protected final ScrollPane scrollPane;
     protected final TableView table_history_data;
@@ -17,10 +18,10 @@ public abstract class HistoryScreenBase extends AnchorPane {
     protected final TableColumn colum_Xname;
     protected final TableColumn colum_Oname;
     protected final TableColumn colum_winner;
+    protected final ImageView imageView;
 
     public HistoryScreenBase() {
 
-        imageView = new ImageView();
         back_button = new Button();
         scrollPane = new ScrollPane();
         table_history_data = new TableView();
@@ -28,6 +29,7 @@ public abstract class HistoryScreenBase extends AnchorPane {
         colum_Xname = new TableColumn();
         colum_Oname = new TableColumn();
         colum_winner = new TableColumn();
+        imageView = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -35,13 +37,6 @@ public abstract class HistoryScreenBase extends AnchorPane {
         setMinWidth(USE_PREF_SIZE);
         setPrefHeight(571.0);
         setPrefWidth(747.0);
-
-        imageView.setFitHeight(150.0);
-        imageView.setFitWidth(200.0);
-        imageView.setLayoutX(14.0);
-        imageView.setLayoutY(85.0);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
 
         back_button.setLayoutX(14.0);
         back_button.setLayoutY(22.0);
@@ -70,17 +65,23 @@ public abstract class HistoryScreenBase extends AnchorPane {
         colum_winner.setText("Winner");
         scrollPane.setContent(table_history_data);
 
-        getChildren().add(imageView);
+        imageView.setFitHeight(118.0);
+        imageView.setFitWidth(126.0);
+        imageView.setLayoutX(27.0);
+        imageView.setLayoutY(195.0);
+        imageView.getStyleClass().add("logo");
+        //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
         getChildren().add(back_button);
         table_history_data.getColumns().add(colum_date);
         table_history_data.getColumns().add(colum_Xname);
         table_history_data.getColumns().add(colum_Oname);
         table_history_data.getColumns().add(colum_winner);
         getChildren().add(scrollPane);
+        getChildren().add(imageView);
 
     }
 
     protected abstract void isBack(javafx.event.ActionEvent actionEvent);
-
 
 }

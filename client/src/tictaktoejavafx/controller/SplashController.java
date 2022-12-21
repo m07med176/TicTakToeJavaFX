@@ -16,7 +16,7 @@ public class SplashController extends SplashScreenBase {
         Platform.runLater(() -> {
             try {
                 sleep(2*1000);
-                Navigator.navigate(Navigator.WELCOME, stage);
+                Navigator.navigate(Navigator.CHOOSEDIFF, stage);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);                  
