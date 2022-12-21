@@ -75,11 +75,11 @@ public abstract class TwoPlayerBase extends AnchorPane {
 
         imageView0.setFitHeight(183.0);
         imageView0.setFitWidth(200.0);
-        imageView0.setLayoutX(238.0);
+        imageView0.setLayoutX(270.0);
         imageView0.setLayoutY(49.0);
         imageView0.getStyleClass().add("logo");
-        //imageView0.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
- imageView.setImage(new Image(Config.LOGO));
+       // imageView0.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
         getChildren().add(imageView);
         getChildren().add(player_One);
         getChildren().add(Player_two);

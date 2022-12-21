@@ -18,7 +18,7 @@
          </font>
       </Button>
       <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
-      <ImageView fitHeight="183.0" fitWidth="200.0" layoutX="238.0" layoutY="49.0" styleClass="logo">
+      <ImageView fitHeight="183.0" fitWidth="200.0" layoutX="270.0" layoutY="49.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
