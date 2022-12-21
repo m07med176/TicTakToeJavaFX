@@ -8,25 +8,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
-
-
 public abstract class TwoPlayerBase extends AnchorPane {
 
-    protected final ImageView imageView;
     protected final TextField player_One;
     protected final TextField Player_two;
-    protected final Button btn_single;
-    protected final Button button,StartGame;
-    protected final ImageView imageView0;
+    protected final Button StartGame;
+    protected final ImageView imageView;
+    protected final Button button;
 
     public TwoPlayerBase() {
-StartGame = new Button();
-        imageView = new ImageView();
+
         player_One = new TextField();
         Player_two = new TextField();
-        btn_single = new Button();
+        StartGame = new Button();
+        imageView = new ImageView();
         button = new Button();
-        imageView0 = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -35,41 +31,22 @@ StartGame = new Button();
         setPrefHeight(534.0);
         setPrefWidth(658.0);
 
-        imageView.setFitHeight(150.0);
-        imageView.setFitWidth(200.0);
-        imageView.setLayoutX(226.0);
-        imageView.setLayoutY(80.0);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
-        imageView.getStyleClass().add("logo");
-
-        player_One.setLayoutX(230.0);
-        player_One.setLayoutY(300.0);
+        player_One.setLayoutX(229.0);
+        player_One.setLayoutY(267.0);
         player_One.setPrefHeight(31.0);
         player_One.setPrefWidth(217.0);
         player_One.setPromptText("First Player");
         player_One.getStyleClass().add("main_input");
 
-        Player_two.setLayoutX(230.0);
-        Player_two.setLayoutY(345.0);
+        Player_two.setLayoutX(229.0);
+        Player_two.setLayoutY(326.0);
         Player_two.setPrefHeight(31.0);
         Player_two.setPrefWidth(217.0);
         Player_two.setPromptText("Second Player");
         Player_two.getStyleClass().add("main_input");
 
-        btn_single.setLayoutX(263.0);
-        btn_single.setLayoutY(397.0);
-        btn_single.setMnemonicParsing(false);
-        btn_single.setOnAction(this::isSingle);
-        btn_single.setPrefHeight(42.0);
-        btn_single.setPrefWidth(150.0);
-        btn_single.getStyleClass().add("main_button");
-        btn_single.setText("Start Game");
-        btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
-        btn_single.setFont(new Font(22.0));
-
-        StartGame.setLayoutX(265.0);
-        StartGame.setLayoutY(402.0);
+        StartGame.setLayoutX(276.0);
+        StartGame.setLayoutY(378.0);
         StartGame.setMnemonicParsing(false);
         StartGame.setOnAction(this::isStartGame);
         StartGame.setPrefHeight(25.0);
@@ -78,32 +55,35 @@ StartGame = new Button();
         StartGame.setText("Start Game");
         StartGame.setFont(new Font("System Bold Italic", 12.0));
 
-        button.setLayoutX(24.0);
-        button.setLayoutY(24.0);
+        imageView.setFitHeight(136.0);
+        imageView.setFitWidth(168.0);
+        imageView.setLayoutX(254.0);
+        imageView.setLayoutY(68.0);
+        imageView.getStyleClass().add("logo");
+        imageView.setImage(new Image(Config.LOGO));
+        
+        button.setLayoutX(39.0);
+        button.setLayoutY(35.0);
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        button.setGraphic(view);
 
-        button.setText("<");
-
-        imageView0.setFitHeight(183.0);
-        imageView0.setFitWidth(200.0);
-        imageView0.setLayoutX(270.0);
-        imageView0.setLayoutY(49.0);
-        imageView0.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
-        getChildren().add(imageView);
         getChildren().add(player_One);
         getChildren().add(Player_two);
-        getChildren().add(btn_single);
+        getChildren().add(StartGame);
+        getChildren().add(imageView);
         getChildren().add(button);
-        getChildren().add(imageView0);
 
     }
 
-    protected abstract void isSingle(javafx.event.ActionEvent actionEvent);
+    protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
 
     protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
-    protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
 
 }

@@ -34,13 +34,13 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         setPrefHeight(575.0);
         setPrefWidth(466.0);
 
-        label.setLayoutX(58.0);
-        label.setLayoutY(34.0);
-        label.setPrefHeight(45.0);
-        label.setPrefWidth(350.0);
-        label.getStyleClass().add("title");
-        label.setText("Welcome in Tic Tac Toe");
-        label.setFont(new Font("System Bold", 30.0));
+//        label.setLayoutX(58.0);
+//        label.setLayoutY(34.0);
+//        label.setPrefHeight(45.0);
+//        label.setPrefWidth(350.0);
+//        label.getStyleClass().add("title");
+//        label.setText("Welcome in Tic Tac Toe");
+//        label.setFont(new Font("System Bold", 30.0));
 
         btn_single.setLayoutX(126.0);
         btn_single.setLayoutY(270.0);
@@ -142,7 +142,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_History_Mode.setText("History Mode");
         btn_History_Mode.setFont(new Font(22.0));
         btn_History_Mode.getStyleClass().add("main_button");
-        getChildren().add(label);
+       // getChildren().add(label);
         getChildren().add(btn_single);
         getChildren().add(btn_two);
         getChildren().add(btn_online_mode);

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-
+import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardRecordScreenBase extends AnchorPane {
 
@@ -60,7 +60,7 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         imageView.setLayoutX(624.0);
         imageView.setLayoutY(42.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+        imageView.setImage(new Image(Config.LOGO));
 
         date_id.setLayoutX(320.0);
         date_id.setLayoutY(21.0);

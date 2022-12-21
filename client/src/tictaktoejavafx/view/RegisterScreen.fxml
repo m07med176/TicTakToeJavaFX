@@ -17,7 +17,6 @@
          </image>
       </ImageView>
 
-      <Label layoutX="253.0" layoutY="202.0" styleClass="title" />
       <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" styleClass="main_input" />
       <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" styleClass="main_input" />
       <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" promptText="Password" styleClass="main_input" />

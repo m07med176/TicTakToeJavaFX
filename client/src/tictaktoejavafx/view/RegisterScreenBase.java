@@ -44,8 +44,7 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.setLayoutX(200.0);
         imageView.setLayoutY(26.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
-
+        imageView.setImage(new Image(Config.LOGO));
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
@@ -66,14 +65,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         repeat_password_register.setLayoutY(425.0);
         repeat_password_register.setPromptText("Repeat Password");
         repeat_password_register.getStyleClass().add("main_input");
-
-        btn_register.setLayoutX(227.0);
-        btn_register.setLayoutY(475.0);
-        btn_register.setMnemonicParsing(false);
-        btn_register.setOnAction(this::register);
-        btn_register.setPrefHeight(25.0);
-        btn_register.setPrefWidth(90.0);
-
 
         btn_register.setLayoutX(231.0);
         btn_register.setLayoutY(477.0);

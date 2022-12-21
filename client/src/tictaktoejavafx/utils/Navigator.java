@@ -44,6 +44,7 @@ public class Navigator {
     public static final int TABLE_RECORD = 15;
     public static final int HISTORY = 16;
     public static final int SNAKEGAME = 17;
+    public static final int CHOSE_GAME=19;
     
     public static String playerOne;
     public static String playerTwo;

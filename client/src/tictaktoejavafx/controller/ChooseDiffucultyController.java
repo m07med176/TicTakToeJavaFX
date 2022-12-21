@@ -36,21 +36,10 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
     }
 
     @Override
-    protected void onBackClicked(ActionEvent actionEvent) {
-         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
-               @Override
-               public void sendOk() {
-                    Navigator.navigate(Navigator.WELCOME, stage);
-               }
-
-               @Override
-               public void sendCancel() {
-                    // Do Nothing
-               }
-          }, Alert.AlertType.CONFIRMATION);
-
-     }
+    protected void isBack(ActionEvent actionEvent) {
+         Navigator.navigate(Navigator.WELCOME, stage);
     }
+}
 
 
     

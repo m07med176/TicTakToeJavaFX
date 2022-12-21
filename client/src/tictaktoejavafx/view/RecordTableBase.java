@@ -4,8 +4,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tictaktoejavafx.utils.Config;
 
 public abstract class RecordTableBase extends AnchorPane {
 
@@ -15,8 +17,12 @@ public abstract class RecordTableBase extends AnchorPane {
     protected final TableColumn x_name_colum;
     protected final TableColumn o_name_colum;
     protected final TableColumn type_colum;
+    protected final TableColumn date_colum0;
+    protected final TableColumn x_name_colum0;
+    protected final TableColumn o_name_colum0;
+    protected final TableColumn type_colum0;
     protected final ImageView imageView;
-    protected final Button button;
+    protected final Button back_button;
 
     public RecordTableBase() {
 
@@ -26,9 +32,12 @@ public abstract class RecordTableBase extends AnchorPane {
         x_name_colum = new TableColumn();
         o_name_colum = new TableColumn();
         type_colum = new TableColumn();
+        date_colum0 = new TableColumn();
+        x_name_colum0 = new TableColumn();
+        o_name_colum0 = new TableColumn();
+        type_colum0 = new TableColumn();
         imageView = new ImageView();
-        button = new Button();
-
+        back_button = new Button();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -37,13 +46,8 @@ public abstract class RecordTableBase extends AnchorPane {
         setPrefHeight(571.0);
         setPrefWidth(743.0);
 
-        setPrefHeight(588.0);
-        setPrefWidth(731.0);
-
-
-        scrollPane.setLayoutX(164.0);
+        scrollPane.setLayoutX(200.0);
         scrollPane.setLayoutY(38.0);
-
         scrollPane.setPrefHeight(506.0);
         scrollPane.setPrefWidth(529.0);
 
@@ -61,55 +65,52 @@ public abstract class RecordTableBase extends AnchorPane {
 
         type_colum.setPrefWidth(121.0);
         type_colum.setText("Type");
+
+        date_colum0.setPrefWidth(175.0);
+        date_colum0.setText("Date");
+
+        x_name_colum0.setPrefWidth(94.0);
+        x_name_colum0.setText("XName");
+
+        o_name_colum0.setPrefWidth(95.0);
+        o_name_colum0.setText("OName");
+
+        type_colum0.setPrefWidth(102.0);
+        type_colum0.setText("Active");
         scrollPane.setContent(table_record_id);
 
-        imageView.setFitHeight(116.0);
-        imageView.setFitWidth(147.0);
+        imageView.setFitHeight(118.0);
+        imageView.setFitWidth(126.0);
         imageView.setLayoutX(26.0);
-        imageView.setLayoutY(76.0);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
-
-        button.setLayoutX(34.0);
-        button.setLayoutY(34.0);
-        button.setMnemonicParsing(false);
-        button.setOnAction(this::onBackClicked);
-        button.getStyleClass().add("back_button");
-        button.setText("<");
-
-
-        scrollPane.setPrefHeight(507.0);
-        scrollPane.setPrefWidth(523.0);
-
-        table_record_id.setPrefHeight(686.0);
-        table_record_id.setPrefWidth(582.0);
-
-        date_colum.setPrefWidth(175.0);
-        date_colum.setText("Date");
-
-        x_name_colum.setPrefWidth(94.0);
-        x_name_colum.setText("XName");
-
-        o_name_colum.setPrefWidth(95.0);
-        o_name_colum.setText("OName");
-
-        type_colum.setPrefWidth(102.0);
-        type_colum.setText("Active");
-        scrollPane.setContent(table_record_id);
-
-
+        imageView.setLayoutY(205.0);
+        imageView.getStyleClass().add("logo");
+       // imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
+        back_button.setLayoutX(24.0);
+        back_button.setLayoutY(32.0);
+        back_button.setMnemonicParsing(false);
+        back_button.setOnAction(this::isBack);
+        Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        back_button.setGraphic(view);
 
         table_record_id.getColumns().add(date_colum);
         table_record_id.getColumns().add(x_name_colum);
         table_record_id.getColumns().add(o_name_colum);
         table_record_id.getColumns().add(type_colum);
+        table_record_id.getColumns().add(date_colum0);
+        table_record_id.getColumns().add(x_name_colum0);
+        table_record_id.getColumns().add(o_name_colum0);
+        table_record_id.getColumns().add(type_colum0);
         getChildren().add(scrollPane);
         getChildren().add(imageView);
-        getChildren().add(button);
-
+        getChildren().add(back_button);
 
     }
 
-    protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
+    protected abstract void isBack(javafx.event.ActionEvent actionEvent);
 
 }

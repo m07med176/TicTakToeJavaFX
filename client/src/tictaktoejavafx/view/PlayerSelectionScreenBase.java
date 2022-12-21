@@ -1,5 +1,6 @@
 package tictaktoejavafx.view;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -60,7 +61,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         columActive.setText("Active");
 
         getChildren().add(imageView);
-
         table_player_selection.getColumns().add(columName);
         table_player_selection.getColumns().add(columEmail);
         table_player_selection.getColumns().add(columActive);
