@@ -10,10 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import server.data.db.DatabaseAccessLayer;
 import server.data.model.Player;
 import server.data.server.ServerManager;
-import server.utils.AlertAction;
-import server.utils.ExceptionCallBack;
 import server.utils.UserMessage;
 import server.view.PlayerOnServerBase;
+import server.data.server.ServerCallBack;
 
 public class PlayerOnServerController extends PlayerOnServerBase {
 
@@ -21,27 +20,26 @@ public class PlayerOnServerController extends PlayerOnServerBase {
      private ArrayList<Player> arrayListPlayer = new ArrayList();
 
      public PlayerOnServerController() {
-          try {
-               arrayListPlayer = DatabaseAccessLayer.getPlayerData();
-               displayPlayerInTable(arrayListPlayer);
-          } catch (SQLException ex) {
-               new UserMessage().alert(ex.getMessage(), null);
-          }
-
+          displayPlayerInTable();
      }
 
      @Override
      protected void runServer(ActionEvent actionEvent) {
           try {
-               ServerManager server = ServerManager.getInstance(new ExceptionCallBack() {
+               ServerManager server = ServerManager.getInstance(new ServerCallBack() {
                     @Override
                     public void serverException(IOException ex) {
-                         callAlertMessage(ex.getMessage());
+                         UserMessage.showError(ex.getMessage());
                     }
 
                     @Override
                     public void databaseException(SQLException ex) {
-                         callAlertMessage(ex.getMessage());
+                         UserMessage.showError(ex.getMessage());
+                    }
+
+                    @Override
+                    public void requestUpdateDatabase() {
+                         displayPlayerInTable();
                     }
                });
 
@@ -56,28 +54,22 @@ public class PlayerOnServerController extends PlayerOnServerBase {
 
                }
           } catch (IOException | SQLException ex) {
-               callAlertMessage(ex.getMessage());
+               UserMessage.showError(ex.getMessage());
           }
      }
 
-     public void callAlertMessage(String ex) {
-          new UserMessage().alert(ex, new AlertAction() {
-               @Override
-               public void sendOk() {
-               }
+     public void displayPlayerInTable() {
+          try {
+               arrayListPlayer = new DatabaseAccessLayer().getAllPlayers();
+               columName.setCellValueFactory(new PropertyValueFactory<Player, String>("username"));
+               columEmail.setCellValueFactory(new PropertyValueFactory<Player, String>("email"));
+               columActive.setCellValueFactory(new PropertyValueFactory<Player, Boolean>("status"));
+               ObservableList<Player> observableList = FXCollections.observableArrayList(arrayListPlayer);
+               table.setItems(observableList);
+          } catch (SQLException ex) {
+               UserMessage.showError(ex.getMessage());
+          }
 
-               @Override
-               public void sendCancel() {
-               }
-          });
-     }
-
-     public void displayPlayerInTable(ArrayList<Player> model) {
-          columName.setCellValueFactory(new PropertyValueFactory<Player, String>("username"));
-          columEmail.setCellValueFactory(new PropertyValueFactory<Player, String>("email"));
-          columActive.setCellValueFactory(new PropertyValueFactory<Player, Boolean>("status"));
-          ObservableList<Player> observableList = FXCollections.observableArrayList(model);
-          table.setItems(observableList);
      }
 
 }

@@ -47,10 +47,28 @@ public class Navigator {
     
     public static String playerOne;
     public static String playerTwo;
+     public static String PlayerWinner;
     public static String buttonNumber;
     public static String boardMove;
+    public static String winnerPlayer;
+
+     public static String getWinnerPlayer() {
+          return winnerPlayer;
+     }
+
+     public static void setWinnerPlayer(String winnerPlayer) {
+          Navigator.winnerPlayer = winnerPlayer;
+     }
     public static boolean startGame;
     public static boolean setX = true;
+
+    public static String getPlayerWinner() {
+        return PlayerWinner;
+    }
+
+    public static void setPlayerWinner(String PlayerWinner) {
+        Navigator.PlayerWinner = PlayerWinner;
+    }
 
     public static boolean isSetX() {
         return setX;
@@ -110,12 +128,16 @@ public class Navigator {
                 parent = new LoginController(stage,model);
                 break;
             case REGISTER:
-                System.out.println("Choose Register");
                 parent = new RegisterController(stage,model);
                 break;  
             case RECORD:
                 parent = new GameBoardRecordController(stage, model);
                 break;
+                
+            case PLAYER_SELECTION:
+                parent = new PlayerSelectionController(stage,model);
+                break;
+                
             default:
                 parent = new WelcomeController(stage);
         }
@@ -150,9 +172,7 @@ public class Navigator {
                 parent = new GameBoardEasyController(stage);
                 break;
 
-            case PLAYER_SELECTION:
-                parent = new PlayerSelectionController(stage);
-                break;
+
 
             case WINNER_NOTIFY:
                 parent = new WinnerAndLosserController(stage);
