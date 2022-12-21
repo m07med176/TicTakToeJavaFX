@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 import javafx.application.Platform;
-import server.utils.ExceptionCallBack;
 
 public class SocketSession extends Thread {
 
@@ -17,10 +16,10 @@ public class SocketSession extends Thread {
      String ownerSocket;
 
      private final NetworkAccessLayer networkOperations;
-     private ExceptionCallBack exceptionCallBack;
+     private ServerCallBack serverCallBack;
      
-     public SocketSession(Socket socket, NetworkAccessLayer networkOperations,ExceptionCallBack exceptionCallBack) throws IOException {
-          this.exceptionCallBack = exceptionCallBack;
+     public SocketSession(Socket socket, NetworkAccessLayer networkOperations,ServerCallBack serverCallBack) throws IOException {
+          this.serverCallBack = serverCallBack;
           this.networkOperations = networkOperations;
           dataInputStream = new DataInputStream(socket.getInputStream());
           printStream = new DataOutputStream(socket.getOutputStream());
@@ -39,11 +38,11 @@ public class SocketSession extends Thread {
                } catch (IOException ex) {
                    flag=false;
                     Platform.runLater(() -> {
-                        exceptionCallBack.serverException(ex);
+                        serverCallBack.serverException(ex);
                         
                     });
                } catch (SQLException ex) {
-                    exceptionCallBack.databaseException(ex);
+                    serverCallBack.databaseException(ex);
                }
           }
      }
@@ -55,10 +54,12 @@ public class SocketSession extends Thread {
                switch (data[0]) {
                     case ServerCall.LOGIN_SEND:
                          UID  = networkOperations.login(data, printStream);
+                         serverCallBack.requestUpdateDatabase();
                          break;
 
                     case ServerCall.RREGISTER_SEND:
                          UID = networkOperations.register(data, printStream); 
+                         serverCallBack.requestUpdateDatabase();
                          break;
 
                     case ServerCall.PLAYER_LIST_SEND:

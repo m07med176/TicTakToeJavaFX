@@ -28,6 +28,7 @@ public class LocalMultiPlayer {
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
+                //Navigator.setWinnerPlayer(Navigator.getPlayerOne());
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 //GameBoardMultiController.turn='b';
             
@@ -39,6 +40,7 @@ public class LocalMultiPlayer {
                 numberOfPresses=0;
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
+                //Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                 //GameBoardMultiController.turn='b';
             }
@@ -58,6 +60,7 @@ public class LocalMultiPlayer {
             numberOfPresses=0;
             GameBoardControllerOnline.arrlistButtons2=null;
             ServerConnection.diagonals=null;
+            //Navigator.setWinnerPlayer("NON");
             Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
         }
     }
