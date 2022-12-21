@@ -1,23 +1,19 @@
 package tictaktoejavafx.view;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
 
 public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
-    protected final Label label;
     protected final AnchorPane anchorPane;
     protected final ListView list_view_user;
 
     public PlayerSelectionScreenBase() {
 
         imageView = new ImageView();
-        label = new Label();
         anchorPane = new AnchorPane();
         list_view_user = new ListView();
 
@@ -33,12 +29,7 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
-
-        label.setLayoutX(625.0);
-        label.setLayoutY(255.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
+        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
@@ -51,7 +42,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         list_view_user.setPrefWidth(476.0);
 
         getChildren().add(imageView);
-        getChildren().add(label);
         anchorPane.getChildren().add(list_view_user);
         getChildren().add(anchorPane);
 

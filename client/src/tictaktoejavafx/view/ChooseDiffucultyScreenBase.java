@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
 public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
@@ -34,35 +35,53 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         imageView.setLayoutX(122.0);
         imageView.setLayoutY(42.0);
         imageView.getStyleClass().add("logo");
+
         //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
         imageView.setImage(new Image(Config.LOGO));
 
         btn_easy_mode.setLayoutX(147.0);
         btn_easy_mode.setLayoutY(318.0);
+
+//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
+        btn_easy_mode.setLayoutX(147.0);
+        btn_easy_mode.setLayoutY(344.0);
+
         btn_easy_mode.setMnemonicParsing(false);
         btn_easy_mode.setOnAction(this::isEasyMode);
         btn_easy_mode.setPrefHeight(31.0);
         btn_easy_mode.setPrefWidth(150.0);
         btn_easy_mode.getStyleClass().add("main_button");
         btn_easy_mode.setText("Easy Mode");
+        btn_easy_mode.setFont(new Font("System Bold Italic", 12.0));
 
         btn_middle_mode.setLayoutX(147.0);
+
         btn_middle_mode.setLayoutY(381.0);
+
+        btn_middle_mode.setLayoutY(406.0);
+
         btn_middle_mode.setMnemonicParsing(false);
         btn_middle_mode.setOnAction(this::isMiddleMode);
         btn_middle_mode.setPrefHeight(31.0);
         btn_middle_mode.setPrefWidth(150.0);
         btn_middle_mode.getStyleClass().add("main_button");
         btn_middle_mode.setText("Middle Mode");
+        btn_middle_mode.setFont(new Font("System Bold Italic", 12.0));
 
         btn_hard_mode.setLayoutX(147.0);
+
         btn_hard_mode.setLayoutY(440.0);
+
+        btn_hard_mode.setLayoutY(468.0);
+
         btn_hard_mode.setMnemonicParsing(false);
         btn_hard_mode.setOnAction(this::isHardMode);
         btn_hard_mode.setPrefHeight(31.0);
         btn_hard_mode.setPrefWidth(150.0);
         btn_hard_mode.getStyleClass().add("main_button");
         btn_hard_mode.setText("Hard Mode");
+        btn_hard_mode.setFont(new Font("System Bold Italic", 12.0));
 
         button.setLayoutX(14.0);
         button.setLayoutY(14.0);

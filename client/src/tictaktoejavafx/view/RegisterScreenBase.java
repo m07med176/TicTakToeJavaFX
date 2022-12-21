@@ -40,10 +40,15 @@ public abstract class RegisterScreenBase extends AnchorPane {
 
         imageView.setFitHeight(185.0);
         imageView.setFitWidth(200.0);
-        imageView.setLayoutX(184.0);
-        imageView.setLayoutY(25.0);
+        imageView.setLayoutX(200.0);
+        imageView.setLayoutY(26.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+
+
+        label.setLayoutX(253.0);
+        label.setLayoutY(202.0);
+        label.getStyleClass().add("title");
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
@@ -65,12 +70,21 @@ public abstract class RegisterScreenBase extends AnchorPane {
         repeat_password_register.setPromptText("Repeat Password");
         repeat_password_register.getStyleClass().add("main_input");
 
+
         btn_register.setLayoutX(227.0);
         btn_register.setLayoutY(475.0);
         btn_register.setMnemonicParsing(false);
         btn_register.setOnAction(this::register);
         btn_register.setPrefHeight(25.0);
         btn_register.setPrefWidth(90.0);
+
+        btn_register.setLayoutX(231.0);
+        btn_register.setLayoutY(477.0);
+        btn_register.setMnemonicParsing(false);
+        btn_register.setOnAction(this::register);
+        btn_register.setPrefHeight(25.0);
+        btn_register.setPrefWidth(81.0);
+
         btn_register.getStyleClass().add("main_button");
         btn_register.setText("Register");
         btn_register.setFont(new Font("System Bold Italic", 12.0));

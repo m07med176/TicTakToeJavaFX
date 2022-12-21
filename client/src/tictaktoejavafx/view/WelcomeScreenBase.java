@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.Config;
 
 public abstract class WelcomeScreenBase extends AnchorPane {
@@ -54,6 +56,31 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_single.setText("Single Player");
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
+        
+            Image img = new Image("tictaktoejavafx/assets/images/pc.png");
+      ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+      view.setPreserveRatio(true);
+       btn_single.setGraphic(view);
+//------------------------------------
+            Image img2 = new Image("tictaktoejavafx/assets/images/multi.png");
+      ImageView view2 = new ImageView(img2);
+        view2.setFitHeight(30);
+        view2.setFitWidth(30);
+      view2.setPreserveRatio(true);
+       btn_two.setGraphic(view2);
+//-------------------------------------
+
+
+            Image img3 = new Image("tictaktoejavafx/assets/images/online.png");
+      ImageView view3 = new ImageView(img3);
+        view3.setFitHeight(30);
+        view3.setFitWidth(30);
+      view3.setPreserveRatio(true);
+       btn_online_mode.setGraphic(view3);
+//-------------------------------------
+        btn_two.setLayoutX(188.0);
 
         btn_two.setLayoutX(126.0);
         btn_two.setLayoutY(328.0);
@@ -65,6 +92,7 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         btn_two.setText("Two Player");
         btn_two.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_two.setFont(new Font(22.0));
+   
 
         btn_online_mode.setLayoutX(126.0);
         btn_online_mode.setLayoutY(388.0);
@@ -82,8 +110,15 @@ public abstract class WelcomeScreenBase extends AnchorPane {
         imageView.setLayoutX(145.0);
         imageView.setLayoutY(79.0);
         imageView.getStyleClass().add("logo");
+
         //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
  imageView.setImage(new Image(Config.LOGO));
+
+        imageView.setId("imageView");
+        
+    imageView.setImage(new Image(Config.LOGO));
+     
+
 
         btn_History_Mode.setLayoutX(7.0);
         btn_History_Mode.setLayoutY(144.0);

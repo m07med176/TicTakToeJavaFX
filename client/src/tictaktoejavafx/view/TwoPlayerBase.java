@@ -8,17 +8,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
+
 public abstract class TwoPlayerBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final TextField player_One;
     protected final TextField Player_two;
     protected final Button btn_single;
-    protected final Button button;
+    protected final Button button,StartGame;
     protected final ImageView imageView0;
 
     public TwoPlayerBase() {
-
+StartGame = new Button();
         imageView = new ImageView();
         player_One = new TextField();
         Player_two = new TextField();
@@ -43,6 +44,7 @@ public abstract class TwoPlayerBase extends AnchorPane {
 
         player_One.setLayoutX(230.0);
         player_One.setLayoutY(300.0);
+
         player_One.setPrefHeight(31.0);
         player_One.setPrefWidth(217.0);
         player_One.setPromptText("First Player");
@@ -65,6 +67,16 @@ public abstract class TwoPlayerBase extends AnchorPane {
         btn_single.setText("Start Game");
         btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
         btn_single.setFont(new Font(22.0));
+
+        StartGame.setLayoutX(265.0);
+        StartGame.setLayoutY(402.0);
+        StartGame.setMnemonicParsing(false);
+        StartGame.setOnAction(this::isStartGame);
+        StartGame.setPrefHeight(25.0);
+        StartGame.setPrefWidth(123.0);
+        StartGame.getStyleClass().add("main_button");
+        StartGame.setText("Start Game");
+        StartGame.setFont(new Font("System Bold Italic", 12.0));
 
         button.setLayoutX(24.0);
         button.setLayoutY(24.0);
@@ -92,5 +104,6 @@ imageView.setImage(new Image(Config.LOGO));
     protected abstract void isSingle(javafx.event.ActionEvent actionEvent);
 
     protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
+    protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
 
 }

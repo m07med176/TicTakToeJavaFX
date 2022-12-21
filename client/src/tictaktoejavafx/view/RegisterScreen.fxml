@@ -9,18 +9,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictaktoejavafx.view.RegisterScreenController">
    <children>
-      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="184.0" layoutY="25.0" styleClass="logo">
+      <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="200.0" layoutY="26.0" styleClass="logo">
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
+<<<<<<< HEAD
+=======
+      <Label layoutX="253.0" layoutY="202.0" styleClass="title" />
+>>>>>>> 6de94ab6ee17eae38aa5b93b307577e3c004eb67
       <TextField fx:id="user_name_register" layoutX="197.0" layoutY="276.0" promptText="User Name" styleClass="main_input" />
       <TextField fx:id="email_register" layoutX="197.0" layoutY="325.0" promptText="Email" styleClass="main_input" />
       <PasswordField fx:id="password_register" layoutX="197.0" layoutY="374.0" promptText="Password" styleClass="main_input" />
       <PasswordField fx:id="repeat_password_register" layoutX="197.0" layoutY="425.0" promptText="Repeat Password" styleClass="main_input" />
+<<<<<<< HEAD
       <Button fx:id="btn_register" layoutX="227.0" layoutY="475.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="90.0" styleClass="main_button" text="Register">
+=======
+      <Button fx:id="btn_register" layoutX="231.0" layoutY="477.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="81.0" styleClass="main_button" text="Register">
+>>>>>>> 6de94ab6ee17eae38aa5b93b307577e3c004eb67
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>

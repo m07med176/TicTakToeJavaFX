@@ -35,8 +35,9 @@ public abstract class HistoryScreenBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-        setPrefHeight(494.0);
-        setPrefWidth(742.0);
+
+        setPrefHeight(571.0);
+        setPrefWidth(747.0);
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(134.0);
@@ -50,6 +51,7 @@ public abstract class HistoryScreenBase extends AnchorPane {
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
         back_button.setText("<");
+
 
         scrollPane.setLayoutX(188.0);
         scrollPane.setLayoutY(47.0);
@@ -69,6 +71,26 @@ public abstract class HistoryScreenBase extends AnchorPane {
         colum_Oname.setText("OName");
 
         colum_winner.setPrefWidth(131.0);
+
+        scrollPane.setLayoutX(172.0);
+        scrollPane.setLayoutY(35.0);
+        scrollPane.setPrefHeight(516.0);
+        scrollPane.setPrefWidth(564.0);
+
+        table_history_data.setPrefHeight(513.0);
+        table_history_data.setPrefWidth(562.0);
+
+        colum_date.setPrefWidth(183.0);
+        colum_date.setText("date");
+
+        colum_Xname.setPrefWidth(120.0);
+        colum_Xname.setText(" XName");
+
+        colum_Oname.setPrefWidth(129.0);
+        colum_Oname.setText("OName");
+
+        colum_winner.setPrefWidth(129.0);
+
         colum_winner.setText("Winner");
         scrollPane.setContent(table_history_data);
 
