@@ -1,7 +1,8 @@
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
-import javafx.stage.Stage;import tictaktoejavafx.utils.Navigator;
+import javafx.stage.Stage;
+import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.view.TwoPlayerBase;
 
 public class TwoPlayerController extends TwoPlayerBase{
@@ -29,8 +30,14 @@ public class TwoPlayerController extends TwoPlayerBase{
                Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }
-       @Override
+     
     protected void isBack(ActionEvent actionEvent) {
+        Navigator.navigate(Navigator.WELCOME, stage);
+    }
+
+    @Override
+
+    protected void onBackClicked(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }
      

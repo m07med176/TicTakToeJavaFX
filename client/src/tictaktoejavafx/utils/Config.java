@@ -7,8 +7,13 @@ public class Config {
     public static final String LOSSER_VIDEO = "src/tictaktoejavafx/assets/loserVideo.mp4";
     public static final String DRAW_VIDEO = "src/tictaktoejavafx/assets/drawVideo.mp4";
     public static final String CSS = "assets/style.css";
+
+    
+    public static final String SNAKE_LOGO = "tictaktoejavafx/assets/snake.png";
+
     public static final String REC_FILE = "src/tictaktoejavafx/data/db/record.json";
     public static final String HIST_FILE = "src/tictaktoejavafx/data/db/History.json";
+
     public static final String ENVLOP = "tictaktoejavafx/assets/images/envlop.png";
     public static final String BACKBUTTON = "tictaktoejavafx/assets/images/backbutton.png";
     public static final String BACKARROW = "tictaktoejavafx/assets/images/backarrow.png";
@@ -24,7 +29,9 @@ public class Config {
     public static final String ERROR_MSG = "We Are in Trouble Here";
     public static final String INVATE_MSG = "Do You Want TO invate him?";
     
-
+    public static final String PLAYER_X="Player X";
+    public static final String PLAYER_O="Player O";
+    public static final String DRAW="Draw";
     // Configs
     public static String DATETIME = "dd/MM/yyyy HH:mm:ss";
     

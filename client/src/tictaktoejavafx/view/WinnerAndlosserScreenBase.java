@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaView;
+import tictaktoejavafx.utils.Navigator;
 
 public abstract class WinnerAndlosserScreenBase extends AnchorPane {
 
@@ -40,7 +41,7 @@ public abstract class WinnerAndlosserScreenBase extends AnchorPane {
         user_win.setLayoutX(239.0);
         user_win.setLayoutY(27.0);
         user_win.getStyleClass().add("sub_title");
-        user_win.setText("user_name");
+        user_win.setText(Navigator.getPlayerWinner());
 
         mediaView.setFitHeight(600.0);
         mediaView.setFitWidth(600.0);

@@ -14,7 +14,6 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="625.0" layoutY="255.0" styleClass="title" text="Tic Tac Toe" />
       <AnchorPane layoutX="30.0" layoutY="32.0" prefHeight="448.0" prefWidth="514.0">
          <children>
             <TableView fx:id="table_player_selection" layoutX="1.0" layoutY="-5.0" prefHeight="457.0" prefWidth="514.0">

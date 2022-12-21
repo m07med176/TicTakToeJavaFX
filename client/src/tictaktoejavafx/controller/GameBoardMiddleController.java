@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerOffline;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
@@ -113,12 +112,12 @@ public class GameBoardMiddleController extends GameBoardScreenBase {
             if (arrlist.get(i).equals("XXX")) {
                 // result_label.setText("Player 1 is Winner");
                 disableButton();
-                PlayerOffline.setPlayerName("Player 1");
+               // PlayerOffline.setPlayerName(Config.PLAYER_X);
                 playVideo();
             } else if (arrlist.get(i).equals("OOO")) {
                 //  result_label.setText("Player 2 is Winner");
                 disableButton();
-                PlayerOffline.setPlayerName("Player 2");
+               // PlayerOffline.setPlayerName(Config.PLAYER_O);
 
                 playVideo();
             }

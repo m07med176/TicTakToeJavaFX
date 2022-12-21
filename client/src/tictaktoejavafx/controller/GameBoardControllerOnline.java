@@ -160,6 +160,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
         } else {
 
             button.setText("O");
+            button.setStyle("-fx-text-fill: Red;");
             //Navigator.setSetX(true);
             button.setDisable(true);
             diagonalFiller();

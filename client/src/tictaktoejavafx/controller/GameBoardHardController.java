@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.PlayerOffline;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.TicTacToeAIHard;
@@ -19,8 +19,8 @@ import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardHardController extends GameBoardScreenBase {
 
-     public static String PLAYER1 = "Player 1";
-     public static String PLAYER2 = "Player 2";
+    // public static String PLAYER1 = "Player 1";
+    // public static String PLAYER2 = "Player 2";
      private boolean isRecorded;
      private Stage stage;
      private TicTacToeAIHard toeAIHard;
@@ -155,16 +155,21 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                if ((GO = toeAIHard.isGameOver()) != 0) {
                     if (GO == 1) {
-                         PlayerOffline.setPlayerName(PLAYER1);
+                        WinnerName.setWinnerName(Config.PLAYER_X);
+                        Navigator.setPlayerWinner(Navigator.getPlayerOne());
+
                          System.out.println("Player 1 win");
                          playVideo();
 
                     } else if (GO == -1) {
-                         PlayerOffline.setPlayerName(PLAYER2);
+                          WinnerName.setWinnerName(Config.PLAYER_O);
+                        Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+
                          System.out.println("Player 2 win");
                          playVideo();
 
                     } else {
+                          WinnerName.setWinnerName(Config.DRAW);
                          System.out.println(GO);
                          playVideo();
 

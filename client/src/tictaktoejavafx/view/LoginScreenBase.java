@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
 public abstract class LoginScreenBase extends AnchorPane {
@@ -40,13 +41,16 @@ public abstract class LoginScreenBase extends AnchorPane {
         imageView.setLayoutY(55.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
-
-        btn_login.setLayoutX(274.0);
+        btn_login.setLayoutX(260.0);
         btn_login.setLayoutY(375.0);
         btn_login.setMnemonicParsing(false);
         btn_login.setOnAction(this::isLogin);
+        btn_login.setPrefHeight(25.0);
+
+        btn_login.setPrefWidth(117.0);
         btn_login.getStyleClass().add("main_button");
         btn_login.setText("Login");
+        btn_login.setFont(new Font("System Bold Italic", 12.0));
 
         password.setLayoutX(200.0);
         password.setLayoutY(317.0);
@@ -90,5 +94,6 @@ public abstract class LoginScreenBase extends AnchorPane {
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
     protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
+
 
 }

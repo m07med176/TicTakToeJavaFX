@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
@@ -63,6 +64,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label.setLayoutX(678.0);
         label.setLayoutY(309.0);
         label.setText("VS");
+        label.setFont(new Font("System Bold Italic", 12.0));
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -146,16 +148,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
-      
-        //button.setText("<");
-        //------------------------------------
-            Image img2 = new Image("tictaktoejavafx/assets/images/back.png");
-      ImageView view2 = new ImageView(img2);
-        view2.setFitHeight(30);
-        view2.setFitWidth(30);
-      view2.setPreserveRatio(true);
-       button.setGraphic(view2);
-//-------------------------------------
+        button.setText("<");
 
         label_player1.setLayoutX(660.0);
         label_player1.setLayoutY(260.0);

@@ -8,7 +8,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tictaktoejavafx.data.model.PlayerOffline;
+import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
@@ -23,6 +23,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
+/*
         user_win.setText(PlayerOffline.getPlayerName());
         String name = PlayerOffline.getPlayerName();
         if (Navigator.isOnline) {
@@ -74,6 +75,21 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
                 String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
                 mediaVideo(videoPath);
             }
+*/
+       // user_win.setText(WinnerName.getWinnerName());
+        String name = WinnerName.getWinnerName();
+        if (name.equals(Config.PLAYER_X)) {
+            
+            String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
+            
+            mediaVideo(videoPath);
+        } else if (name.equals(Config.PLAYER_O)) {
+            String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
+            mediaVideo(videoPath);
+            
+        }else{
+          String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
+            mediaVideo(videoPath);
         }
         this.stage.setOnCloseRequest((WindowEvent event) -> {
             try {

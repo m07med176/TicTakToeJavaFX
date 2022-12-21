@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardRecordScreenBase extends AnchorPane {
@@ -25,7 +26,6 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
     protected final Button button;
     protected final Label label_player1;
     protected final Label label_player2;
-    protected final Label label0;
     protected final Label type_id;
 
     public GameBoardRecordScreenBase() {
@@ -46,7 +46,6 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         button = new Button();
         label_player1 = new Label();
         label_player2 = new Label();
-        label0 = new Label();
         type_id = new Label();
 
         setMaxHeight(USE_PREF_SIZE);
@@ -62,6 +61,7 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         imageView.setLayoutY(42.0);
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
+
         date_id.setLayoutX(320.0);
         date_id.setLayoutY(21.0);
         date_id.getStyleClass().add("title");
@@ -71,6 +71,7 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         label.setLayoutX(678.0);
         label.setLayoutY(330.0);
         label.setText("VS");
+        label.setFont(new Font("System Bold Italic", 12.0));
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -171,11 +172,6 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 
-        label0.setLayoutX(657.0);
-        label0.setLayoutY(207.0);
-        label0.getStyleClass().add("title");
-        label0.setText("Tic Tac Toe");
-
         type_id.setLayoutX(671.0);
         type_id.setLayoutY(243.0);
         type_id.getStyleClass().add("title");
@@ -197,7 +193,6 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         getChildren().add(anchorPane);
         getChildren().add(label_player1);
         getChildren().add(label_player2);
-        getChildren().add(label0);
         getChildren().add(type_id);
 
     }

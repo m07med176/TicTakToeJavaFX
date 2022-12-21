@@ -7,6 +7,8 @@ import java.sql.SQLException;
 public interface ServerCall{
      public static final String DELIMETER = "&";
      
+     public static final String CLOSE_SEND = "CLOSE_SEND";     
+     
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
      
@@ -37,4 +39,5 @@ public interface ServerCall{
      
      public String register(String[] request,DataOutputStream response) throws SQLException,IOException;
      
+     public void updateState(String[] request) throws SQLException,IOException;
 };
