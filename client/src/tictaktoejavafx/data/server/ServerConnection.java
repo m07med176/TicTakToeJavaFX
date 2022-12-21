@@ -153,9 +153,7 @@ public class ServerConnection {
                     Platform.runLater(() -> {
                GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
                GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
-               if(data[3].equals("O")){
-               GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2])).setStyle("-fx-text-fill: Red;");
-            }
+              
                         enableAll();
                         diagFill();
                         if (!LocalMultiPlayer.getGameEnded()) {

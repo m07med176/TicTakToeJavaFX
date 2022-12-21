@@ -163,7 +163,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
           } else {
 
                button.setText("O");
-               button.setStyle("-fx-text-fill: Red;");
+               //button.setStyle("-fx-text-fill: Red;");
                //Navigator.setSetX(true);
                button.setDisable(true);
                diagonalFiller();
@@ -171,7 +171,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                LocalMultiPlayer.drawChecker(stage);
 
           }
-          changeColorButton();
+          
      }
 
      public void diagonalFiller() {
@@ -315,12 +315,5 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
 
      }
 
-     public void changeColorButton() {
-          for (int i = 0; i < arrlistButtons2.size(); i++) {
-               if (arrlistButtons2.get(i).getText().equals("O")) {
-                    arrlistButtons2.get(i).setStyle("-fx-text-fill: Red;");
-
-               }
-          }
-     }
+     
 }

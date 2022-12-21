@@ -84,17 +84,12 @@ public class SocketSession extends Thread {
 
                     case ServerCall.CLOSE_SEND:
 
-                         try {
-                              networkOperations.updateState(data);
-                              dataInputStream.close();
-                              dataOutputStream.close();
-                              stop();
-                              ServerManager.sessionHolder.remove(this);
-                              sleep(5000);
-                              serverCallBack.requestUpdateDatabase();
-                         } catch (InterruptedException ex) {
-                              Logger.getLogger(SocketSession.class.getName()).log(Level.SEVERE, null, ex);
-                         }
+                         networkOperations.updateState(data);
+                         dataInputStream.close();
+                         dataOutputStream.close();
+                         ServerManager.sessionHolder.remove(this);
+                         stop();
+                         serverCallBack.requestUpdateDatabase();
 
                          break;
                }

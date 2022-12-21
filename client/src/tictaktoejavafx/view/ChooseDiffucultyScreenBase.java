@@ -11,7 +11,6 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
     protected final Button btn_easy_mode;
-    protected final Button btn_middle_mode;
     protected final Button btn_hard_mode;
     protected final Button back_button;
 
@@ -19,7 +18,6 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
 
         imageView = new ImageView();
         btn_easy_mode = new Button();
-        btn_middle_mode = new Button();
         btn_hard_mode = new Button();
         back_button = new Button();
 
@@ -47,18 +45,10 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         btn_easy_mode.setText("Easy Mode");
         btn_easy_mode.setFont(new Font("System Bold Italic", 12.0));
 
-        btn_middle_mode.setLayoutX(147.0);
-        btn_middle_mode.setLayoutY(406.0);
-        btn_middle_mode.setMnemonicParsing(false);
-        btn_middle_mode.setOnAction(this::isMiddleMode);
-        btn_middle_mode.setPrefHeight(31.0);
-        btn_middle_mode.setPrefWidth(150.0);
-        btn_middle_mode.getStyleClass().add("main_button");
-        btn_middle_mode.setText("Middle Mode");
-        btn_middle_mode.setFont(new Font("System Bold Italic", 12.0));
+
 
         btn_hard_mode.setLayoutX(147.0);
-        btn_hard_mode.setLayoutY(468.0);
+        btn_hard_mode.setLayoutY(406.0);
         btn_hard_mode.setMnemonicParsing(false);
         btn_hard_mode.setOnAction(this::isHardMode);
         btn_hard_mode.setPrefHeight(31.0);
@@ -75,15 +65,12 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
 
         getChildren().add(imageView);
         getChildren().add(btn_easy_mode);
-        getChildren().add(btn_middle_mode);
         getChildren().add(btn_hard_mode);
         getChildren().add(back_button);
 
     }
 
     protected abstract void isEasyMode(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void isMiddleMode(javafx.event.ActionEvent actionEvent);
 
     protected abstract void isHardMode(javafx.event.ActionEvent actionEvent);
 
