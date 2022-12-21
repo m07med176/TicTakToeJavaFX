@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
+import javafx.scene.text.Font;
 
 public abstract class OnePlayerBase extends AnchorPane {
 
@@ -13,6 +13,7 @@ public abstract class OnePlayerBase extends AnchorPane {
     protected final TextField player_name;
     protected final Button StartGame;
     protected final Button button;
+    protected final ImageView imageView0;
 
     public OnePlayerBase() {
 
@@ -20,6 +21,7 @@ public abstract class OnePlayerBase extends AnchorPane {
         player_name = new TextField();
         StartGame = new Button();
         button = new Button();
+        imageView0 = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -35,7 +37,6 @@ public abstract class OnePlayerBase extends AnchorPane {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
 
         player_name.setLayoutX(251.0);
         player_name.setLayoutY(315.0);
@@ -44,34 +45,35 @@ public abstract class OnePlayerBase extends AnchorPane {
         player_name.setPromptText("Player Name");
         player_name.getStyleClass().add("main_input");
 
-        StartGame.setLayoutX(316.0);
-        StartGame.setLayoutY(366.0);
+        StartGame.setLayoutX(298.0);
+        StartGame.setLayoutY(385.0);
         StartGame.setMnemonicParsing(false);
         StartGame.setOnAction(this::isStartGame);
+        StartGame.setPrefHeight(25.0);
+        StartGame.setPrefWidth(130.0);
         StartGame.getStyleClass().add("main_button");
         StartGame.setText("Start Game");
+        StartGame.setFont(new Font("System Bold Italic", 12.0));
 
         button.setLayoutX(14.0);
         button.setLayoutY(14.0);
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
-        //button.setText("<");
-        //------------------------------------
-            Image img2 = new Image("tictaktoejavafx/assets/images/back.png");
-      ImageView view2 = new ImageView(img2);
-        view2.setFitHeight(30);
-        view2.setFitWidth(30);
-      view2.setPreserveRatio(true);
-       button.setGraphic(view2);
-//-------------------------------------
-        
-        
+        button.setText("<");
+
+        imageView0.setFitHeight(136.0);
+        imageView0.setFitWidth(168.0);
+        imageView0.setLayoutX(298.0);
+        imageView0.setLayoutY(59.0);
+        imageView0.getStyleClass().add("logo");
+        imageView0.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
         getChildren().add(imageView);
         getChildren().add(player_name);
         getChildren().add(StartGame);
         getChildren().add(button);
+        getChildren().add(imageView0);
 
     }
 

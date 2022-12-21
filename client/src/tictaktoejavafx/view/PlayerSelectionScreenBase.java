@@ -1,17 +1,16 @@
 package tictaktoejavafx.view;
 
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import tictaktoejavafx.utils.Config;
 
 public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
-    protected final Label label;
     protected final AnchorPane anchorPane;
     protected final TableView table_player_selection;
     protected final TableColumn columName;
@@ -21,7 +20,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
     public PlayerSelectionScreenBase() {
 
         imageView = new ImageView();
-        label = new Label();
         anchorPane = new AnchorPane();
         table_player_selection = new TableView();
         columName = new TableColumn();
@@ -40,13 +38,13 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.setLayoutX(571.0);
         imageView.setLayoutY(74.0);
         imageView.getStyleClass().add("logo");
-//        imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
-imageView.setImage(new Image(Config.LOGO));
+        imageView.setImage(new Image(Config.LOGO));
 
         label.setLayoutX(625.0);
         label.setLayoutY(255.0);
         label.getStyleClass().add("title");
         label.setText("Tic Tac Toe");
+
 
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
@@ -69,6 +67,7 @@ imageView.setImage(new Image(Config.LOGO));
         columActive.setText("Active");
 
         getChildren().add(imageView);
+
         getChildren().add(label);
         table_player_selection.getColumns().add(columName);
         table_player_selection.getColumns().add(columEmail);

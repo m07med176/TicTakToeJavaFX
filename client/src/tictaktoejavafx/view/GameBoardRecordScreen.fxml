@@ -31,7 +31,6 @@
       </AnchorPane>
       <Label fx:id="label_player1" layoutX="659.0" layoutY="299.0" prefHeight="31.0" prefWidth="74.0" styleClass="sub_title" text="player1" textAlignment="RIGHT" />
       <Label fx:id="label_player2" layoutX="662.0" layoutY="351.0" prefHeight="31.0" prefWidth="68.0" styleClass="sub_title" text="player2" />
-      <Label layoutX="657.0" layoutY="207.0" styleClass="title" text="Tic Tac Toe" />
       <Label fx:id="type_id" layoutX="671.0" layoutY="243.0" styleClass="title" text="Type" />
    </children>
 </AnchorPane>

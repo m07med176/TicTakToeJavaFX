@@ -20,15 +20,13 @@ public abstract class SplashScreenBase extends AnchorPane {
         setPrefHeight(575.0);
         setPrefWidth(466.0);
 
-        imageView.setFitHeight(150.0);
-        imageView.setFitWidth(200.0);
-        imageView.setLayoutX(190.0);
-        imageView.setLayoutY(213.0);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(136.0);
+        imageView.setFitWidth(168.0);
+        imageView.setLayoutX(149.0);
+        imageView.setLayoutY(197.0);
         imageView.getStyleClass().add("logo");
-        imageView.setImage(new Image(Config.LOGO));
-
+        //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+imageView.setImage(new Image(Config.LOGO));
         getChildren().add(imageView);
 
     }
