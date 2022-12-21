@@ -142,6 +142,7 @@ public class ServerConnection {
 
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
+                        enableAll();
                         diagFill();
                         if (!LocalMultiPlayer.getGameEnded()) {
                             LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
@@ -225,6 +226,17 @@ public class ServerConnection {
             System.out.println("Player O Cancle");
         }
     }
+    public static void enableAll(){
+        for(int i=0;i<GameBoardControllerOnline.arrlistButtons.size();i++){
+            if(GameBoardControllerOnline.arrlistButtons.get(i).getText().isEmpty()){
+                GameBoardControllerOnline.arrlistButtons.get(i).setDisable(false);
+            }
+            
+        
+        }
+    
+    }
+
 /*
                });
                thread.start();
