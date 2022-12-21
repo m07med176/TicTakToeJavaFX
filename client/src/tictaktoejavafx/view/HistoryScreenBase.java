@@ -35,6 +35,7 @@ public abstract class HistoryScreenBase extends AnchorPane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
+
         setPrefHeight(494.0);
         setPrefWidth(742.0);
 
@@ -42,6 +43,8 @@ public abstract class HistoryScreenBase extends AnchorPane {
         back_button.setLayoutY(22.0);
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
+
+
         Image img = new Image("tictaktoejavafx/assets/images/back.png");
         ImageView view = new ImageView(img);
         view.setFitHeight(30);
@@ -53,6 +56,7 @@ public abstract class HistoryScreenBase extends AnchorPane {
         scrollPane.setLayoutY(35.0);
         scrollPane.setPrefHeight(516.0);
         scrollPane.setPrefWidth(564.0);
+
 
        table_history_data.setPrefHeight(513.0);
        table_history_data.setPrefWidth(562.0);

@@ -97,6 +97,7 @@ imageView.setImage(new Image(Config.LOGO));
         view.setPreserveRatio(true);
         back_button.setGraphic(view);
 
+
         table_record_id.getColumns().add(date_colum);
         table_record_id.getColumns().add(x_name_colum);
         table_record_id.getColumns().add(o_name_colum);
@@ -107,7 +108,7 @@ imageView.setImage(new Image(Config.LOGO));
         table_record_id.getColumns().add(type_colum0);
         getChildren().add(scrollPane);
         getChildren().add(imageView);
-        getChildren().add(back_button);
+      getChildren().add(back_button);
 
     }
 

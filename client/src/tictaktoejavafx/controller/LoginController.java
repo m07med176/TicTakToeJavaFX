@@ -14,6 +14,7 @@ import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
+import tictaktoejavafx.utils.Utils;
 
 public class LoginController extends LoginScreenBase {
     private Stage stage;
@@ -32,6 +33,7 @@ public class LoginController extends LoginScreenBase {
         if(loginValidation(userName,passwordUser)){
              try {
                 Navigator.setPlayerOne(userName);
+                ServerConnection.UID=userName;
                 ServerConnection.getInstance(stage,socketModel.getIp(),socketModel.getPort(), (IOException ex) -> {
                     new UserMessage().display("There was a problem in the server\n"+ex.getMessage(), new CallBackAction(){
                         @Override
@@ -82,6 +84,12 @@ public class LoginController extends LoginScreenBase {
             System.out.println("you must enter password");
             retVal = false;
         }
+//        if(Utils.isNumeric(passwordUser)){
+//            password.requestFocus();
+//            System.out.println("you must enter password");
+//            retVal = false;
+//        
+//        }
         
         if (userName.isEmpty()) {
             //TODO here dialog Alert meesage
@@ -97,8 +105,8 @@ public class LoginController extends LoginScreenBase {
     protected void CreateAccount(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.REGISTER, stage,socketModel);
     }
+
     protected void isBack(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }
-
 }

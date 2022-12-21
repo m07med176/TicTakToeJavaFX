@@ -45,12 +45,24 @@ public class Navigator {
     public static final int HISTORY = 16;
     public static final int SNAKEGAME = 17;
     public static final int CHOSE_GAME=19;
+
+    public static String getOnlineWinner() {
+        return onlineWinner;
+    }
+
+    public static void setOnlineWinner(String onlineWinner) {
+        Navigator.onlineWinner = onlineWinner;
+    }
+
     
     public static String playerOne;
     public static String playerTwo;
      public static String PlayerWinner;
     public static String buttonNumber;
     public static String boardMove;
+    public static String onlineWinner;
+
+
     public static String winnerPlayer;
 
      public static String getWinnerPlayer() {
@@ -62,7 +74,16 @@ public class Navigator {
      }
     public static boolean startGame;
     public static boolean setX = true;
+    public static boolean isOnline=false;
 
+
+    public static boolean isIsOnline() {
+        return isOnline;
+    }
+
+    public static void setIsOnline(boolean isOnline) {
+        Navigator.isOnline = isOnline;
+    }
     public static String getPlayerWinner() {
         return PlayerWinner;
     }

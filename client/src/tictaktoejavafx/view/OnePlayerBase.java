@@ -27,6 +27,7 @@ public abstract class OnePlayerBase extends Pane {
 
         player_name.setLayoutX(211.0);
         player_name.setLayoutY(318.0);
+
         player_name.setPrefHeight(30.0);
         player_name.setPrefWidth(224.0);
         player_name.setPromptText("Player Name");
@@ -41,6 +42,7 @@ public abstract class OnePlayerBase extends Pane {
 
         StartGame.setLayoutX(258.0);
         StartGame.setLayoutY(372.0);
+
         StartGame.setMnemonicParsing(false);
         StartGame.setOnAction(this::isStartGame);
         StartGame.setPrefHeight(25.0);

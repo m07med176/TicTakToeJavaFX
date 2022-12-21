@@ -78,6 +78,7 @@ public abstract class LoginScreenBase extends AnchorPane {
         button.setLayoutY(23.0);
         button.setMnemonicParsing(false);
         button.getStyleClass().add("back_button");
+        button.setOnAction(this::onBackClicked);
         button.setText("<");
 
         getChildren().add(imageView);
@@ -92,5 +93,7 @@ public abstract class LoginScreenBase extends AnchorPane {
     protected abstract void isLogin(javafx.event.ActionEvent actionEvent);
 
     protected abstract void CreateAccount(javafx.event.ActionEvent actionEvent);
+    protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
+
 
 }

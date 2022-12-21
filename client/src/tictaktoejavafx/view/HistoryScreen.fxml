@@ -10,7 +10,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableController">
    <children>
-
       <Button fx:id="back_button" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#isBack" text="&lt;" />
       <ScrollPane layoutX="172.0" layoutY="35.0" prefHeight="516.0" prefWidth="564.0">
          <content>
