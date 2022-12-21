@@ -40,12 +40,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(Config.LOGO));
 
-        label.setLayoutX(625.0);
-        label.setLayoutY(255.0);
-        label.getStyleClass().add("title");
-        label.setText("Tic Tac Toe");
-
-
         anchorPane.setLayoutX(30.0);
         anchorPane.setLayoutY(32.0);
         anchorPane.setPrefHeight(448.0);
@@ -68,7 +62,6 @@ public abstract class PlayerSelectionScreenBase extends AnchorPane {
 
         getChildren().add(imageView);
 
-        getChildren().add(label);
         table_player_selection.getColumns().add(columName);
         table_player_selection.getColumns().add(columEmail);
         table_player_selection.getColumns().add(columActive);

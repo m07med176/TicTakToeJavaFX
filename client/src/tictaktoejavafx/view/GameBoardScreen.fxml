@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -13,7 +14,10 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
-      <Label id="vs" layoutX="678.0" layoutY="309.0" text="VS" />
+      <Label id="vs" layoutX="678.0" layoutY="309.0" text="VS">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
       <AnchorPane layoutX="37.0" layoutY="44.0" prefHeight="398.0" prefWidth="530.0">
          <children>
             <Button fx:id="btn_Game_one" layoutX="45.0" layoutY="45.0" mnemonicParsing="false" onAction="#isGameOne" prefHeight="92.0" prefWidth="125.0" styleClass="game_button" />

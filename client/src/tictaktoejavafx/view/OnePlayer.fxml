@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictaktoejavafx.view.OnePlayerController">
    <children>
+
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" styleClass="logo" />
       <TextField fx:id="player_name" layoutX="251.0" layoutY="315.0" prefHeight="30.0" prefWidth="224.0" promptText="Player Name" styleClass="main_input" />
       <Button fx:id="StartGame" layoutX="298.0" layoutY="385.0" mnemonicParsing="false" onAction="#isStartGame" prefHeight="25.0" prefWidth="130.0" styleClass="main_button" text="Start Game">
@@ -17,6 +18,7 @@
          </font></Button>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
       <ImageView fitHeight="136.0" fitWidth="168.0" layoutX="298.0" layoutY="59.0" styleClass="logo">
+
          <image>
             <Image url="../assets/XOpicture.jpg" />
          </image>

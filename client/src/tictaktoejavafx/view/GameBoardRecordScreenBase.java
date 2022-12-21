@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+
 
 public abstract class GameBoardRecordScreenBase extends AnchorPane {
 
@@ -69,6 +71,7 @@ public abstract class GameBoardRecordScreenBase extends AnchorPane {
         label.setLayoutX(678.0);
         label.setLayoutY(330.0);
         label.setText("VS");
+        label.setFont(new Font("System Bold Italic", 12.0));
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);

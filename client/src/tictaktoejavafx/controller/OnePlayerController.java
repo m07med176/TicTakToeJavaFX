@@ -13,7 +13,6 @@ public class OnePlayerController extends OnePlayerBase{
      }
      
 
-     @Override
      protected void isStartGame(ActionEvent actionEvent) {
           // TODO Validation 
           
@@ -35,5 +34,10 @@ public class OnePlayerController extends OnePlayerBase{
      protected void onBackClicked(ActionEvent actionEvent) {
           Navigator.navigate(Navigator.WELCOME, stage);
      }
+
+    @Override
+    protected void isSingle(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.GAMEBOARD, stage);
+    }
      
 }

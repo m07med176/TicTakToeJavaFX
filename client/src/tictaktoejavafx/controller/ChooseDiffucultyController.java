@@ -1,8 +1,12 @@
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tictaktoejavafx.utils.CallBackAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
+import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.ChooseDiffucultyScreenBase;
 
 public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
@@ -31,6 +35,23 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
         Navigator.navigate(Navigator.GAMEBOARDHARD, stage);
     }
 
+    @Override
+    protected void onBackClicked(ActionEvent actionEvent) {
+         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
+               @Override
+               public void sendOk() {
+                    Navigator.navigate(Navigator.WELCOME, stage);
+               }
+
+               @Override
+               public void sendCancel() {
+                    // Do Nothing
+               }
+          }, Alert.AlertType.CONFIRMATION);
+
+     }
+    }
+
 
     
-}
+

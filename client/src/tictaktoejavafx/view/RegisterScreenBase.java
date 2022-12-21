@@ -2,18 +2,17 @@ package tictaktoejavafx.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import tictaktoejavafx.utils.Config;
 
 public abstract class RegisterScreenBase extends AnchorPane {
 
     protected final ImageView imageView;
-    protected final Label label;
     protected final TextField user_name_register;
     protected final TextField email_register;
     protected final PasswordField password_register;
@@ -25,7 +24,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
     public RegisterScreenBase() {
 
         imageView = new ImageView();
-        label = new Label();
         user_name_register = new TextField();
         email_register = new TextField();
         password_register = new PasswordField();
@@ -48,9 +46,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         imageView.getStyleClass().add("logo");
         imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
 
-        label.setLayoutX(253.0);
-        label.setLayoutY(202.0);
-        label.getStyleClass().add("title");
 
         user_name_register.setLayoutX(197.0);
         user_name_register.setLayoutY(276.0);
@@ -71,6 +66,14 @@ public abstract class RegisterScreenBase extends AnchorPane {
         repeat_password_register.setLayoutY(425.0);
         repeat_password_register.setPromptText("Repeat Password");
         repeat_password_register.getStyleClass().add("main_input");
+
+        btn_register.setLayoutX(227.0);
+        btn_register.setLayoutY(475.0);
+        btn_register.setMnemonicParsing(false);
+        btn_register.setOnAction(this::register);
+        btn_register.setPrefHeight(25.0);
+        btn_register.setPrefWidth(90.0);
+
 
         btn_register.setLayoutX(231.0);
         btn_register.setLayoutY(477.0);
@@ -96,7 +99,6 @@ public abstract class RegisterScreenBase extends AnchorPane {
         button.setText("<");
 
         getChildren().add(imageView);
-        getChildren().add(label);
         getChildren().add(user_name_register);
         getChildren().add(email_register);
         getChildren().add(password_register);

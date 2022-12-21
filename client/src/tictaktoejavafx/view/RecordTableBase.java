@@ -8,39 +8,75 @@ import javafx.scene.layout.AnchorPane;
 
 public abstract class RecordTableBase extends AnchorPane {
 
-    protected final Button back_btn;
     protected final ScrollPane scrollPane;
     protected final TableView table_record_id;
     protected final TableColumn date_colum;
     protected final TableColumn x_name_colum;
     protected final TableColumn o_name_colum;
     protected final TableColumn type_colum;
+    protected final ImageView imageView;
+    protected final Button button;
 
     public RecordTableBase() {
 
-        back_btn = new Button();
         scrollPane = new ScrollPane();
         table_record_id = new TableView();
         date_colum = new TableColumn();
         x_name_colum = new TableColumn();
         o_name_colum = new TableColumn();
         type_colum = new TableColumn();
+        imageView = new ImageView();
+        button = new Button();
+
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
+        setPrefHeight(571.0);
+        setPrefWidth(743.0);
+
         setPrefHeight(588.0);
         setPrefWidth(731.0);
 
-        back_btn.setLayoutX(26.0);
-        back_btn.setLayoutY(22.0);
-        back_btn.setMnemonicParsing(false);
-        back_btn.setOnAction(this::isBackbtn);
-        back_btn.setText("<");
 
         scrollPane.setLayoutX(164.0);
         scrollPane.setLayoutY(38.0);
+
+        scrollPane.setPrefHeight(506.0);
+        scrollPane.setPrefWidth(529.0);
+
+        table_record_id.setPrefHeight(507.0);
+        table_record_id.setPrefWidth(514.0);
+
+        date_colum.setPrefWidth(169.0);
+        date_colum.setText("Date");
+
+        x_name_colum.setPrefWidth(109.0);
+        x_name_colum.setText("XName");
+
+        o_name_colum.setPrefWidth(117.0);
+        o_name_colum.setText("OName");
+
+        type_colum.setPrefWidth(121.0);
+        type_colum.setText("Type");
+        scrollPane.setContent(table_record_id);
+
+        imageView.setFitHeight(116.0);
+        imageView.setFitWidth(147.0);
+        imageView.setLayoutX(26.0);
+        imageView.setLayoutY(76.0);
+        imageView.setPickOnBounds(true);
+        imageView.setPreserveRatio(true);
+
+        button.setLayoutX(34.0);
+        button.setLayoutY(34.0);
+        button.setMnemonicParsing(false);
+        button.setOnAction(this::onBackClicked);
+        button.getStyleClass().add("back_button");
+        button.setText("<");
+
+
         scrollPane.setPrefHeight(507.0);
         scrollPane.setPrefWidth(523.0);
 
@@ -60,15 +96,19 @@ public abstract class RecordTableBase extends AnchorPane {
         type_colum.setText("Active");
         scrollPane.setContent(table_record_id);
 
-        getChildren().add(back_btn);
+
+
         table_record_id.getColumns().add(date_colum);
         table_record_id.getColumns().add(x_name_colum);
         table_record_id.getColumns().add(o_name_colum);
         table_record_id.getColumns().add(type_colum);
         getChildren().add(scrollPane);
+        getChildren().add(imageView);
+        getChildren().add(button);
+
 
     }
 
-    protected abstract void isBackbtn(javafx.event.ActionEvent actionEvent);
+    protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
 
 }

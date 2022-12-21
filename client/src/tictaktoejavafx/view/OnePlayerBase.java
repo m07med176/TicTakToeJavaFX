@@ -6,21 +6,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import tictaktoejavafx.utils.Config;
+
 
 public abstract class OnePlayerBase extends AnchorPane {
 
-    protected final ImageView imageView;
     protected final TextField player_name;
-    protected final Button StartGame;
     protected final Button button;
+      protected final Button StartGame;
+    protected final Button btn_single;
+    protected final ImageView imageView;
+
     protected final ImageView imageView0;
 
     public OnePlayerBase() {
 
-        imageView = new ImageView();
         player_name = new TextField();
-        StartGame = new Button();
         button = new Button();
+
+        StartGame = new Button();
+        btn_single = new Button();
+        imageView = new ImageView();
+
         imageView0 = new ImageView();
 
         setMaxHeight(USE_PREF_SIZE);
@@ -29,6 +36,10 @@ public abstract class OnePlayerBase extends AnchorPane {
         setMinWidth(USE_PREF_SIZE);
         setPrefHeight(513.0);
         setPrefWidth(712.0);
+
+
+        player_name.setLayoutX(225.0);
+        player_name.setLayoutY(311.0);
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(200.0);
@@ -48,7 +59,6 @@ public abstract class OnePlayerBase extends AnchorPane {
         StartGame.setLayoutX(298.0);
         StartGame.setLayoutY(385.0);
         StartGame.setMnemonicParsing(false);
-        StartGame.setOnAction(this::isStartGame);
         StartGame.setPrefHeight(25.0);
         StartGame.setPrefWidth(130.0);
         StartGame.getStyleClass().add("main_button");
@@ -62,6 +72,25 @@ public abstract class OnePlayerBase extends AnchorPane {
         button.getStyleClass().add("back_button");
         button.setText("<");
 
+        btn_single.setLayoutX(259.0);
+        btn_single.setLayoutY(375.0);
+        btn_single.setMnemonicParsing(false);
+        btn_single.setOnAction(this::isSingle);
+        btn_single.setPrefHeight(42.0);
+        btn_single.setPrefWidth(150.0);
+        btn_single.getStyleClass().add("main_button");
+        btn_single.setText("Start Game");
+        btn_single.setTextFill(javafx.scene.paint.Color.valueOf("#0a3257"));
+        btn_single.setFont(new Font(22.0));
+
+        imageView.setFitHeight(185.0);
+        imageView.setFitWidth(200.0);
+        imageView.setLayoutX(225.0);
+        imageView.setLayoutY(35.0);
+        imageView.getStyleClass().add("logo");
+        //imageView.setImage(new Image(getClass().getResource("../assets/XOpicture.jpg").toExternalForm()));
+ imageView.setImage(new Image(Config.LOGO));
+
         imageView0.setFitHeight(136.0);
         imageView0.setFitWidth(168.0);
         imageView0.setLayoutX(298.0);
@@ -71,14 +100,16 @@ public abstract class OnePlayerBase extends AnchorPane {
 
         getChildren().add(imageView);
         getChildren().add(player_name);
-        getChildren().add(StartGame);
         getChildren().add(button);
+        getChildren().add(btn_single);
+        getChildren().add(imageView);
+
         getChildren().add(imageView0);
 
     }
 
-    protected abstract void isStartGame(javafx.event.ActionEvent actionEvent);
-
     protected abstract void onBackClicked(javafx.event.ActionEvent actionEvent);
+
+    protected abstract void isSingle(javafx.event.ActionEvent actionEvent);
 
 }

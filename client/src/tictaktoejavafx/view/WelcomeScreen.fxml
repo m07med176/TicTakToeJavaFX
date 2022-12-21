@@ -35,9 +35,12 @@
          </image>
       </ImageView>
 
-      <Button fx:id="isRecord" layoutX="126.0" layoutY="513.0" mnemonicParsing="false" onAction="#isRecorded" prefHeight="48.0" prefWidth="214.0" text="Record Mode" />
-
-      <Button fx:id="btn_History_Mode" layoutX="126.0" layoutY="449.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="History Mode">
+      <Button fx:id="btn_History_Mode" layoutX="126.0" layoutY="450.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="History Mode" textFill="#0a3257">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_History_Mode1" layoutX="126.0" layoutY="507.0" mnemonicParsing="false" onAction="#isHistoryMode" prefHeight="45.0" prefWidth="214.0" text="Record Mode" textFill="#0a3257">
          <font>
             <Font size="22.0" />
          </font>
