@@ -23,9 +23,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
     public WinnerAndLosserController(Stage stage) {
         this.stage = stage;
-/*
-        user_win.setText(PlayerOffline.getPlayerName());
-        String name = PlayerOffline.getPlayerName();
+
         if (Navigator.isOnline) {
             if (Navigator.startGame) {
                 if (Navigator.getPlayerOne().equals(Navigator.getOnlineWinner())) {
@@ -63,19 +61,8 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
             }
             Navigator.setIsOnline(false);
         } else {
-            if (name.equals("Player 1")) {
-                String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
+            
 
-                mediaVideo(videoPath);
-            } else if (name.equals("Player 2")) {
-                String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
-                mediaVideo(videoPath);
-
-            } else {
-                String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
-                mediaVideo(videoPath);
-            }
-*/
        // user_win.setText(WinnerName.getWinnerName());
         String name = WinnerName.getWinnerName();
         if (name.equals(Config.PLAYER_X)) {
@@ -110,7 +97,8 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
         });
     }
 
-    void mediaVideo(String videoPlayPath) {
+    }
+     public void mediaVideo(String videoPlayPath) {
         Media media = new Media(videoPlayPath);
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
@@ -124,15 +112,5 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
-    @Override
-    protected void onPlayAgainClicked(ActionEvent actionEvent) {
-        mediaPlayer.stop();
-
-        Navigator.navigate(Navigator.RECORD, stage);
-    }
-
-    @Override
-    protected void onResultsClicked(ActionEvent actionEvent) {
-        mediaPlayer.stop();
-    }
+  
 }

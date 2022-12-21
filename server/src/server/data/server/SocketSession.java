@@ -36,11 +36,13 @@ public class SocketSession extends Thread {
                try {
                     String response = dataInputStream.readUTF();
                     System.out.println("Index  " + response);
+                    
                     requestNavigator(response);
                } catch (IOException ex) {
                     flag = false;
                     Platform.runLater(() -> {
                          serverCallBack.serverException(ex);
+                         ex.printStackTrace();
 
                     });
                } catch (SQLException ex) {

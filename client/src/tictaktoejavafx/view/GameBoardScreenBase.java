@@ -45,6 +45,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player1 = new Label();
         label_player2 = new Label();
         video_btn = new Button();
+        video_btn.setText("Record");
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);

@@ -109,4 +109,9 @@ public class LoginController extends LoginScreenBase {
     protected void isBack(ActionEvent actionEvent) {
         Navigator.navigate(Navigator.WELCOME, stage);
     }
+
+     @Override
+     protected void onBackClicked(ActionEvent actionEvent) {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
 }
