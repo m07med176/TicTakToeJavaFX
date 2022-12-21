@@ -159,6 +159,7 @@ public class ServerConnection {
 
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
                         GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
+                        enableAll();
                         diagFill();
                         if (!LocalMultiPlayer.getGameEnded()) {
                             LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
@@ -195,9 +196,22 @@ public class ServerConnection {
     }
 
     public static void closeThread() throws IOException {
-        dataInputStream.close();
-        socket.close();
-        thread.stop();
+        if(dataInputStream!=null){
+            dataInputStream.close();
+            
+        }
+        if(socket!=null){
+            if(socket.isClosed()){
+                socket.close();
+            }
+            
+        }
+        if(thread!=null){
+            if(thread.isAlive()){
+                thread.stop();
+            }
+        }
+        
         serverConnection = null;
 
     }
@@ -227,4 +241,163 @@ public class ServerConnection {
             System.out.println("Player O Cancle");
         }
     }
+/*
+    public static void enableAll(){
+        for(int i=0;i<GameBoardControllerOnline.arrlistButtons.size();i++){
+            if(GameBoardControllerOnline.arrlistButtons.get(i).getText().isEmpty()){
+                GameBoardControllerOnline.arrlistButtons.get(i).setDisable(false);
+            }
+            
+        
+        }
+    
+    }
+
+
+               });
+               thread.start();
+
+          } else {
+
+          }
+
+     }
+
+     public static void diagFill() {
+          if (diagonals == null) {
+
+               diagonals = new ArrayList<>();
+
+          }
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText() + GameBoardControllerOnline.arrlistButtons2.get(1).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(2).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(3).getText() + GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(5).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(6).getText() + GameBoardControllerOnline.arrlistButtons2.get(7).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText() + GameBoardControllerOnline.arrlistButtons2.get(3).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(6).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(1).getText() + GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(7).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(2).getText() + GameBoardControllerOnline.arrlistButtons2.get(5).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(0).getText() + GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(8).getText());
+          diagonals.add(GameBoardControllerOnline.arrlistButtons2.get(2).getText() + GameBoardControllerOnline.arrlistButtons2.get(4).getText()
+                  + GameBoardControllerOnline.arrlistButtons2.get(6).getText());
+
+     }
+
+     public static void getMessage(String msg) {
+          System.out.println("we got " + msg);
+          if (msg != null && !msg.isEmpty()) {
+               String[] data = msg.split(",");
+               switch (data[0]) {
+                    case ServerCall.IVETATION_RECEIVE:
+                         Platform.runLater(() -> {
+                              displayAlert(data[1]);
+                         });
+                         break;
+                    case ServerCall.CONFIRMATION_RECEIVE:
+
+                         Platform.runLater(() -> {
+                              System.out.println("I recived");
+                              Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
+                         });
+                         break;
+                    case ServerCall.MOVEMENT_RECEIVE:
+                         System.out.println("we got a move");
+                         Navigator.setButtonNumber(data[2]);
+                         Navigator.setBoardMove(data[3]);
+                         //Navigator.setTurnEnded(true);
+                         //GameBoardControllerOnline.button.setText(Navigator.boardMove);
+                         //GameBoardControllerOnline.button.setDisable(true);
+                         if (data[3].equals("X")) {
+                              Navigator.setSetX(false);
+                         } else {
+                              Navigator.setSetX(true);
+                         }
+                         Platform.runLater(() -> {
+
+                              GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
+                              GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
+                              diagFill();
+                              if (!LocalMultiPlayer.getGameEnded()) {
+                                   LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                                   LocalMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
+                                   if (LocalMultiPlayer.getGameEnded()) {
+
+                                        GameBoardControllerOnline.arrlistButtons2 = null;
+                                        LocalMultiPlayer.setGameEnded(false);
+                                        diagonals = null;
+
+                                   }
+
+                              }
+
+                         });
+                         System.out.println("we set " + Navigator.getBoardMove() + " " + Navigator.getButtonNumber());
+                         break;
+                    default:
+                         break;
+
+               }
+          }
+
+     }
+
+
+   public static void closeThread() throws IOException {
+
+          if(dataInputStream!=null){
+          
+              dataInputStream.close();
+              dataInputStream=null;
+          }
+          if(socket!=null){
+              if(!socket.isClosed()){
+                  socket.close();
+                  socket=null;
+              }
+              
+          }
+          if(thread!=null){
+              if(thread.isAlive()){
+                  thread.stop();
+              }
+              
+          }
+          
+          serverConnection = null;
+
+     }
+     public static void displayAlert(String Playerx) {
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+
+          alert.setTitle("Invitation");
+          alert.setHeaderText(Playerx + " Invite you to Play Game");
+          alert.setContentText("Do you want to Accept Invitation");
+
+          ButtonType acceptButton = new ButtonType("Accept");
+          ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+          alert.getButtonTypes().setAll(acceptButton, cancelButton);
+          if (alert.showAndWait().get() == acceptButton) {
+               //-------------------------------------
+               System.out.println("Player O Accept Your Invetation");
+               Navigator.setStartGame(false);
+               sendMessage(ServerCall.CONFIRMATION_SEND + "," + Playerx, stage);
+               Navigator.setPlayerOne(Playerx);
+               Navigator.setPlayerTwo("Hussin");
+               Platform.runLater(() -> {
+
+                    Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
+               });
+
+          } else {
+               System.out.println("Player O Cancle");
+          }
+
+     }
+*/
+
 }

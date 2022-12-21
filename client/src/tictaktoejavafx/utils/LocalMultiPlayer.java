@@ -4,6 +4,7 @@ import tictaktoejavafx.data.model.PlayerOffline;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
+import tictaktoejavafx.controller.GameBoardMultiController;
 import tictaktoejavafx.data.server.ServerConnection;
 
 
@@ -28,7 +29,7 @@ public class LocalMultiPlayer {
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-                
+                //GameBoardMultiController.turn='b';
             
             }else if(d.get(i).equals("OOO")){
             
@@ -39,7 +40,7 @@ public class LocalMultiPlayer {
                 GameBoardControllerOnline.arrlistButtons2=null;
                 ServerConnection.diagonals=null;
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
-                
+                //GameBoardMultiController.turn='b';
             }
         
         }
