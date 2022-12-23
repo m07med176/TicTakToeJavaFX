@@ -3,6 +3,8 @@ package server.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,11 +47,14 @@ public class PlayerOnServerController extends PlayerOnServerBase {
 
                if (flag == false) {
                     btnOnOff.setText("ON");
+                    btnOnOff.setStyle("-fx-text-fill: Red;");
                     flag = true;
                     server.start();
                } else {
                     flag = false;
                     btnOnOff.setText("OFF");
+                       btnOnOff.setStyle("-fx-text-fill: Green;");
+
                     server.close();
 
                }

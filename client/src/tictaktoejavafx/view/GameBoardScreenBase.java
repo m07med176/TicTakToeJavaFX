@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import tictaktoejavafx.utils.Config;
 
 public abstract class GameBoardScreenBase extends AnchorPane {
@@ -44,6 +45,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         label_player1 = new Label();
         label_player2 = new Label();
         video_btn = new Button();
+        video_btn.setText("Record");
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -57,14 +59,13 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setLayoutX(591.0);
         imageView.setLayoutY(44.0);
         imageView.getStyleClass().add("logo");
-
         imageView.setImage(new Image(Config.LOGO));
-
 
         label.setId("vs");
         label.setLayoutX(678.0);
         label.setLayoutY(309.0);
         label.setText("VS");
+        label.setFont(new Font("System Bold Italic", 12.0));
 
         anchorPane.setLayoutX(37.0);
         anchorPane.setLayoutY(44.0);
@@ -148,16 +149,12 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
-      
-        //button.setText("<");
-        //------------------------------------
-            Image img2 = new Image("tictaktoejavafx/assets/images/back.png");
-      ImageView view2 = new ImageView(img2);
-        view2.setFitHeight(30);
-        view2.setFitWidth(30);
-      view2.setPreserveRatio(true);
-       button.setGraphic(view2);
-//-------------------------------------
+         Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        button.setGraphic(view);
 
         label_player1.setLayoutX(660.0);
         label_player1.setLayoutY(260.0);

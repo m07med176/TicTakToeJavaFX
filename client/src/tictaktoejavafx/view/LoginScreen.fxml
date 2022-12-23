@@ -16,6 +16,7 @@
             <Image url="../assets/XOpicture.jpg" />
          </image>
       </ImageView>
+
       <Button fx:id="btn_login" layoutX="260.0" layoutY="375.0" mnemonicParsing="false" onAction="#isLogin" prefHeight="25.0" prefWidth="90.0" styleClass="main_button" text="Login">
 
          <font>

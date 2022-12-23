@@ -55,10 +55,8 @@ public class RecordTableController extends RecordTableBase {
 
      }
 
-
-    @Override
-    protected void onBackClicked(ActionEvent actionEvent) {
-        Navigator.navigate(Navigator.WELCOME, stage);
-    }
-
+     @Override
+     protected void isBackbtn(ActionEvent actionEvent) {
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
 }

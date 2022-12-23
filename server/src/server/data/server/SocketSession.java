@@ -36,11 +36,13 @@ public class SocketSession extends Thread {
                try {
                     String response = dataInputStream.readUTF();
                     System.out.println("Index  " + response);
+                    
                     requestNavigator(response);
                } catch (IOException ex) {
                     flag = false;
                     Platform.runLater(() -> {
                          serverCallBack.serverException(ex);
+                         ex.printStackTrace();
 
                     });
                } catch (SQLException ex) {
@@ -82,17 +84,12 @@ public class SocketSession extends Thread {
 
                     case ServerCall.CLOSE_SEND:
 
-                         try {
-                              networkOperations.updateState(data);
-                              dataInputStream.close();
-                              dataOutputStream.close();
-                              stop();
-                              ServerManager.sessionHolder.remove(this);
-                              sleep(5000);
-                              serverCallBack.requestUpdateDatabase();
-                         } catch (InterruptedException ex) {
-                              Logger.getLogger(SocketSession.class.getName()).log(Level.SEVERE, null, ex);
-                         }
+                         networkOperations.updateState(data);
+                         dataInputStream.close();
+                         dataOutputStream.close();
+                         ServerManager.sessionHolder.remove(this);
+                         stop();
+                         serverCallBack.requestUpdateDatabase();
 
                          break;
                }

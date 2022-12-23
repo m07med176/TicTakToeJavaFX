@@ -32,7 +32,7 @@ public class ServerManager extends Thread {
 
      public void close(){
           closeSessions();
-          this.stop();
+          stop();
      }
      public void closeSessions() {
           sessionHolder.forEach((session) -> {
@@ -44,10 +44,12 @@ public class ServerManager extends Thread {
      public void run() {
           while (true) {
                try {
+                
                     socket = serverSocket.accept();
                     sessionHolder.add(new SocketSession(socket,networkOperations,serverCallBack));
                } catch (IOException ex) {
                     serverCallBack.serverException(ex);
+                    ex.printStackTrace();
                }
           }
      }

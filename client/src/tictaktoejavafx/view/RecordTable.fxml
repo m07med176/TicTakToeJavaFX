@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
@@ -26,8 +28,11 @@
          </content>
       </ScrollPane>
 
-      <ImageView fitHeight="116.0" fitWidth="147.0" layoutX="26.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="34.0" layoutY="34.0" mnemonicParsing="false" onAction="#onBackClicked" styleClass="back_button" text="&lt;" />
-
+      <ImageView fitHeight="118.0" fitWidth="126.0" layoutX="26.0" layoutY="205.0" styleClass="logo">
+         <image>
+            <Image url="../assets/XOpicture.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="back_button" layoutX="24.0" layoutY="32.0" mnemonicParsing="false" onAction="#isBack" text="&lt;" />
    </children>
 </AnchorPane>
