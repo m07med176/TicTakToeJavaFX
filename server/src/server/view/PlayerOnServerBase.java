@@ -1,9 +1,11 @@
 package server.view;
 
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -16,6 +18,7 @@ public abstract class PlayerOnServerBase extends Pane {
     protected final TableColumn columEmail;
     protected final TableColumn columActive;
     protected final Label label;
+    protected final PieChart chart;
 
     public PlayerOnServerBase() {
 
@@ -26,6 +29,7 @@ public abstract class PlayerOnServerBase extends Pane {
         columEmail = new TableColumn();
         columActive = new TableColumn();
         label = new Label();
+        chart = new PieChart();
 
         setMaxHeight(USE_PREF_SIZE);
         setMaxWidth(USE_PREF_SIZE);
@@ -36,11 +40,11 @@ public abstract class PlayerOnServerBase extends Pane {
 
         imageView.setFitHeight(150.0);
         imageView.setFitWidth(200.0);
-        imageView.setLayoutX(35.0);
-        imageView.setLayoutY(29.0);
+        imageView.setLayoutX(84.0);
+        imageView.setLayoutY(22.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-       // imageView.setImage(new Image(getClass().getResource("../../../../client/src/tictaktoejavafx/assets/images/imageTicTacToe.png").toExternalForm()));
+//        imageView.setImage(new Image(getClass().getResource("../../../../client/src/tictaktoejavafx/assets/images/imageTicTacToe.png").toExternalForm()));
 
         btnOnOff.setLayoutX(91.0);
         btnOnOff.setLayoutY(207.0);
@@ -50,10 +54,10 @@ public abstract class PlayerOnServerBase extends Pane {
         btnOnOff.setPrefWidth(57.0);
         btnOnOff.setText("OFF");
 
-        table.setLayoutX(213.0);
-        table.setLayoutY(46.0);
-        table.setPrefHeight(502.0);
-        table.setPrefWidth(518.0);
+        table.setLayoutX(319.0);
+        table.setLayoutY(45.0);
+        table.setPrefHeight(503.0);
+        table.setPrefWidth(412.0);
 
         columName.setPrefWidth(134.0);
         columName.setText("User Name");
@@ -70,7 +74,13 @@ public abstract class PlayerOnServerBase extends Pane {
         label.setLayoutY(207.0);
         label.setPrefHeight(52.0);
         label.setPrefWidth(78.0);
+        label.getStyleClass().add("sub_title");
         label.setText("Server");
+
+        chart.setLayoutX(33.0);
+        chart.setLayoutY(309.0);
+        chart.setPrefHeight(197.0);
+        chart.setPrefWidth(254.0);
 
         getChildren().add(imageView);
         getChildren().add(btnOnOff);
@@ -79,6 +89,7 @@ public abstract class PlayerOnServerBase extends Pane {
         table.getColumns().add(columActive);
         getChildren().add(table);
         getChildren().add(label);
+        getChildren().add(chart);
 
     }
 

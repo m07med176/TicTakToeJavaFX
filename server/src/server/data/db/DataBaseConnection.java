@@ -22,7 +22,6 @@ public class DataBaseConnection {
     }
     public static void closeConnection() throws SQLException{
         if(con!=null){
-        
             con.close();
         }
         

@@ -9,7 +9,7 @@ public interface DBOperations {
      public ArrayList<Player> getOnlinePlayers() throws SQLException;
      public ArrayList<Player> getAllPlayers() throws SQLException;
      
-     public int getCountPlayers() throws SQLException;
+     public int getCountPlayers(boolean status) throws SQLException;
      public ResponseModel addPlayer(Player user) throws SQLException; 
      public ResponseModel isPlayer(String userName,String password) throws SQLException;
      
