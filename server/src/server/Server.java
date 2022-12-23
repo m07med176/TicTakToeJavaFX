@@ -20,15 +20,12 @@ public class Server extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
-        PlayerOnServerController root = new PlayerOnServerController();
+        PlayerOnServerController root = new PlayerOnServerController(stage);
         Scene scene = new Scene(root);
+        stage.setResizable(false);
         stage.setScene(scene);
         scene.getStylesheets().add(CSS);
         stage.show();
-        
-        
-        // TODO set fixed size in all pages 
-        // TODO make size resizable
     }
     
     public static void main(String[] args) {

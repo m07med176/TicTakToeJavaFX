@@ -11,11 +11,12 @@ import javafx.application.Platform;
 
 public class SocketSession extends Thread {
 
-     private final DataInputStream dataInputStream;
+     public DataInputStream dataInputStream;
      public DataOutputStream dataOutputStream;
      public String UID;
      String playerO;
      String ownerSocket;
+     public boolean runningFlag = true;
 
      private final NetworkAccessLayer networkOperations;
      private ServerCallBack serverCallBack;
@@ -31,15 +32,15 @@ public class SocketSession extends Thread {
 
      @Override
      public void run() {
-          boolean flag = true;
-          while (flag) {
+          
+          while (runningFlag) {
                try {
                     String response = dataInputStream.readUTF();
                     System.out.println("Index  " + response);
                     
                     requestNavigator(response);
                } catch (IOException ex) {
-                    flag = false;
+                    runningFlag = false;
                     Platform.runLater(() -> {
                          serverCallBack.serverException(ex);
                          ex.printStackTrace();

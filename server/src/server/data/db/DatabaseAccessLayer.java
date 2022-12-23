@@ -23,11 +23,11 @@ public class DatabaseAccessLayer implements DBOperations {
      }
 
      @Override
-     public int getCountPlayers() throws SQLException {
+     public int getCountPlayers(boolean status) throws SQLException {
           int countPlayer = 0;
-          statement = con.prepareStatement("SELECT COUNT(*) FROM " + Config.TABLE_NAME);
+          statement = con.prepareStatement("SELECT COUNT(*) FROM " + Config.TABLE_NAME + " WHERE status="+status);
           resultSet = statement.executeQuery();
-          if (resultSet.first()) {
+          if (resultSet.next()) {
                countPlayer = resultSet.getInt(1);
           }
           return countPlayer;
@@ -69,7 +69,7 @@ public class DatabaseAccessLayer implements DBOperations {
      public boolean updateAllPlayersStatus(boolean status) throws SQLException {
           boolean result = true;
           stmt.executeUpdate("UPDATE " + Config.TABLE_NAME + " SET status='" + status + "'");
-          statement.setBoolean(1, status);
+          con.commit();
           if (resultSet == null) {
                result = false;
           }
@@ -146,5 +146,4 @@ public class DatabaseAccessLayer implements DBOperations {
           }
           return result;
      }
-
 }
