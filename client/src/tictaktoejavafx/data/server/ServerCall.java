@@ -8,6 +8,7 @@ public interface ServerCall{
      
      public static final String RREGISTER_SEND = "RREGISTER_SEND";
      public static final String RREGISTER_RECEIVE = "RREGISTER_RECEIVE";
+     public static final String GAME_ENDED = "GAME_ENDED";
      
      public static final String LOGIN_RECEIVER = "LOGIN_RECEIVER";
      public static final String LOGIN_SEND = "LOGIN_SEND";
@@ -22,6 +23,7 @@ public interface ServerCall{
      public static final String MOVEMENT_RECEIVE = "MOVEMENT_RECEIVE";
      
      public static final String PLAYER_LIST_SEND = "PLAYER_LIST_SEND";
+     public static final String PLAYER_LIST_RESEND = "PLAYER_LIST_RESEND";
      public static final String PLAYER_LIST_RECEIVE = "PLAYER_LIST_RECEIVE";
      
      public void invetation(String[] request,String currentID);

@@ -12,6 +12,7 @@ import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.LoginScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
+import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Utils;
 
 public class LoginController extends LoginScreenBase {
@@ -90,7 +91,7 @@ public class LoginController extends LoginScreenBase {
                UserMessage.showError("Length of username is more than 50 character");
           }
           
-        if(Utils.isNumeric(passwordUser)){
+        if(!Utils.isNumeric(passwordUser)){
             password.requestFocus();
             System.out.println("");
             retVal = false;
@@ -103,6 +104,11 @@ public class LoginController extends LoginScreenBase {
                user_name.requestFocus();
                retVal = false;
                UserMessage.showError("you must enter username");
+          }
+          if(userName.contains("&")){
+              user_name.requestFocus();
+              retVal=false;
+              UserMessage.showError("using & is not allowed");
           }
           return retVal;
      }

@@ -66,35 +66,58 @@ public class RegisterController extends RegisterScreenBase {
           if (userName.isEmpty()) {
                UserMessage.showError("Username is Empty");
                user_name_register.requestFocus();
-               return retVal = false;
+               retVal = false;
           }
-          if (password.isEmpty() && Utils.isNumeric(password)) {
+          if (!Utils.isNumeric(password)) {
                UserMessage.showError("Password is not Numbers");
                password_register.requestFocus();
-               return retVal = false;
+               retVal = false;
+          }
+          if(password.isEmpty()){
+              password_register.requestFocus();
+              UserMessage.showError("password is Empty");
+              retVal=false;
+          
           }
           if (email.isEmpty()) {
                email_register.requestFocus();
                UserMessage.showError("Email is Empty");
-               return retVal = false;
+               retVal = false;
           }
           if (repeatPassword.isEmpty()) {
                repeat_password_register.requestFocus();
                UserMessage.showError("Password is Empty");
-               return retVal = false;
+               retVal = false;
           }
 
           if (!password.equals(repeatPassword)) {
                repeat_password_register.requestFocus();
                UserMessage.showError("Password is Not Equale");
-               return retVal = false;
+               retVal = false;
                
           }
           
-          if (Utils.isValidEmail(email)) {
+          if (!Utils.isValidEmail(email)) {
                UserMessage.showError("Email is Not Valid");
                repeat_password_register.requestFocus();
-               return retVal = false;
+               retVal = false;
+          }
+          if(userName.contains("&")){
+              
+              UserMessage.showError("using & is not valid");
+              user_name_register.requestFocus();
+              retVal=false;
+          
+          }
+          if(email.contains("&")){
+              email_register.requestFocus();
+              UserMessage.showError("using & is not valid");
+              retVal=false;
+          }
+          if(password.contains("&")){
+              password_register.requestFocus();
+              UserMessage.showError("using & is not valid");
+              retVal=false;
           }
 
           return retVal;

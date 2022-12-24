@@ -42,7 +42,7 @@ public class ServerManager extends Thread {
           serverSocket.close();
 
           flag = false;
-
+          mainServer=null;
           stop();
      }
 
