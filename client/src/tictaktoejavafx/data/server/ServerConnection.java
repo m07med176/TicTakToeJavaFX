@@ -34,6 +34,7 @@ public class ServerConnection {
     private static int index = 0;
     public static ArrayList<String> diagonals = new ArrayList<>();
     private static ExceptionCallBack exceptionCallBack;
+    public static boolean inGame=false;
 
     private ServerConnection(Stage stage, String ip, int port, ExceptionCallBack exceptionCallBack) throws IOException {
         this.exceptionCallBack = exceptionCallBack;
@@ -67,7 +68,12 @@ public class ServerConnection {
                             getMessage(str);
                         }
                     } catch (IOException ex) {
-                        exceptionCallBack.serverException(ex);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                exceptionCallBack.serverException(ex);
+                            }
+                        });
                     }
                 }
             });
@@ -106,7 +112,7 @@ public class ServerConnection {
 
     public static void getMessage(String msg) {
         System.out.println(msg); // log
-        
+
         if (msg != null && !msg.isEmpty()) {
             String[] data = msg.split(ServerCall.DELIMETER);
             switch (data[0]) {
@@ -120,7 +126,7 @@ public class ServerConnection {
                             java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                             }.getType();
                             playerList = gson.fromJson(data[1], listType);
-                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
                         }
                     });
                     break;
@@ -128,7 +134,12 @@ public class ServerConnection {
                 case ServerCall.IVETATION_RECEIVE:
                     Platform.runLater(() -> {
                         try {
-                            displayAlert(data[1]);
+                            if(data[1].equals("NOT_AVA")){
+                                UserMessage.showError("User is in a game");
+                            }else{
+                                displayAlert(data[1]);
+                            }
+                            
                         } catch (IOException ex) {
                             Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -138,34 +149,13 @@ public class ServerConnection {
 
                     Platform.runLater(() -> {
                         System.out.println("I recived");
+                        inGame=true;
                         Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
                     });
                     break;
                 case ServerCall.MOVEMENT_RECEIVE:
                     System.out.println("we got a move");
-                    Navigator.setButtonNumber(data[2]);
-                    Navigator.setBoardMove(data[3]);
-                    if (data[3].equals("X")) {
-                        Navigator.setSetX(false);
-                    } else {
-                        Navigator.setSetX(true);
-                    }
-                    Platform.runLater(() -> {
-               GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setText(data[3]);
-               GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(data[2]) - 1).setDisable(true);
-              
-                        enableAll();
-                        diagFill();
-                        if (!LocalMultiPlayer.getGameEnded()) {
-                            LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
-                            LocalMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
-                            if (LocalMultiPlayer.getGameEnded()) {
-                                GameBoardControllerOnline.arrlistButtons2 = null;
-                                LocalMultiPlayer.setGameEnded(false);
-                                diagonals = null;
-                            }
-                        }
-                    });
+                    executeMove(data[2], data[3]);
                     break;
 
                 case ServerCall.RREGISTER_RECEIVE:
@@ -178,9 +168,23 @@ public class ServerConnection {
                             java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                             }.getType();
                             playerList = gson.fromJson(data[1], listType);
-                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
                         }
                     });
+                case ServerCall.PLAYER_LIST_RESEND:
+                    if(inGame){}else{
+                    Platform.runLater(() -> {
+                        System.out.println(data[1]);
+                        ArrayList<Player> playerList = new ArrayList();
+                        Gson gson = new Gson();
+                        java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
+                        }.getType();
+                        playerList = gson.fromJson(data[1], listType);
+                        Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
+                    });
+                    
+                    }
+                    
 
                 default:
                     break;
@@ -191,24 +195,24 @@ public class ServerConnection {
     }
 
     public static void closeThread() throws IOException {
-        if(dataOutputStream!=null){
-            dataOutputStream.writeUTF(ServerCall.CLOSE_SEND+ServerCall.DELIMETER+UID);
+        if (dataOutputStream != null) {
+            dataOutputStream.writeUTF(ServerCall.CLOSE_SEND + ServerCall.DELIMETER + UID);
             dataOutputStream.close();
         }
-        if(dataInputStream!=null){
+        if (dataInputStream != null) {
             dataInputStream.close();
         }
-        if(socket!=null){
-            if(socket.isClosed()){
+        if (socket != null) {
+            if (socket.isClosed()) {
                 socket.close();
             }
         }
-        if(thread!=null){
-            if(thread.isAlive()){
+        if (thread != null) {
+            if (thread.isAlive()) {
                 thread.stop();
             }
         }
-        
+
         serverConnection = null;
 
     }
@@ -230,6 +234,7 @@ public class ServerConnection {
             sendMessage(ServerCall.CONFIRMATION_SEND + ServerCall.DELIMETER + Playerx);
             Navigator.setPlayerOne(Playerx);
             Navigator.setPlayerTwo(UID);
+            inGame=true;
             Platform.runLater(() -> {
                 Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
             });
@@ -238,13 +243,47 @@ public class ServerConnection {
             System.out.println("Player O Cancle");
         }
     }
-    
-    public static void enableAll(){
-        for(int i=0;i<GameBoardControllerOnline.arrlistButtons.size();i++){
-            if(GameBoardControllerOnline.arrlistButtons.get(i).getText().isEmpty()){
+
+    public static void enableAll() {
+        for (int i = 0; i < GameBoardControllerOnline.arrlistButtons.size(); i++) {
+            if (GameBoardControllerOnline.arrlistButtons.get(i).getText().isEmpty()) {
                 GameBoardControllerOnline.arrlistButtons.get(i).setDisable(false);
             }
         }
+    }
+
+    public static void executeMove(String index, String data) {
+        System.out.println("we got a move");
+        //Navigator.setButtonNumber(data[2]);
+        //Navigator.setBoardMove(data[3]);
+        if (data.equals("X")) {
+            Navigator.setSetX(false);
+        } else {
+            Navigator.setSetX(true);
+        }
+        Platform.runLater(() -> {
+            GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(index) - 1).setText(data);
+            GameBoardControllerOnline.arrlistButtons2.get(Integer.parseInt(index) - 1).setDisable(true);
+
+            enableAll();
+            diagFill();
+            if (!LocalMultiPlayer.getGameEnded()) {
+                LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                LocalMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
+                if (LocalMultiPlayer.getGameEnded()) {
+                    try {
+                        inGame=false;
+                        GameBoardControllerOnline.arrlistButtons2 = null;
+                        LocalMultiPlayer.setGameEnded(false);
+                        sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
+                        diagonals = null;
+                    } catch (IOException ex) {
+                        Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
     }
 
 }

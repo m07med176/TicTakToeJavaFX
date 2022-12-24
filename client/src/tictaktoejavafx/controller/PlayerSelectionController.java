@@ -27,11 +27,13 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
      public PlayerSelectionController(Stage stage, Object object) {
           onlinePlayers = (ArrayList<Player>) object;
           this.stage = stage;
-          
           displayPlayerInTable(onlinePlayers);
           handleExitEvent();
 
           
+     }
+     public static void updatePlayer(ArrayList<Player> player){
+         
      }
 
      public void displayPlayerInTable(ArrayList<Player> model) {
@@ -49,6 +51,7 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
                          Navigator.setPlayerTwo(player.getUsername());
                          Navigator.setStartGame(true);
                          try {
+                             
                               ServerConnection.sendMessage(ServerCall.IVETATION_SEND + ServerCall.DELIMETER + player.getUsername());
                          } catch (IOException ex) {
                               UserMessage.showError(ex.getMessage());

@@ -11,102 +11,129 @@ import server.data.model.ResponseModel;
 
 public class NetworkAccessLayer implements ServerCall {
 
-     private final DatabaseAccessLayer db;
+    private final DatabaseAccessLayer db;
 
-     public NetworkAccessLayer() throws SQLException {
-          db = new DatabaseAccessLayer();
-     }
+    public NetworkAccessLayer() throws SQLException {
+        db = new DatabaseAccessLayer();
+    }
 
-     @Override
-     public void invetation(String[] request, String currentID) throws SQLException, IOException {
-          if (request.length == 2) {
-               String senderID = request[1];
-               if (!currentID.equals(senderID)) {
-                    for (SocketSession session : ServerManager.sessionHolder) {
-                         if (session.UID.equals(senderID)) {
-                              System.out.println("Husiien say:  "+ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
-                              session.dataOutputStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
-                         }
-                    }
-               }
-          }
-     }
+    @Override
+    public void invetation(String[] request, String currentID) throws SQLException, IOException {
+        if (request.length == 2) {
+            String senderID = request[1];
 
-     @Override
-     public void confirm(String[] request, String currentID) throws SQLException, IOException {
-          if (request.length == 2) {
-               String senderID = request[1];
-               for (SocketSession session : ServerManager.sessionHolder) {
+            if (!currentID.equals(senderID)) {
+                for (SocketSession session : ServerManager.sessionHolder) {
                     if (session.UID.equals(senderID)) {
-                         session.dataOutputStream.writeUTF(ServerCall.CONFIRMATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                        if (session.isOnline) {
+                            session.dataOutputStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + "NOT_AVA");
+                        } else {
+                            System.out.println("Husiien say:  " + ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                            session.dataOutputStream.writeUTF(ServerCall.IVETATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                        }
+
                     }
-               }
-          }
-     }
+                }
+            }
+        }
+    }
 
-     @Override
-     public void move(String[] request, String currentID) throws SQLException, IOException {
-          if (request.length == 4) {
-               String senderID = request[1];
-               for (SocketSession session : ServerManager.sessionHolder) {
-                    if (session.UID.equals(senderID)) {
-                         session.dataOutputStream.writeUTF(ServerCall.MOVEMENT_RECEIVE + ServerCall.DELIMETER + currentID + ServerCall.DELIMETER + request[2] + ServerCall.DELIMETER + request[3]);
-                    }
-               }
-          }
-     }
+    @Override
+    public void confirm(String[] request, String currentID) throws SQLException, IOException {
+        if (request.length == 2) {
+            String senderID = request[1];
+            for (SocketSession session : ServerManager.sessionHolder) {
+                if (session.UID.equals(senderID)) {
+                    session.isOnline=true;
+                    session.dataOutputStream.writeUTF(ServerCall.CONFIRMATION_RECEIVE + ServerCall.DELIMETER + currentID);
+                }
+            }
+        }
+    }
 
-     @Override
-     public void onlinePlayers(String[] request, DataOutputStream response) throws SQLException, IOException {
-          if (request.length == 2) {
-               ArrayList<Player> onlinePlayers = db.getOnlinePlayers();
-               if (!onlinePlayers.isEmpty()) {
-                    response.writeUTF(ServerCall.PLAYER_LIST_RECEIVE + ServerCall.DELIMETER + "Online players for Test purpose");
-               } else {
-                    response.writeUTF(ServerCall.PLAYER_LIST_RECEIVE + ServerCall.DELIMETER + "0");
-               }
-          }
-     }
+    @Override
+    public void move(String[] request, String currentID) throws SQLException, IOException {
+        if (request.length == 4) {
+            String senderID = request[1];
+            for (SocketSession session : ServerManager.sessionHolder) {
+                if (session.UID.equals(senderID)) {
+                    session.dataOutputStream.writeUTF(ServerCall.MOVEMENT_RECEIVE + ServerCall.DELIMETER + currentID + ServerCall.DELIMETER + request[2] + ServerCall.DELIMETER + request[3]);
+                }
+            }
+        }
+    }
 
-     @Override
-     public String login(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = null;
-          if (request.length == 3) {
-               ResponseModel responseData = db.isPlayer(request[1], request[2]);
-               retVal = String.valueOf(responseData.getUsername());
-               Gson gson = new Gson();
-               String onliePlayerData = gson.toJson(responseData.getPlayerList());
-               if (!responseData.getPlayerList().isEmpty()) {
-                    response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + onliePlayerData);
-               } else {
-                    response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + "0");
-               }
-          }
-          return retVal;
-     }
+    @Override
+    public void onlinePlayers(String[] request, DataOutputStream response) throws SQLException, IOException {
+        if (request.length == 2) {
+            ArrayList<Player> onlinePlayers = db.getOnlinePlayers();
+            if (!onlinePlayers.isEmpty()) {
+                response.writeUTF(ServerCall.PLAYER_LIST_RECEIVE + ServerCall.DELIMETER + "Online players for Test purpose");
+            } else {
+                response.writeUTF(ServerCall.PLAYER_LIST_RECEIVE + ServerCall.DELIMETER + "0");
+            }
+        }
+    }
 
-     @Override
-     public String register(String[] request, DataOutputStream response) throws SQLException, IOException {
-          String retVal = null;
-          if (request.length == 4) {
-               ResponseModel responsData = db.addPlayer(new Player(request[1], request[2], request[3]));
-               Gson gson = new Gson();
-               String onlinePlayerData = gson.toJson(responsData.getPlayerList());
-               retVal = String.valueOf(responsData.getUsername());
-               if (!responsData.getPlayerList().isEmpty()) {
-                    response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + onlinePlayerData);
-               } else {
-                    response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + "0");
-               }
-          }
-          return retVal;
-     }
+    @Override
+    public String login(String[] request, DataOutputStream response) throws SQLException, IOException {
+        String retVal = null;
+        if (request.length == 3) {
+            ResponseModel responseData = db.isPlayer(request[1], request[2]);
+            retVal = String.valueOf(responseData.getUsername());
+            Gson gson = new Gson();
+            String onliePlayerData = gson.toJson(responseData.getPlayerList());
+            if (!responseData.getPlayerList().isEmpty()) {
+                response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + onliePlayerData);
+            } else {
+                response.writeUTF(ServerCall.LOGIN_RECEIVER + ServerCall.DELIMETER + "0");
+            }
+        }
+        return retVal;
+    }
 
-     @Override
-     public void updateState(String[] request) throws SQLException, IOException {
-          if(request.length == 2){
-               db.updatePlayerStatus(false, request[1]);
-          }
-     }
+    @Override
+    public String register(String[] request, DataOutputStream response) throws SQLException, IOException {
+        String retVal = null;
+        if (request.length == 4) {
+            ResponseModel responsData = db.addPlayer(new Player(request[1], request[2], request[3]));
+            Gson gson = new Gson();
+            String onlinePlayerData = gson.toJson(responsData.getPlayerList());
+            retVal = String.valueOf(responsData.getUsername());
+            if (!responsData.getPlayerList().isEmpty()) {
+                response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + onlinePlayerData);
+            } else {
+                response.writeUTF(ServerCall.RREGISTER_RECEIVE + ServerCall.DELIMETER + "0");
+            }
+        }
+        return retVal;
+    }
+
+    @Override
+    public String updateState(String[] request) throws SQLException, IOException {
+        String onlinePlayerData = "";
+        if (request.length == 2) {
+            db.updatePlayerStatus(false, request[1]);
+            ArrayList<Player> onlinePlayers = db.getOnlinePlayers();
+            Gson gson = new Gson();
+            onlinePlayerData = gson.toJson(onlinePlayers);
+            if (onlinePlayerData.isEmpty()) {
+                onlinePlayerData = "0";
+            }
+        }
+        return onlinePlayerData;
+    }
+
+    @Override
+    public String getOnlineUsers() throws SQLException {
+        String onlinePlayerData = "";
+        ArrayList<Player> onlinePlayers = db.getOnlinePlayers();
+        Gson gson = new Gson();
+        onlinePlayerData = gson.toJson(onlinePlayers);
+        if (onlinePlayerData.isEmpty()) {
+            onlinePlayerData = "0";
+        }
+        return onlinePlayerData;
+    }
 
 }
