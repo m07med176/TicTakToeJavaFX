@@ -4,6 +4,8 @@ import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -110,7 +112,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         }
     }
 
-    void check() throws IOException {
+    void addbuttonsInList() {
         arrlist.clear();
         //-------------rows----------------------------
         /*     [X][X][X]
@@ -150,11 +152,14 @@ public class GameBoardEasyController extends GameBoardScreenBase {
             [ ][X][ ]
             [X][ ][ ]*/
         arrlist.add(btn_Game_three.getText() + btn_Game_five.getText() + btn_Game_seven.getText());
+    }
 
+    void check() throws IOException {
+        addbuttonsInList();
         for (int i = 0; i < arrlist.size(); i++) {
             if (arrlist.get(i).equals("XXX")) {
-               greenButtons(i + 1);
-       
+                greenButtons(i + 1);
+
                 System.out.println(arrlist.get(i));
                 disableButton();
                 WinnerName.setWinnerName(Config.PLAYER_X);
@@ -162,9 +167,10 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                 Navigator.setPlayerWinner(Navigator.getPlayerOne());
                 arrlist.clear();
 
-               // playVideo();
+           sleepScreenAndPlayVideo();
 
             } else if (arrlist.get(i).equals("OOO")) {
+                greenButtons(i + 1);
                 System.out.println(arrlist.get(i));
                 disableButton();
                 WinnerName.setWinnerName(Config.PLAYER_O);
@@ -172,7 +178,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                 Navigator.setPlayerWinner(Navigator.getPlayerTwo());
 
                 arrlist.clear();
-                playVideo();
+             sleepScreenAndPlayVideo();
             } else if (arrlistButtons.isEmpty()) {
                 System.out.println(Config.DRAW);
                 WinnerName.setWinnerName(Config.DRAW);
@@ -182,7 +188,20 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
         }
     }
+void sleepScreenAndPlayVideo(){
+   Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            playVideo();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
 
+                    }
+                });
+}
     void disableButton() {
         btn_Game_one.setDisable(true);
         btn_Game_two.setDisable(true);
@@ -266,13 +285,15 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     }
 
-    void greenButtons(int indexLine) {
-        System.out.println(indexLine);
+    public void greenButtons(int indexLine) {
+
+        System.out.println("ooooooooooooooooooooooooooooo" + indexLine);
         switch (indexLine) {
             case 1:
                 btn_Game_one.setStyle("-fx-background-color: greenyellow");
                 btn_Game_two.setStyle("-fx-background-color: greenyellow");
                 btn_Game_three.setStyle("-fx-background-color: greenyellow");
+
                 break;
             case 2:
                 btn_Game_four.setStyle("-fx-background-color: greenyellow");
@@ -314,5 +335,6 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                 break;
 
         }
+
     }
 }

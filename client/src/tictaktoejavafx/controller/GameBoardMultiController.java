@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,6 +21,7 @@ import tictaktoejavafx.view.GameBoardScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardMultiController extends GameBoardScreenBase {
+
     private Stage stage;
     ArrayList<String> diagonals = new ArrayList<>();
     public char turn = 'X';
@@ -35,68 +39,68 @@ public class GameBoardMultiController extends GameBoardScreenBase {
 
         label_player1.setText(Navigator.getPlayerOne());
         label_player2.setText(Navigator.getPlayerTwo());
-        if(turn=='b'){
-            turn='X';
+        if (turn == 'b') {
+            turn = 'X';
         }
     }
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-        gameTurns(btn_Game_one,1);
+        gameTurns(btn_Game_one, 1);
     }
 
     @Override
     protected void isGameFour(ActionEvent actionEvent) {
-        gameTurns(btn_Game_four,4);
+        gameTurns(btn_Game_four, 4);
     }
 
     @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-        gameTurns(btn_Game_seven,7);
+        gameTurns(btn_Game_seven, 7);
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-        gameTurns(btn_Game_two,2);
+        gameTurns(btn_Game_two, 2);
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-        gameTurns(btn_Game_three,3);
+        gameTurns(btn_Game_three, 3);
     }
 
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-        gameTurns(btn_Game_five,5);
+        gameTurns(btn_Game_five, 5);
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-        gameTurns(btn_Game_six,6);
+        gameTurns(btn_Game_six, 6);
     }
 
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-        gameTurns(btn_Game_eight,8);
+        gameTurns(btn_Game_eight, 8);
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-        gameTurns(btn_Game_nine,9);
+        gameTurns(btn_Game_nine, 9);
     }
 
-    public void gameTurns(Button button,int degree) {
+    public void gameTurns(Button button, int degree) {
 
         if (turn == 'X') {
 
             button.setText("X");
-          Navigator.setPlayerWinner(Navigator.getPlayerOne());
+            Navigator.setPlayerWinner(Navigator.getPlayerOne());
             turn = 'O';
             button.setDisable(true);
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
-
+            changeColorAndPlayVideo();
         } else {
 
             button.setText("O");
@@ -107,20 +111,45 @@ public class GameBoardMultiController extends GameBoardScreenBase {
             diagonalFiller();
             LocalMultiPlayer.localMulti(diagonals, stage);
             LocalMultiPlayer.drawChecker(stage);
-
+            changeColorAndPlayVideo();
         }
-        
-         try {
-              db.saveRecord(isRecorded, button, String.valueOf(degree));
-         } catch (IOException ex) {
-              UserMessage.showError(ex.getMessage());
-         } catch (JsonIOException ex) {
-              UserMessage.showError(ex.getMessage());
-         }
+
+        try {
+            db.saveRecord(isRecorded, button, String.valueOf(degree));
+        } catch (IOException ex) {
+            UserMessage.showError(ex.getMessage());
+        } catch (JsonIOException ex) {
+            UserMessage.showError(ex.getMessage());
+        }
+
+    }
+
+    void playVideo() {
+        Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
+    }
+
+    void changeColorAndPlayVideo() {
+        if (LocalMultiPlayer.getIndexDiagonal() > 0) {
+
+            greenButtons(LocalMultiPlayer.getIndexDiagonal());
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                        playVideo();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+        }
 
     }
 
     public void diagonalFiller() {
+        diagonals.clear();
         diagonals.add(btn_Game_one.getText() + btn_Game_two.getText() + btn_Game_three.getText());
         diagonals.add(btn_Game_four.getText() + btn_Game_five.getText() + btn_Game_six.getText());
         diagonals.add(btn_Game_seven.getText() + btn_Game_eight.getText() + btn_Game_nine.getText());
@@ -151,10 +180,61 @@ public class GameBoardMultiController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
-        if(isRecorded){
-        db.saveRecordSession("Multi Player");
+        if (isRecorded) {
+            db.saveRecordSession("Multi Player");
         }
 
+    }
+
+    public void greenButtons(int indexLine) {
+
+        switch (indexLine) {
+            case 1:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_two.setStyle("-fx-background-color: greenyellow");
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+
+                break;
+            case 2:
+                btn_Game_four.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_six.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 3:
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                btn_Game_eight.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 4:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_four.setStyle("-fx-background-color: greenyellow");
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                break;
+
+            case 5:
+                btn_Game_two.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_eight.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 6:
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+                btn_Game_six.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 7:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 8:
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                break;
+            default:
+                break;
+
+        }
     }
 
 }
