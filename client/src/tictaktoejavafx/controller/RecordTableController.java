@@ -46,6 +46,7 @@ public class RecordTableController extends RecordTableBase {
                             && event.getClickCount() == 2) {
 
                          RecordDataModel clickedRow = row.getItem();
+                         Navigator.setPlayerStage(Navigator.RECORD);
                          Navigator.navigate(Navigator.RECORD, stage, clickedRow);
 
                     }
@@ -57,6 +58,7 @@ public class RecordTableController extends RecordTableBase {
 
      @Override
      protected void isBackbtn(ActionEvent actionEvent) {
+         Navigator.setPlayerStage(Navigator.WELCOME);
           Navigator.navigate(Navigator.WELCOME, stage);
      }
 }

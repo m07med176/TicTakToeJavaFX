@@ -38,6 +38,7 @@ public class HistoryController extends HistoryScreenBase {
 
     @Override
     protected void isBack(ActionEvent actionEvent) {
+        Navigator.setPlayerStage(Navigator.WELCOME);
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 

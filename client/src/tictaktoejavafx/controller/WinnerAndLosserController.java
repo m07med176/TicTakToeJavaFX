@@ -85,6 +85,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
                 new UserMessage().display(ex.getMessage(), new CallBackAction() {
                     @Override
                     public void sendOk() {
+                        Navigator.setPlayerStage(Navigator.WELCOME);
                         Navigator.navigate(Navigator.WELCOME, stage);
                     }
 
@@ -108,7 +109,7 @@ public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
     @Override
     protected void onHomeButtonClicked(ActionEvent actionEvent) {
         mediaPlayer.stop();
-
+        Navigator.setPlayerStage(Navigator.WELCOME);
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
