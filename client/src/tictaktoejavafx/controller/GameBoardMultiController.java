@@ -137,6 +137,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
+                Navigator.setPlayerStage(Navigator.WELCOME);
                 Navigator.navigate(Navigator.WELCOME, stage);
             }
 

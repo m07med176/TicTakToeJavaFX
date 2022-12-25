@@ -19,19 +19,21 @@ public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{
     
     @Override
     protected void isEasyMode(ActionEvent actionEvent) {
+       Navigator.setPlayerStage(Navigator.GAMEBOARD);
        Navigator.navigate(Navigator.GAMEBOARD, stage);
 
     }
 
     @Override
     protected void isHardMode(ActionEvent actionEvent) {
-       
+        Navigator.setPlayerStage(Navigator.GAMEBOARDHARD);
         Navigator.navigate(Navigator.GAMEBOARDHARD, stage);
     }
 
     @Override
     protected void isBack(ActionEvent actionEvent) {
-         Navigator.navigate(Navigator.WELCOME, stage);
+        Navigator.setPlayerStage(Navigator.WELCOME); 
+        Navigator.navigate(Navigator.WELCOME, stage);
     }
 
     

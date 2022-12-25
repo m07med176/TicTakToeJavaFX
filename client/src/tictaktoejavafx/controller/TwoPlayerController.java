@@ -27,17 +27,20 @@ public class TwoPlayerController extends TwoPlayerBase{
           else{
                Navigator.setPlayerOne(playerOne);
                Navigator.setPlayerTwo(playerTwo);
+               Navigator.setPlayerStage(Navigator.GAMEBOARD_MULTI);
                Navigator.navigate(Navigator.GAMEBOARD_MULTI, stage);
           }
      }
      
     protected void isBack(ActionEvent actionEvent) {
+        Navigator.setPlayerStage(Navigator.WELCOME);
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
     @Override
 
     protected void onBackClicked(ActionEvent actionEvent) {
+        Navigator.setPlayerStage(Navigator.WELCOME);
         Navigator.navigate(Navigator.WELCOME, stage);
     }
      

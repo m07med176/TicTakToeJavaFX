@@ -187,6 +187,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     }
 
     void playVideo() {
+        Navigator.setPlayerStage(Navigator.WINNER_NOTIFY);
         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
     }
 
@@ -237,6 +238,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
+                Navigator.setPlayerStage(Navigator.WELCOME);
                 Navigator.navigate(Navigator.WELCOME, stage);
             }
 

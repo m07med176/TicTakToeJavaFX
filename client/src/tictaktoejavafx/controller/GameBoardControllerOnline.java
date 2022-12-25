@@ -53,6 +53,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                     new UserMessage().display(ex.getMessage(), new CallBackAction() {
                          @Override
                          public void sendOk() {
+                             Navigator.setPlayerStage(Navigator.WELCOME);
                               Navigator.navigate(Navigator.WELCOME, stage);
                          }
 
@@ -191,6 +192,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
           new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
                @Override
                public void sendOk() {
+                   Navigator.setPlayerStage(Navigator.WELCOME);
                     Navigator.navigate(Navigator.WELCOME, stage);
                }
 

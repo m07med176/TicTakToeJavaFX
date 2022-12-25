@@ -24,6 +24,7 @@ public class OnePlayerController extends OnePlayerBase{
           else{
               Navigator.setPlayerOne(name);
               Navigator.setPlayerTwo("PC");
+              Navigator.setPlayerStage(Navigator.CHOOSEDIFF);
               Navigator.navigate(Navigator.CHOOSEDIFF, stage);
 
           }
@@ -32,6 +33,7 @@ public class OnePlayerController extends OnePlayerBase{
 
      @Override
      protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.setPlayerStage(Navigator.WELCOME);
           Navigator.navigate(Navigator.WELCOME, stage);
      }
 
