@@ -65,7 +65,8 @@ public abstract class LoginScreenBase extends AnchorPane {
         user_name.setPrefWidth(204.0);
         user_name.setPromptText("User Name");
         user_name.getStyleClass().add("main_input");
-
+       
+        
         create_account.setLayoutX(244.0);
         create_account.setLayoutY(411.0);
         create_account.setOnAction(this::CreateAccount);

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -20,8 +21,9 @@ import tictaktoejavafx.view.GameBoardScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardEasyController extends GameBoardScreenBase {
+
     int count = 0;
-    private  ArrayList<String> arrlist;
+    private ArrayList<String> arrlist;
     private ArrayList<Button> arrlistButtons;
     private Stage stage;
     private boolean isRecorded = false;
@@ -29,7 +31,7 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     public GameBoardEasyController(Stage stage) {
         this.stage = stage;
-        db =  RecordDataBasedSystem.getInstance();
+        db = RecordDataBasedSystem.getInstance();
         arrlist = new ArrayList();
         arrlistButtons = new ArrayList();
         label_player1.setText(Navigator.getPlayerOne());
@@ -39,73 +41,77 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
     @Override
     protected void isGameOne(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_one,"1");
+        playerGame(this.btn_Game_one, "1");
     }
 
     @Override
     protected void isGameTwo(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_two,"2");
+        playerGame(this.btn_Game_two, "2");
     }
 
     @Override
     protected void isGameThree(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_three,"3");
+        playerGame(this.btn_Game_three, "3");
     }
- @Override
+
+    @Override
     protected void isGameFour(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_four,"4");
+        playerGame(this.btn_Game_four, "4");
     }
+
     @Override
     protected void isGameFive(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_five,"5");
+        playerGame(this.btn_Game_five, "5");
     }
 
     @Override
     protected void isGameSix(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_six,"6");
+        playerGame(this.btn_Game_six, "6");
     }
- @Override
+
+    @Override
     protected void isGameSeven(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_seven,"7");
+        playerGame(this.btn_Game_seven, "7");
     }
+
     @Override
     protected void isGameEight(ActionEvent actionEvent) {
-          playerGame(this.btn_Game_eight,"8");
+        playerGame(this.btn_Game_eight, "8");
     }
 
     @Override
     protected void isGameNine(ActionEvent actionEvent) {
-         playerGame(this.btn_Game_nine,"9");
+        playerGame(this.btn_Game_nine, "9");
     }
 
-    void playerGame(Button button,String degree) {
+    void playerGame(Button button, String degree) {
         button.setDisable(true);
         arrlistButtons.remove(button);
-        System.out.println("Button Click is: "+degree);
+        System.out.println("Button Click is: " + degree);
         count++;
         if (count % 2 != 0) {
             button.setText("X");
 
-             try {
-                  check();
-             } catch (IOException ex) {
-                  UserMessage.showError(ex.getMessage());
-             }
+            try {
+                check();
+            } catch (IOException ex) {
+                UserMessage.showError(ex.getMessage());
+            }
             random();
         }
-        
+
         try {
-              db.saveRecord(isRecorded, button, degree);
-        
-         } catch (JsonIOException ex) {
-              UserMessage.showError(ex.getMessage());
-         } catch (IOException ex) {
+            db.saveRecord(isRecorded, button, degree);
+
+        } catch (JsonIOException ex) {
+            UserMessage.showError(ex.getMessage());
+        } catch (IOException ex) {
             Logger.getLogger(GameBoardEasyController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     void check() throws IOException {
-
+        arrlist.clear();
         //-------------rows----------------------------
         /*     [X][X][X]
             [ ][ ][ ]
@@ -136,34 +142,38 @@ public class GameBoardEasyController extends GameBoardScreenBase {
         arrlist.add(btn_Game_three.getText() + btn_Game_six.getText() + btn_Game_nine.getText());
 
         //-------------cross----------------------------
-        /*     [X][ ][ ]
+        /*  [X][ ][ ]
             [ ][X][ ]
             [ ][ ][X]*/
         arrlist.add(btn_Game_one.getText() + btn_Game_five.getText() + btn_Game_nine.getText());
-        /*     [ ][ ][X]
+        /*  [ ][ ][X]
             [ ][X][ ]
             [X][ ][ ]*/
         arrlist.add(btn_Game_three.getText() + btn_Game_five.getText() + btn_Game_seven.getText());
 
         for (int i = 0; i < arrlist.size(); i++) {
             if (arrlist.get(i).equals("XXX")) {
+               greenButtons(i + 1);
+       
                 System.out.println(arrlist.get(i));
                 disableButton();
                 WinnerName.setWinnerName(Config.PLAYER_X);
                 HistoryDataBasedSystem.saveFile(Config.PLAYER_X);
                 Navigator.setPlayerWinner(Navigator.getPlayerOne());
                 arrlist.clear();
-                playVideo();
+
+               // playVideo();
+
             } else if (arrlist.get(i).equals("OOO")) {
                 System.out.println(arrlist.get(i));
                 disableButton();
-                 WinnerName.setWinnerName(Config.PLAYER_O);
+                WinnerName.setWinnerName(Config.PLAYER_O);
                 HistoryDataBasedSystem.saveFile(Config.PLAYER_O);
                 Navigator.setPlayerWinner(Navigator.getPlayerTwo());
 
                 arrlist.clear();
                 playVideo();
-            }else if (arrlistButtons.isEmpty()) {
+            } else if (arrlistButtons.isEmpty()) {
                 System.out.println(Config.DRAW);
                 WinnerName.setWinnerName(Config.DRAW);
                 arrlist.clear();
@@ -172,7 +182,6 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
         }
     }
-
 
     void disableButton() {
         btn_Game_one.setDisable(true);
@@ -203,12 +212,12 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                         arrlistButtons.remove(button);
                         if (count % 2 == 0) {
                             button.setText("O");
-                             try {
-                                  check();
-                             } catch (IOException ex) {
-                                  UserMessage.showError(ex.getMessage());
-                             }
-                           button.setStyle("-fx-text-fill: Red;");
+                            try {
+                                check();
+                            } catch (IOException ex) {
+                                UserMessage.showError(ex.getMessage());
+                            }
+                            button.setStyle("-fx-text-fill: Red;");
                         }
                     }
                 }
@@ -251,9 +260,59 @@ public class GameBoardEasyController extends GameBoardScreenBase {
     @Override
     protected void isVideo(ActionEvent actionEvent) {
         isRecorded = !isRecorded;
-        if(isRecorded){
+        if (isRecorded) {
             RecordDataBasedSystem.getInstance().saveRecordSession("Single Easy Player");
         }
 
+    }
+
+    void greenButtons(int indexLine) {
+        System.out.println(indexLine);
+        switch (indexLine) {
+            case 1:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_two.setStyle("-fx-background-color: greenyellow");
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 2:
+                btn_Game_four.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_six.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 3:
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                btn_Game_eight.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 4:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_four.setStyle("-fx-background-color: greenyellow");
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                break;
+
+            case 5:
+                btn_Game_two.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_eight.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 6:
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+                btn_Game_six.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 7:
+                btn_Game_one.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_nine.setStyle("-fx-background-color: greenyellow");
+                break;
+            case 8:
+                btn_Game_three.setStyle("-fx-background-color: greenyellow");
+                btn_Game_five.setStyle("-fx-background-color: greenyellow");
+                btn_Game_seven.setStyle("-fx-background-color: greenyellow");
+                break;
+            default:
+                break;
+
+        }
     }
 }

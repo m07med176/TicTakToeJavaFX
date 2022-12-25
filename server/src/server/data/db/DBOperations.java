@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import server.data.model.Player;
 import server.data.model.ResponseModel;
+import server.utils.Config;
 
 public interface DBOperations {
      public ArrayList<Player> getOnlinePlayers() throws SQLException;
@@ -15,4 +16,8 @@ public interface DBOperations {
      
      public boolean updatePlayerStatus(boolean status,String userName) throws SQLException;
      public boolean updateAllPlayersStatus(boolean status) throws SQLException;
+     
+     public  boolean checkUsernameFound(String email) throws SQLException;
+     
+
 }

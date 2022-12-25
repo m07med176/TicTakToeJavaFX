@@ -3,6 +3,8 @@ package server.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +22,14 @@ public class PlayerOnServerController extends PlayerOnServerBase {
      private ArrayList<Player> arrayListPlayer = new ArrayList();
 
      public PlayerOnServerController() {
-          displayPlayerInTable();
+        try {
+             DatabaseAccessLayer db = new DatabaseAccessLayer();
+             db.addPlayer(new Player("aya","dfg","dfg"));
+//          
+         } catch (SQLException ex) {
+             Logger.getLogger(PlayerOnServerController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+//        displayPlayerInTable();
      }
 
      @Override

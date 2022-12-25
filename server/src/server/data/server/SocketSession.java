@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import server.data.db.DatabaseAccessLayer;
 
 public class SocketSession extends Thread {
 
@@ -52,7 +53,7 @@ public class SocketSession extends Thread {
      }
 
      private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
-          if (response != null && !response.isEmpty()) {
+         if (response != null && !response.isEmpty()) {
                System.out.println(response);
                String[] data = response.split(ServerCall.DELIMETER);
                switch (data[0]) {
@@ -62,7 +63,7 @@ public class SocketSession extends Thread {
                          break;
 
                     case ServerCall.RREGISTER_SEND:
-                         UID = networkOperations.register(data, dataOutputStream);
+                           UID = networkOperations.register(data, dataOutputStream);
                          serverCallBack.requestUpdateDatabase();
                          break;
 
