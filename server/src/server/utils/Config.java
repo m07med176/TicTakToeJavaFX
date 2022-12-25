@@ -3,7 +3,7 @@ package server.utils;
 
 public class Config {
      // Pathes
-    public static final String LOGO = "tictaktoejavafx/assets/images/XOpicture.jpg";
+    public static final String LOGO = "tictaktoejavafx/assets/images/imageTicTacToe.png";
     public static final String CSS = "assets/style.css";
     
     // Messages

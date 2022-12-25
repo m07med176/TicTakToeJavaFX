@@ -33,5 +33,13 @@ public static boolean isValidIPAddress(String ip) {
         }
         return pattern.matcher(port).matches();
     }
+    
+    public static boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile("^(.+)@(\\S+)$");
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+        return pattern.matcher(email).matches();
+    }
 }
 

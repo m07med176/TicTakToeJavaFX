@@ -149,7 +149,12 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         button.setMnemonicParsing(false);
         button.setOnAction(this::onBackClicked);
         button.getStyleClass().add("back_button");
-        button.setText("<");
+         Image img = new Image("tictaktoejavafx/assets/images/back.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        view.setPreserveRatio(true);
+        button.setGraphic(view);
 
         label_player1.setLayoutX(660.0);
         label_player1.setLayoutY(260.0);

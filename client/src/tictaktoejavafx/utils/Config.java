@@ -23,6 +23,7 @@ public class Config {
     public static final String VS = "tictaktoejavafx/assets/images/vs.png";
     public static final String IMAGETICTACTOE = "src/tictaktoejavafx/assets/images/imageTacToe.png";
     public static final String RECORDIMG="src/tictaktoejavafx/assets/images/record.png";
+    public static final String ICON="src/tictaktoejavafx/assets/icon.png";
     
     // Messages
     public static final String EXIT_MSG = "Do You Want TO Exit This Game?";
