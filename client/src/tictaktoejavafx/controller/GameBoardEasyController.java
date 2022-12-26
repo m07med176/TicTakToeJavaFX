@@ -275,6 +275,8 @@ public class GameBoardEasyController extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setDisable(true);
+          video_btn.setStyle("-fx-text-fill: Red");
           if (isRecorded) {
                db.saveRecordSession("Single Easy Player");
           }
@@ -282,8 +284,6 @@ public class GameBoardEasyController extends GameBoardScreenBase {
      }
 
      public void greenButtons(int indexLine) {
-
-          System.out.println("ooooooooooooooooooooooooooooo" + indexLine);
           switch (indexLine) {
                case 1:
                     btn_Game_one.setStyle("-fx-background-color: greenyellow");

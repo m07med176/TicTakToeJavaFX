@@ -78,6 +78,7 @@ public class LocalMultiPlayer {
                     GameBoardControllerOnline.arrlistButtons2 = null;
                     ServerConnection.diagonals = null;
                     Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
+
                     Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                }
 

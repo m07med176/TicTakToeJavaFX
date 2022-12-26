@@ -17,7 +17,8 @@ public  class HistoryDataModel {
 
     public HistoryDataModel(String playerXName, String playerOName,String winner) {
         this.playerXName = playerXName;
-        this.playerOName = playerOName;     
+        this.playerOName = playerOName;    
+        this.winner = winner;
     }
 
     public void setDateGame(String dateGame) {

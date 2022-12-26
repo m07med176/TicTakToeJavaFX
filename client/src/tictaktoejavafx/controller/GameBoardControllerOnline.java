@@ -234,6 +234,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                try {
                     ServerConnection.sendMessage(msg);
                } catch (IOException ex) {
+                    UserMessage.showError(ex.getMessage());
                     Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
                }
           } else {
@@ -243,13 +244,13 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                try {
                     ServerConnection.sendMessage(msg);
                } catch (IOException ex) {
+                    UserMessage.showError(ex.getMessage());
                     Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
                }
           }
      }
 
      public void readMove() {
-
           if (Navigator.getBoardMove() != null && Navigator.getButtonNumber() != null) {
                switch (Integer.parseInt(Navigator.getButtonNumber())) {
                     case 1:
@@ -293,6 +294,8 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setStyle("-fx-text-fill: Red");
+          video_btn.setDisable(true);
           if (isRecorded) {
                RecordDataBasedSystem.getInstance().saveRecordSession("Online Player");
           }
@@ -308,7 +311,6 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                     btn_Game_one.setStyle("-fx-background-color: greenyellow");
                     btn_Game_two.setStyle("-fx-background-color: greenyellow");
                     btn_Game_three.setStyle("-fx-background-color: greenyellow");
-
                     break;
                case 2:
                     btn_Game_four.setStyle("-fx-background-color: greenyellow");
@@ -325,7 +327,6 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                     btn_Game_four.setStyle("-fx-background-color: greenyellow");
                     btn_Game_seven.setStyle("-fx-background-color: greenyellow");
                     break;
-
                case 5:
                     btn_Game_two.setStyle("-fx-background-color: greenyellow");
                     btn_Game_five.setStyle("-fx-background-color: greenyellow");

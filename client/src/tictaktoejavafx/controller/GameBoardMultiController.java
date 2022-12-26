@@ -164,13 +164,13 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setDisable(true);
+          video_btn.setStyle("-fx-text-fill: Red");
           if (isRecorded) {
                db.saveRecordSession("Multi Player");
           }
 
-     }
-
-////     
+     } 
 
      public void greenButtons(int indexLine) {
           switch (indexLine) {
