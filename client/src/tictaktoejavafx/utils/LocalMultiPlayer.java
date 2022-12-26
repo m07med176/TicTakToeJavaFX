@@ -51,7 +51,7 @@ public class LocalMultiPlayer {
                          ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerOne());
                          ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerTwo());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                   //  setIndexDiagonalOnline(i + 1);
                     saveSession(Navigator.getPlayerOne());
                     gameEnded = true;
@@ -69,7 +69,7 @@ public class LocalMultiPlayer {
                          ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerOne());
                          ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerTwo());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                     saveSession(Navigator.getPlayerTwo());
                     gameEnded = true;
                     numberOfPresses = 0;

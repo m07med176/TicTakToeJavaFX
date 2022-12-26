@@ -156,14 +156,16 @@ public class GameBoardEasyController extends GameBoardScreenBase {
           addbuttonsInList();
           for (int i = 0; i < arrlist.size(); i++) {
                if (arrlist.get(i).equals("XXX")) {
-                    greenButtons(i + 1);
+                   // greenButtons(i + 1);
                     disableButton();
                     saveSession(Navigator.getPlayerOne());
                     arrlist.clear();
-                    sleepScreenAndPlayVideo();
+                 //   sleepScreenAndPlayVideo();
+                      playVideo();
+
 
                } else if (arrlist.get(i).equals("OOO")) {
-                    greenButtons(i + 1);
+                   // greenButtons(i + 1);
                     disableButton();
                     saveSession(Navigator.getPlayerTwo());
                     arrlist.clear();
@@ -171,7 +173,9 @@ public class GameBoardEasyController extends GameBoardScreenBase {
                } else if (arrlistButtons.isEmpty()) {
                     saveSession(Config.DRAW);
                     arrlist.clear();
-                    sleepScreenAndPlayVideo();
+                 //   sleepScreenAndPlayVideo();
+                    playVideo();
+
                }
 
           }
