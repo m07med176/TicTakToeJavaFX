@@ -18,100 +18,99 @@ import tictaktoejavafx.utils.CallBackAction;
 
 public class WinnerAndLosserController extends WinnerAndlosserScreenBase {
 
-    private final Stage stage;
-    MediaPlayer mediaPlayer;
+     private final Stage stage;
+     MediaPlayer mediaPlayer;
 
-    public WinnerAndLosserController(Stage stage) {
-        this.stage = stage;
+     public WinnerAndLosserController(Stage stage) {
+          this.stage = stage;
 
-        if (Navigator.isOnline) {
-            if (Navigator.startGame) {
-                if (Navigator.getPlayerOne().equals(Navigator.getOnlineWinner())) {
+          if (Navigator.isOnline) {
+               if (Navigator.startGame) {
+                    if (Navigator.getPlayerOne().equals(Navigator.getOnlineWinner())) {
+                         user_win.setText(Navigator.getPlayerOne());
+                         String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+                    } else if (Navigator.getOnlineWinner().equals(Config.DRAW)) {
+                         String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+
+                    } else {
+                         user_win.setText(Navigator.getPlayerTwo());
+                         String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+
+                    }
+
+               } else {
+
+                    if (Navigator.getPlayerOne().equals(Navigator.getOnlineWinner())) {
+                         user_win.setText(Navigator.getPlayerOne());
+                         String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+                    } else if (Navigator.getOnlineWinner().equals(Config.DRAW)) {
+                         user_win.setText(Config.DRAW);
+                         String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+
+                    } else {
+                         user_win.setText(Navigator.getPlayerTwo());
+                         String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
+                         mediaVideo(videoPath);
+
+                    }
+
+               }
+               Navigator.setIsOnline(false);
+          } else {
+
+               String name = WinnerName.getWinnerName();
+               if (name.equals(Navigator.getPlayerOne())) {
                     user_win.setText(Navigator.getPlayerOne());
                     String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
                     mediaVideo(videoPath);
-                } else if (Navigator.getOnlineWinner().equals("DRAW")) {
-                    String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
-                    mediaVideo(videoPath);
-
-                } else {
+               } else if (name.equals(Navigator.getPlayerTwo())) {
                     user_win.setText(Navigator.getPlayerTwo());
                     String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
                     mediaVideo(videoPath);
-
-                }
-
-            } else {
-
-                if (Navigator.getPlayerOne().equals(Navigator.getOnlineWinner())) {
-                    user_win.setText(Navigator.getPlayerOne());
-                    String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
-                    mediaVideo(videoPath);
-                } else if(Navigator.getOnlineWinner().equals("DRAW")){
+               } else {
+                    user_win.setText(Config.DRAW);
                     String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
                     mediaVideo(videoPath);
+               }
+               this.stage.setOnCloseRequest((WindowEvent event) -> {
+                    try {
+                         ServerConnection.closeThread();
+                    } catch (IOException ex) {
+                         new UserMessage().display(ex.getMessage(), new CallBackAction() {
+                              @Override
+                              public void sendOk() {
+                                   Navigator.setPlayerStage(Navigator.WELCOME);
+                                   Navigator.navigate(Navigator.WELCOME, stage);
+                              }
 
-                }else{
-                    user_win.setText(Navigator.getPlayerTwo());
-                    String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
-                    mediaVideo(videoPath);
-                
-                }
-
-            }
-            Navigator.setIsOnline(false);
-        } else {
-            
-
-       // user_win.setText(WinnerName.getWinnerName());
-        String name = WinnerName.getWinnerName();
-        if (name.equals(Config.PLAYER_X)) {
-            
-            String videoPath = Paths.get(Config.WINNER_VIDEO).toUri().toString();
-            
-            mediaVideo(videoPath);
-        } else if (name.equals(Config.PLAYER_O)) {
-            String videoPath = Paths.get(Config.LOSSER_VIDEO).toUri().toString();
-            mediaVideo(videoPath);
-            
-        }else{
-          String videoPath = Paths.get(Config.DRAW_VIDEO).toUri().toString();
-            mediaVideo(videoPath);
-        }
-        this.stage.setOnCloseRequest((WindowEvent event) -> {
-            try {
-                ServerConnection.closeThread();
-            } catch (IOException ex) {
-                new UserMessage().display(ex.getMessage(), new CallBackAction() {
-                    @Override
-                    public void sendOk() {
-                        Navigator.setPlayerStage(Navigator.WELCOME);
-                        Navigator.navigate(Navigator.WELCOME, stage);
+                              @Override
+                              public void sendCancel() {
+                                   // Do Nothing
+                              }
+                         }, Alert.AlertType.ERROR);
                     }
+               });
+          }
 
-                    @Override
-                    public void sendCancel() {
-                        // Do Nothing
-                    }
-                }, Alert.AlertType.ERROR);
-            }
-        });
-    }
+     }
 
-    }
      public void mediaVideo(String videoPlayPath) {
-        Media media = new Media(videoPlayPath);
-        mediaPlayer = new MediaPlayer(media);
-        mediaView.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
-    }
+          Media media = new Media(videoPlayPath);
+          mediaPlayer = new MediaPlayer(media);
+          mediaView.setMediaPlayer(mediaPlayer);
+          mediaPlayer.play();
+     }
 
-    @Override
-    protected void onHomeButtonClicked(ActionEvent actionEvent) {
-        mediaPlayer.stop();
-        Navigator.setPlayerStage(Navigator.WELCOME);
-        Navigator.navigate(Navigator.WELCOME, stage);
-    }
+     @Override
+     protected void onHomeButtonClicked(ActionEvent actionEvent) {
+          mediaPlayer.stop();
+          Navigator.setPlayerStage(Navigator.WELCOME);
+          Navigator.navigate(Navigator.WELCOME, stage);
+     }
 
-  
 }

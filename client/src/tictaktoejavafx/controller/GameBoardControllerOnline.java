@@ -1,6 +1,5 @@
 package tictaktoejavafx.controller;
 
-import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -11,17 +10,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
-import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.utils.Config;
-import tictaktoejavafx.utils.LocalMultiPlayer;
 import tictaktoejavafx.utils.Navigator;
 import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.GameBoardScreenBase;
 import tictaktoejavafx.utils.CallBackAction;
+import tictaktoejavafx.utils.LocalMultiPlayer;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
 
@@ -33,11 +30,12 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
      boolean start = true;
      public static Button button;
      private boolean isRecorded = false;
+     public static LocalMultiPlayer localMultiPlayer;
 
      public GameBoardControllerOnline(Stage stage) {
-
+          localMultiPlayer = new LocalMultiPlayer();
           Navigator.setIsOnline(true);
-          LocalMultiPlayer.setGameEnded(false);
+          localMultiPlayer.setGameEnded(false);
           this.stage = stage;
           addbuttonInList();
           addAllbuttonInList();
@@ -135,23 +133,23 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                button.setText("X");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
+              // changeColorAndPlayVideo();
           } else {
                button.setText("O");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
+              // changeColorAndPlayVideo();
           }
 
      }
 
      void changeColorAndPlayVideo() {
-          if (LocalMultiPlayer.getIndexDiagonalOnline() > 0) {
-               greenButtons(LocalMultiPlayer.getIndexDiagonalOnline());
+          if (localMultiPlayer.getIndexDiagonalOnline() > 0) {
+               greenButtons(localMultiPlayer.getIndexDiagonalOnline());
                Platform.runLater(() -> {
                     try {
                          Thread.sleep(2000);
@@ -234,6 +232,7 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                try {
                     ServerConnection.sendMessage(msg);
                } catch (IOException ex) {
+                    UserMessage.showError(ex.getMessage());
                     Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
                }
           } else {
@@ -243,13 +242,13 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                try {
                     ServerConnection.sendMessage(msg);
                } catch (IOException ex) {
+                    UserMessage.showError(ex.getMessage());
                     Logger.getLogger(GameBoardControllerOnline.class.getName()).log(Level.SEVERE, null, ex);
                }
           }
      }
 
      public void readMove() {
-
           if (Navigator.getBoardMove() != null && Navigator.getButtonNumber() != null) {
                switch (Integer.parseInt(Navigator.getButtonNumber())) {
                     case 1:
@@ -293,6 +292,8 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setStyle("-fx-text-fill: Red");
+          video_btn.setDisable(true);
           if (isRecorded) {
                RecordDataBasedSystem.getInstance().saveRecordSession("Online Player");
           }
@@ -308,7 +309,6 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                     btn_Game_one.setStyle("-fx-background-color: greenyellow");
                     btn_Game_two.setStyle("-fx-background-color: greenyellow");
                     btn_Game_three.setStyle("-fx-background-color: greenyellow");
-
                     break;
                case 2:
                     btn_Game_four.setStyle("-fx-background-color: greenyellow");
@@ -325,7 +325,6 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                     btn_Game_four.setStyle("-fx-background-color: greenyellow");
                     btn_Game_seven.setStyle("-fx-background-color: greenyellow");
                     break;
-
                case 5:
                     btn_Game_two.setStyle("-fx-background-color: greenyellow");
                     btn_Game_five.setStyle("-fx-background-color: greenyellow");

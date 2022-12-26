@@ -1,12 +1,8 @@
 package tictaktoejavafx.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import tictaktoejavafx.utils.CallBackAction;
-import tictaktoejavafx.utils.Config;
 import tictaktoejavafx.utils.Navigator;
-import tictaktoejavafx.utils.UserMessage;
 import tictaktoejavafx.view.ChooseDiffucultyScreenBase;
 
 public class ChooseDiffucultyController extends ChooseDiffucultyScreenBase{

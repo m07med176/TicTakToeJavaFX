@@ -68,7 +68,7 @@ public abstract class ChooseDiffucultyScreenBase extends AnchorPane {
         back_button.setLayoutY(32.0);
         back_button.setMnemonicParsing(false);
         back_button.setOnAction(this::isBack);
-        
+        back_button.getStyleClass().add("back_button");
 
         getChildren().add(imageView);
         getChildren().add(btn_easy_mode);

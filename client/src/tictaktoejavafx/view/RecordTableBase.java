@@ -95,3 +95,4 @@ public abstract class RecordTableBase extends AnchorPane {
     protected abstract void isBackbtn(javafx.event.ActionEvent actionEvent);
 
 }
+
