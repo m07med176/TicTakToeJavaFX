@@ -45,7 +45,7 @@ public class LocalMultiPlayer {
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerOne());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                   //  setIndexDiagonalOnline(i + 1);
                     saveSession(Navigator.getPlayerOne());
                     gameEnded = true;
@@ -61,7 +61,7 @@ public class LocalMultiPlayer {
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerTwo());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                     saveSession(Navigator.getPlayerTwo());
                     gameEnded = true;
                     numberOfPresses = 0;

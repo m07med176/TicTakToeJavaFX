@@ -95,18 +95,20 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                button.setText("X");
                button.setDisable(true);
                diagonalFiller();
+
                localMultiPlayer.localMulti(diagonals, stage);
                localMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+
           } else {
                turn = 'X';
                button.setText("O");
                button.setStyle("-fx-text-fill: Red;");
                button.setDisable(true);
                diagonalFiller();
+
                localMultiPlayer.localMulti(diagonals, stage);
                localMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+         
           }
 
           try {
