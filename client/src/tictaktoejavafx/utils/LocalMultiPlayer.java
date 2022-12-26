@@ -55,7 +55,7 @@ public class LocalMultiPlayer {
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerOne());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                   //  setIndexDiagonalOnline(i + 1);
                     saveSession(Navigator.getPlayerOne());
                     gameEnded = true;

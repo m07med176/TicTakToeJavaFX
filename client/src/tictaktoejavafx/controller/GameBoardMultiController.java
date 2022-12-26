@@ -95,7 +95,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                diagonalFiller();
                LocalMultiPlayer.localMulti(diagonals, stage);
                LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+              // changeColorAndPlayVideo();
           } else {
                turn = 'X';
                button.setText("O");
@@ -104,7 +104,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                diagonalFiller();
                LocalMultiPlayer.localMulti(diagonals, stage);
                LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+             //  changeColorAndPlayVideo();
           }
 
           try {
