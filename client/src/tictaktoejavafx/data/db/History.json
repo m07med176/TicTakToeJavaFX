@@ -1,9 +1,1 @@
-[{
-          "dateGame": "Thu Dec 15 09:26:15 EET 2022",
-          "playerXName": "1",
-          "playerOName": "PC"
-     }, {
-          "dateGame": "26/12/2022 14:40:55",
-          "playerXName": "ahmed",
-          "playerOName": "amro"
-     }]
+[{"dateGame":"Thu Dec 15 09:26:15 EET 2022","playerXName":"1","playerOName":"PC"},{"dateGame":"26/12/2022 14:40:55","playerXName":"ahmed","playerOName":"amro"},{"dateGame":"26/12/2022 15:02:09","playerOName":"a"},{"dateGame":"26/12/2022 15:05:22","playerXName":"a","playerOName":"b"},{"dateGame":"26/12/2022 15:05:22","playerXName":"a","playerOName":"b"},{"dateGame":"26/12/2022 15:06:31","playerXName":"a","playerOName":"b"},{"dateGame":"26/12/2022 15:06:31","playerXName":"a","playerOName":"b"},{"dateGame":"26/12/2022 15:08:54","playerXName":"Ahmed","playerOName":"aya"},{"dateGame":"26/12/2022 15:08:54","playerXName":"AhmedAbdo","playerOName":"aya"},{"dateGame":"26/12/2022 15:12:53","playerXName":"AhmedAbdo","playerOName":"aya"},{"dateGame":"26/12/2022 15:12:53","playerXName":"AhmedAbdo","playerOName":"aya"},{"dateGame":"26/12/2022 15:15:40","playerXName":"AhmedAbdo","playerOName":"aya"},{"dateGame":"26/12/2022 15:15:40","playerXName":"AhmedAbdo","playerOName":"aya"}]
