@@ -156,31 +156,26 @@ public class GameBoardEasyController extends GameBoardScreenBase {
           addbuttonsInList();
           for (int i = 0; i < arrlist.size(); i++) {
                if (arrlist.get(i).equals("XXX")) {
-                    greenButtons(i + 1);
-
-                    System.out.println(arrlist.get(i));
+                   // greenButtons(i + 1);
                     disableButton();
-                    WinnerName.setWinnerName(Config.PLAYER_X);
-                    HistoryDataBasedSystem.saveFile(Config.PLAYER_X);
-                    Navigator.setPlayerWinner(Navigator.getPlayerOne());
+                    saveSession(Navigator.getPlayerOne());
                     arrlist.clear();
+                 //   sleepScreenAndPlayVideo();
+                      playVideo();
 
-                    sleepScreenAndPlayVideo();
 
                } else if (arrlist.get(i).equals("OOO")) {
-                    greenButtons(i + 1);
-                    System.out.println(arrlist.get(i));
+                   // greenButtons(i + 1);
                     disableButton();
-                    WinnerName.setWinnerName(Config.PLAYER_O);
-                    HistoryDataBasedSystem.saveFile(Config.PLAYER_O);
-                    Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+                    saveSession(Navigator.getPlayerTwo());
                     arrlist.clear();
                     sleepScreenAndPlayVideo();
                } else if (arrlistButtons.isEmpty()) {
-                    System.out.println(Config.DRAW);
-                    WinnerName.setWinnerName(Config.DRAW);
+                    saveSession(Config.DRAW);
                     arrlist.clear();
+                 //   sleepScreenAndPlayVideo();
                     playVideo();
+
                }
 
           }
@@ -275,6 +270,8 @@ public class GameBoardEasyController extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setDisable(true);
+          video_btn.setStyle("-fx-text-fill: Red");
           if (isRecorded) {
                db.saveRecordSession("Single Easy Player");
           }
@@ -282,8 +279,6 @@ public class GameBoardEasyController extends GameBoardScreenBase {
      }
 
      public void greenButtons(int indexLine) {
-
-          System.out.println("ooooooooooooooooooooooooooooo" + indexLine);
           switch (indexLine) {
                case 1:
                     btn_Game_one.setStyle("-fx-background-color: greenyellow");
@@ -332,5 +327,14 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
           }
 
+     }
+
+     private void saveSession(String PLAYER) {
+          WinnerName.setWinnerName(PLAYER);
+          try {
+               HistoryDataBasedSystem.saveFile(PLAYER);
+          } catch (IOException | JsonIOException ex) {
+               UserMessage.showError(ex.getMessage());
+          }
      }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import static javafx.scene.layout.Region.USE_PREF_SIZE;
 import tictaktoejavafx.utils.Config;
 
 public abstract class HistoryScreenBase extends AnchorPane {
@@ -36,8 +37,8 @@ public abstract class HistoryScreenBase extends AnchorPane {
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
 
-        setPrefHeight(494.0);
-        setPrefWidth(742.0);
+         setPrefHeight(571.0);
+        setPrefWidth(747.0);
 
         back_button.setLayoutX(14.0);
         back_button.setLayoutY(22.0);
@@ -63,15 +64,18 @@ public abstract class HistoryScreenBase extends AnchorPane {
 
         colum_date.setPrefWidth(183.0);
         colum_date.setText("Date");
+        colum_date.setResizable(false);
 
-        colum_Xname.setPrefWidth(86.0);
+        colum_Xname.setPrefWidth(125.0);
         colum_Xname.setText(" XName");
+        colum_Xname.setResizable(false);
 
-        colum_Oname.setPrefWidth(112.0);
+        colum_Oname.setPrefWidth(125.0);
         colum_Oname.setText("OName");
-
-        colum_winner.setPrefWidth(131.0);
+        colum_Oname.setResizable(false);
+        colum_winner.setPrefWidth(130.0);
         colum_winner.setText("Winner");
+        colum_winner.setResizable(false);
         scrollPane.setContent(table_history_data);
 
         imageView.setFitHeight(118.0);

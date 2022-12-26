@@ -27,9 +27,11 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      HistoryDataModel model;
      private boolean isRecorded;
      private final RecordDataBasedSystem db;
+     private LocalMultiPlayer localMultiPlayer;
 
      public GameBoardMultiController(Stage stage) {
-          LocalMultiPlayer.setGameEnded(false);
+          localMultiPlayer = new LocalMultiPlayer();
+          localMultiPlayer.setGameEnded(false);
           db = RecordDataBasedSystem.getInstance();
           RecordDataBasedSystem.newGame = true;
           this.stage = stage;
@@ -93,18 +95,20 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                button.setText("X");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
-              // changeColorAndPlayVideo();
+
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
+
           } else {
                turn = 'X';
                button.setText("O");
                button.setStyle("-fx-text-fill: Red;");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
-             //  changeColorAndPlayVideo();
+
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
+         
           }
 
           try {
@@ -118,8 +122,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      }
 
      void changeColorAndPlayVideo() {
-          if (LocalMultiPlayer.getIndexDiagonal() > 0) {
-               greenButtons(LocalMultiPlayer.getIndexDiagonal());
+          if (localMultiPlayer.getIndexDiagonal() > 0) {
+               greenButtons(localMultiPlayer.getIndexDiagonal());
                Platform.runLater(() -> {
                     try {
                          Thread.sleep(2000);
@@ -164,13 +168,13 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setDisable(true);
+          video_btn.setStyle("-fx-text-fill: Red");
           if (isRecorded) {
                db.saveRecordSession("Multi Player");
           }
 
-     }
-
-////     
+     } 
 
      public void greenButtons(int indexLine) {
           switch (indexLine) {

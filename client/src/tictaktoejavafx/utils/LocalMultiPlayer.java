@@ -3,55 +3,45 @@ package tictaktoejavafx.utils;
 import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
-import tictaktoejavafx.controller.GameBoardEasyController;
-import tictaktoejavafx.controller.GameBoardMultiController;
 import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.model.WinnerName;
-import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
-import tictaktoejavafx.view.GameBoardScreenBase;
-import static tictaktoejavafx.data.server.ServerConnection.UID;
-import static tictaktoejavafx.data.server.ServerConnection.sendMessage;
 
 public class LocalMultiPlayer {
 
-     static int numberOfPresses = 0;
-     static boolean gameEnded = false;
+     int numberOfPresses = 0;
+     boolean gameEnded = false;
 
-     public static boolean getGameEnded() {
+     public boolean getGameEnded() {
 
           return gameEnded;
      }
 
-     private static int indexDiagonal = 0;
-     private static int indexDiagonalOnline = 0;
+     private int indexDiagonal = 0;
+     private int indexDiagonalOnline = 0;
 
-     public static int getIndexDiagonalOnline() {
+     public int getIndexDiagonalOnline() {
           return indexDiagonalOnline;
      }
 
-     public static void setIndexDiagonalOnline(int indexDiagonalOnline) {
-          LocalMultiPlayer.indexDiagonalOnline = indexDiagonalOnline;
+     public void setIndexDiagonalOnline(int indexDiagonalOnline) {
+          indexDiagonalOnline = indexDiagonalOnline;
      }
 
-     public static int getIndexDiagonal() {
+     public int getIndexDiagonal() {
           return indexDiagonal;
      }
 
-     public static void setIndexDiagonal(int indexDiagonal) {
-          LocalMultiPlayer.indexDiagonal = indexDiagonal;
+     public void setIndexDiagonal(int indexDiagonal) {
+          indexDiagonal = indexDiagonal;
      }
 
-     public static void localMulti(ArrayList<String> d, Stage stage) {
-          for (int i = 0; i < d.size(); i++) {
+     public void localMulti(ArrayList<String> diagonalList, Stage stage) {
+          for (int i = 0; i < diagonalList.size(); i++) {
 
-               if (d.get(i).equals("XXX")) {
+               if (diagonalList.get(i).equals("XXX")) {
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerOne());
                     }
@@ -66,18 +56,19 @@ public class LocalMultiPlayer {
 
                          Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
 
-               } else if (d.get(i).equals("OOO")) {
+               } else if (diagonalList.get(i).equals("OOO")) {
 
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerTwo());
                     }
-                    setIndexDiagonal(i + 1);
+                   // setIndexDiagonal(i + 1);
                     saveSession(Navigator.getPlayerTwo());
                     gameEnded = true;
                     numberOfPresses = 0;
                     GameBoardControllerOnline.arrlistButtons2 = null;
                     ServerConnection.diagonals = null;
                     Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
+
                     Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                }
 
@@ -85,16 +76,16 @@ public class LocalMultiPlayer {
           numberOfPresses++;
      }
 
-     public static void setGameEnded(boolean gameEnded) {
-          LocalMultiPlayer.gameEnded = gameEnded;
+     public void setGameEnded(boolean gameEnded) {
+          gameEnded = gameEnded;
      }
 
-     public static void drawChecker(Stage stage) {
+     public void drawChecker(Stage stage) {
           if (numberOfPresses >= 9 && gameEnded == false) {
                if (Navigator.isOnline) {
-                    Navigator.setOnlineWinner("DRAW");
+                    Navigator.setOnlineWinner(Config.DRAW);
                }
-               saveSession("DRAW");
+               saveSession(Config.DRAW);
                gameEnded = true;
                numberOfPresses = 0;
                GameBoardControllerOnline.arrlistButtons2 = null;
@@ -103,7 +94,7 @@ public class LocalMultiPlayer {
           }
      }
 
-     private static void saveSession(String PLAYER) {
+     private void saveSession(String PLAYER) {
           WinnerName.setWinnerName(PLAYER);
           try {
                HistoryDataBasedSystem.saveFile(PLAYER);

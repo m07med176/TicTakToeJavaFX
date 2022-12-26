@@ -2,8 +2,6 @@ package tictaktoejavafx.controller;
 
 import com.google.gson.JsonIOException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -28,6 +26,8 @@ public class GameBoardHardController extends GameBoardScreenBase {
      public GameBoardHardController(Stage stage) {
           db = RecordDataBasedSystem.getInstance();
           toeAIHard = new TicTacToeAIHard();
+          label_player1.setText(Navigator.getPlayerOne());
+          label_player2.setText(Navigator.getPlayerTwo());
           this.stage = stage;
           toeAIHard.NewGame();
      }
@@ -153,13 +153,11 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                if ((GO = toeAIHard.isGameOver()) != 0) {
                     if (GO == 1) {
-                         saveSession(Config.PLAYER_X);
-                         Navigator.setPlayerWinner(Navigator.getPlayerOne());
+                         saveSession(Navigator.getPlayerOne());
                          playVideo();
 
                     } else if (GO == -1) {
-                         Navigator.setPlayerWinner(Navigator.getPlayerTwo());
-                         saveSession(Config.PLAYER_O);
+                         saveSession(Navigator.getPlayerTwo());
                          playVideo();
 
                     } else {
@@ -209,6 +207,8 @@ public class GameBoardHardController extends GameBoardScreenBase {
      @Override
      protected void isVideo(ActionEvent actionEvent) {
           isRecorded = !isRecorded;
+          video_btn.setDisable(true);
+          video_btn.setStyle("-fx-text-fill: Red");
           if (isRecorded) {
                db.saveRecordSession("Single Hard Player");
           }
