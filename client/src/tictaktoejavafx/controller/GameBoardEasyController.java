@@ -157,30 +157,21 @@ public class GameBoardEasyController extends GameBoardScreenBase {
           for (int i = 0; i < arrlist.size(); i++) {
                if (arrlist.get(i).equals("XXX")) {
                     greenButtons(i + 1);
-
-                    System.out.println(arrlist.get(i));
                     disableButton();
-                    WinnerName.setWinnerName(Config.PLAYER_X);
-                    HistoryDataBasedSystem.saveFile(Config.PLAYER_X);
-                    Navigator.setPlayerWinner(Navigator.getPlayerOne());
+                    saveSession(Navigator.getPlayerOne());
                     arrlist.clear();
-
                     sleepScreenAndPlayVideo();
 
                } else if (arrlist.get(i).equals("OOO")) {
                     greenButtons(i + 1);
-                    System.out.println(arrlist.get(i));
                     disableButton();
-                    WinnerName.setWinnerName(Config.PLAYER_O);
-                    HistoryDataBasedSystem.saveFile(Config.PLAYER_O);
-                    Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+                    saveSession(Navigator.getPlayerTwo());
                     arrlist.clear();
                     sleepScreenAndPlayVideo();
                } else if (arrlistButtons.isEmpty()) {
-                    System.out.println(Config.DRAW);
-                    WinnerName.setWinnerName(Config.DRAW);
+                    saveSession(Config.DRAW);
                     arrlist.clear();
-                    playVideo();
+                    sleepScreenAndPlayVideo();
                }
 
           }
@@ -332,5 +323,14 @@ public class GameBoardEasyController extends GameBoardScreenBase {
 
           }
 
+     }
+
+     private void saveSession(String PLAYER) {
+          WinnerName.setWinnerName(PLAYER);
+          try {
+               HistoryDataBasedSystem.saveFile(PLAYER);
+          } catch (IOException | JsonIOException ex) {
+               UserMessage.showError(ex.getMessage());
+          }
      }
 }

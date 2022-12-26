@@ -27,9 +27,11 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      HistoryDataModel model;
      private boolean isRecorded;
      private final RecordDataBasedSystem db;
+     private LocalMultiPlayer localMultiPlayer;
 
      public GameBoardMultiController(Stage stage) {
-          LocalMultiPlayer.setGameEnded(false);
+          localMultiPlayer = new LocalMultiPlayer();
+          localMultiPlayer.setGameEnded(false);
           db = RecordDataBasedSystem.getInstance();
           RecordDataBasedSystem.newGame = true;
           this.stage = stage;
@@ -93,8 +95,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                button.setText("X");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
                changeColorAndPlayVideo();
           } else {
                turn = 'X';
@@ -102,8 +104,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
                button.setStyle("-fx-text-fill: Red;");
                button.setDisable(true);
                diagonalFiller();
-               LocalMultiPlayer.localMulti(diagonals, stage);
-               LocalMultiPlayer.drawChecker(stage);
+               localMultiPlayer.localMulti(diagonals, stage);
+               localMultiPlayer.drawChecker(stage);
                changeColorAndPlayVideo();
           }
 
@@ -118,8 +120,8 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      }
 
      void changeColorAndPlayVideo() {
-          if (LocalMultiPlayer.getIndexDiagonal() > 0) {
-               greenButtons(LocalMultiPlayer.getIndexDiagonal());
+          if (localMultiPlayer.getIndexDiagonal() > 0) {
+               greenButtons(localMultiPlayer.getIndexDiagonal());
                Platform.runLater(() -> {
                     try {
                          Thread.sleep(2000);

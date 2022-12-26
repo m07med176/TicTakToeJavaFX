@@ -279,14 +279,14 @@ public class ServerConnection {
 
             enableAll();
             diagFill();
-            if (!LocalMultiPlayer.getGameEnded()) {
-                LocalMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
-                LocalMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
-                if (LocalMultiPlayer.getGameEnded()) {
+            if (!GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
+                GameBoardControllerOnline.localMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                GameBoardControllerOnline.localMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
+                if (GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
                     try {
                         inGame=false;
                         GameBoardControllerOnline.arrlistButtons2 = null;
-                        LocalMultiPlayer.setGameEnded(false);
+                        GameBoardControllerOnline.localMultiPlayer.setGameEnded(false);
                         sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
                         diagonals = null;
                     } catch (IOException ex) {
