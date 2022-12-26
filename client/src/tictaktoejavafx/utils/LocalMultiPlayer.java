@@ -7,7 +7,10 @@ import javafx.stage.Stage;
 import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.model.WinnerName;
+import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
+import static tictaktoejavafx.data.server.ServerConnection.UID;
+import static tictaktoejavafx.data.server.ServerConnection.sendMessage;
 
 public class LocalMultiPlayer {
 
@@ -38,12 +41,15 @@ public class LocalMultiPlayer {
           indexDiagonal = indexDiagonal;
      }
 
-     public void localMulti(ArrayList<String> diagonalList, Stage stage) {
+     public void localMulti(ArrayList<String> diagonalList, Stage stage) throws IOException {
           for (int i = 0; i < diagonalList.size(); i++) {
 
                if (diagonalList.get(i).equals("XXX")) {
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerOne());
+                         
+                         ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerOne());
+                         ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerTwo());
                     }
                    // setIndexDiagonal(i + 1);
                   //  setIndexDiagonalOnline(i + 1);
@@ -60,6 +66,8 @@ public class LocalMultiPlayer {
 
                     if (Navigator.isOnline) {
                          Navigator.setOnlineWinner(Navigator.getPlayerTwo());
+                         ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerOne());
+                         ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerTwo());
                     }
                    // setIndexDiagonal(i + 1);
                     saveSession(Navigator.getPlayerTwo());
@@ -80,10 +88,12 @@ public class LocalMultiPlayer {
           gameEnded = gameEnded;
      }
 
-     public void drawChecker(Stage stage) {
+     public void drawChecker(Stage stage) throws IOException {
           if (numberOfPresses >= 9 && gameEnded == false) {
                if (Navigator.isOnline) {
                     Navigator.setOnlineWinner(Config.DRAW);
+                    ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerOne());
+                    ServerConnection.sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+Navigator.getPlayerTwo());
                }
                saveSession(Config.DRAW);
                gameEnded = true;

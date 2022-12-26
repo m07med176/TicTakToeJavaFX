@@ -3,6 +3,8 @@ package tictaktoejavafx.controller;
 import com.google.gson.JsonIOException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -91,24 +93,32 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      public void gameTurns(Button button, int degree) {
 
           if (turn == 'X') {
-               turn = 'O';
-               button.setText("X");
-               button.setDisable(true);
-               diagonalFiller();
 
-               localMultiPlayer.localMulti(diagonals, stage);
-               localMultiPlayer.drawChecker(stage);
-
+              try {
+                  turn = 'O';
+                  button.setText("X");
+                  button.setDisable(true);
+                  diagonalFiller();
+                  localMultiPlayer.localMulti(diagonals, stage);
+                  localMultiPlayer.drawChecker(stage);
+                  changeColorAndPlayVideo();
+              } catch (IOException ex) {
+                  Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+              }
           } else {
-               turn = 'X';
-               button.setText("O");
-               button.setStyle("-fx-text-fill: Red;");
-               button.setDisable(true);
-               diagonalFiller();
+              try {
+                  turn = 'X';
+                  button.setText("O");
+                  button.setStyle("-fx-text-fill: Red;");
+                  button.setDisable(true);
+                  diagonalFiller();
+                  localMultiPlayer.localMulti(diagonals, stage);
+                  localMultiPlayer.drawChecker(stage);
+                  changeColorAndPlayVideo();
+              } catch (IOException ex) {
+                  Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
+              }
 
-               localMultiPlayer.localMulti(diagonals, stage);
-               localMultiPlayer.drawChecker(stage);
-         
           }
 
           try {
