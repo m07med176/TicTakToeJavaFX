@@ -6,63 +6,61 @@ import java.util.Date;
 import tictaktoejavafx.utils.Config;
 
 public class RecordDataModel {
-    private String dateGame = new SimpleDateFormat(Config.DATETIME).format(new Date());
-    private String playerXName;
-    private String playerOName;
-    private String type;
-   private ArrayList<String> record = new ArrayList<>();
 
-    public RecordDataModel() {
-    }
+     private String dateGame = new SimpleDateFormat(Config.DATETIME).format(new Date());
+     private String playerXName;
+     private String playerOName;
+     private String type;
+     private ArrayList<String> record = new ArrayList<>();
 
-    public RecordDataModel(String dateGame, String playerXName, String playerOName, String type) {
-        this.dateGame = dateGame;
-        this.playerXName = playerXName;
-        this.playerOName = playerOName;
-        this.type = type;
-    }
-    
-    public void add(String val){
-        record.add(val);    
-    }
-    
-    public ArrayList getRecord(){
-        return record;
-    }
-    
-    public String getDateGame() {
-        return dateGame;
-    }
+     public RecordDataModel() {
+     }
 
-    public void setDateGame(String dateGame) {
-        this.dateGame = dateGame;
-    }
+     public RecordDataModel(String dateGame, String playerXName, String playerOName, String type) {
+          this.dateGame = dateGame;
+          this.playerXName = playerXName;
+          this.playerOName = playerOName;
+          this.type = type;
+     }
 
-    public String getPlayerXName() {
-        return playerXName;
-    }
+     public void add(String val) {
+          record.add(val);
+     }
 
-    public void setPlayerXName(String playerXName) {
-        this.playerXName = playerXName;
-    }
+     public ArrayList getRecord() {
+          return record;
+     }
 
-    public String getPlayerOName() {
-        return playerOName;
-    }
+     public String getDateGame() {
+          return dateGame;
+     }
 
-    public void setPlayerOName(String playerOName) {
-        this.playerOName = playerOName;
-    }
+     public void setDateGame(String dateGame) {
+          this.dateGame = dateGame;
+     }
 
-    public String getType() {
-        return type;
-    }
+     public String getPlayerXName() {
+          return playerXName;
+     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+     public void setPlayerXName(String playerXName) {
+          this.playerXName = playerXName;
+     }
 
-    
+     public String getPlayerOName() {
+          return playerOName;
+     }
 
-    
+     public void setPlayerOName(String playerOName) {
+          this.playerOName = playerOName;
+     }
+
+     public String getType() {
+          return type;
+     }
+
+     public void setType(String type) {
+          this.type = type;
+     }
+
 }

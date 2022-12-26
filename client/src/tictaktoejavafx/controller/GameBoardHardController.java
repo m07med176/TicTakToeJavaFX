@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tictaktoejavafx.data.db.HistoryDataBasedSystem;
 import tictaktoejavafx.data.db.RecordDataBasedSystem;
 import tictaktoejavafx.data.model.WinnerName;
 import tictaktoejavafx.utils.Config;
@@ -19,8 +20,6 @@ import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardHardController extends GameBoardScreenBase {
 
-    // public static String PLAYER1 = "Player 1";
-    // public static String PLAYER2 = "Player 2";
      private boolean isRecorded;
      private Stage stage;
      private TicTacToeAIHard toeAIHard;
@@ -55,7 +54,6 @@ public class GameBoardHardController extends GameBoardScreenBase {
                case 3:
                     computerMoveActionButton(btn_Game_three, game);
                     btn_Game_three.setStyle("-fx-text-fill: Red;");
-
                     toeAIHard.Move(move, player);
                     break;
                case 4:
@@ -137,7 +135,7 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
      @Override
      protected void isGameNine(ActionEvent actionEvent) {
-          
+
           playerGame(btn_Game_nine, 9);
      }
 
@@ -155,29 +153,23 @@ public class GameBoardHardController extends GameBoardScreenBase {
 
                if ((GO = toeAIHard.isGameOver()) != 0) {
                     if (GO == 1) {
-                        WinnerName.setWinnerName(Config.PLAYER_X);
-                        Navigator.setPlayerWinner(Navigator.getPlayerOne());
-
-                         System.out.println("Player 1 win");
+                         saveSession(Config.PLAYER_X);
+                         Navigator.setPlayerWinner(Navigator.getPlayerOne());
                          playVideo();
 
                     } else if (GO == -1) {
-                          WinnerName.setWinnerName(Config.PLAYER_O);
-                        Navigator.setPlayerWinner(Navigator.getPlayerTwo());
-
-                         System.out.println("Player 2 win");
+                         Navigator.setPlayerWinner(Navigator.getPlayerTwo());
+                         saveSession(Config.PLAYER_O);
                          playVideo();
 
                     } else {
-                          WinnerName.setWinnerName(Config.DRAW);
-                         System.out.println(GO);
+                         saveSession(Config.DRAW);
                          playVideo();
 
                     }
                }
           }
-          
-          
+
           try {
                db.saveRecord(isRecorded, button, String.valueOf(count));
           } catch (IOException ex) {
@@ -221,6 +213,15 @@ public class GameBoardHardController extends GameBoardScreenBase {
                db.saveRecordSession("Single Hard Player");
           }
 
+     }
+
+     private void saveSession(String PLAYER) {
+          WinnerName.setWinnerName(PLAYER);
+          try {
+               HistoryDataBasedSystem.saveFile(PLAYER);
+          } catch (IOException | JsonIOException ex) {
+               UserMessage.showError(ex.getMessage());
+          }
      }
 
 }
