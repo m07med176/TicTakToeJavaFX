@@ -62,7 +62,7 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         imageView.setImage(new Image(Config.LOGO));
 
         label.setId("vs");
-        label.setLayoutX(678.0);
+        label.setLayoutX(638.0);
         label.setLayoutY(309.0);
         label.setText("VS");
         label.setFont(new Font("System Bold Italic", 12.0));
@@ -156,18 +156,18 @@ public abstract class GameBoardScreenBase extends AnchorPane {
         view.setPreserveRatio(true);
         button.setGraphic(view);
 
-        label_player1.setLayoutX(660.0);
+        label_player1.setLayoutX(620.0);
         label_player1.setLayoutY(260.0);
         label_player1.setPrefHeight(31.0);
-        label_player1.setPrefWidth(74.0);
+        label_player1.setPrefWidth(140.0);
         label_player1.getStyleClass().add("sub_title");
         label_player1.setText("player1");
         label_player1.setTextAlignment(javafx.scene.text.TextAlignment.RIGHT);
 
-        label_player2.setLayoutX(660.0);
+        label_player2.setLayoutX(620.0);
         label_player2.setLayoutY(337.0);
         label_player2.setPrefHeight(31.0);
-        label_player2.setPrefWidth(68.0);
+        label_player2.setPrefWidth(140.0);
         label_player2.getStyleClass().add("sub_title");
         label_player2.setText("player2");
 

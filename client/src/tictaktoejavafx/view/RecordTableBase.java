@@ -59,17 +59,21 @@ public abstract class RecordTableBase extends AnchorPane {
         table_record_id.setPrefHeight(513.0);
         table_record_id.setPrefWidth(562.0);
 
-        date_colum.setPrefWidth(175.0);
+        date_colum.setPrefWidth(210.0);
         date_colum.setText("Date");
+        date_colum.setResizable(false);
 
-        x_name_colum.setPrefWidth(94.0);
+        x_name_colum.setPrefWidth(105.0);
         x_name_colum.setText("XName");
+        x_name_colum.setResizable(false);
 
-        o_name_colum.setPrefWidth(100.0);
+        o_name_colum.setPrefWidth(105.0);
         o_name_colum.setText("OName");
+        o_name_colum.setResizable(false);
 
-        type_colum.setPrefWidth(102.0);
+        type_colum.setPrefWidth(130.0);
         type_colum.setText("Type of Game");
+        type_colum.setResizable(false);
         scrollPane.setContent(table_record_id);
 
         imageView.setFitHeight(118.0);
