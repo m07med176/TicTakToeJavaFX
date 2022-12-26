@@ -22,7 +22,7 @@ import tictaktoejavafx.utils.LocalMultiPlayer;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
 
-    private static Stage stage;
+    public static Stage stage;
     public ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
     public static ArrayList<Button> arrlistButtons = new ArrayList();
@@ -30,10 +30,13 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
     boolean start = true;
     public static Button button;
     private boolean isRecorded = false;
-    public static LocalMultiPlayer localMultiPlayer;
+    public LocalMultiPlayer localMultiPlayer;
 
     public GameBoardControllerOnline(Stage stage) {
+        this.stage=stage;
         localMultiPlayer = new LocalMultiPlayer();
+        
+        
         Navigator.setIsOnline(true);
         localMultiPlayer.setGameEnded(false);
         this.stage = stage;
