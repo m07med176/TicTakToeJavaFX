@@ -280,18 +280,22 @@ public class ServerConnection {
             enableAll();
             diagFill();
             if (!GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
-                GameBoardControllerOnline.localMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
-                GameBoardControllerOnline.localMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
-                if (GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
-                    try {
-                        inGame=false;
-                        GameBoardControllerOnline.arrlistButtons2 = null;
-                        GameBoardControllerOnline.localMultiPlayer.setGameEnded(false);
-                        sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
-                        diagonals = null;
-                    } catch (IOException ex) {
-                        Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    GameBoardControllerOnline.localMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
+                    GameBoardControllerOnline.localMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
+                    if (GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
+                        try {
+                            inGame=false;
+                            GameBoardControllerOnline.arrlistButtons2 = null;
+                            GameBoardControllerOnline.localMultiPlayer.setGameEnded(false);
+                            sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
+                            diagonals = null;
+                        } catch (IOException ex) {
+                            UserMessage.showError(ex.getMessage());
+                        }
                     }
+                } catch (IOException ex) {
+                    UserMessage.showError(ex.getMessage());
                 }
             }
         });
