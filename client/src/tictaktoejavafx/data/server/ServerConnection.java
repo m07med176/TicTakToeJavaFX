@@ -35,6 +35,7 @@ public class ServerConnection {
     public static ArrayList<String> diagonals = new ArrayList<>();
     private static ExceptionCallBack exceptionCallBack;
     public static boolean inGame=false;
+    public static LocalMultiPlayer local;
 
     private ServerConnection(Stage stage, String ip, int port, ExceptionCallBack exceptionCallBack) throws IOException {
         this.exceptionCallBack = exceptionCallBack;
@@ -153,6 +154,10 @@ public class ServerConnection {
                     Platform.runLater(() -> {
                         System.out.println("I recived");
                         inGame=true;
+                        Navigator.setPlayerOne(UID);
+                        Navigator.setPlayerTwo(data[1]);
+                        Navigator.setStartGame(true);
+                        Navigator.setSetX(true);
                         Navigator.setPlayerStage(Navigator.GAMEBOARDONLINE);
                         Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
                     });
@@ -265,6 +270,9 @@ public class ServerConnection {
     }
 
     public static void executeMove(String index, String data) {
+        if(local==null){
+            local=new LocalMultiPlayer();
+        }
         System.out.println("we got a move");
         //Navigator.setButtonNumber(data[2]);
         //Navigator.setBoardMove(data[3]);
@@ -279,20 +287,21 @@ public class ServerConnection {
 
             enableAll();
             diagFill();
-            if (!GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
+            if (!local.getGameEnded()) {
                 try {
-                    GameBoardControllerOnline.localMultiPlayer.localMulti(diagonals, GameBoardControllerOnline.getStage());
-                    GameBoardControllerOnline.localMultiPlayer.drawChecker(GameBoardControllerOnline.getStage());
-                    if (GameBoardControllerOnline.localMultiPlayer.getGameEnded()) {
-                        try {
-                            inGame=false;
-                            GameBoardControllerOnline.arrlistButtons2 = null;
-                            GameBoardControllerOnline.localMultiPlayer.setGameEnded(false);
-                            sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
-                            diagonals = null;
-                        } catch (IOException ex) {
-                            UserMessage.showError(ex.getMessage());
-                        }
+                    
+                    local.localMulti(diagonals, GameBoardControllerOnline.stage);
+                    System.out.println("helllllllllllooooooooooooooo");
+                    local.drawChecker(GameBoardControllerOnline.stage);
+                    if (local.getGameEnded()) {
+                        inGame=false;
+                        
+                        GameBoardControllerOnline.arrlistButtons2 = null;
+                        local.setGameEnded(false);
+                        
+                        //sendMessage(ServerCall.GAME_ENDED+ServerCall.DELIMETER+UID);
+                        diagonals = null;
+                        local=null;
                     }
                 } catch (IOException ex) {
                     UserMessage.showError(ex.getMessage());

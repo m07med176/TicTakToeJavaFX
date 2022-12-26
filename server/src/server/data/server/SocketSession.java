@@ -53,7 +53,7 @@ public class SocketSession extends Thread {
         }
     }
 
-    private /*synchronized*/ void requestNavigator(String response) throws SQLException, IOException {
+    private synchronized void requestNavigator(String response) throws SQLException, IOException {
         if (response != null && !response.isEmpty()) {
             System.out.println(response);
             String[] data = response.split(ServerCall.DELIMETER);
