@@ -1,5 +1,6 @@
 package tictaktoejavafx.utils;
 
+import java.util.ArrayList;
 import java.util.Vector;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ import tictaktoejavafx.controller.RecordTableController;
 import tictaktoejavafx.controller.SnakeGameController;
 import tictaktoejavafx.controller.SplashController;
 import tictaktoejavafx.controller.TwoPlayerController;
+import tictaktoejavafx.data.model.Player;
 
 public class Navigator {
 
@@ -45,7 +47,7 @@ public class Navigator {
     public static final int HISTORY = 16;
     public static final int SNAKEGAME = 17;
     public static final int CHOSE_GAME=19;
-
+    
     public static String getOnlineWinner() {
         return onlineWinner;
     }
@@ -57,11 +59,36 @@ public class Navigator {
     
     public static String playerOne;
     public static String playerTwo;
+
+    public static ArrayList<Player> getSetPlayerData() {
+        return setPlayerData;
+    }
+
+    public static void setSetPlayerData(ArrayList<Player> setPlayerData) {
+        Navigator.setPlayerData = setPlayerData;
+    }
      public static String PlayerWinner;
     public static String buttonNumber;
     public static String boardMove;
     public static String onlineWinner;
+    public static ArrayList<Player> setPlayerData;
+    public static int playerStage;
+    public static boolean isValid=false;
 
+    public static boolean isIsValid() {
+        return isValid;
+    }
+
+    public static void setIsValid(boolean isValid) {
+        Navigator.isValid = isValid;
+    }
+    public static int getPlayerStage() {
+        return playerStage;
+    }
+
+    public static void setPlayerStage(int playerStage) {
+        Navigator.playerStage = playerStage;
+    }
 
     public static String winnerPlayer;
 

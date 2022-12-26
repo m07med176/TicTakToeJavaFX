@@ -67,6 +67,7 @@ public class GameBoardRecordController extends GameBoardRecordScreenBase {
             }
             //th.sleep(2000);
             Platform.runLater(() -> {
+                Navigator.setPlayerStage(Navigator.WELCOME);
                 Navigator.navigate(Navigator.WELCOME, stage);
             });
         });
@@ -204,6 +205,7 @@ public class GameBoardRecordController extends GameBoardRecordScreenBase {
         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
+                Navigator.setPlayerStage(Navigator.WELCOME);
                 Navigator.navigate(Navigator.WELCOME, stage);
             }
 

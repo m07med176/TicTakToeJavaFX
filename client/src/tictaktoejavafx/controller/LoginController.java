@@ -39,6 +39,7 @@ public class LoginController extends LoginScreenBase {
                          new UserMessage().display("There was a problem in the server\n" + ex.getMessage(), new CallBackAction() {
                               @Override
                               public void sendOk() {
+                                   Navigator.setPlayerStage(Navigator.WELCOME);
                                    Navigator.navigate(Navigator.WELCOME, stage);
                               }
 
@@ -57,6 +58,7 @@ public class LoginController extends LoginScreenBase {
                               new UserMessage().display(ex.getMessage(), new CallBackAction() {
                                    @Override
                                    public void sendOk() {
+                                        Navigator.setPlayerStage(Navigator.WELCOME);
                                         Navigator.navigate(Navigator.WELCOME, stage);
                                    }
 
@@ -115,11 +117,13 @@ public class LoginController extends LoginScreenBase {
 
      @Override
      protected void CreateAccount(ActionEvent actionEvent) {
+          Navigator.setPlayerStage(Navigator.REGISTER);
           Navigator.navigate(Navigator.REGISTER, stage, socketModel);
      }
 
      protected void isBack(ActionEvent actionEvent) {
-          Navigator.navigate(Navigator.WELCOME, stage);
+         Navigator.setPlayerStage(Navigator.WELCOME); 
+         Navigator.navigate(Navigator.WELCOME, stage);
      }
 
      @Override

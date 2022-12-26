@@ -22,6 +22,7 @@ import tictaktoejavafx.utils.CallBackAction;
 
 public class GameBoardControllerOnline extends GameBoardScreenBase {
 
+
     private static Stage stage;
     public ArrayList<String> diagonals = new ArrayList<>();
     public static char turn = 'X';
@@ -389,4 +390,5 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
 
         }
     }
+
 }

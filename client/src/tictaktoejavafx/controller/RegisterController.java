@@ -58,6 +58,7 @@ public class RegisterController extends RegisterScreenBase {
 
      @Override
      protected void haveAccount(ActionEvent actionEvent) {
+         Navigator.setPlayerStage(Navigator.LOGIN);
           Navigator.navigate(Navigator.LOGIN, stage, socketModel);
      }
 
@@ -126,6 +127,7 @@ public class RegisterController extends RegisterScreenBase {
 
      @Override
      protected void onBackClicked(ActionEvent actionEvent) {
+          Navigator.setPlayerStage(Navigator.WELCOME);
           Navigator.navigate(Navigator.WELCOME, stage);
 
      }

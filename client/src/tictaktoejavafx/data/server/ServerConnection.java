@@ -126,7 +126,10 @@ public class ServerConnection {
                             java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                             }.getType();
                             playerList = gson.fromJson(data[1], listType);
-                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
+                            Navigator.setSetPlayerData(playerList);
+                            Navigator.setIsValid(true);
+                            Navigator.setPlayerStage(Navigator.PLAYER_SELECTION);
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
                         }
                     });
                     break;
@@ -150,6 +153,7 @@ public class ServerConnection {
                     Platform.runLater(() -> {
                         System.out.println("I recived");
                         inGame=true;
+                        Navigator.setPlayerStage(Navigator.GAMEBOARDONLINE);
                         Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
                     });
                     break;
@@ -168,7 +172,10 @@ public class ServerConnection {
                             java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                             }.getType();
                             playerList = gson.fromJson(data[1], listType);
-                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
+                            Navigator.setSetPlayerData(playerList);
+                            Navigator.setPlayerStage(Navigator.PLAYER_SELECTION);
+                            
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
                         }
                     });
                 case ServerCall.PLAYER_LIST_RESEND:
@@ -180,7 +187,11 @@ public class ServerConnection {
                         java.lang.reflect.Type listType = new TypeToken<ArrayList<Player>>() {
                         }.getType();
                         playerList = gson.fromJson(data[1], listType);
-                        Navigator.navigate(Navigator.PLAYER_SELECTION, stage, playerList);
+                        Navigator.setSetPlayerData(playerList);
+                        if(Navigator.getPlayerStage()==Navigator.PLAYER_SELECTION){
+                            Navigator.navigate(Navigator.PLAYER_SELECTION, stage,playerList);
+                        }
+                        //Navigator.navigate(Navigator.PLAYER_SELECTION, stage);
                     });
                     
                     }
@@ -236,6 +247,7 @@ public class ServerConnection {
             Navigator.setPlayerTwo(UID);
             inGame=true;
             Platform.runLater(() -> {
+                Navigator.setPlayerStage(Navigator.GAMEBOARDONLINE);
                 Navigator.navigate(Navigator.GAMEBOARDONLINE, stage);
             });
 

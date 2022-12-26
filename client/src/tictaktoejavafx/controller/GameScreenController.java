@@ -15,11 +15,13 @@ public class GameScreenController extends ChooseGameScreenBase {
 
     @Override
     protected void isTicTacToe(ActionEvent actionEvent) {
+        Navigator.setPlayerStage(Navigator.WELCOME);
         Navigator.navigate(Navigator.WELCOME, stage);
     }
 
     @Override
     protected void isSnake(ActionEvent actionEvent) {
+        Navigator.setPlayerStage(Navigator.SNAKEGAME);
         Navigator.navigate(Navigator.SNAKEGAME, stage);
 
     }

@@ -215,6 +215,7 @@ void sleepScreenAndPlayVideo(){
     }
 
     void playVideo() {
+        Navigator.setPlayerStage(Navigator.WINNER_NOTIFY);
         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
     }
 
@@ -265,6 +266,7 @@ void sleepScreenAndPlayVideo(){
         new UserMessage().display(Config.EXIT_MSG, new CallBackAction() {
             @Override
             public void sendOk() {
+                Navigator.setPlayerStage(Navigator.WELCOME);
                 Navigator.navigate(Navigator.WELCOME, stage);
             }
 

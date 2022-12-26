@@ -22,6 +22,7 @@ public class Client extends Application {
         stage.setResizable(false);
         CSS = this.getClass().getResource(Config.CSS).toExternalForm();
         PathManager.getPath();
+        Navigator.setPlayerStage(Navigator.SPLACH);
         Navigator.navigate(Navigator.SPLACH, stage);
     }
 

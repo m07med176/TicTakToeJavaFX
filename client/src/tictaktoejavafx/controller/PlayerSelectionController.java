@@ -24,12 +24,12 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
      private Stage stage;
      private ArrayList<Player> onlinePlayers;
 
-     public PlayerSelectionController(Stage stage, Object object) {
-          onlinePlayers = (ArrayList<Player>) object;
+     public PlayerSelectionController(Stage stage,Object o) {
+          onlinePlayers = (ArrayList<Player>) Navigator.getSetPlayerData();
           this.stage = stage;
           displayPlayerInTable(onlinePlayers);
           handleExitEvent();
-
+          
           
      }
      public static void updatePlayer(ArrayList<Player> player){
@@ -70,6 +70,7 @@ public class PlayerSelectionController extends PlayerSelectionScreenBase {
                     new UserMessage().display(ex.getMessage(), new CallBackAction() {
                          @Override
                          public void sendOk() {
+                              Navigator.setPlayerStage(Navigator.WELCOME);
                               Navigator.navigate(Navigator.WELCOME, stage);
                          }
 

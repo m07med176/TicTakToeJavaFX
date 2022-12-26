@@ -1,5 +1,6 @@
 package tictaktoejavafx.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +11,12 @@ import tictaktoejavafx.controller.GameBoardControllerOnline;
 import tictaktoejavafx.controller.GameBoardEasyController;
 import tictaktoejavafx.controller.GameBoardMultiController;
 import tictaktoejavafx.data.model.WinnerName;
+import tictaktoejavafx.data.server.ServerCall;
 import tictaktoejavafx.data.server.ServerConnection;
 import tictaktoejavafx.view.GameBoardScreenBase;
+import static tictaktoejavafx.data.server.ServerConnection.UID;
+import static tictaktoejavafx.data.server.ServerConnection.sendMessage;
+
 
 public class LocalMultiPlayer {
 
@@ -33,8 +38,10 @@ private static int indexDiagonal=0;
         LocalMultiPlayer.indexDiagonal = indexDiagonal;
     }
 
+
     public static void localMulti(ArrayList<String> d, Stage stage) {
         for (int i = 0; i < d.size(); i++) {
+
 
             if (d.get(i).equals("XXX")) {
                 if (Navigator.isOnline) {
@@ -55,6 +62,7 @@ private static int indexDiagonal=0;
 
             } else if (d.get(i).equals("OOO")) {
 
+
                 if (Navigator.isOnline) {
                     Navigator.setOnlineWinner(Navigator.getPlayerTwo());
                 }
@@ -69,6 +77,7 @@ private static int indexDiagonal=0;
                 //Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
                 Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
             }
+
 
         }
         numberOfPresses++;
@@ -93,4 +102,5 @@ private static int indexDiagonal=0;
     }
     
  
+
 }
