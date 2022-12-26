@@ -56,12 +56,15 @@ public class LocalMultiPlayer {
                          Navigator.setOnlineWinner(Navigator.getPlayerOne());
                     }
                     setIndexDiagonal(i + 1);
-                    setIndexDiagonalOnline(i + 1);
+                  //  setIndexDiagonalOnline(i + 1);
                     saveSession(Navigator.getPlayerOne());
                     gameEnded = true;
                     numberOfPresses = 0;
                     GameBoardControllerOnline.arrlistButtons2 = null;
                     ServerConnection.diagonals = null;
+                         Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
+
+                         Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
 
                } else if (d.get(i).equals("OOO")) {
 
@@ -74,6 +77,8 @@ public class LocalMultiPlayer {
                     numberOfPresses = 0;
                     GameBoardControllerOnline.arrlistButtons2 = null;
                     ServerConnection.diagonals = null;
+                    Navigator.setWinnerPlayer(Navigator.getPlayerTwo());
+
                     Navigator.navigate(Navigator.WINNER_NOTIFY, stage);
                }
 

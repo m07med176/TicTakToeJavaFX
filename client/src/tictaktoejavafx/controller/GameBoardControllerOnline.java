@@ -137,14 +137,14 @@ public class GameBoardControllerOnline extends GameBoardScreenBase {
                diagonalFiller();
                LocalMultiPlayer.localMulti(diagonals, stage);
                LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+              // changeColorAndPlayVideo();
           } else {
                button.setText("O");
                button.setDisable(true);
                diagonalFiller();
                LocalMultiPlayer.localMulti(diagonals, stage);
                LocalMultiPlayer.drawChecker(stage);
-               changeColorAndPlayVideo();
+              // changeColorAndPlayVideo();
           }
 
      }
