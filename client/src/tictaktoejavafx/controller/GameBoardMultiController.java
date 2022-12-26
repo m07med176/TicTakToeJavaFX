@@ -93,6 +93,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
      public void gameTurns(Button button, int degree) {
 
           if (turn == 'X') {
+
               try {
                   turn = 'O';
                   button.setText("X");
@@ -117,6 +118,7 @@ public class GameBoardMultiController extends GameBoardScreenBase {
               } catch (IOException ex) {
                   Logger.getLogger(GameBoardMultiController.class.getName()).log(Level.SEVERE, null, ex);
               }
+
           }
 
           try {

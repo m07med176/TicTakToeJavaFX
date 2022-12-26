@@ -15,6 +15,7 @@ import static tictaktoejavafx.data.server.ServerConnection.sendMessage;
 
 public class LocalMultiPlayer {
 
+
     int numberOfPresses = 0;
     boolean gameEnded = false;
 
@@ -114,4 +115,5 @@ public class LocalMultiPlayer {
             UserMessage.showError(ex.getMessage());
         }
     }
+
 }
